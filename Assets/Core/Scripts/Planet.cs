@@ -11,9 +11,9 @@ namespace PlanetMerge.Planet
         private void Start()
         {
             DisplayLevel();
-        }
+        }            
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.TryGetComponent<Planet>(out Planet planet))
             {
@@ -23,6 +23,7 @@ namespace PlanetMerge.Planet
 
                 }
             }
+
         }
 
         public void Merge(Planet planet)

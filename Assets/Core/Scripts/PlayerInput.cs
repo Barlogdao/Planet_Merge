@@ -12,8 +12,8 @@ namespace PlanetMerge.Systems
         [SerializeField] private Rigidbody2D _planetPrefab;
         [SerializeField] private float _force;
         [SerializeField] private float _launchCooldown;
-        [SerializeField] private LayerMask _ignoreLayer;
-        [SerializeField] private LayerMask _planetLayer;
+
+        
 
         [SerializeField] private Trajectory _trajectory;
 
@@ -35,7 +35,6 @@ namespace PlanetMerge.Systems
         private void CreatePlanet()
         {
             _currentPlanet = Instantiate(_planetPrefab, _launchPoint.position, Quaternion.identity);
-            _currentPlanet.gameObject.layer = _ignoreLayer;
         }
 
         private void Update()
@@ -60,7 +59,6 @@ namespace PlanetMerge.Systems
             Vector2 direction = (MousePosition - (Vector2)_launchPoint.position).normalized;
 
             _currentPlanet.AddForce(direction * _force, ForceMode2D.Impulse);
-            _currentPlanet.gameObject.layer = _planetLayer;
 
 
             yield return new WaitForSeconds(_launchCooldown);

@@ -11,12 +11,14 @@ namespace PlanetMerge.Systems
         private const int LineEnd = 1;
 
         [SerializeField] private LineRenderer _linerenderer;
-        [SerializeField] private LayerMask _collidableMask;
+        [SerializeField] private LineRenderer _collisionLine;
+
         [SerializeField] private Transform _collideVisual;
+        [SerializeField] ContactFilter2D _contactfilter;
 
         private SpriteRenderer _collisionSprite;
         private Vector2 _startPoint;
-        private  float _planetRadius;
+        private float _planetRadius;
 
         private Vector2 MousePosition => Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
@@ -26,7 +28,9 @@ namespace PlanetMerge.Systems
             _planetRadius = planetRadius;
             _collisionSprite = _collideVisual.GetComponent<SpriteRenderer>();
             _linerenderer.positionCount = PositionsCount;
+            _collisionLine.positionCount = PositionsCount;
             _linerenderer.SetPosition(LineStart, _startPoint);
+            _collisionLine.SetPosition(LineStart, _startPoint);
 
             Hide();
         }
@@ -44,27 +48,44 @@ namespace PlanetMerge.Systems
             _linerenderer.enabled = true;
         }
 
-        private void Calculate()
-        {
-            RaycastHit2D hit = Physics2D.CircleCast(_startPoint, _planetRadius, MousePosition - _startPoint, 10f,_collidableMask);
-
-            if (hit.collider != null)
-            {
-                _collideVisual.position = hit.centroid;
-                _collisionSprite.enabled = true;
-            }
-            else
-            {
-                _collisionSprite.enabled = false;
-            }
-
-            _linerenderer.SetPosition(LineEnd, MousePosition);
-        }
-
         public void Hide()
         {
             _linerenderer.enabled = false;
             _collisionSprite.enabled = false;
+            _collisionLine.enabled = false;
         }
+
+        private void Calculate()
+        {
+            Vector2 direction = MousePosition - _startPoint;
+
+            HandleCollision(direction);
+
+            //_linerenderer.SetPosition(LineEnd, direction * 5f);
+        }
+
+        private void HandleCollision(Vector2 direction)
+        {
+            RaycastHit2D[] hits = new RaycastHit2D[2];
+
+            if (Physics2D.CircleCast(_startPoint, _planetRadius, direction, _contactfilter, hits, 10f) <= 1)
+                return;
+
+            if (hits[1].collider != null)
+            {
+                _collisionLine.enabled = true;
+                _collisionLine.SetPosition(LineEnd, hits[1].centroid);
+                _linerenderer.SetPosition(LineEnd, hits[1].centroid - _startPoint);
+
+                _collisionSprite.enabled = true;
+                _collideVisual.position = hits[1].centroid;
+            }
+            else
+            {
+                _collisionLine.enabled = false;
+                _collisionSprite.enabled = false;
+            }
+        }
+
     }
 }
