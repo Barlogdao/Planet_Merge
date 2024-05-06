@@ -4,45 +4,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerInput : MonoBehaviour
+namespace PlanetMerge.Systems
 {
-    [SerializeField] private Transform _launchPoint;
-    [SerializeField] private Rigidbody2D _planetPrefab;
-    [SerializeField] private float _force;
-    [SerializeField] private float _launchCooldownl;
-
-    private Rigidbody2D _currentPlanet;
-    private Coroutine _launchRoutine;
-
-    private void Awake()
+    public class PlayerInput : MonoBehaviour
     {
-        CreatePlanet();
-    }
+        [SerializeField] private Transform _launchPoint;
+        [SerializeField] private Rigidbody2D _planetPrefab;
+        [SerializeField] private float _force;
+        [SerializeField] private float _launchCooldown;
 
-    private void CreatePlanet()
-    {
-        _currentPlanet = Instantiate(_planetPrefab, _launchPoint.position, Quaternion.identity);
-    }
+        private Rigidbody2D _currentPlanet;
+        private Coroutine _launchRoutine;
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonUp(0))
+        private void Awake()
         {
-            if (_launchRoutine != null)
-                _launchRoutine = StartCoroutine(LaunchPlanet());
+            CreatePlanet();
         }
-    }
 
-    private IEnumerator LaunchPlanet()
-    {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 direction = (mousePosition - _launchPoint.position).normalized;
+        private void CreatePlanet()
+        {
+            _currentPlanet = Instantiate(_planetPrefab, _launchPoint.position, Quaternion.identity);
+        }
 
-        _currentPlanet.AddForce(direction * _force, ForceMode2D.Impulse);
+        private void Update()
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (_launchRoutine == null)
+                    _launchRoutine = StartCoroutine(LaunchPlanet());
+            }
+        }
 
-         yield return _launchRoutine;
+        private IEnumerator LaunchPlanet()
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 direction = (mousePosition - (Vector2)_launchPoint.position).normalized;
 
-        CreatePlanet();
-        _launchRoutine = null;
+            Debug.Log(direction);
+
+            _currentPlanet.AddForce(direction * _force, ForceMode2D.Impulse);
+
+            yield return new WaitForSeconds(_launchCooldown);
+
+            _launchRoutine = null;
+            CreatePlanet();
+        }
     }
 }
