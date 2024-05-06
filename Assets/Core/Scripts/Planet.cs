@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Planet : MonoBehaviour
+namespace PlanetMerge.Planet
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Planet : MonoBehaviour
     {
-        
-    }
+        private int _level = 1;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.TryGetComponent<Planet>(out Planet planet))
+            {
+
+            }
+        }
     }
 }
