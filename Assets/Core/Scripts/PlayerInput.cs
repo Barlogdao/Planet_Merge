@@ -12,37 +12,56 @@ namespace PlanetMerge.Systems
         [SerializeField] private Rigidbody2D _planetPrefab;
         [SerializeField] private float _force;
         [SerializeField] private float _launchCooldown;
+        [SerializeField] private LayerMask _ignoreLayer;
+        [SerializeField] private LayerMask _planetLayer;
+
+        [SerializeField] private Trajectory _trajectory;
 
         private Rigidbody2D _currentPlanet;
         private Coroutine _launchRoutine;
 
+        private Vector2 MousePosition => Camera.main.ScreenToWorldPoint(Input.mousePosition);  
+
         private void Awake()
         {
             CreatePlanet();
+
+            float planetRadius = _planetPrefab.GetComponent<CircleCollider2D>().radius * _planetPrefab.transform.localScale.x;
+
+            _trajectory.Initialize(_launchPoint.position, planetRadius);
+            
         }
 
         private void CreatePlanet()
         {
             _currentPlanet = Instantiate(_planetPrefab, _launchPoint.position, Quaternion.identity);
+            _currentPlanet.gameObject.layer = _ignoreLayer;
         }
 
         private void Update()
         {
+            if (Input.GetMouseButtonDown(0))
+            {
+                _trajectory.Show();
+            }
+
             if (Input.GetMouseButtonUp(0))
             {
                 if (_launchRoutine == null)
                     _launchRoutine = StartCoroutine(LaunchPlanet());
+
+                _trajectory.Hide();
             }
+
         }
 
         private IEnumerator LaunchPlanet()
         {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 direction = (mousePosition - (Vector2)_launchPoint.position).normalized;
-
-            Debug.Log(direction);
+            Vector2 direction = (MousePosition - (Vector2)_launchPoint.position).normalized;
 
             _currentPlanet.AddForce(direction * _force, ForceMode2D.Impulse);
+            _currentPlanet.gameObject.layer = _planetLayer;
+
 
             yield return new WaitForSeconds(_launchCooldown);
 
