@@ -10,13 +10,16 @@ namespace PlanetMerge.Systems
         private const int LineStart = 0;
         private const int LineEnd = 1;
 
-        [SerializeField] private LineRenderer _linerenderer;
+        [SerializeField] private float _lineDistance = 10f;
+        [SerializeField] private LayerMask _collideMask;
+
+
+        [SerializeField] private LineRenderer _mainLine;
         [SerializeField] private LineRenderer _collisionLine;
 
         [SerializeField] private Transform _collideVisual;
-        [SerializeField] ContactFilter2D _contactfilter;
-
         private SpriteRenderer _collisionSprite;
+
         private Vector2 _startPoint;
         private float _planetRadius;
 
@@ -27,9 +30,9 @@ namespace PlanetMerge.Systems
             _startPoint = startPoint;
             _planetRadius = planetRadius;
             _collisionSprite = _collideVisual.GetComponent<SpriteRenderer>();
-            _linerenderer.positionCount = PositionsCount;
+            _mainLine.positionCount = PositionsCount;
             _collisionLine.positionCount = PositionsCount;
-            _linerenderer.SetPosition(LineStart, _startPoint);
+            _mainLine.SetPosition(LineStart, _startPoint);
             _collisionLine.SetPosition(LineStart, _startPoint);
 
             Hide();
@@ -37,7 +40,7 @@ namespace PlanetMerge.Systems
 
         private void Update()
         {
-            if (_linerenderer.enabled)
+            if (_mainLine.enabled)
             {
                 Calculate();
             }
@@ -45,12 +48,12 @@ namespace PlanetMerge.Systems
 
         public void Show()
         {
-            _linerenderer.enabled = true;
+            _mainLine.enabled = true;
         }
 
         public void Hide()
         {
-            _linerenderer.enabled = false;
+            _mainLine.enabled = false;
             _collisionSprite.enabled = false;
             _collisionLine.enabled = false;
         }
@@ -61,24 +64,22 @@ namespace PlanetMerge.Systems
 
             HandleCollision(direction);
 
-            //_linerenderer.SetPosition(LineEnd, direction * 5f);
+            //_mainLine.SetPosition(LineEnd, direction * 5f);
         }
 
         private void HandleCollision(Vector2 direction)
         {
-            RaycastHit2D[] hits = new RaycastHit2D[2];
 
-            if (Physics2D.CircleCast(_startPoint, _planetRadius, direction, _contactfilter, hits, 10f) <= 1)
-                return;
+            RaycastHit2D hit = Physics2D.CircleCast(_startPoint, _planetRadius, direction, _lineDistance, _collideMask);
 
-            if (hits[1].collider != null)
+            if (hit.collider != null)
             {
                 _collisionLine.enabled = true;
-                _collisionLine.SetPosition(LineEnd, hits[1].centroid);
-                _linerenderer.SetPosition(LineEnd, hits[1].centroid - _startPoint);
+                _collisionLine.SetPosition(LineEnd, hit.centroid);
+                _mainLine.SetPosition(LineEnd, _startPoint + (hit.centroid - _startPoint).normalized * _lineDistance);
 
                 _collisionSprite.enabled = true;
-                _collideVisual.position = hits[1].centroid;
+                _collideVisual.position = hit.centroid;
             }
             else
             {

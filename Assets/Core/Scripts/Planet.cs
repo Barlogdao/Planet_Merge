@@ -8,32 +8,40 @@ namespace PlanetMerge.Planet
         private int _level = 1;
         [SerializeField] private TextMeshProUGUI _levelLabel;
 
-        private void Start()
+        [SerializeField] private MergeDetector _mergeDetector;
+
+        public int Level => _level;
+
+        private void Awake()
         {
-            DisplayLevel();
-        }            
-
-        private void OnTriggerEnter2D(Collider2D collision)
+            _mergeDetector.Initialize(this);
+        }
+        private void OnEnable()
         {
-            if (collision.gameObject.TryGetComponent<Planet>(out Planet planet))
-            {
-                if (planet._level == _level)
-                {
-                    Merge(planet);
-
-                }
-            }
-
+            _mergeDetector.MergeDetected += OnMerge;
         }
 
-        public void Merge(Planet planet)
+        private void OnDisable()
+        {
+            _mergeDetector.MergeDetected -= OnMerge;
+        }
+
+
+        private void Start()
+        {
+
+            DisplayLevel();
+        }
+
+
+        private void OnMerge(Planet otherPlanet)
         {
             if (enabled)
             {
                 _level++;
                 DisplayLevel();
 
-                Destroy(planet.gameObject);
+                Destroy(otherPlanet.gameObject);
             }
         }
 
