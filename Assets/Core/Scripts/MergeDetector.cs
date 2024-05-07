@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace PlanetMerge.Planet
+namespace PlanetMerge.Planets
 {
     [RequireComponent(typeof(CircleCollider2D))]
     public class MergeDetector : MonoBehaviour
