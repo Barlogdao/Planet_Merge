@@ -6,7 +6,6 @@ namespace PlanetMerge.Configs
         {
             public Sprite Sprite;
             public Color LabelColor;
-
             public string RankText;
 
             public PlanetViewData(Sprite sprite, Color labelColor, string rankText)

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d05a1a2994afbe458ba64fb390d2747, type: 3}
   m_Name: PlanetViewProvider
   m_EditorClassIdentifier: 
-  _planetSprites:
-  - {fileID: 21300000, guid: 1fbc4d113ed8d274d907de45a1f0ba52, type: 3}
-  - {fileID: 21300000, guid: 1f9ef30d81e2ed94c933f4a74466a4b9, type: 3}
-  - {fileID: 21300000, guid: c6d8cdf5babe13b49a77399d3f150bc2, type: 3}
-  - {fileID: 21300000, guid: 92169ad8fbe078949876ca0c8c974f4d, type: 3}
-  - {fileID: 21300000, guid: c1ecfdeb719613d4684adb3f4abf2421, type: 3}
-  - {fileID: 21300000, guid: 45518678c8d79424a8c399ef5e06e7d9, type: 3}
+  _planetViewConfigs:
+  - {fileID: 11400000, guid: 97dfc477a18f6e84da75e9d121cc99f1, type: 2}
+  - {fileID: 11400000, guid: 2351babd9cb727145a501319d046fcfd, type: 2}
+  - {fileID: 11400000, guid: c1fa1286efc84aa49a64b0caeb0a3233, type: 2}
+  - {fileID: 11400000, guid: 9c6754913297f7c428db501b8d70eca8, type: 2}
+  - {fileID: 11400000, guid: d846a4e7d23665e4a93b00dbcc1c2b97, type: 2}
+  - {fileID: 11400000, guid: 7cc45eee231c3d4469254fe6fbf6d8fc, type: 2}
