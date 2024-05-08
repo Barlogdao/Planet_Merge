@@ -5,7 +5,7 @@ namespace PlanetMerge.Planets
 {
     public class PlanetFactory : MonoBehaviour
     {
-        private const int MinimalLevel = 1;
+        private const int MinimalPlanetRank = 1;
 
         private PlanetPool _pool;
 
@@ -14,13 +14,13 @@ namespace PlanetMerge.Planets
             _pool = pool;
         }
      
-        public Planet Create(Vector2 atPosition, int level)
+        public Planet Create(Vector2 atPosition, int rank)
         {
-            if (level < MinimalLevel)
-                throw new ArgumentException($" {nameof(level)} can not be lower than {MinimalLevel}");
+            if (rank < MinimalPlanetRank)
+                throw new ArgumentException($" {nameof(rank)} can not be lower than {MinimalPlanetRank}");
 
             Planet planet = _pool.Get(atPosition);
-            planet.Prepare(level);
+            planet.Prepare(rank);
 
             return planet;
         }

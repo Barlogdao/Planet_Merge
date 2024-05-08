@@ -8,6 +8,6 @@ namespace PlanetMerge.Configs
     {
         public Vector2 Position;
         [Range(0,6)]
-        public int LevelModificator;
+        public int RankModificator;
     }
 }

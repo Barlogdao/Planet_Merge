@@ -1,16 +1,15 @@
 using PlanetMerge.Configs;
 using PlanetMerge.Planets;
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 namespace PlanetMerge.Systems
 {
     public class GoalTracker : MonoBehaviour
     {
-        private int _planetLevel;
-        private int _planetMergeAmount;
+        private int _planetGoalRank;
+        private int _planetsToMergeAmount;
         private IPlanetStatusNotifier _planetStatusNotifier;
 
         public event Action GoalReached;
@@ -28,6 +27,19 @@ namespace PlanetMerge.Systems
             _planetStatusNotifier.PlanetCreated -= OnPlanetCreated;
             _planetStatusNotifier.PlanetReleased -= OnPlanetReleased;
         }
+
+        public void Prepare(int planetsToMergeAmount, int planetRank)
+        {
+            if (planetsToMergeAmount <= 0)
+                throw new ArgumentOutOfRangeException(nameof(planetsToMergeAmount));
+
+            if (planetRank <= 0)
+                throw new ArgumentOutOfRangeException(nameof(planetRank));
+
+            _planetGoalRank = planetRank;
+            _planetsToMergeAmount = planetsToMergeAmount;
+        }
+
         private void OnPlanetCreated(Planet planet)
         {
             planet.Merged += OnPlanetMerged;
@@ -38,30 +50,25 @@ namespace PlanetMerge.Systems
             planet.Merged -= OnPlanetMerged;
         }
 
-
-        private void OnPlanetMerged(int level)
+        private void OnPlanetMerged(int rank)
         {
-            if (_planetLevel == level)
+            if (_planetGoalRank == rank)
             {
-                _planetMergeAmount--;
+                _planetsToMergeAmount--;
+                CheckGoalCondition();
             }
 
-            CheckWinCondition();
         }
 
-        private void CheckWinCondition()
+        private void CheckGoalCondition()
         {
-            if (_planetMergeAmount == 0)
+            if (_planetsToMergeAmount == 0)
             {
                 GoalReached?.Invoke();
                 Debug.Log("ÏÀÁÅÄÈËÈ");
             }
         }
 
-        public void SetGoal(int planetMergeAmount, int planetLevel)
-        {
-            _planetLevel = planetLevel;
-            _planetMergeAmount = planetMergeAmount;
-        }
+
     }
 }

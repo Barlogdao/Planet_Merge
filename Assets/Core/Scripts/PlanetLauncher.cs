@@ -8,18 +8,17 @@ namespace PlanetMerge.Planets
 {
     public class PlanetLauncher : MonoBehaviour
     {
-        private PlanetFactory _planetFactory;
         [SerializeField] private Trajectory _trajectory;
-        private PlayerInput _playerInput;
         [SerializeField] private Transform _launchPoint;
         [SerializeField] private float _force;
         [SerializeField] private float _launchCooldown;
 
-        [SerializeField] private int _launchingLevel = 1;
-
+        private PlanetFactory _planetFactory;
+        private PlayerInput _playerInput;
         private Coroutine _launchRoutine;
         private WaitForSeconds _cooldown;
         private Planet _loadedPlanet = null;
+        private int _planetRank = 1;
 
 
         public void Initialize(PlayerInput playerInput, PlanetFactory planetFactory, float planetRadius)
@@ -34,8 +33,10 @@ namespace PlanetMerge.Planets
             _playerInput.ClickedUp += OnClickUp;
         }
 
-        public void Prepare()
+        public void Prepare(int planetRank)
         {
+            _planetRank = planetRank;
+
             LoadPlanet();
         }
 
@@ -45,6 +46,7 @@ namespace PlanetMerge.Planets
             _playerInput.ClickedDown -= OnClickDown;
             _playerInput.ClickedUp -= OnClickUp;
         }
+
         private void OnClickDown()
         {
             _trajectory.Show();
@@ -75,7 +77,7 @@ namespace PlanetMerge.Planets
 
         private void LoadPlanet()
         {
-            _loadedPlanet = _planetFactory.Create(_launchPoint.position, _launchingLevel);
+            _loadedPlanet = _planetFactory.Create(_launchPoint.position, _planetRank);
         }
     }
 }

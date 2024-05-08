@@ -8,14 +8,14 @@ namespace PlanetMerge.Planets
     [RequireComponent(typeof(Rigidbody2D))]
     public class Planet : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI _levelLabel;
+        [SerializeField] private TextMeshProUGUI _rankLabel;
         [SerializeField] private MergeDetector _mergeDetector;
 
-        private int _level = 1;
+        private int _rank = 1;
         private Rigidbody2D _rigidbody2D;
         private IReleasePool _releasePool;
 
-        public int Level => _level;
+        public int Rank => _rank;
         public event Action<int> Merged;
 
         public void Initialize(IReleasePool releasePool)
@@ -36,15 +36,10 @@ namespace PlanetMerge.Planets
         }
 
 
-        private void Start()
+        public void Prepare(int rank)
         {
-
+            _rank = rank;
             DisplayLevel();
-        }
-
-        public void Prepare(int level)
-        {
-            _level = level;
         }
 
         public void AddForce(Vector2 force)
@@ -63,17 +58,17 @@ namespace PlanetMerge.Planets
 
         private void Merge(Planet otherPlanet)
         {
-            _level++;
+            _rank++;
             otherPlanet.Absorb();
 
             DisplayLevel();
 
-            Merged?.Invoke(Level);
+            Merged?.Invoke(Rank);
         }
 
         private void DisplayLevel()
         {
-            _levelLabel.text = _level.ToString();
+            _rankLabel.text = _rank.ToString();
         }
 
         public void Absorb()

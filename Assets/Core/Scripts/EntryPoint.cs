@@ -20,7 +20,7 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private LevelSetup _levelSetup;
     [SerializeField] private LevelGoal _levelGoal;
 
-    [SerializeField] private int level = 1;
+    [SerializeField] private int _planetRank = 1;
 
     private PlanetPool _planetPool;
 
@@ -41,15 +41,15 @@ public class EntryPoint : MonoBehaviour
 
     private void SetUp()
     {
-        _goalTracker.SetGoal(_levelGoal.PlanetsMergedAmount, _levelGoal.PlanetLevelModificator + level);
+        _goalTracker.Prepare(_levelGoal.PlanetsMergedAmount, _levelGoal.PlanetLevelModificator + _planetRank);
 
         foreach(PlanetSetup planetSetup in _levelSetup.PlanetSetups)
         {
-            _planetFactory.Create(planetSetup.Position, level + planetSetup.LevelModificator);
+            _planetFactory.Create(planetSetup.Position, _planetRank + planetSetup.RankModificator);
         }
 
         
-        _planetLauncher.Prepare();
+        _planetLauncher.Prepare(_planetRank);
 
     }
 

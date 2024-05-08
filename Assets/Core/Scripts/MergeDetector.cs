@@ -10,7 +10,7 @@ namespace PlanetMerge.Planets
 
         public event Action<Planet> MergeDetected;
 
-        private int PlanetLevel => _planet.Level;
+        private int PlanetRank => _planet.Rank;
 
         public void Initialize(Planet planet)
         {
@@ -21,7 +21,7 @@ namespace PlanetMerge.Planets
         {
             if (collision.gameObject.TryGetComponent<Planet>(out Planet planet))
             {
-                if (planet.Level == PlanetLevel)
+                if (planet.Rank == PlanetRank)
                 {
                     MergeDetected?.Invoke(planet);
                 }
