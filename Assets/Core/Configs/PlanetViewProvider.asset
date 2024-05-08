@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d05a1a2994afbe458ba64fb390d2747, type: 3}
   m_Name: PlanetViewProvider
   m_EditorClassIdentifier: 
-  _planetSprites: []
+  _planetSprites:
+  - {fileID: 21300000, guid: 1fbc4d113ed8d274d907de45a1f0ba52, type: 3}
+  - {fileID: 21300000, guid: 1f9ef30d81e2ed94c933f4a74466a4b9, type: 3}
+  - {fileID: 21300000, guid: c6d8cdf5babe13b49a77399d3f150bc2, type: 3}
+  - {fileID: 21300000, guid: 92169ad8fbe078949876ca0c8c974f4d, type: 3}
+  - {fileID: 21300000, guid: c1ecfdeb719613d4684adb3f4abf2421, type: 3}
+  - {fileID: 21300000, guid: 45518678c8d79424a8c399ef5e06e7d9, type: 3}
