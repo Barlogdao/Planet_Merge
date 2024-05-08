@@ -1,4 +1,5 @@
 using PlanetMerge.Configs;
+using PlanetMerge.Data;
 using PlanetMerge.Planets;
 using PlanetMerge.Systems;
 using System.Collections;
@@ -7,6 +8,8 @@ using UnityEngine;
 
 public class EntryPoint : MonoBehaviour
 {
+    [SerializeField] private PlayerData _playerData;
+    
     [SerializeField] private Planet _planetPrefab;
     [SerializeField] private Transform _planetHolder;
 
@@ -20,8 +23,7 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private LevelSetup _levelSetup;
     [SerializeField] private LevelGoal _levelGoal;
 
-    [SerializeField] private int _planetRank = 1;
-
+    
     private PlanetPool _planetPool;
 
     public float PlanetRadius => _planetPrefab.GetComponent<CircleCollider2D>().radius * _planetPrefab.transform.localScale.x;
@@ -41,15 +43,15 @@ public class EntryPoint : MonoBehaviour
 
     private void SetUp()
     {
-        _goalTracker.Prepare(_levelGoal.PlanetsMergedAmount, _levelGoal.PlanetLevelModificator + _planetRank);
+        _goalTracker.Prepare(_levelGoal.PlanetsMergedAmount, _levelGoal.PlanetLevelModificator + _playerData.PlanetRank);
 
         foreach(PlanetSetup planetSetup in _levelSetup.PlanetSetups)
         {
-            _planetFactory.Create(planetSetup.Position, _planetRank + planetSetup.RankModificator);
+            _planetFactory.Create(planetSetup.Position, _playerData.PlanetRank + planetSetup.RankModificator);
         }
 
         
-        _planetLauncher.Prepare(_planetRank);
+        _planetLauncher.Prepare(_playerData.PlanetRank);
 
     }
 

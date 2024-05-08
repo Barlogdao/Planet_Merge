@@ -30,8 +30,11 @@ namespace PlanetMerge.Systems
             _startPoint = startPoint;
             _planetRadius = planetRadius;
             _collisionSprite = _collideVisual.GetComponent<SpriteRenderer>();
+            _collideVisual.localScale = Vector2.one * (planetRadius * 2);
+
             _mainLine.positionCount = PositionsCount;
             _collisionLine.positionCount = PositionsCount;
+
             _mainLine.SetPosition(LineStart, _startPoint);
             _collisionLine.SetPosition(LineStart, _startPoint);
 
@@ -63,8 +66,6 @@ namespace PlanetMerge.Systems
             Vector2 direction = MousePosition - _startPoint;
 
             HandleCollision(direction);
-
-            //_mainLine.SetPosition(LineEnd, direction * 5f);
         }
 
         private void HandleCollision(Vector2 direction)

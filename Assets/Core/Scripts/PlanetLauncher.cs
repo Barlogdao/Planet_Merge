@@ -10,24 +10,25 @@ namespace PlanetMerge.Planets
     {
         [SerializeField] private Trajectory _trajectory;
         [SerializeField] private Transform _launchPoint;
+
         [SerializeField] private float _force;
         [SerializeField] private float _launchCooldown;
 
         private PlanetFactory _planetFactory;
         private PlayerInput _playerInput;
-        private Coroutine _launchRoutine;
-        private WaitForSeconds _cooldown;
         private Planet _loadedPlanet = null;
         private int _planetRank = 1;
 
+        private Coroutine _launchRoutine;
+        private WaitForSeconds _cooldown;
 
         public void Initialize(PlayerInput playerInput, PlanetFactory planetFactory, float planetRadius)
         {
             _playerInput = playerInput;
             _planetFactory = planetFactory;
-            _trajectory.Initialize(_launchPoint.position, planetRadius);
-
             _cooldown = new WaitForSeconds(_launchCooldown);
+
+            _trajectory.Initialize(_launchPoint.position, planetRadius);
 
             _playerInput.ClickedDown += OnClickDown;
             _playerInput.ClickedUp += OnClickUp;
@@ -35,6 +36,9 @@ namespace PlanetMerge.Planets
 
         public void Prepare(int planetRank)
         {
+            if (planetRank <= 0)
+                throw new ArgumentOutOfRangeException(nameof(planetRank));
+
             _planetRank = planetRank;
 
             LoadPlanet();
@@ -59,7 +63,6 @@ namespace PlanetMerge.Planets
 
             _trajectory.Hide();
         }
-
 
 
         private IEnumerator LaunchPlanet()

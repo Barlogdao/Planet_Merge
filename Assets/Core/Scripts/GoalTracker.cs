@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace PlanetMerge.Systems
 {
-    public class GoalTracker : MonoBehaviour
+    public class GoalTracker :PlanetMergeTracker
     {
         private int _planetGoalRank;
         private int _planetsToMergeAmount;
@@ -50,14 +50,13 @@ namespace PlanetMerge.Systems
             planet.Merged -= OnPlanetMerged;
         }
 
-        private void OnPlanetMerged(int rank)
+        protected override void OnPlanetMerged(int rank)
         {
             if (_planetGoalRank == rank)
             {
                 _planetsToMergeAmount--;
                 CheckGoalCondition();
             }
-
         }
 
         private void CheckGoalCondition()
@@ -68,7 +67,5 @@ namespace PlanetMerge.Systems
                 Debug.Log("œ¿¡≈ƒ»À»");
             }
         }
-
-
     }
 }

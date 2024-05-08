@@ -19,13 +19,18 @@ namespace PlanetMerge.Planets
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.TryGetComponent<Planet>(out Planet planet))
+            if (collision.gameObject.TryGetComponent<Planet>(out Planet otherPlanet))
             {
-                if (planet.Rank == PlanetRank)
+                if (otherPlanet.Rank == PlanetRank && IsFaster(otherPlanet))
                 {
-                    MergeDetected?.Invoke(planet);
+                    MergeDetected?.Invoke(otherPlanet);
                 }
             }
+        }
+
+        private bool IsFaster(Planet otherPlanet)
+        {
+            return _planet.GetSpeed() >= otherPlanet.GetSpeed();
         }
     }
 }

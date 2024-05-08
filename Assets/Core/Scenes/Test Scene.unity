@@ -336,7 +336,6 @@ MonoBehaviour:
   _launchPoint: {fileID: 1869244810}
   _force: 20
   _launchCooldown: 0.3
-  _launchingLevel: 1
 --- !u!4 &113462646
 Transform:
   m_ObjectHideFlags: 0
@@ -640,6 +639,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47f2bb52e1bae7841aac7425331099d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerData:
+    Level: 1
+    PlanetRank: 4
+    Score: 0
   _planetPrefab: {fileID: 237592449600710670, guid: c8ddfaccac5b3284cb72c9d107d0a3ff, type: 3}
   _planetHolder: {fileID: 124352222}
   _planetFactory: {fileID: 1091049146}
@@ -649,7 +652,6 @@ MonoBehaviour:
   _goalTracker: {fileID: 1845970749}
   _levelSetup: {fileID: 11400000, guid: 2ee12089821fd3a41a83aaf0bb43469d, type: 2}
   _levelGoal: {fileID: 11400000, guid: cacc8f69b3fe2444c80a88dca56729bb, type: 2}
-  level: 1
 --- !u!4 &785785552
 Transform:
   m_ObjectHideFlags: 0
@@ -867,7 +869,7 @@ Transform:
   m_GameObject: {fileID: 1210049893}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3393355, y: -1.94, z: -0.020742306}
+  m_LocalPosition: {x: -0.3393355, y: -1.46, z: -0.020742306}
   m_LocalScale: {x: 8.22, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -910,11 +912,11 @@ BoxCollider2D:
     border: {x: 0.0390625, y: 0.0390625, z: 0.0390625, w: 0.0390625}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 0.06786297}
     adaptiveTilingThreshold: 0.5
     drawMode: 1
     adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_AutoTiling: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
@@ -964,7 +966,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 0.06786297}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
