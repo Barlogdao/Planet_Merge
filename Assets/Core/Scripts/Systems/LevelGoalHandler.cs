@@ -2,30 +2,30 @@ using PlanetMerge.Configs;
 using PlanetMerge.Planets;
 using System;
 using UnityEngine;
+using PlanetMerge.Systems.Events;
 
 
 namespace PlanetMerge.Systems
 {
-    public class GoalTracker :PlanetMergeTracker
+    public class LevelGoalHandler : MonoBehaviour
     {
         private int _planetGoalRank;
         private int _planetsToMergeAmount;
-        private IPlanetStatusNotifier _planetStatusNotifier;
+
+        private IPlanetEvents _planetEvents;
 
         public event Action GoalReached;
 
-        public void Initialize(IPlanetStatusNotifier planetStatusNotifier)
+        public void Initialize(IPlanetEvents planetEvents)
         {
-            _planetStatusNotifier = planetStatusNotifier;
+            _planetEvents = planetEvents;
 
-            _planetStatusNotifier.PlanetCreated += OnPlanetCreated;
-            _planetStatusNotifier.PlanetReleased += OnPlanetReleased;
+            _planetEvents.PlanetMerged += OnPlanetMerged;
         }
 
         private void OnDestroy()
         {
-            _planetStatusNotifier.PlanetCreated -= OnPlanetCreated;
-            _planetStatusNotifier.PlanetReleased -= OnPlanetReleased;
+            _planetEvents.PlanetMerged -= OnPlanetMerged;
         }
 
         public void Prepare(int planetsToMergeAmount, int planetRank)
@@ -40,19 +40,10 @@ namespace PlanetMerge.Systems
             _planetsToMergeAmount = planetsToMergeAmount;
         }
 
-        private void OnPlanetCreated(Planet planet)
-        {
-            planet.Merged += OnPlanetMerged;
-        }
 
-        private void OnPlanetReleased(Planet planet)
+        protected void OnPlanetMerged(Planet planet)
         {
-            planet.Merged -= OnPlanetMerged;
-        }
-
-        protected override void OnPlanetMerged(int rank)
-        {
-            if (_planetGoalRank == rank)
+            if (_planetGoalRank == planet.Rank)
             {
                 _planetsToMergeAmount--;
                 CheckGoalCondition();

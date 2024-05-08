@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87d7f42a68681714884be41baa349367, type: 3}
-  m_Name: StartLevel
+  m_Name: Tutorial Layout
   m_EditorClassIdentifier: 
   <PlanetSetups>k__BackingField:
   - Position: {x: -1.49, y: 0.28}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d05a1a2994afbe458ba64fb390d2747, type: 3}
-  m_Name: PlanetViewProvider
+  m_Name: PlanetViewService
   m_EditorClassIdentifier: 
   _planetViewConfigs:
   - {fileID: 11400000, guid: 97dfc477a18f6e84da75e9d121cc99f1, type: 2}

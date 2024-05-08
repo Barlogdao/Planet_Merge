@@ -1,5 +1,4 @@
 using UnityEngine;
-using TMPro;
 using System;
 
 namespace PlanetMerge.Planets
@@ -15,7 +14,7 @@ namespace PlanetMerge.Planets
         private Rigidbody2D _rigidbody2D;
         private IReleasePool _releasePool;
 
-        public event Action<int> Merged;
+        public event Action<Planet> Merged;
         public event Action Collided;
 
         public int Rank => _rank;
@@ -28,7 +27,6 @@ namespace PlanetMerge.Planets
             _mergeDetector.Initialize(this);
             _view.Initialize(this);
         }
-
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
@@ -49,7 +47,7 @@ namespace PlanetMerge.Planets
         public void Prepare(int rank)
         {
             _rank = rank;
-            DisplayRank();
+            UpdateView();
         }
 
         public void AddForce(Vector2 force)
@@ -62,6 +60,10 @@ namespace PlanetMerge.Planets
             return Mathf.Abs(_rigidbody2D.velocity.x) + Mathf.Abs(_rigidbody2D.velocity.y);
         }
 
+        public void Release()
+        {
+            _releasePool.Release(this);
+        }
 
         private void OnMergeDetected(Planet otherPlanet)
         {
@@ -74,21 +76,16 @@ namespace PlanetMerge.Planets
         private void Merge(Planet otherPlanet)
         {
             _rank++;
-            otherPlanet.Absorb();
+            otherPlanet.Release();
 
-            DisplayRank();
+            UpdateView();
 
-            Merged?.Invoke(Rank);
+            Merged?.Invoke(this);
         }
 
-        private void DisplayRank()
+        private void UpdateView()
         {
             _view.Set(Rank);
-        }
-
-        public void Absorb()
-        {
-            _releasePool.Release(this);
         }
     }
 }

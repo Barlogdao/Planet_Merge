@@ -3,8 +3,8 @@ using System;
 
 namespace PlanetMerge.Configs
 {
-    [CreateAssetMenu(fileName = "PlanetViewProvider", menuName = "Configs/PlanetViewProvider", order = 1)]
-    public class PlanetViewProvider : ScriptableObject
+    [CreateAssetMenu(fileName = "PlanetViewService", menuName = "Configs/Services/PlanetViewService", order = 1)]
+    public class PlanetViewService : ScriptableObject
     {
         private const int ArrayOffset = 1;
 

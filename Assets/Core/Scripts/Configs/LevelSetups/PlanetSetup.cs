@@ -7,7 +7,6 @@ namespace PlanetMerge.Configs
     public struct PlanetSetup
     {
         public Vector2 Position;
-        [Range(0,6)]
-        public int RankModificator;
+        [Range(0, 6)] public int RankModifier;
     }
 }

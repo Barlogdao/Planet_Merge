@@ -53,6 +53,9 @@ namespace PlanetMerge.Planets
 
         private void OnClickDown()
         {
+            if (_loadedPlanet == null)
+                return;
+
             _trajectory.Show();
         }
 

@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a5c1306ec967a9488b30690db2d2c24, type: 3}
-  m_Name: Start Goal
+  m_Script: {fileID: 11500000, guid: 8bcd102f05323be4f9be0dc6415b81d8, type: 3}
+  m_Name: Tutorial Goal
   m_EditorClassIdentifier: 
-  PlanetsMergedAmount: 5
-  PlanetLevelModificator: 2
+  MergeAmount: 4
+  PlanetRankModifier: 3

@@ -1,9 +1,5 @@
 using DG.Tweening;
 using PlanetMerge.Configs;
-using PlanetMerge.Systems;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -12,10 +8,10 @@ namespace PlanetMerge.Planets
     [RequireComponent(typeof(SpriteRenderer))]
     public class PlanetView : MonoBehaviour
     {
-        [SerializeField] private PlanetViewProvider _viewProvider;
+        [SerializeField] private PlanetViewService _viewProvider;
         [SerializeField] private TextMeshProUGUI _rankLabel;
         [SerializeField] private float _shakeDuration;
-        [SerializeField] private float _shakeStrenght;
+        [SerializeField] private float _shakeStrength;
 
         private Planet _planet;
         private SpriteRenderer _spriteRenderer;
@@ -32,9 +28,9 @@ namespace PlanetMerge.Planets
             _planet.Merged += OnMerge;
         }
 
-        private void OnMerge(int rank)
+        private void OnMerge(Planet planet)
         {
-            Set(rank);
+            Set(planet.Rank);
         }
 
         public void Set(int rank)
@@ -49,7 +45,7 @@ namespace PlanetMerge.Planets
 
         private void OnCollide()
         {
-            transform.DOShakeScale(_shakeDuration, _shakeStrenght).OnComplete(()=> transform.localScale = _originScale);
+            transform.DOShakeScale(_shakeDuration, _shakeStrength).OnComplete(()=> transform.localScale = _originScale);
         }
 
         private void OnDestroy()

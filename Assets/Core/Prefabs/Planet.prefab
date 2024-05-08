@@ -51,7 +51,7 @@ MonoBehaviour:
   _viewProvider: {fileID: 11400000, guid: 208e6cae71a1fab4d8d46dbe1839d984, type: 2}
   _rankLabel: {fileID: 4315192359681424592}
   _shakeDuration: 0.1
-  _shakeStrenght: 0.3
+  _shakeStrength: 0.3
 --- !u!212 &1301971675809818665
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4924,7 +4924,6 @@ GameObject:
   - component: {fileID: 6558766168770554533}
   - component: {fileID: 7111224956088556984}
   - component: {fileID: 4728952602478361029}
-  - component: {fileID: 6744518809348009673}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -4950,7 +4949,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.8821, y: 0.851}
+  m_SizeDelta: {x: 0.8, y: 0.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7111224956088556984
 Canvas:
@@ -4998,23 +4997,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 1
---- !u!114 &6744518809348009673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1836268563555955407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!1 &4733170192512954199
 GameObject:
   m_ObjectHideFlags: 0
@@ -5049,8 +5031,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0041999817, y: 0.0123000145}
-  m_SizeDelta: {x: 7.0365, y: 3.9939}
+  m_AnchoredPosition: {x: 0, y: -0.000000029802322}
+  m_SizeDelta: {x: 0, y: 0.000000059604645}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6589882966553764490
 CanvasRenderer:
@@ -5082,8 +5064,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 9488fa2c06a4b01489eeefeb9989212b, type: 2}
-  m_sharedMaterial: {fileID: -3297805353784270741, guid: 9488fa2c06a4b01489eeefeb9989212b, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: e5bfa6681b64ef14eb280a7e96afeda3, type: 2}
+  m_sharedMaterial: {fileID: 5080450852830365296, guid: e5bfa6681b64ef14eb280a7e96afeda3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5107,15 +5089,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 4
-  m_fontSizeBase: 4
+  m_fontSize: 4.39
+  m_fontSizeBase: 4.39
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_fontStyle: 1
+  m_HorizontalAlignment: 32
+  m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -5143,7 +5125,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0.028264763, y: 0, z: 0, w: 0}
+  m_margin: {x: 0.028264763, y: -1.4669104, z: 0, w: -0.6022245}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

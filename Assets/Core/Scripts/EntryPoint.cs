@@ -2,6 +2,7 @@ using PlanetMerge.Configs;
 using PlanetMerge.Data;
 using PlanetMerge.Planets;
 using PlanetMerge.Systems;
+using PlanetMerge.Systems.Events;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,11 +18,14 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private Trajectory _trajectory;
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlanetLauncher _planetLauncher;
-    [SerializeField] private GoalTracker _goalTracker;
+    [SerializeField] private LevelGoalHandler _goalHandler;
+    [SerializeField] private PlanetLimitHandler _limitHandler;
+    [SerializeField] private GameEventBus _gameEventBus;
 
-
-    [SerializeField] private LevelSetup _levelSetup;
+    [SerializeField] private LevelLayout _levelSetup;
     [SerializeField] private LevelGoal _levelGoal;
+
+    [SerializeField] private LevelGenerator _levelGenerator;
 
     
     private PlanetPool _planetPool;
@@ -33,25 +37,21 @@ public class EntryPoint : MonoBehaviour
         _planetPool = new PlanetPool(_planetPrefab, _planetHolder);
 
         _planetFactory.Initialize(_planetPool);
+        _gameEventBus.Initialize(_planetPool);
 
+        _goalHandler.Initialize(_gameEventBus);
+        _limitHandler.Initialize(_gameEventBus);
 
         _planetLauncher.Initialize(_playerInput, _planetFactory, PlanetRadius);
-        _goalTracker.Initialize(_planetPool);
+        _levelGenerator.Initialize(_planetFactory, _playerData, _goalHandler, _limitHandler,_planetLauncher);
+
 
         SetUp();
     }
 
     private void SetUp()
     {
-        _goalTracker.Prepare(_levelGoal.PlanetsMergedAmount, _levelGoal.PlanetLevelModificator + _playerData.PlanetRank);
-
-        foreach(PlanetSetup planetSetup in _levelSetup.PlanetSetups)
-        {
-            _planetFactory.Create(planetSetup.Position, _playerData.PlanetRank + planetSetup.RankModificator);
-        }
-
-        
-        _planetLauncher.Prepare(_playerData.PlanetRank);
+        _levelGenerator.Generate();
 
     }
 
