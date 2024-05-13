@@ -14,18 +14,18 @@ namespace PlanetMerge.Systems
 
         private PlayerData _playerData;
         private LevelGoalHandler _levelGoalHandler;
-        private PlanetLimitHandler _planetLimitHandler;
+   
         private PlanetLauncher _planetLauncher;
         private PlanetFactory _planetFactory;
 
         public event Action LevelGenerated; 
 
-        public void Initialize(PlanetFactory planetFactory, PlayerData playerData, LevelGoalHandler levelGoalHandler, PlanetLimitHandler planetLimitHandler, PlanetLauncher planetLauncher)
+        public void Initialize(PlanetFactory planetFactory, PlayerData playerData, LevelGoalHandler levelGoalHandler, PlanetLauncher planetLauncher)
         {
             _planetFactory = planetFactory;
             _playerData = playerData;
             _levelGoalHandler = levelGoalHandler;
-            _planetLimitHandler = planetLimitHandler;
+
             _planetLauncher = planetLauncher;
         }
 

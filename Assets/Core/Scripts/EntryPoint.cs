@@ -22,9 +22,6 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private PlanetLimitHandler _limitHandler;
     [SerializeField] private GameEventBus _gameEventBus;
 
-    [SerializeField] private LevelLayout _levelSetup;
-    [SerializeField] private LevelGoal _levelGoal;
-
     [SerializeField] private LevelGenerator _levelGenerator;
     [SerializeField] private GameOverHandler _gameOverHandler;
     [SerializeField] private GameUI _gameUI;
@@ -53,9 +50,9 @@ public class EntryPoint : MonoBehaviour
         _gameUI.Initialize(_limitHandler, _goalHandler);
 
         _planetLauncher.Initialize(_playerInput, _planetFactory, _planetLimit, PlanetRadius);
-        _levelGenerator.Initialize(_planetFactory, _playerData, _goalHandler, _limitHandler, _planetLauncher);
+        _levelGenerator.Initialize(_planetFactory, _playerData, _goalHandler, _planetLauncher);
 
-        _gameLoop.Initialize(_gameOverHandler, _gameUI, _playerData, _levelGenerator, _planetLimit, _planetsOnLevel);
+        _gameLoop.Initialize(_gameOverHandler, _gameUI, _playerData, _levelGenerator, _limitHandler, _planetsOnLevel, _playerInput);
     }
 
     private void Start()
@@ -68,6 +65,4 @@ public class EntryPoint : MonoBehaviour
         _gameLoop.PrepareLevel();
 
     }
-
-
 }

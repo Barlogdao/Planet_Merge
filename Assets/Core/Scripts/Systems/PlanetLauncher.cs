@@ -40,7 +40,6 @@ namespace PlanetMerge.Planets
             _playerInput.ClickedDown += OnClickDown;
             _playerInput.ClickedUp += OnClickUp;
             _planetLimit.AmountChanged += OnLimitChanged;
-
         }
 
         private void OnDestroy()
@@ -57,6 +56,8 @@ namespace PlanetMerge.Planets
 
             if (limitAmount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(limitAmount));
+
+            _loadedPlanet = null;
 
             _planetRank = planetRank;
             _planetLimit.Prepare(limitAmount);

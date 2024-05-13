@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcd102f05323be4f9be0dc6415b81d8, type: 3}
   m_Name: Tutorial Goal
   m_EditorClassIdentifier: 
-  MergeAmount: 4
-  PlanetRankModifier: 3
+  MergeAmount: 3
+  PlanetRankModifier: 1

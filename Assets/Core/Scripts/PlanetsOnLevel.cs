@@ -34,7 +34,9 @@ public class PlanetsOnLevel : MonoBehaviour
 
     public void Clear()
     {
-        foreach (Planet planet in _planets)
+        List<Planet> planets = new List<Planet>(_planets);
+
+        foreach (Planet planet in planets)
         {
             planet.Release();
         }

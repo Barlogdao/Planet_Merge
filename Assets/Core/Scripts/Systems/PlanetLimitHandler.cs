@@ -24,6 +24,7 @@ namespace PlanetMerge.Systems
             _planetEvents.PlanetMerged += OnPlanetMerged;
             _planetLimit.AmountChanged += OnLimitChanged;
         }
+
         private void OnDestroy()
         {
             _planetEvents.PlanetMerged -= OnPlanetMerged;
@@ -46,6 +47,11 @@ namespace PlanetMerge.Systems
                     _limitCheckRoutine = null;
                 }
             }
+        }
+
+        public void SetLimit(int amount)
+        {
+            _planetLimit.Prepare(amount);
         }
 
         private IEnumerator LimitCheck()
