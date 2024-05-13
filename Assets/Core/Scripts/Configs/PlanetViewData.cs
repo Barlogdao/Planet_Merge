@@ -22,5 +22,4 @@ namespace PlanetMerge.Configs
                 RankText = rankText;
             }
         }
-    
 }

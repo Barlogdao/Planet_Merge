@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 107378854753449997}
+  - component: {fileID: 7282949374620672210}
   - component: {fileID: 8503590664705727597}
   m_Layer: 0
-  m_Name: CollideVisual
+  m_Name: CollisionView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,6 +33,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1007783816800084016}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7282949374620672210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506444433750492599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08812b0e0f44b4b4bbb2f1347dfa892a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &8503590664705727597
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -94,6 +107,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6089268275350152829}
   - component: {fileID: 2932653472619090997}
+  - component: {fileID: 4495472901366656714}
   m_Layer: 0
   m_Name: MainLine
   m_TagString: Untagged
@@ -220,6 +234,18 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!114 &4495472901366656714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3345341767681687841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff6a74508a18a3543bd34678cef8d3a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3764724498956872374
 GameObject:
   m_ObjectHideFlags: 0
@@ -267,13 +293,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4e1e4aa453a95429e3e5b9f322fa0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _lineDistance: 10
+  _distance: 10.34
   _collideMask:
     serializedVersion: 2
     m_Bits: 192
-  _mainLine: {fileID: 2932653472619090997}
-  _collisionLine: {fileID: 8463524076563804017}
-  _collideVisual: {fileID: 107378854753449997}
+  _mainLine: {fileID: 4495472901366656714}
+  _collisionLine: {fileID: 6298794445050902886}
+  _collisionView: {fileID: 7282949374620672210}
 --- !u!1 &4605172742931557397
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4559976740549826207}
+  - component: {fileID: 6298794445050902886}
   - component: {fileID: 8463524076563804017}
   m_Layer: 0
   m_Name: CollisionLine
@@ -306,6 +333,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1007783816800084016}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6298794445050902886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4605172742931557397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff6a74508a18a3543bd34678cef8d3a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!120 &8463524076563804017
 LineRenderer:
   serializedVersion: 2
@@ -358,8 +397,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.0037345886
-        value: 0.05263138
+        time: 0.00541687
+        value: 0.07149124
         inSlope: 0
         outSlope: 0
         tangentMode: 0

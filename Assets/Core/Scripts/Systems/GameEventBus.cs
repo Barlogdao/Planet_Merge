@@ -1,11 +1,13 @@
 using PlanetMerge.Planets;
 using PlanetMerge.Systems.Events;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class GameEventBus : MonoBehaviour, IPlanetEvents
 {
     private IPlanetStatusNotifier _planetStatusNotifier;
+    private List<Planet> _planets = new();
 
     public event Action<Planet> PlanetMerged;
     public event Action PlanetCollided;
@@ -26,13 +28,16 @@ public class GameEventBus : MonoBehaviour, IPlanetEvents
 
     private void OnPlanetCreated(Planet planet)
     {
+        _planets.Add(planet);
         planet.Merged += OnPlanetMerged;
         planet.Collided += OnPlanetCollide;
     }
 
     private void OnPlanetReleased(Planet planet)
     {
+        _planets.Remove(planet);
         planet.Merged -= OnPlanetMerged;
+        planet.Collided -= OnPlanetCollide;
     }
 
     private void OnPlanetMerged(Planet planet)

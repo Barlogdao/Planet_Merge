@@ -4,7 +4,6 @@ using System;
 using UnityEngine;
 using PlanetMerge.Systems.Events;
 
-
 namespace PlanetMerge.Systems
 {
     public class LevelGoalHandler : MonoBehaviour
@@ -15,6 +14,7 @@ namespace PlanetMerge.Systems
         private IPlanetEvents _planetEvents;
 
         public event Action GoalReached;
+        public event Action<int> GoalChanged;
 
         public void Initialize(IPlanetEvents planetEvents)
         {
@@ -38,6 +38,8 @@ namespace PlanetMerge.Systems
 
             _planetGoalRank = planetRank;
             _planetsToMergeAmount = planetsToMergeAmount;
+
+            GoalChanged?.Invoke(_planetsToMergeAmount);
         }
 
 
@@ -46,6 +48,8 @@ namespace PlanetMerge.Systems
             if (_planetGoalRank == planet.Rank)
             {
                 _planetsToMergeAmount--;
+
+                GoalChanged?.Invoke(_planetsToMergeAmount);
                 CheckGoalCondition();
             }
         }
@@ -55,7 +59,6 @@ namespace PlanetMerge.Systems
             if (_planetsToMergeAmount == 0)
             {
                 GoalReached?.Invoke();
-                Debug.Log("œ¿¡≈ƒ»À»");
             }
         }
     }

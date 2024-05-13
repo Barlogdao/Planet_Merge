@@ -10,7 +10,7 @@ using UnityEngine;
 public class EntryPoint : MonoBehaviour
 {
     [SerializeField] private PlayerData _playerData;
-    
+
     [SerializeField] private Planet _planetPrefab;
     [SerializeField] private Transform _planetHolder;
 
@@ -26,26 +26,36 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private LevelGoal _levelGoal;
 
     [SerializeField] private LevelGenerator _levelGenerator;
+    [SerializeField] private GameOverHandler _gameOverHandler;
+    [SerializeField] private GameUI _gameUI;
 
-    
+
     private PlanetPool _planetPool;
+    private PlanetLimit _planetLimit;
 
     public float PlanetRadius => _planetPrefab.GetComponent<CircleCollider2D>().radius * _planetPrefab.transform.localScale.x;
 
     private void Awake()
     {
         _planetPool = new PlanetPool(_planetPrefab, _planetHolder);
+        _planetLimit = new();
 
         _planetFactory.Initialize(_planetPool);
         _gameEventBus.Initialize(_planetPool);
 
         _goalHandler.Initialize(_gameEventBus);
-        _limitHandler.Initialize(_gameEventBus);
+        _limitHandler.Initialize(_gameEventBus, _planetLimit);
 
-        _planetLauncher.Initialize(_playerInput, _planetFactory, PlanetRadius);
-        _levelGenerator.Initialize(_planetFactory, _playerData, _goalHandler, _limitHandler,_planetLauncher);
+        _planetLauncher.Initialize(_playerInput, _planetFactory, _planetLimit, PlanetRadius);
+        _levelGenerator.Initialize(_planetFactory, _playerData, _goalHandler, _limitHandler, _planetLauncher);
 
+        _gameOverHandler.Initialize(_limitHandler, _goalHandler);
 
+        _gameUI.Initialize(_limitHandler, _goalHandler);
+    }
+
+    private void Start()
+    {
         SetUp();
     }
 

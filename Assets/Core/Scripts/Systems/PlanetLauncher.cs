@@ -1,4 +1,3 @@
-
 using PlanetMerge.Systems;
 using System;
 using System.Collections;
@@ -14,76 +13,103 @@ namespace PlanetMerge.Planets
         [SerializeField] private float _force;
         [SerializeField] private float _launchCooldown;
 
-        private PlanetFactory _planetFactory;
         private PlayerInput _playerInput;
+        private PlanetFactory _planetFactory;
+        private PlanetLimit _planetLimit;
+
         private Planet _loadedPlanet = null;
         private int _planetRank = 1;
 
         private Coroutine _launchRoutine;
         private WaitForSeconds _cooldown;
 
-        public void Initialize(PlayerInput playerInput, PlanetFactory planetFactory, float planetRadius)
+        private bool IsPlanetLoaded => _loadedPlanet != null;
+        private bool CanLoad => IsPlanetLoaded == false && _planetLimit.HasPlanet;
+        private bool CanLaunch => IsPlanetLoaded && _launchRoutine == null;
+
+        public void Initialize(PlayerInput playerInput, PlanetFactory planetFactory, PlanetLimit planetLimit, float planetRadius)
         {
             _playerInput = playerInput;
             _planetFactory = planetFactory;
+            _planetLimit = planetLimit;
+
             _cooldown = new WaitForSeconds(_launchCooldown);
 
-            _trajectory.Initialize(_launchPoint.position, planetRadius);
+            _trajectory.Initialize(_launchPoint.position, _playerInput, planetRadius);
 
             _playerInput.ClickedDown += OnClickDown;
             _playerInput.ClickedUp += OnClickUp;
+            _planetLimit.AmountChanged += OnLimitChanged;
+
         }
-
-        public void Prepare(int planetRank)
-        {
-            if (planetRank <= 0)
-                throw new ArgumentOutOfRangeException(nameof(planetRank));
-
-            _planetRank = planetRank;
-
-            LoadPlanet();
-        }
-
 
         private void OnDestroy()
         {
             _playerInput.ClickedDown -= OnClickDown;
             _playerInput.ClickedUp -= OnClickUp;
+            _planetLimit.AmountChanged -= OnLimitChanged;
+        }
+
+        public void Prepare(int planetRank, int limitAmount)
+        {
+            if (planetRank <= 0)
+                throw new ArgumentOutOfRangeException(nameof(planetRank));
+
+            if (limitAmount <= 0)
+                throw new ArgumentOutOfRangeException(nameof(limitAmount));
+
+            _planetRank = planetRank;
+            _planetLimit.Prepare(limitAmount);
+
+            LoadPlanet();
         }
 
         private void OnClickDown()
         {
-            if (_loadedPlanet == null)
-                return;
-
-            _trajectory.Show();
+            if (IsPlanetLoaded)
+            {
+                _trajectory.Activate();
+            }
         }
 
         private void OnClickUp()
         {
-            if (_launchRoutine == null)
-                _launchRoutine = StartCoroutine(LaunchPlanet());
+            if (_trajectory.IsActive == false)
+                return;
 
-            _trajectory.Hide();
+            _trajectory.Deactivate();
+
+            if (CanLaunch)
+            {
+                _planetLimit.Subtract();
+                _launchRoutine = StartCoroutine(LaunchPlanet(_loadedPlanet));
+                _loadedPlanet = null;
+            }
         }
 
-
-        private IEnumerator LaunchPlanet()
+        private void OnLimitChanged(int amount)
         {
-            Vector2 direction = (_playerInput.MousePosition - (Vector2)_launchPoint.position).normalized;
-
-            _loadedPlanet.AddForce(direction * _force);
-
-
-            yield return _cooldown;
-
-            _launchRoutine = null;
             LoadPlanet();
         }
 
         private void LoadPlanet()
         {
-            _loadedPlanet = _planetFactory.Create(_launchPoint.position, _planetRank);
+            if (CanLoad)
+            {
+                _loadedPlanet = _planetFactory.Create(_launchPoint.position, _planetRank);
+            }
+        }
+
+        private IEnumerator LaunchPlanet(Planet planet)
+        {
+            Vector2 direction = (_playerInput.MousePosition - (Vector2)_launchPoint.position).normalized;
+
+            planet.AddForce(direction * _force);
+
+            yield return _cooldown;
+
+            _launchRoutine = null;
+            LoadPlanet();
         }
     }
 }

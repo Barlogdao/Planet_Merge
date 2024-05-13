@@ -38,7 +38,6 @@ namespace PlanetMerge.Systems
 
             SetGoal(levelGoal, planetRank);
             SetPlanets(levelLayout, planetRank);
-            SetPlanetLimit();
             SetPlanetLauncher(planetRank);
 
             LevelGenerated?.Invoke();
@@ -56,14 +55,10 @@ namespace PlanetMerge.Systems
                 _planetFactory.Create(planetSetup.Position, planetRank + planetSetup.RankModifier);
             }
         }
-        private void SetPlanetLimit()
-        {
-            _planetLimitHandler.Prepare(_limitAmount);
-        }
 
         private void SetPlanetLauncher(int planetRank)
         {
-            _planetLauncher.Prepare(planetRank);
+            _planetLauncher.Prepare(planetRank, _limitAmount);
         }
     }
 }
