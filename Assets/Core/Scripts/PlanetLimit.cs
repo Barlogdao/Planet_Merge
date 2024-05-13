@@ -15,9 +15,12 @@ public class PlanetLimit
         RaiseAmountChangedEvent();
     }
 
-    public void Add()
+    public void Add(int amount = 1)
     {
-        _amount++;
+        if (amount <=0)
+            throw new ArgumentOutOfRangeException(nameof(amount));
+
+        _amount += amount;
         RaiseAmountChangedEvent();
     }
 

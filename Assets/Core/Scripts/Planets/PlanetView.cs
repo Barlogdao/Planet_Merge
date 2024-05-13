@@ -43,7 +43,7 @@ namespace PlanetMerge.Planets
             _spriteRenderer.sprite = data.Sprite;
         }
 
-        private void OnCollide()
+        private void OnCollide(Vector2 atPoint)
         {
             transform.DOShakeScale(_shakeDuration, _shakeStrength).OnComplete(()=> transform.localScale = _originScale);
         }

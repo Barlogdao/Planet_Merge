@@ -15,7 +15,7 @@ namespace PlanetMerge.Planets
         private IReleasePool _releasePool;
 
         public event Action<Planet> Merged;
-        public event Action Collided;
+        public event Action<Vector2> Collided;
 
         public int Rank => _rank;
 
@@ -30,7 +30,7 @@ namespace PlanetMerge.Planets
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Collided?.Invoke();
+            Collided?.Invoke(collision.GetContact(0).point);
         }
 
         private void OnEnable()

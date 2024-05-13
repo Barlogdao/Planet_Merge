@@ -1,16 +1,12 @@
 using PlanetMerge.Planets;
-using PlanetMerge.Systems.Events;
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameEventBus : MonoBehaviour, IPlanetEvents
+public class PlanetsOnLevel : MonoBehaviour
 {
     private IPlanetStatusNotifier _planetStatusNotifier;
     private List<Planet> _planets = new();
-
-    public event Action<Planet> PlanetMerged;
-    public event Action<Vector2> PlanetCollided;
 
     public void Initialize(IPlanetStatusNotifier planetStatusNotifier)
     {
@@ -29,24 +25,18 @@ public class GameEventBus : MonoBehaviour, IPlanetEvents
     private void OnPlanetCreated(Planet planet)
     {
         _planets.Add(planet);
-        planet.Merged += OnPlanetMerged;
-        planet.Collided += OnPlanetCollide;
     }
 
     private void OnPlanetReleased(Planet planet)
     {
         _planets.Remove(planet);
-        planet.Merged -= OnPlanetMerged;
-        planet.Collided -= OnPlanetCollide;
     }
 
-    private void OnPlanetMerged(Planet planet)
+    public void Clear()
     {
-        PlanetMerged?.Invoke(planet);
-    }
-
-    private void OnPlanetCollide(Vector2 atPoint)
-    {
-        PlanetCollided?.Invoke(atPoint);
+        foreach (Planet planet in _planets)
+        {
+            planet.Release();
+        }
     }
 }
