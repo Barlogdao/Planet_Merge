@@ -3,7 +3,7 @@ using System;
 
 namespace PlanetMerge.Planets
 {
-    public class PlanetFactory : MonoBehaviour
+    public class PlanetSpawner : MonoBehaviour
     {
         private const int MinimalPlanetRank = 1;
 
@@ -14,7 +14,7 @@ namespace PlanetMerge.Planets
             _pool = pool;
         }
      
-        public Planet Create(Vector2 atPosition, int rank)
+        public Planet Spawn(Vector2 atPosition, int rank)
         {
             if (rank < MinimalPlanetRank)
                 throw new ArgumentException($" {nameof(rank)} can not be lower than {MinimalPlanetRank}");

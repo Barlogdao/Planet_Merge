@@ -5,10 +5,10 @@ using UnityEngine;
 namespace PlanetMerge.Data
 {
     [System.Serializable]
-    public class PlayerData
+    public class PlayerData:IReadOnlyPlayerData
     {
-        public int Level;
-        public int PlanetRank;
-        public int Score;
+        [field:SerializeField] public int Level { get; set; }
+        [field: SerializeField] public int PlanetRank { get; set; }
+        [field: SerializeField] public int Score { get; set; }
     }
 }

@@ -15,6 +15,7 @@ namespace PlanetMerge.Systems
 
         public event Action GoalReached;
         public event Action<int> GoalChanged;
+        public int PlanetGoalRank => _planetGoalRank;
 
         public void Initialize(IPlanetEvents planetEvents)
         {

@@ -1,6 +1,7 @@
 using PlanetMerge.Configs;
 using PlanetMerge.Data;
 using PlanetMerge.Planets;
+using PlanetMerge.UI;
 using System;
 using UnityEngine;
 
@@ -12,19 +13,21 @@ namespace PlanetMerge.Systems
         [SerializeField] private LevelLayoutService _levelLayoutService;
         [SerializeField] private int _limitAmount = 3;
 
-        private PlayerData _playerData;
+        private IReadOnlyPlayerData _playerData;
         private LevelGoalHandler _levelGoalHandler;
    
         private PlanetLauncher _planetLauncher;
-        private PlanetFactory _planetFactory;
+        private PlanetSpawner _planetSpawner;
+        private GameUI _gameUI;
 
         public event Action LevelGenerated; 
 
-        public void Initialize(PlanetFactory planetFactory, PlayerData playerData, LevelGoalHandler levelGoalHandler, PlanetLauncher planetLauncher)
+        public void Initialize(PlanetSpawner planetSpawner, IReadOnlyPlayerData playerData, LevelGoalHandler levelGoalHandler, PlanetLauncher planetLauncher, GameUI gameUI)
         {
-            _planetFactory = planetFactory;
+            _planetSpawner = planetSpawner;
             _playerData = playerData;
             _levelGoalHandler = levelGoalHandler;
+            _gameUI = gameUI;
 
             _planetLauncher = planetLauncher;
         }
@@ -39,8 +42,14 @@ namespace PlanetMerge.Systems
             SetGoal(levelGoal, planetRank);
             SetPlanets(levelLayout, planetRank);
             SetPlanetLauncher(planetRank);
+            PrepareUI();
 
             LevelGenerated?.Invoke();
+        }
+
+        private void PrepareUI()
+        {
+            _gameUI.Prepare(_playerData);
         }
 
         private void SetGoal(LevelGoal levelGoal, int planetRank)
@@ -52,7 +61,7 @@ namespace PlanetMerge.Systems
         {
             foreach (PlanetSetup planetSetup in levelLayout.PlanetSetups)
             {
-                _planetFactory.Create(planetSetup.Position, planetRank + planetSetup.RankModifier);
+                _planetSpawner.Spawn(planetSetup.Position, planetRank + planetSetup.RankModifier);
             }
         }
 

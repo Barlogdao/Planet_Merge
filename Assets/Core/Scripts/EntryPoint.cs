@@ -3,6 +3,7 @@ using PlanetMerge.Data;
 using PlanetMerge.Planets;
 using PlanetMerge.Systems;
 using PlanetMerge.Systems.Events;
+using PlanetMerge.UI;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,13 +15,13 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private Planet _planetPrefab;
     [SerializeField] private Transform _planetHolder;
 
-    [SerializeField] private PlanetFactory _planetFactory;
+    [SerializeField] private PlanetSpawner _planetSpawner;
     [SerializeField] private Trajectory _trajectory;
     [SerializeField] private PlayerInput _playerInput;
     [SerializeField] private PlanetLauncher _planetLauncher;
     [SerializeField] private LevelGoalHandler _goalHandler;
     [SerializeField] private PlanetLimitHandler _limitHandler;
-    [SerializeField] private GameEventBus _gameEventBus;
+    [SerializeField] private GameEventMediator _gameEventBus;
 
     [SerializeField] private LevelGenerator _levelGenerator;
     [SerializeField] private GameOverHandler _gameOverHandler;
@@ -40,7 +41,7 @@ public class EntryPoint : MonoBehaviour
         _planetPool = new PlanetPool(_planetPrefab, _planetHolder);
         _planetLimit = new();
 
-        _planetFactory.Initialize(_planetPool);
+        _planetSpawner.Initialize(_planetPool);
         _gameEventBus.Initialize(_planetPool);
         _planetsOnLevel.Initialize(_planetPool);
 
@@ -49,8 +50,8 @@ public class EntryPoint : MonoBehaviour
         _gameOverHandler.Initialize(_limitHandler, _goalHandler);
         _gameUI.Initialize(_limitHandler, _goalHandler);
 
-        _planetLauncher.Initialize(_playerInput, _planetFactory, _planetLimit, PlanetRadius);
-        _levelGenerator.Initialize(_planetFactory, _playerData, _goalHandler, _planetLauncher);
+        _planetLauncher.Initialize(_playerInput, _planetSpawner, _planetLimit, PlanetRadius);
+        _levelGenerator.Initialize(_planetSpawner, _playerData, _goalHandler, _planetLauncher, _gameUI);
 
         _gameLoop.Initialize(_gameOverHandler, _gameUI, _playerData, _levelGenerator, _limitHandler, _planetsOnLevel, _playerInput);
     }

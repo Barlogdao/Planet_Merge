@@ -14,7 +14,7 @@ namespace PlanetMerge.Planets
         [SerializeField] private float _launchCooldown;
 
         private PlayerInput _playerInput;
-        private PlanetFactory _planetFactory;
+        private PlanetSpawner _planetSpawner;
         private PlanetLimit _planetLimit;
 
         private Planet _loadedPlanet = null;
@@ -27,10 +27,10 @@ namespace PlanetMerge.Planets
         private bool CanLoad => IsPlanetLoaded == false && _planetLimit.HasPlanet;
         private bool CanLaunch => IsPlanetLoaded && _launchRoutine == null;
 
-        public void Initialize(PlayerInput playerInput, PlanetFactory planetFactory, PlanetLimit planetLimit, float planetRadius)
+        public void Initialize(PlayerInput playerInput, PlanetSpawner planetSpawner, PlanetLimit planetLimit, float planetRadius)
         {
             _playerInput = playerInput;
-            _planetFactory = planetFactory;
+            _planetSpawner = planetSpawner;
             _planetLimit = planetLimit;
 
             _cooldown = new WaitForSeconds(_launchCooldown);
@@ -97,7 +97,7 @@ namespace PlanetMerge.Planets
         {
             if (CanLoad)
             {
-                _loadedPlanet = _planetFactory.Create(_launchPoint.position, _planetRank);
+                _loadedPlanet = _planetSpawner.Spawn(_launchPoint.position, _planetRank);
             }
         }
 

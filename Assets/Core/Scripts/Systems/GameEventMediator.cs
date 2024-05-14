@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameEventBus : MonoBehaviour, IPlanetEvents
+public class GameEventMediator : MonoBehaviour, IPlanetEvents
 {
     private IPlanetStatusNotifier _planetStatusNotifier;
     private List<Planet> _planets = new();

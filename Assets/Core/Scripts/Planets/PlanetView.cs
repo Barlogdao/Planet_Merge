@@ -9,7 +9,7 @@ namespace PlanetMerge.Planets
     public class PlanetView : MonoBehaviour
     {
         [SerializeField] private PlanetViewService _viewProvider;
-        [SerializeField] private TextMeshProUGUI _rankLabel;
+        [SerializeField] private TMP_Text _rankLabel;
         [SerializeField] private float _shakeDuration;
         [SerializeField] private float _shakeStrength;
 
