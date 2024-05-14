@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using PlanetMerge.Systems;
@@ -11,7 +9,7 @@ namespace PlanetMerge.UI
     public class GameUI : MonoBehaviour
     {
 
-        [SerializeField] private TMP_Text _goalLabel;
+    
         [SerializeField] private RectTransform _levelFinishedWindow;
         [SerializeField] private RectTransform _levelLoosedWindow;
 
@@ -86,7 +84,7 @@ namespace PlanetMerge.UI
 
         private void OnGoalChanged(int mergeLeft)
         {
-            _goalLabel.text = mergeLeft.ToString();
+           
         }
 
         public void Hide()

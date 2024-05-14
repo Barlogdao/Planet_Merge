@@ -11,16 +11,16 @@ namespace PlanetMerge.Systems
     {
         [SerializeField] private LevelGoalService _levelGoalService;
         [SerializeField] private LevelLayoutService _levelLayoutService;
-        [SerializeField] private int _limitAmount = 3;
+        [SerializeField] private LevelLimitService _levelLimitService;
 
         private IReadOnlyPlayerData _playerData;
         private LevelGoalHandler _levelGoalHandler;
-   
+
         private PlanetLauncher _planetLauncher;
         private PlanetSpawner _planetSpawner;
         private GameUI _gameUI;
 
-        public event Action LevelGenerated; 
+        public event Action LevelGenerated;
 
         public void Initialize(PlanetSpawner planetSpawner, IReadOnlyPlayerData playerData, LevelGoalHandler levelGoalHandler, PlanetLauncher planetLauncher, GameUI gameUI)
         {
@@ -36,12 +36,13 @@ namespace PlanetMerge.Systems
         {
             LevelGoal levelGoal = _levelGoalService.GetLevelGoal();
             LevelLayout levelLayout = _levelLayoutService.GetLevelLayout();
+            int limitAmount = _levelLimitService.GetLimitAmount();
 
             int planetRank = _playerData.PlanetRank;
 
             SetGoal(levelGoal, planetRank);
             SetPlanets(levelLayout, planetRank);
-            SetPlanetLauncher(planetRank);
+            SetPlanetLauncher(planetRank, limitAmount);
             PrepareUI();
 
             LevelGenerated?.Invoke();
@@ -65,9 +66,9 @@ namespace PlanetMerge.Systems
             }
         }
 
-        private void SetPlanetLauncher(int planetRank)
+        private void SetPlanetLauncher(int planetRank, int limitAmount)
         {
-            _planetLauncher.Prepare(planetRank, _limitAmount);
+            _planetLauncher.Prepare(planetRank, limitAmount);
         }
     }
 }

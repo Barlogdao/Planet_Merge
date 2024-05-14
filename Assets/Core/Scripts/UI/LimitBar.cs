@@ -1,5 +1,7 @@
+using DG.Tweening;
 using PlanetMerge.Configs;
 using PlanetMerge.Systems;
+using PlanetMerge.Utils;
 using TMPro;
 using UnityEngine;
 
@@ -8,7 +10,7 @@ namespace PlanetMerge.UI
     public class LimitBar : PlanetViewBar
     {
         [SerializeField] private TMP_Text _limitAmount;
-        [SerializeField] private PlanetViewService _planetViewService;
+        [SerializeField] private ScaleTween _scaleTween;
 
         private PlanetLimitHandler _planetLimitHandler;
 
@@ -17,6 +19,7 @@ namespace PlanetMerge.UI
             _planetLimitHandler = planetLimitHandler;
 
             _planetLimitHandler.LimitChanged += OnLimitChanged;
+            _scaleTween.Initialize(_limitAmount.transform);
         }
 
         private void OnDestroy()
@@ -27,7 +30,7 @@ namespace PlanetMerge.UI
         private void OnLimitChanged(int amount)
         {
             _limitAmount.text = amount.ToString();
+            _scaleTween.Run();
         }
-
     }
 }

@@ -1,5 +1,6 @@
 using PlanetMerge.Configs;
 using PlanetMerge.Systems;
+using PlanetMerge.Utils;
 using TMPro;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace PlanetMerge.UI
     public class GoalBar : PlanetViewBar
     {
         [SerializeField] private TMP_Text _mergeAmountLabel;
-        [SerializeField] private PlanetViewService _planetViewService;
+        [SerializeField] private ScaleTween _scaleTween;
 
         private LevelGoalHandler _levelGoalHandler;
         public void Initialize(LevelGoalHandler levelGoalHandler)
@@ -16,6 +17,7 @@ namespace PlanetMerge.UI
             _levelGoalHandler = levelGoalHandler;
 
             _levelGoalHandler.GoalChanged += OnGoalChanged;
+            _scaleTween.Initialize(_mergeAmountLabel.transform);
         }
 
         private void OnDestroy()
@@ -26,6 +28,7 @@ namespace PlanetMerge.UI
         private void OnGoalChanged(int amount)
         {
             _mergeAmountLabel.text = amount.ToString();
+            _scaleTween.Run();
         }
     }
 }

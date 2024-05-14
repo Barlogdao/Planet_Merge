@@ -13,7 +13,7 @@ namespace PlanetMerge.UI
         
         public void Prepare(int planetRank)
         {
-            var planetViewData = _planetViewService.GetViewData(planetRank);
+            PlanetViewData planetViewData = _planetViewService.GetViewData(planetRank);
 
             _planetImage.sprite = planetViewData.Sprite;
             _planetRankLabel.text = planetViewData.RankText;
