@@ -15,6 +15,7 @@ namespace PlanetMerge.UI
 
         [SerializeField] private LimitBar _limitBar;
         [SerializeField] private GoalBar _goalBar;
+        [SerializeField] private TMP_Text _levelLabel;
 
         [SerializeField] private Button _nextLevelButton;
         [SerializeField] private Button _resetLevelButton;
@@ -52,12 +53,13 @@ namespace PlanetMerge.UI
             _rewardButton.onClick.RemoveListener(OnRewardPressed);
         }
 
-        public void Prepare(IReadOnlyPlayerData playrData)
+        public void Prepare(IReadOnlyPlayerData playerData)
         {
             int planetGoalRank = _levelGoalHandler.PlanetGoalRank;
 
-            _limitBar.Prepare(playrData.PlanetRank);
+            _limitBar.Prepare(playerData.PlanetRank);
             _goalBar.Prepare(planetGoalRank);
+            _levelLabel.text = $"Уровень {playerData.Level}";
         }
 
         private void OnRewardPressed()
