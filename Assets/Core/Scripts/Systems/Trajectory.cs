@@ -1,3 +1,4 @@
+using PlanetMerge.Planets;
 using UnityEngine;
 
 namespace PlanetMerge.Systems
@@ -12,18 +13,16 @@ namespace PlanetMerge.Systems
         [SerializeField] private TrajectoryCollisionView _collisionView;
 
         private Vector2 _startPoint;
-        private PlayerInput _playerInput;
+        private PlanetLauncher _planetLauncher;
         private float _planetRadius;
 
         public bool IsActive { get; private set; } = false;
 
-        private Vector2 MousePosition => _playerInput.MousePosition;
-
-        public void Initialize(Vector2 startPoint, PlayerInput playerInput, float planetRadius)
+        public void Initialize(PlanetLauncher planetLauncher, float planetRadius)
         {
-            _startPoint = startPoint;
+            _planetLauncher = planetLauncher;
+            _startPoint = _planetLauncher.LaunchPosition;
             _planetRadius = planetRadius;
-            _playerInput = playerInput;
 
             _mainLine.Initialize(_startPoint);
             _collisionLine.Initialize(_startPoint);
@@ -54,7 +53,11 @@ namespace PlanetMerge.Systems
 
         private void Calculate()
         {
-            Vector2 direction = MousePosition - _startPoint;
+            //var targetPosition = MousePosition;
+            //targetPosition.y = Mathf.Clamp(targetPosition.y, _startPoint.y + 1f, 10f);
+
+            Vector2 direction = _planetLauncher.GetLaunchDirection();
+
 
             RaycastHit2D hit = Physics2D.CircleCast(_startPoint, _planetRadius, direction, _distance, _collideMask);
 
