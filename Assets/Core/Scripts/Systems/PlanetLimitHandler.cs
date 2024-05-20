@@ -9,12 +9,11 @@ namespace PlanetMerge.Systems
     public class PlanetLimitHandler : MonoBehaviour
     {
         private IPlanetEvents _planetEvents;
+        private PlanetLimit _planetLimit;
+        private Coroutine _limitCheckRoutine;
 
         public event Action LimitExpired;
         public event Action<int> LimitChanged;
-
-        private PlanetLimit _planetLimit;
-        private Coroutine _limitCheckRoutine;
 
         public void Initialize(IPlanetEvents planetEvents, PlanetLimit planetLimit)
         {

@@ -50,6 +50,11 @@ public class GameEventMediator : MonoBehaviour, IPlanetEvents
         _gameUI.RewardPressed += OnRewardPressed;
     }
 
+    public void RunLevel()
+    {
+        LevelStaretd?.Invoke();
+    }
+
 
     private void OnDestroy()
     {

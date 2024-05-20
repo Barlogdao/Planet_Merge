@@ -23,11 +23,11 @@ public class InputController : MonoBehaviour
 
     private void OnLevelFinished()
     {
-        _playerInput.enabled = true;
+        _playerInput.enabled = false;
     }
 
     private void OnLevelStarted()
     {
-        _playerInput.enabled = false;
+        _playerInput.enabled = true;
     }
 }

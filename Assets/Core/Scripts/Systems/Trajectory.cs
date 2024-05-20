@@ -53,12 +53,7 @@ namespace PlanetMerge.Systems
 
         private void Calculate()
         {
-            //var targetPosition = MousePosition;
-            //targetPosition.y = Mathf.Clamp(targetPosition.y, _startPoint.y + 1f, 10f);
-
             Vector2 direction = _planetLauncher.GetLaunchDirection();
-
-
             RaycastHit2D hit = Physics2D.CircleCast(_startPoint, _planetRadius, direction, _distance, _collideMask);
 
             if (hit.collider != null)

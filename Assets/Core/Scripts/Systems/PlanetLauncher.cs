@@ -8,9 +8,7 @@ namespace PlanetMerge.Planets
 {
     public class PlanetLauncher : MonoBehaviour
     {
-        [SerializeField] private Trajectory _trajectory;
         [SerializeField] private Transform _launchPoint;
-
         [SerializeField] private float _force;
         [SerializeField] private float _launchCooldown;
         [SerializeField] private float _targetPositionOffsetY;
@@ -18,6 +16,7 @@ namespace PlanetMerge.Planets
         private PlayerInput _playerInput;
         private PlanetSpawner _planetSpawner;
         private PlanetLimit _planetLimit;
+        private Trajectory _trajectory;
 
         private Planet _loadedPlanet = null;
         private int _planetRank = 1;
@@ -30,15 +29,14 @@ namespace PlanetMerge.Planets
         private bool CanLoad => IsPlanetLoaded == false && _planetLimit.HasPlanet;
         private bool CanLaunch => IsPlanetLoaded && _launchRoutine == null;
 
-        public void Initialize(PlayerInput playerInput, PlanetSpawner planetSpawner, PlanetLimit planetLimit, float planetRadius)
+        public void Initialize(PlayerInput playerInput, PlanetSpawner planetSpawner, PlanetLimit planetLimit, Trajectory trajectory)
         {
             _playerInput = playerInput;
             _planetSpawner = planetSpawner;
             _planetLimit = planetLimit;
+            _trajectory = trajectory;
 
             _cooldown = new WaitForSeconds(_launchCooldown);
-
-            _trajectory.Initialize(this, planetRadius);
 
             _playerInput.ClickedDown += OnClickDown;
             _playerInput.ClickedUp += OnClickUp;
@@ -52,20 +50,14 @@ namespace PlanetMerge.Planets
             _planetLimit.AmountChanged -= OnLimitChanged;
         }
 
-        public void Prepare(int planetRank, int limitAmount)
+        public void Prepare(int planetRank)
         {
             if (planetRank <= 0)
                 throw new ArgumentOutOfRangeException(nameof(planetRank));
 
-            if (limitAmount <= 0)
-                throw new ArgumentOutOfRangeException(nameof(limitAmount));
-
             _loadedPlanet = null;
 
             _planetRank = planetRank;
-            _planetLimit.Prepare(limitAmount);
-
-            LoadPlanet();
         }
 
         public Vector2 GetLaunchDirection()
@@ -114,8 +106,6 @@ namespace PlanetMerge.Planets
 
         private IEnumerator LaunchPlanet(Planet planet)
         {
-            //Vector2 direction = (_playerInput.MousePosition - (Vector2)_launchPoint.position).normalized;
-
             planet.AddForce(GetLaunchDirection().normalized * _force);
 
             yield return _cooldown;

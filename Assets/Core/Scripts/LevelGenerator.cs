@@ -1,5 +1,4 @@
 using PlanetMerge.Configs;
-using PlanetMerge.Data;
 using PlanetMerge.Planets;
 using PlanetMerge.UI;
 using System;
@@ -13,49 +12,46 @@ namespace PlanetMerge.Systems
         [SerializeField] private LevelLayoutService _levelLayoutService;
         [SerializeField] private LevelLimitService _levelLimitService;
 
-        private IReadOnlyPlayerData _playerData;
-        private LevelGoalHandler _levelGoalHandler;
-
         private PlanetLauncher _planetLauncher;
         private PlanetSpawner _planetSpawner;
         private GameUI _gameUI;
+        private LevelConditions _levelConditions;
 
         public event Action LevelCreated;
 
-        public void Initialize(PlanetSpawner planetSpawner, IReadOnlyPlayerData playerData, LevelGoalHandler levelGoalHandler, PlanetLauncher planetLauncher, GameUI gameUI)
+        public void Initialize(PlanetSpawner planetSpawner, LevelConditions levelConditions, PlanetLauncher planetLauncher, GameUI gameUI)
         {
             _planetSpawner = planetSpawner;
-            _playerData = playerData;
-            _levelGoalHandler = levelGoalHandler;
-            _gameUI = gameUI;
-
+            _levelConditions = levelConditions;
             _planetLauncher = planetLauncher;
+            _gameUI = gameUI;
         }
 
-        public void Generate()
+        public void Generate(IReadOnlyPlayerData playerData)
         {
             LevelGoal levelGoal = _levelGoalService.GetLevelGoal();
             LevelLayout levelLayout = _levelLayoutService.GetLevelLayout();
             int limitAmount = _levelLimitService.GetLimitAmount();
 
-            int planetRank = _playerData.PlanetRank;
+            int planetRank = playerData.PlanetRank;
 
-            SetGoal(levelGoal, planetRank);
             SetPlanets(levelLayout, planetRank);
-            SetPlanetLauncher(planetRank, limitAmount);
-            PrepareUI();
+            SetPlanetLauncher(planetRank);
+
+            SetLevelConditions(levelGoal, planetRank, limitAmount);
+            PrepareUI(playerData);
 
             LevelCreated?.Invoke();
         }
 
-        private void PrepareUI()
+        private void SetLevelConditions(LevelGoal levelGoal, int planetRank, int limitAmount)
         {
-            _gameUI.Prepare(_playerData);
+            _levelConditions.Prepare(levelGoal, planetRank, limitAmount);
         }
 
-        private void SetGoal(LevelGoal levelGoal, int planetRank)
+        private void PrepareUI(IReadOnlyPlayerData playerData)
         {
-            _levelGoalHandler.Prepare(levelGoal.MergeAmount, planetRank + levelGoal.PlanetRankModifier);
+            _gameUI.Prepare(playerData);
         }
 
         private void SetPlanets(LevelLayout levelLayout, int planetRank)
@@ -66,9 +62,9 @@ namespace PlanetMerge.Systems
             }
         }
 
-        private void SetPlanetLauncher(int planetRank, int limitAmount)
+        private void SetPlanetLauncher(int planetRank)
         {
-            _planetLauncher.Prepare(planetRank, limitAmount);
+            _planetLauncher.Prepare(planetRank);
         }
     }
 }

@@ -34,29 +34,30 @@ public class EntryPoint : MonoBehaviour
 
     private PlanetPool _planetPool;
     private PlanetLimit _planetLimit;
-
-    public float PlanetRadius => _planetPrefab.GetComponent<CircleCollider2D>().radius * _planetPrefab.transform.localScale.x;
+    private LevelConditions _levelConditions;
 
     private void Awake()
     {
         _planetPool = new PlanetPool(_planetPrefab, _planetHolder);
         _planetLimit = new();
+        _levelConditions = new(_goalHandler, _limitHandler);
 
         _planetSpawner.Initialize(_planetPool);
         _gameEventMediator.Initialize(_planetPool, _gameOverHandler,_levelGenerator, _gameUI);
-
+        _inputController.Initialize(_playerInput, _gameEventMediator);
         _planetsOnLevel.Initialize(_gameEventMediator);
+
         _goalHandler.Initialize(_gameEventMediator);
         _limitHandler.Initialize(_gameEventMediator, _planetLimit);
         _gameOverHandler.Initialize(_limitHandler, _goalHandler);
+
+        _planetLauncher.Initialize(_playerInput, _planetSpawner, _planetLimit, _trajectory);
+        float planetRadius = _planetPrefab.GetComponent<CircleCollider2D>().radius * _planetPrefab.transform.localScale.x;
+        _trajectory.Initialize(_planetLauncher, planetRadius);
+
+        _levelGenerator.Initialize(_planetSpawner, _levelConditions, _planetLauncher, _gameUI);
         _gameUI.Initialize(_gameEventMediator,_limitHandler, _goalHandler);
-
-        _planetLauncher.Initialize(_playerInput, _planetSpawner, _planetLimit, PlanetRadius);
-        _levelGenerator.Initialize(_planetSpawner, _playerData, _goalHandler, _planetLauncher, _gameUI);
-
-        _gameLoop.Initialize(_gameEventMediator, _gameUI, _playerData, _levelGenerator, _limitHandler, _planetsOnLevel);
-
-        _inputController.Initialize(_playerInput, _gameEventMediator);
+        _gameLoop.Initialize(_gameEventMediator, _playerData, _levelGenerator, _limitHandler, _planetsOnLevel);
     }
 
     private void Start()
