@@ -21,14 +21,15 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private PlanetLauncher _planetLauncher;
     [SerializeField] private LevelGoalHandler _goalHandler;
     [SerializeField] private PlanetLimitHandler _limitHandler;
-    [SerializeField] private GameEventMediator _gameEventBus;
+    [SerializeField] private GameEventMediator _gameEventMediator;
 
     [SerializeField] private LevelGenerator _levelGenerator;
     [SerializeField] private GameOverHandler _gameOverHandler;
     [SerializeField] private GameUI _gameUI;
 
     [SerializeField] private GameLoop _gameLoop;
-    [SerializeField] private PlanetsOnLevel _planetsOnLevel;
+    [SerializeField] private LevelPlanets _planetsOnLevel;
+    [SerializeField] private InputController _inputController;
 
 
     private PlanetPool _planetPool;
@@ -42,18 +43,20 @@ public class EntryPoint : MonoBehaviour
         _planetLimit = new();
 
         _planetSpawner.Initialize(_planetPool);
-        _gameEventBus.Initialize(_planetPool);
-        _planetsOnLevel.Initialize(_planetPool);
+        _gameEventMediator.Initialize(_planetPool, _gameOverHandler,_levelGenerator, _gameUI);
 
-        _goalHandler.Initialize(_gameEventBus);
-        _limitHandler.Initialize(_gameEventBus, _planetLimit);
+        _planetsOnLevel.Initialize(_gameEventMediator);
+        _goalHandler.Initialize(_gameEventMediator);
+        _limitHandler.Initialize(_gameEventMediator, _planetLimit);
         _gameOverHandler.Initialize(_limitHandler, _goalHandler);
-        _gameUI.Initialize(_limitHandler, _goalHandler);
+        _gameUI.Initialize(_gameEventMediator,_limitHandler, _goalHandler);
 
         _planetLauncher.Initialize(_playerInput, _planetSpawner, _planetLimit, PlanetRadius);
         _levelGenerator.Initialize(_planetSpawner, _playerData, _goalHandler, _planetLauncher, _gameUI);
 
-        _gameLoop.Initialize(_gameOverHandler, _gameUI, _playerData, _levelGenerator, _limitHandler, _planetsOnLevel, _playerInput);
+        _gameLoop.Initialize(_gameEventMediator, _gameUI, _playerData, _levelGenerator, _limitHandler, _planetsOnLevel);
+
+        _inputController.Initialize(_playerInput, _gameEventMediator);
     }
 
     private void Start()

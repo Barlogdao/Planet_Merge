@@ -3,23 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlanetsOnLevel : MonoBehaviour
+public class LevelPlanets : MonoBehaviour
 {
-    private IPlanetStatusNotifier _planetStatusNotifier;
+    private GameEventMediator _gameEventMediator;
+   
     private List<Planet> _planets = new();
 
-    public void Initialize(IPlanetStatusNotifier planetStatusNotifier)
+    public void Initialize(GameEventMediator gameEventMediator)
     {
-        _planetStatusNotifier = planetStatusNotifier;
+        _gameEventMediator = gameEventMediator;
 
-        _planetStatusNotifier.PlanetCreated += OnPlanetCreated;
-        _planetStatusNotifier.PlanetReleased += OnPlanetReleased;
+        _gameEventMediator.PlanetCreated += OnPlanetCreated;
+        _gameEventMediator.PlanetReleased += OnPlanetReleased;
     }
 
     private void OnDestroy()
     {
-        _planetStatusNotifier.PlanetCreated -= OnPlanetCreated;
-        _planetStatusNotifier.PlanetReleased -= OnPlanetReleased;
+        _gameEventMediator.PlanetCreated -= OnPlanetCreated;
+        _gameEventMediator.PlanetReleased -= OnPlanetReleased;
     }
 
     private void OnPlanetCreated(Planet planet)

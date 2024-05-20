@@ -20,7 +20,7 @@ namespace PlanetMerge.Systems
         private PlanetSpawner _planetSpawner;
         private GameUI _gameUI;
 
-        public event Action LevelGenerated;
+        public event Action LevelCreated;
 
         public void Initialize(PlanetSpawner planetSpawner, IReadOnlyPlayerData playerData, LevelGoalHandler levelGoalHandler, PlanetLauncher planetLauncher, GameUI gameUI)
         {
@@ -45,7 +45,7 @@ namespace PlanetMerge.Systems
             SetPlanetLauncher(planetRank, limitAmount);
             PrepareUI();
 
-            LevelGenerated?.Invoke();
+            LevelCreated?.Invoke();
         }
 
         private void PrepareUI()

@@ -21,32 +21,38 @@ namespace PlanetMerge.UI
         [SerializeField] private Button _resetLevelButton;
         [SerializeField] private Button _rewardButton;
 
+
         public event Action NextLevelPressed;
-        public event Action ResetLevelPressed;
+        public event Action RestartLevelPressed;
         public event Action RewardPressed;
 
+        private GameEventMediator _gameEventMediator;
         private PlanetLimitHandler _planetLimitHandler;
         private LevelGoalHandler _levelGoalHandler;
 
-        public void Initialize(PlanetLimitHandler planetLimitHandler, LevelGoalHandler levelGoalHandler)
+        public void Initialize(GameEventMediator gameEventMediator,PlanetLimitHandler planetLimitHandler, LevelGoalHandler levelGoalHandler)
         {
+            _gameEventMediator = gameEventMediator;
             _planetLimitHandler = planetLimitHandler;
             _levelGoalHandler = levelGoalHandler;
 
-            _planetLimitHandler.LimitChanged += OnLimitChanged;
-            _levelGoalHandler.GoalChanged += OnGoalChanged;
+            _gameEventMediator.LevelCreated += OnLevelCreated;
+            _gameEventMediator.GameWinned += OnGameWinned;
+            _gameEventMediator.GameLost += OnGameLost;
 
             _nextLevelButton.onClick.AddListener(OnNextLevelPressed);
             _resetLevelButton.onClick.AddListener(OnResetLevelPressed);
             _rewardButton.onClick.AddListener(OnRewardPressed);
+
             _limitBar.Initialize(_planetLimitHandler);
             _goalBar.Initialize(_levelGoalHandler);
         }
 
         private void OnDestroy()
         {
-            _planetLimitHandler.LimitChanged -= OnLimitChanged;
-            _levelGoalHandler.GoalChanged -= OnGoalChanged;
+            _gameEventMediator.LevelCreated -= OnLevelCreated;
+            _gameEventMediator.GameWinned -= OnGameWinned;
+            _gameEventMediator.GameLost -= OnGameLost;
 
             _nextLevelButton.onClick.RemoveListener(OnNextLevelPressed);
             _resetLevelButton.onClick.RemoveListener(OnResetLevelPressed);
@@ -69,7 +75,7 @@ namespace PlanetMerge.UI
 
         private void OnResetLevelPressed()
         {
-            ResetLevelPressed?.Invoke();
+            RestartLevelPressed?.Invoke();
         }
 
         private void OnNextLevelPressed()
@@ -77,16 +83,19 @@ namespace PlanetMerge.UI
             NextLevelPressed?.Invoke();
         }
 
-
-
-        private void OnLimitChanged(int amount)
+        private void OnGameLost()
         {
-            
+            ShowLooseWindow();
         }
 
-        private void OnGoalChanged(int mergeLeft)
+        private void OnGameWinned()
         {
-           
+            ShowWinWindow();
+        }
+
+        private void OnLevelCreated()
+        {
+            Hide();
         }
 
         public void Hide()
@@ -95,7 +104,7 @@ namespace PlanetMerge.UI
             _levelLoosedWindow.gameObject.SetActive(false);
         }
 
-        public void ShowFinishWindow()
+        public void ShowWinWindow()
         {
             _levelFinishedWindow.gameObject.SetActive(true);
         }

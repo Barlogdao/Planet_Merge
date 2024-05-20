@@ -10,9 +10,10 @@ namespace PlanetMerge.Planets
         [SerializeField] private MergeDetector _mergeDetector;
         [SerializeField] private PlanetView _view;
 
-        private int _rank = 1;
         private Rigidbody2D _rigidbody2D;
         private IReleasePool _releasePool;
+
+        private int _rank = 1;
 
         public event Action<Planet> Merged;
         public event Action<Vector2> Collided;
@@ -42,7 +43,6 @@ namespace PlanetMerge.Planets
         {
             _mergeDetector.MergeDetected -= OnMergeDetected;
         }
-
 
         public void Prepare(int rank)
         {
