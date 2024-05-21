@@ -24,8 +24,9 @@ namespace PlanetMerge.Planets
         private Coroutine _launchRoutine;
         private WaitForSeconds _cooldown;
 
-        private bool IsPlanetLoaded => _loadedPlanet != null;
         public Vector2 LaunchPosition => _launchPoint.position;
+
+        private bool IsPlanetLoaded => _loadedPlanet != null;
         private bool CanLoad => IsPlanetLoaded == false && _planetLimit.HasPlanet;
         private bool CanLaunch => IsPlanetLoaded && _launchRoutine == null;
 

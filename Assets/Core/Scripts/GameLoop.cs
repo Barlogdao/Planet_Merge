@@ -1,52 +1,68 @@
 using PlanetMerge.Data;
-using PlanetMerge.Systems;
-using PlanetMerge.UI;
+using System;
 using UnityEngine;
 
 public class GameLoop : MonoBehaviour
 {
-    private PlayerData _playerData;
-    private LevelGenerator _levelGenerator;
-    private PlanetLimitHandler _planetLimitHandler;
-    private LevelPlanets _planetOnLevel;
-
     private GameEventMediator _gameEventMediator;
 
-    private int bonusPlanetAmount = 5;
+    private StartLevelHandler _startLevelHandler;
+    private EndLevelHandler _endLevelHandler;
+    private PlayerData _playerData;
 
-    public void Initialize(GameEventMediator gameEventMediator, PlayerData playerData, LevelGenerator levelGenerator, PlanetLimitHandler planetLimitHandler, LevelPlanets planetsOnLevel)
+    private LevelPreparer _levelPreparer;
+
+    public event Action LevelPrepared;
+    public event Action LevelStarted;
+    public event Action LevelResumed;
+
+    public void Initialize(GameEventMediator gameEventMediator, PlayerData playerData, LevelPreparer levelPreparer, StartLevelHandler startLevelHandler, EndLevelHandler endLevelHandler)
     {
         _gameEventMediator = gameEventMediator;
         _playerData = playerData;
-        _levelGenerator = levelGenerator;
-        _planetLimitHandler = planetLimitHandler;
-        _planetOnLevel = planetsOnLevel;
+        _levelPreparer = levelPreparer;
+        _startLevelHandler = startLevelHandler;
+        _endLevelHandler = endLevelHandler;
 
 
-        _gameEventMediator.GameWinned += OnGameWinned;
+        _gameEventMediator.GameWon += OnGameWon;
+        _gameEventMediator.GameLost += OnGameLost;
+
         _gameEventMediator.NextLevelSelected += OnNextLevelSelected;
         _gameEventMediator.RestartLevelSelected += OnRestartLevelSelected;
         _gameEventMediator.RewardSelected += OnRewardSelected;
     }
 
+
+
     private void OnDestroy()
     {
-        _gameEventMediator.GameWinned -= OnGameWinned;
+        _gameEventMediator.GameWon -= OnGameWon;
+        _gameEventMediator.GameLost -= OnGameLost;
+
         _gameEventMediator.NextLevelSelected -= OnNextLevelSelected;
         _gameEventMediator.RestartLevelSelected -= OnRestartLevelSelected;
         _gameEventMediator.RewardSelected -= OnRewardSelected;
+
     }
 
-    public void PrepareLevel()
+    public void Run()
     {
-        _planetOnLevel.Clear();
-        _levelGenerator.Generate(_playerData);
-        RunGame();
+        PrepareLevel();
     }
 
-    private void RunGame()
+    private void PrepareLevel()
     {
-        _gameEventMediator.RunLevel();
+        _levelPreparer.Prepare(_playerData);
+        LevelPrepared?.Invoke();
+
+        StartLevel();
+    }
+
+    private void StartLevel()
+    {
+        _startLevelHandler.StartLevel(_playerData.Level);
+        LevelStarted?.Invoke();
     }
 
     private void OnNextLevelSelected()
@@ -61,12 +77,19 @@ public class GameLoop : MonoBehaviour
 
     private void OnRewardSelected()
     {
-        _planetLimitHandler.SetLimit(bonusPlanetAmount);
-        RunGame();
+        _endLevelHandler.AddReward();
+        _startLevelHandler.ResumeLevel();
+        LevelResumed?.Invoke();
     }
 
-    private void OnGameWinned()
+    private void OnGameWon()
     {
         _playerData.Level++;
+        _endLevelHandler.Win();
+    }
+
+    private void OnGameLost()
+    {
+        _endLevelHandler.Loose();
     }
 }

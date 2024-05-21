@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace PlanetMerge.UI
 {
-    public class PlanetViewBar : MonoBehaviour
+    public abstract class PlanetViewPanel : MonoBehaviour
     {
         [SerializeField] private Image _planetImage;
         [SerializeField] private TMP_Text _planetRankLabel;

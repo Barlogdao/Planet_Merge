@@ -11,13 +11,15 @@ public class InputController : MonoBehaviour
         _playerInput = playerInput;
         _gameEventMediator = gameEventMediator;
 
-        _gameEventMediator.LevelStaretd += OnLevelStarted;
+        _gameEventMediator.LevelStarted += OnLevelStarted;
+        _gameEventMediator.LevelResumed += OnLevelStarted;
         _gameEventMediator.LevelFinished += OnLevelFinished;
     }
 
     private void OnDestroy()
     {
-        _gameEventMediator.LevelStaretd -= OnLevelStarted;
+        _gameEventMediator.LevelStarted -= OnLevelStarted;
+        _gameEventMediator.LevelResumed -= OnLevelStarted;
         _gameEventMediator.LevelFinished -= OnLevelFinished;
     }
 

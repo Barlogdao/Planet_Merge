@@ -481,7 +481,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _launchPoint: {fileID: 1869244810}
-  _force: 20
+  _force: 16
   _launchCooldown: 0.3
   _targetPositionOffsetY: 1.69
 --- !u!4 &113462646
@@ -677,7 +677,7 @@ GameObject:
   - component: {fileID: 413145115}
   - component: {fileID: 413145114}
   m_Layer: 5
-  m_Name: Lose Window
+  m_Name: Loose Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -971,7 +971,7 @@ GameObject:
   - component: {fileID: 477679557}
   - component: {fileID: 477679558}
   m_Layer: 5
-  m_Name: Bars
+  m_Name: UI Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1018,7 +1018,7 @@ GameObject:
   - component: {fileID: 596517217}
   - component: {fileID: 596517216}
   m_Layer: 5
-  m_Name: FinishWindow
+  m_Name: Victory Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1791,7 +1791,6 @@ MonoBehaviour:
     <Score>k__BackingField: 0
   _planetPrefab: {fileID: 237592449600710670, guid: c8ddfaccac5b3284cb72c9d107d0a3ff, type: 3}
   _planetHolder: {fileID: 124352222}
-  _planetSpawner: {fileID: 1091049146}
   _trajectory: {fileID: 1804214577}
   _playerInput: {fileID: 785785557}
   _planetLauncher: {fileID: 113462645}
@@ -1804,6 +1803,7 @@ MonoBehaviour:
   _gameLoop: {fileID: 785785556}
   _planetsOnLevel: {fileID: 785785555}
   _inputController: {fileID: 785785553}
+  _rewardHandler: {fileID: 910457500}
 --- !u!4 &785785552
 Transform:
   m_ObjectHideFlags: 0
@@ -1990,6 +1990,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875356733}
   m_CullTransparentMesh: 1
+--- !u!1 &910457499
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 910457501}
+  - component: {fileID: 910457500}
+  m_Layer: 0
+  m_Name: RewardHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &910457500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910457499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad6e072c98df46a478351b5608d78f91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _bonusPlanetAmount: 5
+--- !u!4 &910457501
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910457499}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.0543404, y: -0.6697602, z: 1968.5503}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &936827254
 GameObject:
   m_ObjectHideFlags: 0
@@ -2242,58 +2287,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1c8a27f776635a4e97beb4b617d3659, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelFinishedWindow: {fileID: 596517215}
-  _levelLoosedWindow: {fileID: 413145113}
-  _limitBar: {fileID: 1955634661}
-  _goalBar: {fileID: 1197746992}
+  _victoryWindow: {fileID: 596517215}
+  _looseWindow: {fileID: 413145113}
+  _limitPanel: {fileID: 1955634661}
+  _goalPanel: {fileID: 1197746992}
   _levelLabel: {fileID: 2097670588}
   _nextLevelButton: {fileID: 58396315}
   _resetLevelButton: {fileID: 1545711878}
   _rewardButton: {fileID: 1375965978}
---- !u!1 &1091049145
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1091049147}
-  - component: {fileID: 1091049146}
-  m_Layer: 0
-  m_Name: Planet Spawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1091049146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1091049145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9bdf67f4ece6f3c41a1e423ec7c73f80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1091049147
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1091049145}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3224578, y: 0.7430982, z: -0.0104943095}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1197746987
 GameObject:
   m_ObjectHideFlags: 0
@@ -2308,7 +2309,7 @@ GameObject:
   - component: {fileID: 1197746993}
   - component: {fileID: 1197746994}
   m_Layer: 5
-  m_Name: Goal Bar
+  m_Name: Goal Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4000,7 +4001,7 @@ GameObject:
   - component: {fileID: 1955634662}
   - component: {fileID: 1955634663}
   m_Layer: 5
-  m_Name: Limit Bar
+  m_Name: Limit Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4567,9 +4568,9 @@ SceneRoots:
   - {fileID: 2091554544}
   - {fileID: 708140200}
   - {fileID: 1114896602614855152}
-  - {fileID: 1091049147}
   - {fileID: 113462646}
   - {fileID: 124352222}
   - {fileID: 1983963827}
   - {fileID: 1784114890}
   - {fileID: 1068452196}
+  - {fileID: 910457501}

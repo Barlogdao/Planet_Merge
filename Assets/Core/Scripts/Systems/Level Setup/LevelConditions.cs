@@ -3,8 +3,8 @@ using PlanetMerge.Systems;
 
 public class LevelConditions
 {
-    private LevelGoalHandler _levelGoalHandler;
-    private PlanetLimitHandler _planetLimitHandler;
+    private readonly LevelGoalHandler _levelGoalHandler;
+    private readonly PlanetLimitHandler _planetLimitHandler;
 
     public LevelConditions(LevelGoalHandler levelGoalHandler, PlanetLimitHandler planetLimitHandler)
     {

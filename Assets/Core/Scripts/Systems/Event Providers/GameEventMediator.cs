@@ -10,8 +10,8 @@ public class GameEventMediator : MonoBehaviour, IPlanetEvents
 {
     private IPlanetStatusNotifier _planetStatusNotifier;
     private GameOverHandler _gameOverHandler;
-    private LevelGenerator _levelGenerator;
-    private GameUI _gameUI;
+    private GameLoop _gameLoop;
+    private IGameUiEvents _uiEvents;
 
     public event Action<Planet> PlanetCreated;
     public event Action<Planet> PlanetReleased;
@@ -19,41 +19,40 @@ public class GameEventMediator : MonoBehaviour, IPlanetEvents
     public event Action<Planet> PlanetMerged;
     public event Action<Vector2> PlanetCollided;
 
-    public event Action LevelCreated;
-    public event Action LevelStaretd;
+    public event Action LevelPrepared;
+    public event Action LevelStarted;
+    public event Action LevelResumed;
     public event Action LevelFinished;
 
     public event Action GameLost;
-    public event Action GameWinned;
+    public event Action GameWon;
 
     public event Action NextLevelSelected;
     public event Action RestartLevelSelected;
     public event Action RewardSelected;
 
-    public void Initialize(IPlanetStatusNotifier planetStatusNotifier, GameOverHandler gameOverHandler, LevelGenerator levelGenerator, GameUI gameUI)
+    public void Initialize(IPlanetStatusNotifier planetStatusNotifier, GameOverHandler gameOverHandler, GameLoop gameLoop, IGameUiEvents uiEvents)
     {
         _planetStatusNotifier = planetStatusNotifier;
         _gameOverHandler = gameOverHandler;
-        _levelGenerator = levelGenerator;
-        _gameUI = gameUI;
+        _gameLoop = gameLoop;
+        _uiEvents = uiEvents;
 
         _planetStatusNotifier.PlanetCreated += OnPlanetCreated;
         _planetStatusNotifier.PlanetReleased += OnPlanetReleased;
 
-        _gameOverHandler.GameWinned += OnGameWinned;
+        _gameOverHandler.GameWon += OnGameWon;
         _gameOverHandler.GameLost += OnGameLost;
 
-        _levelGenerator.LevelCreated += OnLevelCreated;
+        _gameLoop.LevelPrepared += OnLevelPrepared;
+        _gameLoop.LevelPrepared += OnLevelStarted;
+        _gameLoop.LevelResumed += OnLevelResumed;
 
-        _gameUI.NextLevelPressed += OnNextLevePressed;
-        _gameUI.RestartLevelPressed += OnRestareLevelPressed;
-        _gameUI.RewardPressed += OnRewardPressed;
+        _uiEvents.NextLevelPressed += OnNextLevePressed;
+        _uiEvents.RestartLevelPressed += OnRestareLevelPressed;
+        _uiEvents.RewardPressed += OnRewardPressed;
     }
 
-    public void RunLevel()
-    {
-        LevelStaretd?.Invoke();
-    }
 
 
     private void OnDestroy()
@@ -61,31 +60,38 @@ public class GameEventMediator : MonoBehaviour, IPlanetEvents
         _planetStatusNotifier.PlanetCreated -= OnPlanetCreated;
         _planetStatusNotifier.PlanetReleased -= OnPlanetReleased;
 
-        _gameOverHandler.GameWinned -= OnGameWinned;
+        _gameOverHandler.GameWon -= OnGameWon;
         _gameOverHandler.GameLost -= OnGameLost;
 
-        _levelGenerator.LevelCreated += OnLevelCreated;
+        _gameLoop.LevelPrepared += OnLevelPrepared;
+        _gameLoop.LevelPrepared -= OnLevelStarted;
+        _gameLoop.LevelResumed -= OnLevelResumed;
 
-        _gameUI.NextLevelPressed -= OnNextLevePressed;
-        _gameUI.RestartLevelPressed -= OnRestareLevelPressed;
-        _gameUI.RewardPressed -= OnRewardPressed;
+        _uiEvents.NextLevelPressed -= OnNextLevePressed;
+        _uiEvents.RestartLevelPressed -= OnRestareLevelPressed;
+        _uiEvents.RewardPressed -= OnRewardPressed;
     }
 
-    private void OnGameWinned()
+
+    private void OnGameWon()
     {
         LevelFinished?.Invoke();
-        GameWinned?.Invoke();
+        GameWon?.Invoke();
     }
 
-    private void OnLevelCreated()
-    {
-        LevelCreated?.Invoke();
-    }
     private void OnGameLost()
     {
         LevelFinished?.Invoke();
         GameLost?.Invoke();
     }
+
+    private void OnLevelPrepared() => LevelPrepared?.Invoke();
+    private void OnLevelStarted() => LevelStarted?.Invoke();
+    private void OnLevelResumed() => LevelResumed?.Invoke();
+
+    private void OnRewardPressed() => RewardSelected?.Invoke();
+    private void OnRestareLevelPressed() => RestartLevelSelected?.Invoke();
+    private void OnNextLevePressed() => NextLevelSelected?.Invoke();
 
     private void OnPlanetCreated(Planet planet)
     {
@@ -110,11 +116,4 @@ public class GameEventMediator : MonoBehaviour, IPlanetEvents
     {
         PlanetCollided?.Invoke(atPoint);
     }
-
-
-    private void OnRewardPressed() => RewardSelected?.Invoke();
-
-    private void OnRestareLevelPressed() => RestartLevelSelected?.Invoke();
-
-    private void OnNextLevePressed() => NextLevelSelected?.Invoke();
 }

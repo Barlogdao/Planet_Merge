@@ -14,17 +14,15 @@ namespace PlanetMerge.Systems
 
         private PlanetLauncher _planetLauncher;
         private PlanetSpawner _planetSpawner;
-        private GameUI _gameUI;
         private LevelConditions _levelConditions;
 
         public event Action LevelCreated;
 
-        public void Initialize(PlanetSpawner planetSpawner, LevelConditions levelConditions, PlanetLauncher planetLauncher, GameUI gameUI)
+        public void Initialize(PlanetSpawner planetSpawner, LevelConditions levelConditions, PlanetLauncher planetLauncher)
         {
             _planetSpawner = planetSpawner;
             _levelConditions = levelConditions;
             _planetLauncher = planetLauncher;
-            _gameUI = gameUI;
         }
 
         public void Generate(IReadOnlyPlayerData playerData)
@@ -37,9 +35,7 @@ namespace PlanetMerge.Systems
 
             SetPlanets(levelLayout, planetRank);
             SetPlanetLauncher(planetRank);
-
             SetLevelConditions(levelGoal, planetRank, limitAmount);
-            PrepareUI(playerData);
 
             LevelCreated?.Invoke();
         }
@@ -49,10 +45,6 @@ namespace PlanetMerge.Systems
             _levelConditions.Prepare(levelGoal, planetRank, limitAmount);
         }
 
-        private void PrepareUI(IReadOnlyPlayerData playerData)
-        {
-            _gameUI.Prepare(playerData);
-        }
 
         private void SetPlanets(LevelLayout levelLayout, int planetRank)
         {

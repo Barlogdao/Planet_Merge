@@ -3,13 +3,13 @@ using System;
 
 namespace PlanetMerge.Planets
 {
-    public class PlanetSpawner : MonoBehaviour
+    public class PlanetSpawner
     {
         private const int MinimalPlanetRank = 1;
 
-        private PlanetPool _pool;
+        private readonly PlanetPool _pool;
 
-        public void Initialize(PlanetPool pool)
+        public PlanetSpawner (PlanetPool pool)
         {
             _pool = pool;
         }

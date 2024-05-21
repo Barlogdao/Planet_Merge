@@ -7,7 +7,7 @@ public class GameOverHandler : MonoBehaviour
     private PlanetLimitHandler _planetLimitHandler;
     private LevelGoalHandler _levelGoalHandler;
 
-    public event Action GameWinned;
+    public event Action GameWon;
     public event Action GameLost;
 
     public void Initialize(PlanetLimitHandler planetLimitHandler, LevelGoalHandler levelGoalHandler)
@@ -27,7 +27,7 @@ public class GameOverHandler : MonoBehaviour
 
     private void OnGoalReached()
     {
-        GameWinned?.Invoke();
+        GameWon?.Invoke();
         Debug.Log("WIN");
     }
 

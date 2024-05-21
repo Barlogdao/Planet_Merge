@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace PlanetMerge.UI
 {
-    public class GoalBar : PlanetViewBar
+    public class GoalPanel : PlanetViewPanel
     {
         [SerializeField] private TMP_Text _mergeAmountLabel;
         [SerializeField] private ScaleTween _scaleTween;
