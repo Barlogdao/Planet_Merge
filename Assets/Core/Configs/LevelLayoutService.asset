@@ -14,4 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelLayouts:
   - {fileID: 11400000, guid: 2ee12089821fd3a41a83aaf0bb43469d, type: 2}
+  - {fileID: 11400000, guid: 4a1bc6643652d384daa0e0612ac14475, type: 2}
+  - {fileID: 11400000, guid: 2053ea625baffd4498ddc01d6a4f43f6, type: 2}
   <TutorialLevelLayout>k__BackingField: {fileID: 11400000, guid: 2ee12089821fd3a41a83aaf0bb43469d, type: 2}

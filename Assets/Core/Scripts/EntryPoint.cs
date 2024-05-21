@@ -47,27 +47,27 @@ public class EntryPoint : MonoBehaviour
         _planetPool = new PlanetPool(_planetPrefab, _planetHolder);
         _planetSpawner = new PlanetSpawner(_planetPool);
         _planetLimit = new PlanetLimit();
-        _levelConditions = new LevelConditions(_goalHandler, _limitHandler);
-
-        _levelPreparer = new LevelPreparer(_levelGenerator, _levelPlanets, _gameUI);
-
 
         _gameEventMediator.Initialize(_planetPool, _gameOverHandler, _gameLoop, _gameUI);
+
+
         _inputController.Initialize(_playerInput, _gameEventMediator);
         _levelPlanets.Initialize(_gameEventMediator);
 
         _goalHandler.Initialize(_gameEventMediator);
         _limitHandler.Initialize(_gameEventMediator, _planetLimit);
         _gameOverHandler.Initialize(_limitHandler, _goalHandler);
+        _gameUI.Initialize(_limitHandler, _goalHandler);
+        _rewardHandler.Initialize(_limitHandler);
+        _levelConditions = new LevelConditions(_goalHandler, _limitHandler);
 
         _planetLauncher.Initialize(_playerInput, _planetSpawner, _planetLimit, _trajectory);
         float planetRadius = _planetPrefab.GetComponent<CircleCollider2D>().radius * _planetPrefab.transform.localScale.x;
         _trajectory.Initialize(_planetLauncher, planetRadius);
 
-        _rewardHandler.Initialize(_limitHandler);
 
         _levelGenerator.Initialize(_planetSpawner, _levelConditions, _planetLauncher);
-        _gameUI.Initialize(_limitHandler, _goalHandler);
+        _levelPreparer = new LevelPreparer(_levelGenerator, _levelPlanets, _gameUI);
 
         _startLevelHandler = new StartLevelHandler();
         _endLevelHandler = new EndLevelHandler(_gameUI,_rewardHandler);
