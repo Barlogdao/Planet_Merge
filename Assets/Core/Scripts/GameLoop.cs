@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using PlanetMerge.Systems.SaveLoad;
 using System;
 using UnityEngine;
@@ -31,8 +32,6 @@ public class GameLoop : MonoBehaviour
         _gameEventMediator.RewardSelected += OnRewardSelected;
     }
 
-
-
     private void OnDestroy()
     {
         _gameEventMediator.GameWon -= OnGameWon;
@@ -53,25 +52,18 @@ public class GameLoop : MonoBehaviour
         _startLevelHandler.PrepareLevel(_playerData);
         LevelPrepared?.Invoke();
 
-        StartLevel();
+        StartLevel().Forget();
     }
 
-    private void StartLevel()
+    private async UniTaskVoid StartLevel()
     {
-        _startLevelHandler.StartLevel(_playerData.Level);
+        await _startLevelHandler.StartLevel(_playerData.Level);
         LevelStarted?.Invoke();
     }
 
     private void OnGameWon()
     {
-        _playerDataService.LevelUp();
-
-        if (_playerData.Level %3 == 0)
-        {
-            _playerDataService.UpgradePlanetRank();
-        }
-        
-        _endLevelHandler.Win(_playerData);
+        _endLevelHandler.Win();
     }
 
     private void OnGameLost()

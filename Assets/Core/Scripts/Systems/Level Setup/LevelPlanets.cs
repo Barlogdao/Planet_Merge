@@ -7,6 +7,8 @@ public class LevelPlanets : MonoBehaviour
     private GameEventMediator _gameEventMediator;
     private List<Planet> _planets = new();
 
+
+
     public void Initialize(GameEventMediator gameEventMediator)
     {
         _gameEventMediator = gameEventMediator;

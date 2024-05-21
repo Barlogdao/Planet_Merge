@@ -3,6 +3,7 @@ using TMPro;
 using PlanetMerge.Systems;
 using System;
 using UnityEngine.UI;
+using Cysharp.Threading.Tasks;
 
 namespace PlanetMerge.UI
 {
@@ -15,32 +16,27 @@ namespace PlanetMerge.UI
         [SerializeField] private GoalPanel _goalPanel;
         [SerializeField] private TMP_Text _levelLabel;
 
+       private UiPanel _uiPanel;
+
         [SerializeField] private Button _nextLevelButton;
         [SerializeField] private Button _resetLevelButton;
         [SerializeField] private Button _rewardButton;
 
         [SerializeField] private PlanetProgressionPanel _progressionPanel;
 
-
         public event Action NextLevelPressed;
         public event Action RestartLevelPressed;
         public event Action RewardPressed;
 
-  
-        private PlanetLimitHandler _planetLimitHandler;
-        private LevelGoalHandler _levelGoalHandler;
-
-        public void Initialize(PlanetLimitHandler planetLimitHandler, LevelGoalHandler levelGoalHandler)
+        public void Initialize(UiPanel uiPanel)
         {
-            _planetLimitHandler = planetLimitHandler;
-            _levelGoalHandler = levelGoalHandler;
+            _uiPanel = uiPanel;
 
             _nextLevelButton.onClick.AddListener(OnNextLevelPressed);
             _resetLevelButton.onClick.AddListener(OnResetLevelPressed);
             _rewardButton.onClick.AddListener(OnRewardPressed);
 
-            _limitPanel.Initialize(_planetLimitHandler);
-            _goalPanel.Initialize(_levelGoalHandler);
+            _progressionPanel.Initialize();
         }
 
         private void OnDestroy()
@@ -52,29 +48,27 @@ namespace PlanetMerge.UI
 
         public void Prepare(IReadOnlyPlayerData playerData)
         {
-            int planetGoalRank = _levelGoalHandler.PlanetGoalRank;
+            _uiPanel.Prepare(playerData);
+        }
 
-            _limitPanel.Prepare(playerData.PlanetRank);
-            _goalPanel.Prepare(planetGoalRank);
-            _levelLabel.text = $"Уровень {playerData.Level}";
+        public async UniTask Animate()
+        {
+            await _uiPanel.Animate();
         }
 
         private void OnRewardPressed()
         {
             RewardPressed?.Invoke();
-            Hide();
         }
 
         private void OnResetLevelPressed()
         {
             RestartLevelPressed?.Invoke();
-            Hide();
         }
 
         private void OnNextLevelPressed()
         {
             NextLevelPressed?.Invoke();
-            Hide();
         }
 
         public void Hide()
@@ -86,6 +80,11 @@ namespace PlanetMerge.UI
         public void ShowVictoryWindow(IReadOnlyPlayerData playerData)
         {
             _victoryWindow.gameObject.SetActive(true);
+            _progressionPanel.Prepare(playerData.PlanetRank);
+        }
+
+        public void ShowProgress(IReadOnlyPlayerData playerData)
+        {
             _progressionPanel.Set(playerData).Forget();
         }
 

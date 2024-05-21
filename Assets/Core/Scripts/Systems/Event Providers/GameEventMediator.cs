@@ -45,7 +45,7 @@ public class GameEventMediator : MonoBehaviour, IPlanetEvents
         _gameOverHandler.GameLost += OnGameLost;
 
         _gameLoop.LevelPrepared += OnLevelPrepared;
-        _gameLoop.LevelPrepared += OnLevelStarted;
+        _gameLoop.LevelStarted += OnLevelStarted;
         _gameLoop.LevelResumed += OnLevelResumed;
 
         _uiEvents.NextLevelPressed += OnNextLevePressed;
@@ -64,14 +64,13 @@ public class GameEventMediator : MonoBehaviour, IPlanetEvents
         _gameOverHandler.GameLost -= OnGameLost;
 
         _gameLoop.LevelPrepared += OnLevelPrepared;
-        _gameLoop.LevelPrepared -= OnLevelStarted;
+        _gameLoop.LevelStarted -= OnLevelStarted;
         _gameLoop.LevelResumed -= OnLevelResumed;
 
         _uiEvents.NextLevelPressed -= OnNextLevePressed;
         _uiEvents.RestartLevelPressed -= OnRestareLevelPressed;
         _uiEvents.RewardPressed -= OnRewardPressed;
     }
-
 
     private void OnGameWon()
     {

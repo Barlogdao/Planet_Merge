@@ -14,6 +14,8 @@ public class InputController : MonoBehaviour
         _gameEventMediator.LevelStarted += OnLevelStarted;
         _gameEventMediator.LevelResumed += OnLevelStarted;
         _gameEventMediator.LevelFinished += OnLevelFinished;
+
+        DisableInput();
     }
 
     private void OnDestroy()
@@ -25,11 +27,21 @@ public class InputController : MonoBehaviour
 
     private void OnLevelFinished()
     {
-        _playerInput.enabled = false;
+        DisableInput();
     }
 
     private void OnLevelStarted()
     {
+        EnableInput();
+    }
+
+    private void EnableInput()
+    {
         _playerInput.enabled = true;
+    }
+
+    private void DisableInput()
+    {
+        _playerInput.enabled = false;
     }
 }

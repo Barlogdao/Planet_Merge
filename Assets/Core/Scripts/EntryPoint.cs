@@ -6,8 +6,7 @@ using PlanetMerge.Systems;
 using PlanetMerge.Systems.Events;
 using PlanetMerge.Systems.SaveLoad;
 using PlanetMerge.UI;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 public class EntryPoint : MonoBehaviour
@@ -31,6 +30,7 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private InputController _inputController;
 
     [SerializeField] private RewardHandler _rewardHandler;
+    [SerializeField] private UiPanel _uiPanel;
 
 
     private PlanetSpawner _planetSpawner;
@@ -59,7 +59,8 @@ public class EntryPoint : MonoBehaviour
         _goalHandler.Initialize(_gameEventMediator);
         _limitHandler.Initialize(_gameEventMediator, _planetLimit);
         _gameOverHandler.Initialize(_limitHandler, _goalHandler);
-        _gameUI.Initialize(_limitHandler, _goalHandler);
+        _uiPanel.Initialize(_limitHandler, _goalHandler);
+        _gameUI.Initialize(_uiPanel);
         _rewardHandler.Initialize(_limitHandler);
         _levelConditions = new LevelConditions(_goalHandler, _limitHandler);
 
@@ -72,7 +73,7 @@ public class EntryPoint : MonoBehaviour
         _levelPreparer = new LevelPreparer(_levelGenerator, _levelPlanets, _gameUI);
 
         _startLevelHandler = new StartLevelHandler(_gameUI, _levelPreparer);
-        _endLevelHandler = new EndLevelHandler(_gameUI,_rewardHandler);
+        _endLevelHandler = new EndLevelHandler(_gameUI,_rewardHandler,_playerDataService);
         _gameLoop.Initialize(_gameEventMediator, _playerDataService, _startLevelHandler,_endLevelHandler);
     }
 

@@ -21,7 +21,7 @@ namespace PlanetMerge.Systems.SaveLoad
         public void Save(PlayerData playerData)
         {
             PlayerPrefs.SetInt(LevelKey, playerData.Level);
-            PlayerPrefs.SetInt(ScoreKey, playerData.PlanetRank);
+            PlayerPrefs.SetInt(PlanetRankKey, playerData.PlanetRank);
             PlayerPrefs.SetInt(ScoreKey, playerData.Score);
 
             PlayerPrefs.Save();

@@ -1,7 +1,5 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,29 +8,52 @@ namespace PlanetMerge.UI
     public class PlanetProgressionPanel : PlanetViewPanel
     {
         [SerializeField] private Slider _slider;
-        [SerializeField] private float _fillSpeed;
-        [SerializeField] private int _upgradeStep;
+        [SerializeField] private float _fillDuration;
+        [SerializeField] private Ease _fillEase;
+
+        private int _upgradeStep;
+        private float _minSliderVolume;
+        private float _maxSliderVolume;
+        public void Initialize()
+        {
+            _upgradeStep = Constants.PlanetUpgradeStep;
+            _minSliderVolume = _slider.minValue;
+            _maxSliderVolume = _slider.maxValue;
+        }
 
         public async UniTaskVoid Set(IReadOnlyPlayerData playerData)
         {
-            int currentLevel = playerData.Level;
+            int level = playerData.Level;
             int previousLevel = playerData.Level - 1;
+            float sliderValue = GetSliderValue(previousLevel);
 
-            if (currentLevel % _upgradeStep == 0)
-                Prepare(playerData.PlanetRank - 1);
+            _slider.value = sliderValue;
+
+            await UniTask.WaitForSeconds(_fillDuration);
+
+            if (IsNeedUpgradePlanet(level))
+                sliderValue = _maxSliderVolume;
             else
-                Prepare(playerData.PlanetRank);
+                sliderValue = GetSliderValue(level);
+            
+            await _slider.DOValue(sliderValue, _fillDuration);
 
-            _slider.value = (previousLevel) % _upgradeStep / (float)_upgradeStep;
 
-
-            await _slider.DOValue(currentLevel % _upgradeStep / (float)_upgradeStep, _fillSpeed);
-
-            if (playerData.Level % _upgradeStep == 0)
+            if (IsNeedUpgradePlanet(level))
             {
                 Prepare(playerData.PlanetRank);
-                _slider.value = 0f;
+                _slider.value = _minSliderVolume;
             }
+        }
+
+        private bool IsNeedUpgradePlanet (int level)
+        {
+            return level%_upgradeStep == 0;
+        }
+
+        private float GetSliderValue(int level)
+        {
+            return level % _upgradeStep / (float)_upgradeStep;
         }
     }
 }

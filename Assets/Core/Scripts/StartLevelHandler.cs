@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using PlanetMerge.UI;
 
 public class StartLevelHandler
@@ -16,9 +17,10 @@ public class StartLevelHandler
         _levelPreparer.Prepare(playerData);
     }
 
-    public void StartLevel(int level)
+    public async UniTask StartLevel(int level)
     {
         _gameUi.Hide();
+        await _gameUi.Animate();
     }
 
     public void ResumeLevel()
