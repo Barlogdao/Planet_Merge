@@ -4,6 +4,7 @@ using PlanetMerge.Planets;
 using PlanetMerge.SDK.Yandex;
 using PlanetMerge.Systems;
 using PlanetMerge.Systems.Events;
+using PlanetMerge.Systems.SaveLoad;
 using PlanetMerge.UI;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,8 +12,6 @@ using UnityEngine;
 
 public class EntryPoint : MonoBehaviour
 {
-    [SerializeField] private PlayerData _playerData;
-
     [SerializeField] private Planet _planetPrefab;
     [SerializeField] private Transform _planetHolder;
 
@@ -41,9 +40,12 @@ public class EntryPoint : MonoBehaviour
     private LevelPreparer _levelPreparer;
     private StartLevelHandler _startLevelHandler;
     private EndLevelHandler _endLevelHandler;
+    private PlayerDataService _playerDataService;
 
     private void Awake()
     {
+        _playerDataService = new PlayerDataService();
+
         _planetPool = new PlanetPool(_planetPrefab, _planetHolder);
         _planetSpawner = new PlanetSpawner(_planetPool);
         _planetLimit = new PlanetLimit();
@@ -69,13 +71,19 @@ public class EntryPoint : MonoBehaviour
         _levelGenerator.Initialize(_planetSpawner, _levelConditions, _planetLauncher);
         _levelPreparer = new LevelPreparer(_levelGenerator, _levelPlanets, _gameUI);
 
-        _startLevelHandler = new StartLevelHandler();
+        _startLevelHandler = new StartLevelHandler(_gameUI, _levelPreparer);
         _endLevelHandler = new EndLevelHandler(_gameUI,_rewardHandler);
-        _gameLoop.Initialize(_gameEventMediator, _playerData, _levelPreparer,_startLevelHandler,_endLevelHandler);
+        _gameLoop.Initialize(_gameEventMediator, _playerDataService, _startLevelHandler,_endLevelHandler);
     }
 
     private void Start()
     {
         _gameLoop.Run();
+    }
+
+    [ContextMenu ("Reset")]
+    public void Resets()
+    {
+        _playerDataService.Reset();
     }
 }

@@ -1,16 +1,28 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using PlanetMerge.UI;
 
 public class StartLevelHandler
 {
+    private GameUi _gameUi;
+    private LevelPreparer _levelPreparer;
+
+    public StartLevelHandler(GameUi gameUi, LevelPreparer levelPreparer)
+    {
+        _gameUi = gameUi;
+        _levelPreparer = levelPreparer;
+    }
+
+    public void PrepareLevel(IReadOnlyPlayerData playerData)
+    {
+        _levelPreparer.Prepare(playerData);
+    }
+
     public void StartLevel(int level)
     {
-        
+        _gameUi.Hide();
     }
 
     public void ResumeLevel()
     {
-
+        _gameUi.Hide();
     }
 }

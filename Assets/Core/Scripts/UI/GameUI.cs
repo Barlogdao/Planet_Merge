@@ -19,6 +19,8 @@ namespace PlanetMerge.UI
         [SerializeField] private Button _resetLevelButton;
         [SerializeField] private Button _rewardButton;
 
+        [SerializeField] private PlanetProgressionPanel _progressionPanel;
+
 
         public event Action NextLevelPressed;
         public event Action RestartLevelPressed;
@@ -81,9 +83,10 @@ namespace PlanetMerge.UI
             _looseWindow.gameObject.SetActive(false);
         }
 
-        public void ShowVictoryWindow()
+        public void ShowVictoryWindow(IReadOnlyPlayerData playerData)
         {
             _victoryWindow.gameObject.SetActive(true);
+            _progressionPanel.Set(playerData).Forget();
         }
 
         public void ShowLooseWindow()

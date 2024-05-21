@@ -9,8 +9,13 @@ namespace PlanetMerge.Configs
 
         [field:SerializeField] public LevelGoal TutorialLevelGoal { get; private set; } 
 
-        public LevelGoal GetLevelGoal()
+        public LevelGoal GetLevelGoal(int level)
         {
+            if (level == Constants.TutorialLevel)
+            {
+                return TutorialLevelGoal;
+            }
+
             int index = Random.Range(0, _levelGoals.Length);
 
             return _levelGoals[index];

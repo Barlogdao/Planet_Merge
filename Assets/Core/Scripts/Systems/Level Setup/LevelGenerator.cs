@@ -27,8 +27,10 @@ namespace PlanetMerge.Systems
 
         public void Generate(IReadOnlyPlayerData playerData)
         {
-            LevelGoal levelGoal = _levelGoalService.GetLevelGoal();
-            LevelLayout levelLayout = _levelLayoutService.GetLevelLayout();
+            int level = playerData.Level;
+
+            LevelGoal levelGoal =_levelGoalService.GetLevelGoal(level);
+            LevelLayout levelLayout = _levelLayoutService.GetLevelLayout(level);
             int limitAmount = _levelLimitService.GetLimitAmount();
 
             int planetRank = playerData.PlanetRank;

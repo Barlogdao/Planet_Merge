@@ -25,7 +25,6 @@ public class LevelPreparer
     private void ClearLevel()
     {
         _levelPlanets.Clear();
-        _gameUI.Hide();
     }
 
     private void GenerateLevel(IReadOnlyPlayerData playerData)

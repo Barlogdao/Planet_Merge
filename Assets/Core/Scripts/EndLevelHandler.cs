@@ -13,9 +13,9 @@ public class EndLevelHandler
         _rewardHandler = rewardHandler;
     }
 
-    public void Win()
+    public void Win(IReadOnlyPlayerData playerData)
     {
-        _gameUI.ShowVictoryWindow();
+        _gameUI.ShowVictoryWindow(playerData);
     }
 
     public void Loose()

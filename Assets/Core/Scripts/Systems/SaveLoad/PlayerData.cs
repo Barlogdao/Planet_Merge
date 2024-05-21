@@ -1,14 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 namespace PlanetMerge.Data
 {
-    [System.Serializable]
-    public class PlayerData:IReadOnlyPlayerData
+    public class PlayerData : IReadOnlyPlayerData
     {
-        [field:SerializeField] public int Level { get; set; }
-        [field: SerializeField] public int PlanetRank { get; set; }
-        [field: SerializeField] public int Score { get; set; }
+        public PlayerData(int level, int planetRank, int score)
+        {
+            Level = level;
+            PlanetRank = planetRank;
+            Score = score;
+        }
+
+        public int Level { get;  set; }
+        public int PlanetRank { get;  set; }
+        public int Score { get; set; }
     }
 }

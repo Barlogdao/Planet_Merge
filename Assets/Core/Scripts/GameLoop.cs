@@ -1,4 +1,4 @@
-using PlanetMerge.Data;
+using PlanetMerge.Systems.SaveLoad;
 using System;
 using UnityEngine;
 
@@ -8,22 +8,20 @@ public class GameLoop : MonoBehaviour
 
     private StartLevelHandler _startLevelHandler;
     private EndLevelHandler _endLevelHandler;
-    private PlayerData _playerData;
-
-    private LevelPreparer _levelPreparer;
+    private PlayerDataService _playerDataService;
+    private IReadOnlyPlayerData _playerData;
 
     public event Action LevelPrepared;
     public event Action LevelStarted;
     public event Action LevelResumed;
 
-    public void Initialize(GameEventMediator gameEventMediator, PlayerData playerData, LevelPreparer levelPreparer, StartLevelHandler startLevelHandler, EndLevelHandler endLevelHandler)
+    public void Initialize(GameEventMediator gameEventMediator, PlayerDataService playerDataService, StartLevelHandler startLevelHandler, EndLevelHandler endLevelHandler)
     {
         _gameEventMediator = gameEventMediator;
-        _playerData = playerData;
-        _levelPreparer = levelPreparer;
+        _playerDataService = playerDataService;
         _startLevelHandler = startLevelHandler;
         _endLevelHandler = endLevelHandler;
-
+        _playerData = _playerDataService.PlayerData;
 
         _gameEventMediator.GameWon += OnGameWon;
         _gameEventMediator.GameLost += OnGameLost;
@@ -43,7 +41,6 @@ public class GameLoop : MonoBehaviour
         _gameEventMediator.NextLevelSelected -= OnNextLevelSelected;
         _gameEventMediator.RestartLevelSelected -= OnRestartLevelSelected;
         _gameEventMediator.RewardSelected -= OnRewardSelected;
-
     }
 
     public void Run()
@@ -53,7 +50,7 @@ public class GameLoop : MonoBehaviour
 
     private void PrepareLevel()
     {
-        _levelPreparer.Prepare(_playerData);
+        _startLevelHandler.PrepareLevel(_playerData);
         LevelPrepared?.Invoke();
 
         StartLevel();
@@ -63,6 +60,23 @@ public class GameLoop : MonoBehaviour
     {
         _startLevelHandler.StartLevel(_playerData.Level);
         LevelStarted?.Invoke();
+    }
+
+    private void OnGameWon()
+    {
+        _playerDataService.LevelUp();
+
+        if (_playerData.Level %3 == 0)
+        {
+            _playerDataService.UpgradePlanetRank();
+        }
+        
+        _endLevelHandler.Win(_playerData);
+    }
+
+    private void OnGameLost()
+    {
+        _endLevelHandler.Loose();
     }
 
     private void OnNextLevelSelected()
@@ -80,16 +94,5 @@ public class GameLoop : MonoBehaviour
         _endLevelHandler.AddReward();
         _startLevelHandler.ResumeLevel();
         LevelResumed?.Invoke();
-    }
-
-    private void OnGameWon()
-    {
-        _playerData.Level++;
-        _endLevelHandler.Win();
-    }
-
-    private void OnGameLost()
-    {
-        _endLevelHandler.Loose();
     }
 }

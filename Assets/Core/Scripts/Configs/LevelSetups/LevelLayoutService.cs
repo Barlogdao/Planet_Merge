@@ -9,8 +9,13 @@ namespace PlanetMerge.Configs
 
         [field: SerializeField] public LevelLayout TutorialLevelLayout { get; private set; }
 
-        public LevelLayout GetLevelLayout()
+        public LevelLayout GetLevelLayout(int level)
         {
+            if (level == Constants.TutorialLevel)
+            {
+                return TutorialLevelLayout;
+            }
+
             int index = Random.Range(0, _levelLayouts.Length);
 
             return _levelLayouts[index];

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Goal02
   m_EditorClassIdentifier: 
   MergeAmount: 1
-  PlanetRankModifier: 5
+  PlanetRankModifier: 1

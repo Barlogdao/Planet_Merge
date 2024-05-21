@@ -97,6 +97,7 @@ public class GameEventMediator : MonoBehaviour, IPlanetEvents
     {
         planet.Merged += OnPlanetMerged;
         planet.Collided += OnPlanetCollide;
+
         PlanetCreated?.Invoke(planet);
     }
 
@@ -104,6 +105,7 @@ public class GameEventMediator : MonoBehaviour, IPlanetEvents
     {
         planet.Merged -= OnPlanetMerged;
         planet.Collided -= OnPlanetCollide;
+
         PlanetReleased?.Invoke(planet);
     }
 
