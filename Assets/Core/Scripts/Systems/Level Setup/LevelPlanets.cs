@@ -7,8 +7,7 @@ public class LevelPlanets : MonoBehaviour
     private GameEventMediator _gameEventMediator;
     private List<Planet> _planets = new();
 
-
-
+    public IEnumerable<Planet> Planets => _planets;
     public void Initialize(GameEventMediator gameEventMediator)
     {
         _gameEventMediator = gameEventMediator;
@@ -23,15 +22,6 @@ public class LevelPlanets : MonoBehaviour
         _gameEventMediator.PlanetReleased -= OnPlanetReleased;
     }
 
-    private void OnPlanetCreated(Planet planet)
-    {
-        _planets.Add(planet);
-    }
-
-    private void OnPlanetReleased(Planet planet)
-    {
-        _planets.Remove(planet);
-    }
 
     public void Clear()
     {
@@ -42,4 +32,15 @@ public class LevelPlanets : MonoBehaviour
             planet.Release();
         }
     }
+
+    private void OnPlanetCreated(Planet planet)
+    {
+        _planets.Add(planet);
+    }
+
+    private void OnPlanetReleased(Planet planet)
+    {
+        _planets.Remove(planet);
+    }
+
 }

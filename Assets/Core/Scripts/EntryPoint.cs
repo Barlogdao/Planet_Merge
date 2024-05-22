@@ -32,7 +32,6 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private RewardHandler _rewardHandler;
     [SerializeField] private UiPanel _uiPanel;
 
-
     private PlanetSpawner _planetSpawner;
     private PlanetPool _planetPool;
     private PlanetLimit _planetLimit;
@@ -41,6 +40,7 @@ public class EntryPoint : MonoBehaviour
     private StartLevelHandler _startLevelHandler;
     private EndLevelHandler _endLevelHandler;
     private PlayerDataService _playerDataService;
+    private ScoreHandler _scoreHandler;
 
     private void Awake()
     {
@@ -55,6 +55,7 @@ public class EntryPoint : MonoBehaviour
 
         _inputController.Initialize(_playerInput, _gameEventMediator);
         _levelPlanets.Initialize(_gameEventMediator);
+        _scoreHandler = new ScoreHandler(_levelPlanets);
 
         _goalHandler.Initialize(_gameEventMediator);
         _limitHandler.Initialize(_gameEventMediator, _planetLimit);
@@ -73,7 +74,7 @@ public class EntryPoint : MonoBehaviour
         _levelPreparer = new LevelPreparer(_levelGenerator, _levelPlanets, _gameUI);
 
         _startLevelHandler = new StartLevelHandler(_gameUI, _levelPreparer);
-        _endLevelHandler = new EndLevelHandler(_gameUI,_rewardHandler,_playerDataService);
+        _endLevelHandler = new EndLevelHandler(_gameUI,_rewardHandler,_playerDataService,_scoreHandler);
         _gameLoop.Initialize(_gameEventMediator, _playerDataService, _startLevelHandler,_endLevelHandler);
     }
 

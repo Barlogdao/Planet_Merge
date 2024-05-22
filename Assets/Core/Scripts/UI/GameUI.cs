@@ -9,20 +9,18 @@ namespace PlanetMerge.UI
 {
     public class GameUi : MonoBehaviour, IGameUiEvents
     {
-        [SerializeField] private RectTransform _victoryWindow;
+        [SerializeField] private VictoryWindow _victoryWindow;
         [SerializeField] private RectTransform _looseWindow;
 
         [SerializeField] private LimitPanel _limitPanel;
         [SerializeField] private GoalPanel _goalPanel;
         [SerializeField] private TMP_Text _levelLabel;
 
-       private UiPanel _uiPanel;
-
         [SerializeField] private Button _nextLevelButton;
         [SerializeField] private Button _resetLevelButton;
         [SerializeField] private Button _rewardButton;
 
-        [SerializeField] private PlanetProgressionPanel _progressionPanel;
+        private UiPanel _uiPanel;
 
         public event Action NextLevelPressed;
         public event Action RestartLevelPressed;
@@ -32,11 +30,11 @@ namespace PlanetMerge.UI
         {
             _uiPanel = uiPanel;
 
+            _victoryWindow.Initialize();
+
             _nextLevelButton.onClick.AddListener(OnNextLevelPressed);
             _resetLevelButton.onClick.AddListener(OnResetLevelPressed);
             _rewardButton.onClick.AddListener(OnRewardPressed);
-
-            _progressionPanel.Initialize();
         }
 
         private void OnDestroy()
@@ -73,19 +71,19 @@ namespace PlanetMerge.UI
 
         public void Hide()
         {
-            _victoryWindow.gameObject.SetActive(false);
+            _victoryWindow.Hide();
             _looseWindow.gameObject.SetActive(false);
         }
 
         public void ShowVictoryWindow(IReadOnlyPlayerData playerData)
         {
-            _victoryWindow.gameObject.SetActive(true);
-            _progressionPanel.Prepare(playerData.PlanetRank);
+            _victoryWindow.Show();
+            _victoryWindow.Prepare(playerData);
         }
 
         public void ShowProgress(IReadOnlyPlayerData playerData)
         {
-            _progressionPanel.Set(playerData).Forget();
+            _victoryWindow.ShowProgress(playerData);
         }
 
         public void ShowLooseWindow()

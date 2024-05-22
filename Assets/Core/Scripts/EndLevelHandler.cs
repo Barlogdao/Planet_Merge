@@ -5,28 +5,31 @@ using UnityEngine;
 
 public class EndLevelHandler
 {
-    private GameUi _gameUI;
-    private RewardHandler _rewardHandler;
-    private PlayerDataService _playerDataService;
-    private IReadOnlyPlayerData _playerData;
+    private readonly GameUi _gameUI;
+    private readonly RewardHandler _rewardHandler;
+    private readonly PlayerDataService _playerDataService;
+    private readonly ScoreHandler _scoreHandler;
+    private readonly IReadOnlyPlayerData _playerData;
 
-    public EndLevelHandler(GameUi gameUI, RewardHandler rewardHandler, PlayerDataService playerDataService)
+    public EndLevelHandler(GameUi gameUI, RewardHandler rewardHandler, PlayerDataService playerDataService, ScoreHandler scoreHandler)
     {
         _gameUI = gameUI;
         _rewardHandler = rewardHandler;
         _playerDataService = playerDataService;
+        _scoreHandler = scoreHandler;
         _playerData = _playerDataService.PlayerData;
     }
 
     public void Win()
     {
+        int score = _scoreHandler.GetScore();
        // показать дробление о набранные очки
         
         //открыть окно победы
         _gameUI.ShowVictoryWindow(_playerData);
 
         //обновить данные
-        UpdatePlayerData();
+        UpdatePlayerData(score);
 
         //запустить анимашку прогрессии
         _gameUI.ShowProgress(_playerData);
@@ -42,7 +45,7 @@ public class EndLevelHandler
         _rewardHandler.AddReward();
     }
 
-    private void UpdatePlayerData()
+    private void UpdatePlayerData(int score)
     {
         _playerDataService.LevelUp();
 
@@ -51,6 +54,6 @@ public class EndLevelHandler
             _playerDataService.UpgradePlanetRank();
         }
 
-        //насчитать скора?
+        _playerDataService.AddScore(score);
     }
 }

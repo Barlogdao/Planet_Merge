@@ -21,7 +21,7 @@ namespace PlanetMerge.UI
             _maxSliderVolume = _slider.maxValue;
         }
 
-        public async UniTaskVoid Set(IReadOnlyPlayerData playerData)
+        public async UniTaskVoid ShowProgress(IReadOnlyPlayerData playerData)
         {
             int level = playerData.Level;
             int previousLevel = playerData.Level - 1;
@@ -35,9 +35,8 @@ namespace PlanetMerge.UI
                 sliderValue = _maxSliderVolume;
             else
                 sliderValue = GetSliderValue(level);
-            
-            await _slider.DOValue(sliderValue, _fillDuration);
 
+            await _slider.DOValue(sliderValue, _fillDuration);
 
             if (IsNeedUpgradePlanet(level))
             {
@@ -46,9 +45,9 @@ namespace PlanetMerge.UI
             }
         }
 
-        private bool IsNeedUpgradePlanet (int level)
+        private bool IsNeedUpgradePlanet(int level)
         {
-            return level%_upgradeStep == 0;
+            return level % _upgradeStep == 0;
         }
 
         private float GetSliderValue(int level)
