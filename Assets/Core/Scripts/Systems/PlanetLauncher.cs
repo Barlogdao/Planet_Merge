@@ -12,23 +12,21 @@ namespace PlanetMerge.Planets
         [SerializeField] private float _force;
         [SerializeField] private float _launchCooldown;
         [SerializeField] private float _targetPositionOffsetY;
+        [SerializeField] private PlanetView _planetView;
 
         private PlayerInput _playerInput;
         private PlanetSpawner _planetSpawner;
         private PlanetLimit _planetLimit;
         private Trajectory _trajectory;
 
-        private Planet _loadedPlanet = null;
+
         private int _planetRank = 1;
 
         private Coroutine _launchRoutine;
         private WaitForSeconds _cooldown;
 
         public Vector2 LaunchPosition => _launchPoint.position;
-
-        private bool IsPlanetLoaded => _loadedPlanet != null;
-        private bool CanLoad => IsPlanetLoaded == false && _planetLimit.HasPlanet;
-        private bool CanLaunch => IsPlanetLoaded && _launchRoutine == null;
+        private bool CanLaunch => _planetLimit.HasPlanet;
 
         public void Initialize(PlayerInput playerInput, PlanetSpawner planetSpawner, PlanetLimit planetLimit, Trajectory trajectory)
         {
@@ -38,6 +36,7 @@ namespace PlanetMerge.Planets
             _trajectory = trajectory;
 
             _cooldown = new WaitForSeconds(_launchCooldown);
+            _planetView.transform.position = LaunchPosition;
 
             _playerInput.ClickedDown += OnClickDown;
             _playerInput.ClickedUp += OnClickUp;
@@ -56,9 +55,8 @@ namespace PlanetMerge.Planets
             if (planetRank <= 0)
                 throw new ArgumentOutOfRangeException(nameof(planetRank));
 
-            _loadedPlanet = null;
-
             _planetRank = planetRank;
+            _planetView.Set(_planetRank);
         }
 
         public Vector2 GetLaunchDirection()
@@ -71,7 +69,7 @@ namespace PlanetMerge.Planets
 
         private void OnClickDown()
         {
-            if (IsPlanetLoaded)
+            if (CanLaunch)
             {
                 _trajectory.Activate();
             }
@@ -84,11 +82,11 @@ namespace PlanetMerge.Planets
 
             _trajectory.Deactivate();
 
-            if (CanLaunch)
+            if (CanLaunch && _launchRoutine == null)
             {
                 _planetLimit.Subtract();
-                _launchRoutine = StartCoroutine(LaunchPlanet(_loadedPlanet));
-                _loadedPlanet = null;
+                _launchRoutine = StartCoroutine(LaunchPlanet());
+                _planetView.Hide();
             }
         }
 
@@ -99,14 +97,15 @@ namespace PlanetMerge.Planets
 
         private void LoadPlanet()
         {
-            if (CanLoad)
+            if (CanLaunch)
             {
-                _loadedPlanet = _planetSpawner.Spawn(LaunchPosition, _planetRank);
+                _planetView.Show();
             }
         }
 
-        private IEnumerator LaunchPlanet(Planet planet)
+        private IEnumerator LaunchPlanet()
         {
+            var planet = _planetSpawner.Spawn(LaunchPosition, _planetRank);
             planet.AddForce(GetLaunchDirection().normalized * _force);
 
             yield return _cooldown;

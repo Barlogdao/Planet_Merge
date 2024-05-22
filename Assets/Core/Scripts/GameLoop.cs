@@ -63,7 +63,7 @@ public class GameLoop : MonoBehaviour
 
     private void OnGameWon()
     {
-        _endLevelHandler.Win();
+        _endLevelHandler.Win().Forget();
     }
 
     private void OnGameLost()

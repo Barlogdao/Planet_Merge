@@ -15,6 +15,7 @@ public class GameEventMediator : MonoBehaviour, IPlanetEvents
 
     public event Action<Planet> PlanetCreated;
     public event Action<Planet> PlanetReleased;
+    public event Action<Planet> PlanetSplitted;
 
     public event Action<Planet> PlanetMerged;
     public event Action<Vector2> PlanetCollided;
@@ -96,6 +97,7 @@ public class GameEventMediator : MonoBehaviour, IPlanetEvents
     {
         planet.Merged += OnPlanetMerged;
         planet.Collided += OnPlanetCollide;
+        planet.Splitted += OnPlanetSplitted;
 
         PlanetCreated?.Invoke(planet);
     }
@@ -104,8 +106,14 @@ public class GameEventMediator : MonoBehaviour, IPlanetEvents
     {
         planet.Merged -= OnPlanetMerged;
         planet.Collided -= OnPlanetCollide;
+        planet.Splitted -= OnPlanetSplitted;
 
         PlanetReleased?.Invoke(planet);
+    }
+
+    private void OnPlanetSplitted(Planet planet)
+    {
+        PlanetSplitted?.Invoke(planet);
     }
 
     private void OnPlanetMerged(Planet planet)

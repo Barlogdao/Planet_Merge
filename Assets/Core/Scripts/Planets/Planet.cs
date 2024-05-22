@@ -1,5 +1,7 @@
 using UnityEngine;
 using System;
+using Cysharp.Threading.Tasks;
+using Random = UnityEngine.Random;
 
 namespace PlanetMerge.Planets
 {
@@ -14,9 +16,11 @@ namespace PlanetMerge.Planets
         private IReleasePool _releasePool;
 
         private int _rank = 1;
+        private bool _isSplitting = false;
 
         public event Action<Planet> Merged;
         public event Action<Vector2> Collided;
+        public event Action<Planet> Splitted;
 
         public int Rank => _rank;
 
@@ -26,12 +30,12 @@ namespace PlanetMerge.Planets
             _rigidbody2D = GetComponent<Rigidbody2D>();
 
             _mergeDetector.Initialize(this);
-            _view.Initialize(this);
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
             Collided?.Invoke(collision.GetContact(0).point);
+            _view.Collide();
         }
 
         private void OnEnable()
@@ -67,7 +71,7 @@ namespace PlanetMerge.Planets
 
         private void OnMergeDetected(Planet otherPlanet)
         {
-            if (enabled)
+            if (enabled && _isSplitting == false)
             {
                 Merge(otherPlanet);
             }
@@ -86,6 +90,28 @@ namespace PlanetMerge.Planets
         private void UpdateView()
         {
             _view.Set(Rank);
+        }
+
+        public async UniTaskVoid Split()
+        {
+            _isSplitting = true;
+            float waitDuration = Random.Range(0.2f, 0.8f);
+
+            await UniTask.WaitForSeconds(waitDuration);
+
+            while (_rank > Constants.MinimalPlanetRank)
+            {
+                _rank--;
+                UpdateView();
+
+                Splitted?.Invoke(this);
+                await UniTask.WaitForSeconds(waitDuration);
+            }
+
+            await UniTask.WaitForSeconds(waitDuration);
+            _isSplitting = false;
+
+            Release();
         }
     }
 }

@@ -54,7 +54,7 @@ public class EntryPoint : MonoBehaviour
 
 
         _inputController.Initialize(_playerInput, _gameEventMediator);
-        _levelPlanets.Initialize(_gameEventMediator);
+        _levelPlanets.Initialize(_gameEventMediator,_planetSpawner);
         _scoreHandler = new ScoreHandler(_levelPlanets);
 
         _goalHandler.Initialize(_gameEventMediator);
@@ -74,7 +74,7 @@ public class EntryPoint : MonoBehaviour
         _levelPreparer = new LevelPreparer(_levelGenerator, _levelPlanets, _gameUI);
 
         _startLevelHandler = new StartLevelHandler(_gameUI, _levelPreparer);
-        _endLevelHandler = new EndLevelHandler(_gameUI,_rewardHandler,_playerDataService,_scoreHandler);
+        _endLevelHandler = new EndLevelHandler(_gameUI,_rewardHandler,_playerDataService,_scoreHandler, _levelPlanets);
         _gameLoop.Initialize(_gameEventMediator, _playerDataService, _startLevelHandler,_endLevelHandler);
     }
 

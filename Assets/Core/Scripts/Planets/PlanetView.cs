@@ -13,24 +13,13 @@ namespace PlanetMerge.Planets
         [SerializeField] private float _shakeDuration;
         [SerializeField] private float _shakeStrength;
 
-        private Planet _planet;
         private SpriteRenderer _spriteRenderer;
         private Vector3 _originScale;
 
-
-        public void Initialize(Planet planet)
+        private void Awake()
         {
-            _planet = planet;
             _originScale = transform.localScale;
             _spriteRenderer = GetComponent<SpriteRenderer>();
-
-            _planet.Collided += OnCollide;
-            _planet.Merged += OnMerge;
-        }
-
-        private void OnMerge(Planet planet)
-        {
-            Set(planet.Rank);
         }
 
         public void Set(int rank)
@@ -43,15 +32,21 @@ namespace PlanetMerge.Planets
             _spriteRenderer.sprite = data.Sprite;
         }
 
-        private void OnCollide(Vector2 atPoint)
+        public void Collide()
         {
-            transform.DOShakeScale(_shakeDuration, _shakeStrength).OnComplete(()=> transform.localScale = _originScale);
+            transform.DOShakeScale(_shakeDuration, _shakeStrength).OnComplete(() => transform.localScale = _originScale);
         }
 
-        private void OnDestroy()
+        public void Show()
         {
-            _planet.Collided -= OnCollide;
-            _planet.Merged -= OnMerge;
+            _spriteRenderer.enabled = true;
+            _rankLabel.enabled = true;
+        }
+        public void Hide()
+        {
+            _spriteRenderer.enabled = false;
+            _rankLabel.enabled = false;
+
         }
     }
 }

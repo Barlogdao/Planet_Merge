@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: LevelGoalService
   m_EditorClassIdentifier: 
   _levelGoals:
-  - {fileID: 11400000, guid: f6e1ded493103e84f82579938bc42bb8, type: 2}
   - {fileID: 11400000, guid: 6d182cf0a3c4d854f9aaad869ea1b2dc, type: 2}
   - {fileID: 11400000, guid: e5901c781de00634985e53164140f2b1, type: 2}
   - {fileID: 11400000, guid: ee0fde8265ba67847b66694decd7c22b, type: 2}
