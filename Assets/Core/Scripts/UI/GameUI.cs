@@ -14,7 +14,6 @@ namespace PlanetMerge.UI
 
         [SerializeField] private LimitPanel _limitPanel;
         [SerializeField] private GoalPanel _goalPanel;
-        [SerializeField] private TMP_Text _levelLabel;
 
         [SerializeField] private Button _nextLevelButton;
         [SerializeField] private Button _resetLevelButton;

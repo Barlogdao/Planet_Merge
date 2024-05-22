@@ -9,7 +9,7 @@ public class UiPanel : MonoBehaviour
 {
     [SerializeField] private LimitPanel _limitPanel;
     [SerializeField] private GoalPanel _goalPanel;
-    [SerializeField] private TMP_Text _levelLabel;
+    [SerializeField] private TMP_Text _levelValue;
 
     [SerializeField] private float _tweenDuration = 1f;
     [SerializeField] private float _targetScale = 1.3f;
@@ -43,7 +43,7 @@ public class UiPanel : MonoBehaviour
 
         _limitPanel.Prepare(playerData.PlanetRank);
         _goalPanel.Prepare(planetGoalRank);
-        _levelLabel.text = $"Уровень {playerData.Level}";
+        _levelValue.text = playerData.Level.ToString();
     }
 
     public async UniTask Animate()
