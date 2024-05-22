@@ -26,7 +26,8 @@ namespace PlanetMerge.Planets
         private WaitForSeconds _cooldown;
 
         public Vector2 LaunchPosition => _launchPoint.position;
-        private bool CanLaunch => _planetLimit.HasPlanet;
+        private bool CanLoad => _planetLimit.HasPlanet; 
+        private bool CanLaunch => CanLoad && _launchRoutine == null;
 
         public void Initialize(PlayerInput playerInput, PlanetSpawner planetSpawner, PlanetLimit planetLimit, Trajectory trajectory)
         {
@@ -82,7 +83,7 @@ namespace PlanetMerge.Planets
 
             _trajectory.Deactivate();
 
-            if (CanLaunch && _launchRoutine == null)
+            if (CanLaunch)
             {
                 _planetLimit.Subtract();
                 _launchRoutine = StartCoroutine(LaunchPlanet());
@@ -97,7 +98,7 @@ namespace PlanetMerge.Planets
 
         private void LoadPlanet()
         {
-            if (CanLaunch)
+            if (CanLoad)
             {
                 _planetView.Show();
             }
