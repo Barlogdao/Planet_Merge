@@ -11,6 +11,7 @@ namespace PlanetMerge.UI
     {
         [SerializeField] private VictoryWindow _victoryWindow;
         [SerializeField] private RectTransform _looseWindow;
+        [SerializeField] private LevelScoreWindow _levelScoreWindow;
 
         [SerializeField] private LimitPanel _limitPanel;
         [SerializeField] private GoalPanel _goalPanel;
@@ -30,10 +31,12 @@ namespace PlanetMerge.UI
             _uiPanel = uiPanel;
 
             _victoryWindow.Initialize();
+            _levelScoreWindow.Hide();
 
             _nextLevelButton.onClick.AddListener(OnNextLevelPressed);
             _resetLevelButton.onClick.AddListener(OnResetLevelPressed);
             _rewardButton.onClick.AddListener(OnRewardPressed);
+
         }
 
         private void OnDestroy()
@@ -46,6 +49,13 @@ namespace PlanetMerge.UI
         public void Prepare(IReadOnlyPlayerData playerData)
         {
             _uiPanel.Prepare(playerData);
+        }
+
+        public async UniTask ShowLevelScore(int levelScore)
+        {
+            _levelScoreWindow.Show();
+            await _levelScoreWindow.Animate(levelScore);
+            _levelScoreWindow.Hide();
         }
 
         public async UniTask Animate()

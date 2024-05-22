@@ -25,16 +25,16 @@ public class EndLevelHandler
 
     public async UniTask Win()
     {
-        int score = _scoreHandler.GetScore();
+        int levelScore = _scoreHandler.GetScore();
 
-        await UniTask.WaitForSeconds(5f);
+        await _gameUI.ShowLevelScore(levelScore);
        // показать дробление о набранные очки
         
         //открыть окно победы
         _gameUI.ShowVictoryWindow(_playerData);
 
         //обновить данные
-        UpdatePlayerData(score);
+        UpdatePlayerData(levelScore);
 
         //запустить анимашку прогрессии
         _gameUI.ShowProgress(_playerData);
@@ -50,7 +50,7 @@ public class EndLevelHandler
         _rewardHandler.AddReward();
     }
 
-    private void UpdatePlayerData(int score)
+    private void UpdatePlayerData(int levelScore)
     {
         _playerDataService.LevelUp();
 
@@ -59,6 +59,6 @@ public class EndLevelHandler
             _playerDataService.UpgradePlanetRank();
         }
 
-        _playerDataService.AddScore(score);
+        _playerDataService.AddScore(levelScore);
     }
 }

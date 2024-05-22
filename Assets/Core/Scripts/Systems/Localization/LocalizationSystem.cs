@@ -26,13 +26,13 @@ namespace PlanetMerge.Systems.Localization
 
         private void ChangeLanguage()
         {
-            //string languageCode = YandexGamesSdk.Environment.i18n.lang;
-            string languageCode = _lang switch
-            {
-                Lang.English => English,
-                Lang.Russian => Russian,
-                Lang.Turkish => Turkish,
-            };
+            string languageCode = YandexGamesSdk.Environment.i18n.lang;
+            //string languageCode = _lang switch
+            //{
+            //    Lang.English => English,
+            //    Lang.Russian => Russian,
+            //    Lang.Turkish => Turkish,
+            //};
 
             switch (languageCode)
             {

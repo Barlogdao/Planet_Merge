@@ -1,4 +1,6 @@
+using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using PlanetMerge.Utils;
 using TMPro;
 using UnityEngine;
 
@@ -10,6 +12,8 @@ namespace PlanetMerge.UI
         [SerializeField] private TMP_Text _scoreLabel;
         [SerializeField] private float _scoreTweenDuration = 1f;
         [SerializeField] private Ease _ease;
+
+        [SerializeField] private ScoreTween _scoreTween;
 
         private int _currentScore;
 
@@ -32,12 +36,7 @@ namespace PlanetMerge.UI
 
             int targetScore = playerData.Score;
 
-            DOVirtual.Int(_currentScore, targetScore, _scoreTweenDuration, OnScoreChanged);
-        }
-
-        private void OnScoreChanged(int value)
-        {
-            _scoreLabel.text = value.ToString();
+            _scoreTween.Run(_currentScore, targetScore, _scoreLabel).Forget();
         }
     }
 }

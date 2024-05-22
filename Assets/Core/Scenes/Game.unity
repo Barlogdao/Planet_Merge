@@ -599,7 +599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _launchPoint: {fileID: 1869244810}
   _force: 16
-  _launchCooldown: 0.3
+  _launchCooldown: 0.2
   _targetPositionOffsetY: 1.69
   _planetView: {fileID: 1680310811}
 --- !u!4 &113462646
@@ -978,6 +978,61 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1527055450098318974, guid: adef00e2be323654ca5fa825a2cc3c72, type: 3}
   m_PrefabInstance: {fileID: 898020140}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &352235919
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 352235920}
+  - component: {fileID: 352235921}
+  m_Layer: 0
+  m_Name: planetsCollected
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &352235920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352235919}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1076479954}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &352235921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352235919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb15fa0e7301ff849bf4d6dcede7c12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: 0
+  entries:
+  - Language: English
+    Text: Planets Collected
+    Object: {fileID: 0}
+  - Language: Russian
+    Text: "\u043F\u043B\u0430\u043D\u0435\u0442 \u0441\u043E\u0431\u0440\u0430\u043D\u043E"
+    Object: {fileID: 0}
+  - Language: Turkish
+    Text: Toplanan Gezegenler
+    Object: {fileID: 0}
 --- !u!1 &413145112
 GameObject:
   m_ObjectHideFlags: 0
@@ -2684,7 +2739,7 @@ Transform:
   m_GameObject: {fileID: 840283855}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.24583033, y: -1.1705197, z: 0.05936373}
+  m_LocalPosition: {x: 0.05, y: -7.7, z: 0.05936373}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3123,6 +3178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _victoryWindow: {fileID: 1068452198}
   _looseWindow: {fileID: 413145113}
+  _levelScoreWindow: {fileID: 2142292691}
   _limitPanel: {fileID: 1955634661}
   _goalPanel: {fileID: 1197746992}
   _nextLevelButton: {fileID: 58396315}
@@ -3145,6 +3201,9 @@ MonoBehaviour:
   _scoreLabel: {fileID: 469484066}
   _scoreTweenDuration: 1
   _ease: 1
+  _scoreTween:
+    _duration: 3
+    _ease: 0
 --- !u!1 &1076479952
 GameObject:
   m_ObjectHideFlags: 0
@@ -3202,6 +3261,7 @@ Transform:
   - {fileID: 27527385}
   - {fileID: 1675457629}
   - {fileID: 213750389}
+  - {fileID: 352235920}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1085670186
@@ -5036,6 +5096,7 @@ GameObject:
   - component: {fileID: 1678824839}
   - component: {fileID: 1678824841}
   - component: {fileID: 1678824840}
+  - component: {fileID: 1678824842}
   m_Layer: 5
   m_Name: Label
   m_TagString: Untagged
@@ -5082,7 +5143,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Balls Collected
+  m_text: "\u043F\u043B\u0430\u043D\u0435\u0442 \u0441\u043E\u0431\u0440\u0430\u043D\u043E"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9488fa2c06a4b01489eeefeb9989212b, type: 2}
   m_sharedMaterial: {fileID: -3297805353784270741, guid: 9488fa2c06a4b01489eeefeb9989212b, type: 2}
@@ -5091,8 +5152,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4294965504
+  m_fontColor: {r: 0, g: 0.9778967, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -5109,7 +5170,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 53.6
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5159,6 +5220,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1678824838}
   m_CullTransparentMesh: 1
+--- !u!114 &1678824842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678824838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  translationName: planetsCollected
+  FallbackText: Balls Collected
 --- !u!114 &1680310811 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2170928820164082356, guid: 265d5c07e46422c4e87709f0a139bd6a, type: 3}
@@ -5520,8 +5595,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278255511
+  m_fontColor: {r: 0.5904937, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6684,15 +6759,18 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2142292687}
+  - component: {fileID: 2142292692}
+  - component: {fileID: 2142292691}
   - component: {fileID: 2142292689}
   - component: {fileID: 2142292688}
+  - component: {fileID: 2142292690}
   m_Layer: 5
-  m_Name: PreVictoryWindow
+  m_Name: LevelScoreWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2142292687
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6712,7 +6790,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.4028542}
   m_AnchorMax: {x: 1, y: 0.70400006}
-  m_AnchoredPosition: {x: -0.000061035156, y: -6.9000244}
+  m_AnchoredPosition: {x: 6, y: -6.9000244}
   m_SizeDelta: {x: 0, y: -8.27002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2142292688
@@ -6728,7 +6806,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0.7169812, g: 0, b: 0.5348141, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -6753,6 +6831,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142292686}
   m_CullTransparentMesh: 1
+--- !u!225 &2142292690
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142292686}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
+--- !u!114 &2142292691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142292686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cce907eafd7d89444bf647fc0897c2f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _windowCanvas: {fileID: 2142292692}
+  _scoreLabel: {fileID: 1719594235}
+  _scoreTween:
+    _duration: 3
+    _ease: 1
+  _moveTween:
+    _duration: 2
+    _ease: 28
+  _startPosition: {x: 0, y: -7, z: 0}
+  _endPosition: {x: 0, y: 7, z: 0}
+--- !u!223 &2142292692
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142292686}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1001 &1114896602614855152
 PrefabInstance:
   m_ObjectHideFlags: 0
