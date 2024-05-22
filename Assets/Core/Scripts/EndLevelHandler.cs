@@ -27,8 +27,6 @@ public class EndLevelHandler
     {
         int score = _scoreHandler.GetScore();
 
-
-        _levelPlanets.Split();
         await UniTask.WaitForSeconds(5f);
        // показать дробление о набранные очки
         

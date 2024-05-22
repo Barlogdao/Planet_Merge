@@ -31,6 +31,7 @@ public class EntryPoint : MonoBehaviour
 
     [SerializeField] private RewardHandler _rewardHandler;
     [SerializeField] private UiPanel _uiPanel;
+    [SerializeField] private SplitController _splitController; 
 
     private PlanetSpawner _planetSpawner;
     private PlanetPool _planetPool;
@@ -52,9 +53,9 @@ public class EntryPoint : MonoBehaviour
 
         _gameEventMediator.Initialize(_planetPool, _gameOverHandler, _gameLoop, _gameUI);
 
-
         _inputController.Initialize(_playerInput, _gameEventMediator);
-        _levelPlanets.Initialize(_gameEventMediator,_planetSpawner);
+        _levelPlanets.Initialize(_gameEventMediator);
+        _splitController.Initialize(_gameEventMediator, _planetSpawner, _levelPlanets);
         _scoreHandler = new ScoreHandler(_levelPlanets);
 
         _goalHandler.Initialize(_gameEventMediator);
@@ -67,7 +68,7 @@ public class EntryPoint : MonoBehaviour
 
         _planetLauncher.Initialize(_playerInput, _planetSpawner, _planetLimit, _trajectory);
         float planetRadius = _planetPrefab.GetComponent<CircleCollider2D>().radius * _planetPrefab.transform.localScale.x;
-        _trajectory.Initialize(_planetLauncher, planetRadius);
+        _trajectory.Initialize(_gameEventMediator,_planetLauncher, planetRadius);
 
 
         _levelGenerator.Initialize(_planetSpawner, _levelConditions, _planetLauncher);

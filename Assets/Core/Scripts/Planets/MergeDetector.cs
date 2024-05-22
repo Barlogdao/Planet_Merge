@@ -21,11 +21,16 @@ namespace PlanetMerge.Planets
         {
             if (collision.gameObject.TryGetComponent<Planet>(out Planet otherPlanet))
             {
-                if (otherPlanet.Rank == PlanetRank && IsFaster(otherPlanet))
+                if (CanMerge(otherPlanet))
                 {
                     MergeDetected?.Invoke(otherPlanet);
                 }
             }
+        }
+
+        private bool CanMerge(Planet otherPlanet)
+        {
+            return otherPlanet.Rank == PlanetRank && otherPlanet.enabled && _planet.enabled && IsFaster(otherPlanet);
         }
 
         private bool IsFaster(Planet otherPlanet)

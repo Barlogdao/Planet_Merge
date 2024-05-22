@@ -12,14 +12,16 @@ namespace PlanetMerge.Systems
         [SerializeField] private TrajectoryLine _collisionLine;
         [SerializeField] private TrajectoryCollisionView _collisionView;
 
-        private Vector2 _startPoint;
+        private GameEventMediator _gameEventMediator;
         private PlanetLauncher _planetLauncher;
         private float _planetRadius;
+        private Vector2 _startPoint;
 
         public bool IsActive { get; private set; } = false;
 
-        public void Initialize(PlanetLauncher planetLauncher, float planetRadius)
+        public void Initialize(GameEventMediator gameEventMediator,PlanetLauncher planetLauncher, float planetRadius)
         {
+            _gameEventMediator = gameEventMediator;
             _planetLauncher = planetLauncher;
             _startPoint = _planetLauncher.LaunchPosition;
             _planetRadius = planetRadius;
@@ -28,6 +30,8 @@ namespace PlanetMerge.Systems
             _collisionLine.Initialize(_startPoint);
             _collisionView.Initialize(_planetRadius);
 
+            _gameEventMediator.LevelFinished += Deactivate;
+
             Deactivate();
         }
 
@@ -35,6 +39,11 @@ namespace PlanetMerge.Systems
         {
             if (IsActive)
                 Calculate();
+        }
+
+        private void OnDestroy()
+        {
+            _gameEventMediator.LevelFinished -= Deactivate;
         }
 
         public void Activate()

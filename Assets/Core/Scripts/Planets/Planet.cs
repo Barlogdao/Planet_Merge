@@ -95,7 +95,7 @@ namespace PlanetMerge.Planets
         public async UniTaskVoid Split()
         {
             _isSplitting = true;
-            float waitDuration = Random.Range(0.2f, 0.8f);
+            float waitDuration = Random.Range(0.2f, 0.4f);
 
             await UniTask.WaitForSeconds(waitDuration);
 
