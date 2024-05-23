@@ -26,14 +26,16 @@ namespace PlanetMerge.Systems.Localization
 
         private void ChangeLanguage()
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
             string languageCode = YandexGamesSdk.Environment.i18n.lang;
-            //string languageCode = _lang switch
-            //{
-            //    Lang.English => English,
-            //    Lang.Russian => Russian,
-            //    Lang.Turkish => Turkish,
-            //};
-
+#else
+            string languageCode = _lang switch
+            {
+                Lang.English => English,
+                Lang.Russian => Russian,
+                Lang.Turkish => Turkish,
+            };
+#endif
             switch (languageCode)
             {
                 case English:

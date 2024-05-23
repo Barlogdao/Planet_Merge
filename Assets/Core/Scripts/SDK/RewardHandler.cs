@@ -21,6 +21,7 @@ namespace PlanetMerge.SDK.Yandex
 
         private void ShowAd()
         {
+
 #if UNITY_WEBGL && !UNITY_EDITOR
             Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRewardedCallback, OnCloseCallback);
 #endif

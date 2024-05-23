@@ -5,7 +5,6 @@ using UnityEngine;
 public class LevelPlanets : MonoBehaviour
 {
     private GameEventMediator _gameEventMediator;
-    private PlanetSpawner _planetSpawner;
     private List<Planet> _planets = new();
 
     public IEnumerable<Planet> Planets => _planets;

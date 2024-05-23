@@ -7,17 +7,13 @@ using UnityEngine;
 public class EndLevelHandler
 {
     private readonly GameUi _gameUI;
-    private readonly LevelPlanets _levelPlanets;
-    private readonly RewardHandler _rewardHandler;
     private readonly PlayerDataService _playerDataService;
     private readonly ScoreHandler _scoreHandler;
     private readonly IReadOnlyPlayerData _playerData;
 
-    public EndLevelHandler(GameUi gameUI, RewardHandler rewardHandler, PlayerDataService playerDataService, ScoreHandler scoreHandler, LevelPlanets levelPlanets)
+    public EndLevelHandler(GameUi gameUI, PlayerDataService playerDataService, ScoreHandler scoreHandler)
     {
         _gameUI = gameUI;
-        _levelPlanets = levelPlanets;
-        _rewardHandler = rewardHandler;
         _playerDataService = playerDataService;
         _scoreHandler = scoreHandler;
         _playerData = _playerDataService.PlayerData;
@@ -43,11 +39,6 @@ public class EndLevelHandler
     public void Loose()
     {
         _gameUI.ShowLooseWindow();
-    }
-
-    public void AddReward()
-    {
-        _rewardHandler.AddReward();
     }
 
     private void UpdatePlayerData(int levelScore)

@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class SplitController : MonoBehaviour
 {
     [SerializeField, Range(10, 50)] private int _maxPlanetsOnSplit = 30;
+
     private GameEventMediator _gameEventMediator;
     private PlanetSpawner _planetSpawner;
     private LevelPlanets _levelPlanets;
@@ -25,7 +26,7 @@ public class SplitController : MonoBehaviour
     {
         foreach (Planet planet in _levelPlanets.Planets)
         {
-            planet.Split().Forget();
+            planet.Split();
         }
     }
 
@@ -43,7 +44,7 @@ public class SplitController : MonoBehaviour
         Vector2 position = RandomizePosition(planet.transform.position);
         Planet splittedPlanet = _planetSpawner.Spawn(position, planet.Rank);
 
-        splittedPlanet.Split().Forget();
+        splittedPlanet.Split();
     }
 
 

@@ -3,6 +3,7 @@ using PlanetMerge.Data;
 using PlanetMerge.Planets;
 using PlanetMerge.SDK.Yandex;
 using PlanetMerge.Systems;
+using PlanetMerge.Systems.Audio;
 using PlanetMerge.Systems.Events;
 using PlanetMerge.Systems.SaveLoad;
 using PlanetMerge.UI;
@@ -31,7 +32,10 @@ public class EntryPoint : MonoBehaviour
 
     [SerializeField] private RewardHandler _rewardHandler;
     [SerializeField] private UiPanel _uiPanel;
-    [SerializeField] private SplitController _splitController; 
+    [SerializeField] private SplitController _splitController;
+
+    [SerializeField] private AudioService _audioService;
+    [SerializeField] private AudioHandler _audioHandler;
 
     private PlanetSpawner _planetSpawner;
     private PlanetPool _planetPool;
@@ -74,9 +78,11 @@ public class EntryPoint : MonoBehaviour
         _levelGenerator.Initialize(_planetSpawner, _levelConditions, _planetLauncher);
         _levelPreparer = new LevelPreparer(_levelGenerator, _levelPlanets, _gameUI);
 
+        _audioHandler.Initialize(_audioService, _gameEventMediator);
+
         _startLevelHandler = new StartLevelHandler(_gameUI, _levelPreparer);
-        _endLevelHandler = new EndLevelHandler(_gameUI,_rewardHandler,_playerDataService,_scoreHandler, _levelPlanets);
-        _gameLoop.Initialize(_gameEventMediator, _playerDataService, _startLevelHandler,_endLevelHandler);
+        _endLevelHandler = new EndLevelHandler(_gameUI,_playerDataService,_scoreHandler);
+        _gameLoop.Initialize(_gameEventMediator, _playerDataService, _startLevelHandler,_endLevelHandler, _rewardHandler);
     }
 
     private void Start()

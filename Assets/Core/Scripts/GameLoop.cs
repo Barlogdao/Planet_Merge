@@ -1,4 +1,5 @@
 using Cysharp.Threading.Tasks;
+using PlanetMerge.SDK.Yandex;
 using PlanetMerge.Systems.SaveLoad;
 using System;
 using UnityEngine;
@@ -10,18 +11,22 @@ public class GameLoop : MonoBehaviour
     private StartLevelHandler _startLevelHandler;
     private EndLevelHandler _endLevelHandler;
     private PlayerDataService _playerDataService;
+    private RewardHandler _rewardHandler;
+
     private IReadOnlyPlayerData _playerData;
 
     public event Action LevelPrepared;
     public event Action LevelStarted;
     public event Action LevelResumed;
 
-    public void Initialize(GameEventMediator gameEventMediator, PlayerDataService playerDataService, StartLevelHandler startLevelHandler, EndLevelHandler endLevelHandler)
+    public void Initialize(GameEventMediator gameEventMediator, PlayerDataService playerDataService, StartLevelHandler startLevelHandler, EndLevelHandler endLevelHandler, RewardHandler rewardHandler)
     {
         _gameEventMediator = gameEventMediator;
         _playerDataService = playerDataService;
         _startLevelHandler = startLevelHandler;
         _endLevelHandler = endLevelHandler;
+        _rewardHandler = rewardHandler;
+
         _playerData = _playerDataService.PlayerData;
 
         _gameEventMediator.GameWon += OnGameWon;
@@ -83,7 +88,7 @@ public class GameLoop : MonoBehaviour
 
     private void OnRewardSelected()
     {
-        _endLevelHandler.AddReward();
+        _rewardHandler.AddReward();
         _startLevelHandler.ResumeLevel();
         LevelResumed?.Invoke();
     }

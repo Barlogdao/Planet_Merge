@@ -24,6 +24,8 @@ namespace PlanetMerge.UI
 
         public async UniTask Animate(int score)
         {
+            _scoreLabel.text = _startScore.ToString();
+
             await _moveTween.Run(transform, _startPosition, true);
             await _scoreTween.Run(_startScore, score, _scoreLabel);
             await _moveTween.Run(transform, _endPosition, false);

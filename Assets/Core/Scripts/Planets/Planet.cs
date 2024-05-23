@@ -2,6 +2,8 @@ using UnityEngine;
 using System;
 using Cysharp.Threading.Tasks;
 using Random = UnityEngine.Random;
+using System.Threading;
+using System.Collections;
 
 namespace PlanetMerge.Planets
 {
@@ -22,6 +24,8 @@ namespace PlanetMerge.Planets
         public event Action<Vector2> Collided;
         public event Action<Planet> Splitted;
 
+        private CancellationTokenSource _disableCancellation = new CancellationTokenSource();
+
         public int Rank => _rank;
 
         public void Initialize(IReleasePool releasePool)
@@ -40,12 +44,22 @@ namespace PlanetMerge.Planets
 
         private void OnEnable()
         {
+            _isSplitting = false;
+
             _mergeDetector.MergeDetected += OnMergeDetected;
+
+            if (_disableCancellation != null)
+            {
+                _disableCancellation.Dispose();
+            }
+            _disableCancellation = new CancellationTokenSource();
         }
 
         private void OnDisable()
         {
             _mergeDetector.MergeDetected -= OnMergeDetected;
+
+            _disableCancellation.Cancel();
         }
 
         public void Prepare(int rank)
@@ -92,12 +106,19 @@ namespace PlanetMerge.Planets
             _view.Set(Rank);
         }
 
-        public async UniTaskVoid Split()
+        public void Split()
+        {
+            StartCoroutine(Splitting());
+        }
+
+        private IEnumerator Splitting()
         {
             _isSplitting = true;
-            float waitDuration = Random.Range(0.2f, 0.4f);
 
-            await UniTask.WaitForSeconds(waitDuration);
+            float waitDuration = Random.Range(0.2f, 0.4f);
+            WaitForSeconds delay = new WaitForSeconds(waitDuration);
+
+            yield return delay;
 
             while (_rank > Constants.MinimalPlanetRank)
             {
@@ -105,12 +126,10 @@ namespace PlanetMerge.Planets
                 UpdateView();
 
                 Splitted?.Invoke(this);
-                await UniTask.WaitForSeconds(waitDuration);
+                yield return delay;
             }
 
-            await UniTask.WaitForSeconds(waitDuration);
             _isSplitting = false;
-
             Release();
         }
     }
