@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PlanetMerge.Systems.Audio
+namespace PlanetMerge.Sevices.Audio
 {
     public class AudioService : MonoBehaviour
     {
@@ -30,14 +30,14 @@ namespace PlanetMerge.Systems.Audio
 
         public void PauseAudio()
         {
+            AudioListener.pause = true;
             _soundSource.Pause();
             _musicSource.Pause();
         }
 
         public void UnpauseAudio()
         {
-            _soundSource.UnPause();
-            _musicSource.UnPause();
+            AudioListener.pause = false;
         }
     }
 }
