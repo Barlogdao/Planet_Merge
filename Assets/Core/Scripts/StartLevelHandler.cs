@@ -1,15 +1,18 @@
 using Cysharp.Threading.Tasks;
+using PlanetMerge.Systems.Tutorial;
 using PlanetMerge.UI;
 
 public class StartLevelHandler
 {
     private GameUi _gameUi;
     private LevelPreparer _levelPreparer;
+    private TutorialController _tutorialController;
 
-    public StartLevelHandler(GameUi gameUi, LevelPreparer levelPreparer)
+    public StartLevelHandler(GameUi gameUi, LevelPreparer levelPreparer, TutorialController tutorialController)
     {
         _gameUi = gameUi;
         _levelPreparer = levelPreparer;
+        _tutorialController = tutorialController;
     }
 
     public void PrepareLevel(IReadOnlyPlayerData playerData)
@@ -21,6 +24,10 @@ public class StartLevelHandler
     {
         _gameUi.Hide();
         await _gameUi.Animate();
+        if (level == Constants.TutorialLevel)
+        {
+            _tutorialController.ShowTitorial().Forget();
+        }
     }
 
     public void ResumeLevel()

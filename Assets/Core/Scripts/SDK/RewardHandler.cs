@@ -1,4 +1,6 @@
+using PlanetMerge.Services.Pause;
 using PlanetMerge.Systems;
+using System;
 using UnityEngine;
 
 namespace PlanetMerge.SDK.Yandex
@@ -8,40 +10,43 @@ namespace PlanetMerge.SDK.Yandex
         [SerializeField] private int _bonusPlanetAmount = 5;
 
         private PlanetLimitHandler _planetLimitHandler;
+        private PauseService _pauseService;
 
-        public void Initialize(PlanetLimitHandler planetLimitHandler)
+        public void Initialize(PlanetLimitHandler planetLimitHandler, PauseService pauseService)
         {
             _planetLimitHandler = planetLimitHandler;
+            _pauseService = pauseService;
         }
 
-        public void AddReward()
+        public void AddReward(Action OnSuccessCallback, Action OnFailCallback)
         {
-            ShowAd();
-        }
-
-        private void ShowAd()
-        {
-
 #if UNITY_WEBGL && !UNITY_EDITOR
-            Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRewardedCallback, OnCloseCallback);
+            Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRewardedCallback, OnCloseCallback, OnErrorCallback);
+#else
+            OnRewardedCallback();
 #endif
-        }
 
-        private void OnOpenCallback()
-        {
-            Time.timeScale = 0f;
-            AudioListener.volume = 0f;
-        }
+            void OnOpenCallback()
+            {
+                _pauseService.Pause();
+            }
 
-        private void OnRewardedCallback()
-        {
-            _planetLimitHandler.SetLimit(_bonusPlanetAmount);
-        }
+            void OnRewardedCallback()
+            {
+                _planetLimitHandler.SetLimit(_bonusPlanetAmount);
+                OnSuccessCallback();
+            }
 
-        private void OnCloseCallback()
-        {
-            Time.timeScale = 1f;
-            AudioListener.volume = 1f;
+            void OnCloseCallback()
+            {
+                _pauseService.Unpause();
+
+            }
+
+            void OnErrorCallback(string error)
+            {
+                OnFailCallback();
+            }
         }
     }
 }

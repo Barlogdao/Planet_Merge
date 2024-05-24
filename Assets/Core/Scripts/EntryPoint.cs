@@ -7,6 +7,7 @@ using PlanetMerge.Sevices.Audio;
 using PlanetMerge.Systems;
 using PlanetMerge.Systems.Audio;
 using PlanetMerge.Systems.SaveLoad;
+using PlanetMerge.Systems.Tutorial;
 using PlanetMerge.UI;
 using UnityEngine;
 
@@ -37,6 +38,7 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private AudioService _audioService;
     [SerializeField] private AudioHandler _audioHandler;
     [SerializeField] private FocusHandler _focusHandler;
+    [SerializeField] private TutorialController _tutorialController;
 
     private PlanetSpawner _planetSpawner;
     private PlanetPool _planetPool;
@@ -97,16 +99,18 @@ public class EntryPoint : MonoBehaviour
 
     private void InitializeHandlers()
     {
+        _tutorialController.Initialize(_playerInput);
+
         _limitHandler.Initialize(_gameEventMediator, _planetLimit);
         _goalHandler.Initialize(_gameEventMediator);
         _gameOverHandler.Initialize(_limitHandler, _goalHandler);
 
         _scoreHandler = new ScoreHandler(_levelPlanets);
-        _startLevelHandler = new StartLevelHandler(_gameUI, _levelPreparer);
+        _startLevelHandler = new StartLevelHandler(_gameUI, _levelPreparer,_tutorialController);
         _endLevelHandler = new EndLevelHandler(_gameUI, _playerDataService, _scoreHandler);
 
         _focusHandler.Initialize(_pauseService);
-        _rewardHandler.Initialize(_limitHandler);
+        _rewardHandler.Initialize(_limitHandler,_pauseService);
         _audioHandler.Initialize(_audioService, _gameEventMediator);
         _splitHandler.Initialize(_gameEventMediator, _planetSpawner, _levelPlanets);
     }

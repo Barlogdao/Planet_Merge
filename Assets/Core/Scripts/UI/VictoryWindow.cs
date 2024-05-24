@@ -10,9 +10,6 @@ namespace PlanetMerge.UI
     {
         [SerializeField] private PlanetProgressionPanel _progressionPanel;
         [SerializeField] private TMP_Text _scoreLabel;
-        [SerializeField] private float _scoreTweenDuration = 1f;
-        [SerializeField] private Ease _ease;
-
         [SerializeField] private ScoreTween _scoreTween;
 
         private int _currentScore;

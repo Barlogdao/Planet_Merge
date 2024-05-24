@@ -88,7 +88,11 @@ public class GameLoop : MonoBehaviour
 
     private void OnRewardSelected()
     {
-        _rewardHandler.AddReward();
+        _rewardHandler.AddReward(ResumeLevel,PrepareLevel);
+    }
+
+    private void ResumeLevel()
+    {
         _startLevelHandler.ResumeLevel();
         LevelResumed?.Invoke();
     }
