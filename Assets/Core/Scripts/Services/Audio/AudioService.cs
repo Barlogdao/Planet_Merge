@@ -31,8 +31,6 @@ namespace PlanetMerge.Sevices.Audio
         public void PauseAudio()
         {
             AudioListener.pause = true;
-            _soundSource.Pause();
-            _musicSource.Pause();
         }
 
         public void UnpauseAudio()

@@ -8,14 +8,8 @@ namespace PlanetMerge.Systems.Tutorial
         private const string Scaling = nameof(Scaling);
         private const string Idle = nameof(Idle);
 
-        private Animator _animator;
-        private SpriteRenderer _spriteRenderer;
-
-        private void Awake()
-        {
-            _animator = GetComponent<Animator>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
-        }
+        [SerializeField] private Animator _animator;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
 
         public void Move (Vector3 atPosition)
         {
@@ -32,12 +26,12 @@ namespace PlanetMerge.Systems.Tutorial
             _animator.Play(Scaling);
         }
 
-        public void Enable()
+        public void Activate()
         {
             _spriteRenderer.enabled = true;
         }
 
-        public void Disable()
+        public void Deactivate()
         {
             _spriteRenderer.enabled = false;
         }

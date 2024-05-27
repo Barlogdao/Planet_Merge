@@ -3,33 +3,41 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using NaughtyAttributes;
+using System;
 
 namespace PlanetMerge.Systems.Tutorial
 {
     public class TutorialController : MonoBehaviour
     {
         [SerializeField] private Pointer _pointer;
-        [SerializeField] private TMP_Text _firstTip;
-        [SerializeField] private TMP_Text _secondTip;
-        [SerializeField] Image _background;
+        [SerializeField] private FirstTip _firstTip;
+        [SerializeField] private SecondTip _secondTip;
+        [SerializeField] private ButtonTutorialTip _thirdTip;
+        [SerializeField] private ButtonTutorialTip _fourthTip;
 
         [SerializeField] private Canvas _tutorialCanvas;
 
+        [SerializeField] Image _background;
+        [SerializeField] private float _fadeDuration = 0.3f;
+        [SerializeField] private float _intervalDuration = 1.5f;
+        [SerializeField, SortingLayer] int _uiSortingLayer;
+
+
         private PlayerInput _playerInput;
-        private bool _isClicked = false;
         private Color _backgroundColor;
 
-        private void Awake()
-        {
-            _firstTip.enabled = false;
-            _secondTip.enabled = false;
-            _backgroundColor = _background.color;
-
-        }
+        public event Action IsClicked;
 
         public void Initialize(PlayerInput playerInput)
         {
             _playerInput = playerInput;
+            _backgroundColor = _background.color;
+
+            _firstTip.Initialize(this, _pointer);
+            _secondTip.Initialize(this, _pointer);
+            _thirdTip.Initialize(this, _pointer);
+            _fourthTip.Initialize(this, _pointer);
 
             _playerInput.ClickedUp += OnClickedUp;
         }
@@ -42,61 +50,43 @@ namespace PlanetMerge.Systems.Tutorial
 
         private void Start()
         {
-            _pointer.Disable();
             _tutorialCanvas.enabled = false;
         }
-
-
 
         public async UniTaskVoid ShowTitorial()
         {
             _tutorialCanvas.enabled = true;
 
-            await RunFirstTip();
+            await _firstTip.Run();
+            await RunTipInterval();
+            await _secondTip.Run();
+            await RunTipInterval();
 
-            await _background.DOFade(0f, 0.3f);
-            await UniTask.WaitForSeconds(2f);
-            await RunSecondTip();
-            await _background.DOFade(0f, 0.3f);
+            _playerInput.enabled = false;
+            _tutorialCanvas.sortingLayerID = _uiSortingLayer;
 
+            await _thirdTip.Run();
+            await _fourthTip.Run();
+
+            _playerInput.enabled = true;
             _tutorialCanvas.enabled = false;
         }
 
-
-        private async UniTask RunFirstTip()
+        private async UniTask RunTipInterval()
         {
-            _pointer.Enable();
-            _isClicked = false;
-            _pointer.Move(Vector3.zero);
-            _pointer.SetScaling();
-            _firstTip.enabled = true;
-
-            await UniTask.WaitUntilValueChanged(this, (controller) => controller._isClicked);
-            _firstTip.enabled = false;
-            _pointer.Disable();
+            FadeBackground();
+            await UniTask.WaitForSeconds(_intervalDuration);
+            _background.color = _backgroundColor;
         }
 
-
-        private async UniTask RunSecondTip()
+        private void FadeBackground()
         {
-            _pointer.Enable();
-
-            _isClicked = false;
-            _background.color = _backgroundColor;
-            _secondTip.enabled = true;
-
-            _pointer.Move(new Vector3(1f, -1f, 0f));
-            var tween = _pointer.transform.DOMoveX(-1f, 1f).SetLoops(-1, LoopType.Yoyo);
-            await UniTask.WaitUntilValueChanged(this, (controller) => controller._isClicked);
-            _secondTip.enabled = false;
-
-            tween.Kill();
-            _pointer.Disable();
+          _background.DOFade(0f, _fadeDuration);
         }
 
         private void OnClickedUp()
         {
-            _isClicked = true;
+            IsClicked?.Invoke();
         }
     }
 }
