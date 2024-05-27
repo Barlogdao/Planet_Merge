@@ -9,11 +9,12 @@ namespace PlanetMerge.Systems.Tutorial
     {
         [SerializeField] private Vector2 _pointerEndPosition;
         [SerializeField] private float _tweenDuration = 1f;
+        [SerializeField] private Ease _ease;
 
         protected override async UniTask OnRun()
         {
             Pointer.SetIdle();
-            var tween = Pointer.transform.DOMove(_pointerEndPosition, _tweenDuration).SetLoops(-1, LoopType.Yoyo);
+            var tween = Pointer.transform.DOMove(_pointerEndPosition, _tweenDuration).SetLoops(-1, LoopType.Yoyo).SetEase(_ease) ;
 
             await UniTask.WaitUntilValueChanged(this, (tip) => tip.IsClicked);
 

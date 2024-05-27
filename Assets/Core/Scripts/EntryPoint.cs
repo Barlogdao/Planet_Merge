@@ -37,6 +37,7 @@ public class EntryPoint : MonoBehaviour
 
     [SerializeField] private AudioService _audioService;
     [SerializeField] private AudioHandler _audioHandler;
+    [SerializeField] private MuteHandler _muteHandler;
     [SerializeField] private FocusHandler _focusHandler;
     [SerializeField] private TutorialController _tutorialController;
 
@@ -111,8 +112,10 @@ public class EntryPoint : MonoBehaviour
 
         _focusHandler.Initialize(_pauseService);
         _rewardHandler.Initialize(_limitHandler,_pauseService);
-        _audioHandler.Initialize(_audioService, _gameEventMediator);
         _splitHandler.Initialize(_gameEventMediator, _planetSpawner, _levelPlanets);
+        _audioHandler.Initialize(_audioService, _gameEventMediator);
+        _muteHandler.Initialize(_audioService);
+        
     }
 
     private void InitializeUi()

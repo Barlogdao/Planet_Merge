@@ -4,8 +4,6 @@ namespace PlanetMerge.Sevices.Audio
 {
     public class AudioService : MonoBehaviour
     {
-        public const string MuteAdio = nameof(MuteAdio);
-
         [SerializeField] private AudioSource _musicSource;
         [SerializeField] private AudioSource _soundSource;
 
@@ -16,16 +14,25 @@ namespace PlanetMerge.Sevices.Audio
 
         public void PlaySound(AudioClip clip)
         {
-            _soundSource.clip = clip;
-
-            _soundSource.pitch = Random.Range(0.9f, 1.1f);
-            _soundSource.Play();
+            _soundSource.PlayOneShot(clip, Random.Range(0.8f, 1f));
         }
 
         public void PlayMusic(AudioClip clip)
         {
             _musicSource.clip = clip;
             _musicSource.Play();
+        }
+
+        public void MuteAudio()
+        {
+            _soundSource.mute = true;
+            _musicSource.mute = true;
+        }
+
+        public void UnmuteAudio()
+        {
+            _soundSource.mute = false;
+            _musicSource.mute = false;
         }
 
         public void PauseAudio()

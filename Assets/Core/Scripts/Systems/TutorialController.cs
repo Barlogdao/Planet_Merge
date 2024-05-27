@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using NaughtyAttributes;
 using System;
+using PlanetMerge.Utils.Extensions;
 
 namespace PlanetMerge.Systems.Tutorial
 {
@@ -27,14 +28,16 @@ namespace PlanetMerge.Systems.Tutorial
 
 
         private PlayerInput _playerInput;
-        private Color _backgroundColor;
+        private float _minAlphaValue = 0f;
+        private float _maxAlphaValue;
 
         public event Action IsClicked;
 
         public void Initialize(PlayerInput playerInput)
         {
             _playerInput = playerInput;
-            _backgroundColor = _background.color;
+            _maxAlphaValue = _background.color.a;
+            _background.color = _background.color.WithAlpha(_minAlphaValue);
 
             _firstTip.Initialize(this, _pointer);
             _secondTip.Initialize(this, _pointer);
@@ -55,6 +58,7 @@ namespace PlanetMerge.Systems.Tutorial
         {
             _tutorialCanvas.enabled = true;
 
+            await UnfadeBackground();
             await _firstTip.Run();
             await RunTipInterval();
             await _secondTip.Run();
@@ -65,7 +69,7 @@ namespace PlanetMerge.Systems.Tutorial
             int _uiLayer = _uiPanelCanvas.sortingLayerID;
             _uiPanelCanvas.overrideSorting = true;
             _uiPanelCanvas.sortingLayerID = _tutorialLayer;
- 
+
             await _thirdTip.Run();
             await _fourthTip.Run();
 
@@ -78,14 +82,21 @@ namespace PlanetMerge.Systems.Tutorial
 
         private async UniTask RunTipInterval()
         {
-            FadeBackground();
+            _playerInput.enabled = false;
+            await FadeBackground();
             await UniTask.WaitForSeconds(_intervalDuration);
-            _background.color = _backgroundColor;
+            await UnfadeBackground();
+            _playerInput.enabled = true;
         }
 
-        private void FadeBackground()
+        private async UniTask FadeBackground()
         {
-          _background.DOFade(0f, _fadeDuration);
+            await _background.DOFade(_minAlphaValue, _fadeDuration);
+        }
+
+        private async UniTask UnfadeBackground()
+        {
+            await _background.DOFade(_maxAlphaValue, _fadeDuration);
         }
 
         private void OnClickedUp()
