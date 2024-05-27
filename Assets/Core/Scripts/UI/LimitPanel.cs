@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace PlanetMerge.UI
 {
-    public class LimitPanel : PlanetViewPanel
+    public class LimitPanel:MonoBehaviour
     {
         [SerializeField] private TMP_Text _limitAmount;
         [SerializeField] private ScaleTween _scaleTween;

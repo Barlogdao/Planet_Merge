@@ -21,7 +21,9 @@ namespace PlanetMerge.Systems.Tutorial
         [SerializeField] Image _background;
         [SerializeField] private float _fadeDuration = 0.3f;
         [SerializeField] private float _intervalDuration = 1.5f;
-        [SerializeField, SortingLayer] int _uiSortingLayer;
+
+        [SerializeField] private Canvas _uiPanelCanvas;
+        [SerializeField, SortingLayer] int _tutorialLayer;
 
 
         private PlayerInput _playerInput;
@@ -40,17 +42,13 @@ namespace PlanetMerge.Systems.Tutorial
             _fourthTip.Initialize(this, _pointer);
 
             _playerInput.ClickedUp += OnClickedUp;
+
+            _tutorialCanvas.enabled = false;
         }
 
         private void OnDestroy()
         {
             _playerInput.ClickedUp -= OnClickedUp;
-
-        }
-
-        private void Start()
-        {
-            _tutorialCanvas.enabled = false;
         }
 
         public async UniTaskVoid ShowTitorial()
@@ -63,10 +61,16 @@ namespace PlanetMerge.Systems.Tutorial
             await RunTipInterval();
 
             _playerInput.enabled = false;
-            _tutorialCanvas.sortingLayerID = _uiSortingLayer;
 
+            int _uiLayer = _uiPanelCanvas.sortingLayerID;
+            _uiPanelCanvas.overrideSorting = true;
+            _uiPanelCanvas.sortingLayerID = _tutorialLayer;
+ 
             await _thirdTip.Run();
             await _fourthTip.Run();
+
+            _uiPanelCanvas.overrideSorting = false;
+            _uiPanelCanvas.sortingLayerID = _uiLayer;
 
             _playerInput.enabled = true;
             _tutorialCanvas.enabled = false;

@@ -41,7 +41,6 @@ public class UiPanel : MonoBehaviour
     {
         int planetGoalRank = _levelGoalHandler.PlanetGoalRank;
 
-        _limitPanel.Prepare(playerData.PlanetRank);
         _goalPanel.Prepare(planetGoalRank);
         _levelValue.text = playerData.Level.ToString();
     }

@@ -23,10 +23,14 @@ public class StartLevelHandler
     public async UniTask StartLevel(int level)
     {
         _gameUi.Hide();
-        await _gameUi.Animate();
+
         if (level == Constants.TutorialLevel)
         {
-            _tutorialController.ShowTitorial().Forget();
+           _tutorialController.ShowTitorial().Forget();
+        }
+        else
+        {
+            await _gameUi.Animate();
         }
     }
 
