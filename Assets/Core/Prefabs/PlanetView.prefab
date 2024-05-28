@@ -268,8 +268,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _viewProvider: {fileID: 11400000, guid: 208e6cae71a1fab4d8d46dbe1839d984, type: 2}
   _rankLabel: {fileID: 4942938873228812931}
-  _shakeDuration: 0.1
-  _shakeStrength: 0.3
+  _shakeDuration: 0.07
+  _shakeStrength: 0.2
 --- !u!212 &6024490736261503554
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -1,48 +1,40 @@
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using NaughtyAttributes;
 using System;
-using PlanetMerge.Utils.Extensions;
+using PlanetMerge.UI;
 
 namespace PlanetMerge.Systems.Tutorial
 {
-    public class TutorialController : MonoBehaviour
+    public class TutorialSystem : MonoBehaviour
     {
         [SerializeField] private Pointer _pointer;
+
         [SerializeField] private FirstTip _firstTip;
         [SerializeField] private SecondTip _secondTip;
         [SerializeField] private ButtonTutorialTip _thirdTip;
         [SerializeField] private ButtonTutorialTip _fourthTip;
 
         [SerializeField] private Canvas _tutorialCanvas;
+        [SerializeField] private Canvas _uiPanelCanvas;
+        [SerializeField] private FadingBackground _background;
 
-        [SerializeField] Image _background;
-        [SerializeField] private float _fadeDuration = 0.3f;
+        [SerializeField, SortingLayer] int _tutorialLayer;
         [SerializeField] private float _intervalDuration = 1.5f;
 
-        [SerializeField] private Canvas _uiPanelCanvas;
-        [SerializeField, SortingLayer] int _tutorialLayer;
-
-
         private PlayerInput _playerInput;
-        private float _minAlphaValue = 0f;
-        private float _maxAlphaValue;
 
         public event Action IsClicked;
 
         public void Initialize(PlayerInput playerInput)
         {
             _playerInput = playerInput;
-            _maxAlphaValue = _background.color.a;
-            _background.color = _background.color.WithAlpha(_minAlphaValue);
 
             _firstTip.Initialize(this, _pointer);
             _secondTip.Initialize(this, _pointer);
             _thirdTip.Initialize(this, _pointer);
             _fourthTip.Initialize(this, _pointer);
+            _background.Initialize();
 
             _playerInput.ClickedUp += OnClickedUp;
 
@@ -54,15 +46,15 @@ namespace PlanetMerge.Systems.Tutorial
             _playerInput.ClickedUp -= OnClickedUp;
         }
 
-        public async UniTaskVoid ShowTitorial()
+        public async UniTaskVoid RunTutorialAsync()
         {
             _tutorialCanvas.enabled = true;
 
-            await UnfadeBackground();
+            await _background.UnfadeAsync();
             await _firstTip.Run();
-            await RunTipInterval();
+            await RunIntervalAsync();
             await _secondTip.Run();
-            await RunTipInterval();
+            await RunIntervalAsync();
 
             _playerInput.enabled = false;
 
@@ -80,23 +72,15 @@ namespace PlanetMerge.Systems.Tutorial
             _tutorialCanvas.enabled = false;
         }
 
-        private async UniTask RunTipInterval()
+        private async UniTask RunIntervalAsync()
         {
             _playerInput.enabled = false;
-            await FadeBackground();
+            await _background.FadeAsync();
+
             await UniTask.WaitForSeconds(_intervalDuration);
-            await UnfadeBackground();
+
+            await _background.UnfadeAsync();
             _playerInput.enabled = true;
-        }
-
-        private async UniTask FadeBackground()
-        {
-            await _background.DOFade(_minAlphaValue, _fadeDuration);
-        }
-
-        private async UniTask UnfadeBackground()
-        {
-            await _background.DOFade(_maxAlphaValue, _fadeDuration);
         }
 
         private void OnClickedUp()

@@ -62,7 +62,7 @@ public class GameLoop : MonoBehaviour
 
     private async UniTaskVoid StartLevel()
     {
-        await _startLevelHandler.StartLevel(_playerData.Level);
+        await _startLevelHandler.StartLevelAsync(_playerData.Level);
         LevelStarted?.Invoke();
     }
 

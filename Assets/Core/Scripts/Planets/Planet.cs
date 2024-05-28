@@ -115,7 +115,7 @@ namespace PlanetMerge.Planets
         {
             _isSplitting = true;
 
-            float waitDuration = Random.Range(0.2f, 0.4f);
+            float waitDuration = Random.Range(0.3f, 0.5f);
             WaitForSeconds delay = new WaitForSeconds(waitDuration);
 
             yield return delay;

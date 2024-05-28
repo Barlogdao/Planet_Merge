@@ -17,14 +17,16 @@ namespace PlanetMerge.UI
         private int _startScore = 0;
         private Vector3 _originPosition;
 
-        private void Awake()
+        public void Initialize()
         {
             _originPosition = transform.position;
+            Hide();
         }
 
-        public async UniTask Animate(int score)
+        public async UniTask ShowScoreAsync(int score)
         {
             _scoreLabel.text = _startScore.ToString();
+            Show();
 
             await _moveTween.Run(transform, _startPosition, true);
             await _scoreTween.Run(_startScore, score, _scoreLabel);

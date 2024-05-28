@@ -23,7 +23,7 @@ public class EndLevelHandler
     {
         int levelScore = _scoreHandler.GetScore();
 
-        await _gameUI.ShowLevelScore(levelScore);
+        await _gameUI.ShowLevelScoreAsync(levelScore);
        // показать дробление о набранные очки
         
         //открыть окно победы

@@ -432,6 +432,85 @@ MonoBehaviour:
         m_FixedHeight: 0
         m_StretchWidth: 1
         m_StretchHeight: 0
+    - prefix: '&'
+      name: Holders
+      font: {fileID: 0}
+      fontSize: 10
+      fontAlignment: 3
+      fontStyle: 1
+      textFormatting: 0
+      modes:
+      - fontColour: {r: 1, g: 1, b: 1, a: 1}
+        backgroundColour: {r: 0.38568, g: 0.6335747, b: 0.764151, a: 1}
+      - fontColour: {r: 1, g: 1, b: 1, a: 1}
+        backgroundColour: {r: 0.5594231, g: 0.5660378, b: 0.07689566, a: 1}
+      style:
+        m_Name: Holders
+        m_Normal:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 1, g: 1, b: 1, a: 1}
+        m_Hover:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Active:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Focused:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnNormal:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnHover:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnActive:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_OnFocused:
+          m_Background: {fileID: 0}
+          m_ScaledBackgrounds: []
+          m_TextColor: {r: 0, g: 0, b: 0, a: 1}
+        m_Border:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Margin:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Padding:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Overflow:
+          m_Left: 0
+          m_Right: 0
+          m_Top: 0
+          m_Bottom: 0
+        m_Font: {fileID: 0}
+        m_FontSize: 10
+        m_FontStyle: 1
+        m_Alignment: 3
+        m_WordWrap: 0
+        m_RichText: 1
+        m_TextClipping: 0
+        m_ImagePosition: 0
+        m_ContentOffset: {x: 0, y: 0}
+        m_FixedWidth: 0
+        m_FixedHeight: 0
+        m_StretchWidth: 1
+        m_StretchHeight: 0
     twoToneBackground: 1
     lightMode:
       colorOne: {r: 0.8, g: 0.8, b: 0.8, a: 1}
@@ -3398,19 +3477,19 @@ MonoBehaviour:
         isBuiltIn: 0
         script: {fileID: 11500000, guid: 806f0696300aeac44a0e17efee222854, type: 3}
         hash: -1
-      - displayName: SplitController
-        name: SplitController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
+      - displayName: SplitHandler
+        name: PlanetMerge.Handlers.Split.SplitHandler, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
         content:
-          m_Text: SplitController
+          m_Text: SplitHandler
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
-          m_Tooltip: SplitController
+          m_Tooltip: SplitHandler
         shown: 0
         isBuiltIn: 0
         script: {fileID: 11500000, guid: 10688d5815bab6c4baf63cee560b07db, type: 3}
         hash: -1
       - displayName: AudioService
-        name: PlanetMerge.Systems.Audio.AudioService, Assembly-CSharp, Version=0.0.0.0,
+        name: PlanetMerge.Sevices.Audio.AudioService, Assembly-CSharp, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         content:
           m_Text: AudioService
@@ -3507,6 +3586,83 @@ MonoBehaviour:
         shown: 0
         isBuiltIn: 0
         script: {fileID: -591303064, guid: a811bde74b26b53498b4f6d872b09b6d, type: 3}
+        hash: -1
+      - displayName: WebEventSystem
+        name: Agava.YandexGames.Samples.WebEventSystem, Agava.YandexGames.Samples.Playtesting,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: WebEventSystem
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: WebEventSystem
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 46e49774b23051349b21bfcf4dce9e4b, type: 3}
+        hash: -1
+      - displayName: MuteHandler
+        name: PlanetMerge.Sevices.Audio.MuteHandler, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: MuteHandler
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: MuteHandler
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 9cf9859d69b8e5d4aa1d0a683f438521, type: 3}
+        hash: -1
+      - displayName: EnergyCollectSystem
+        name: PlanetMerge.Systems.Visual.EnergyCollectSystem, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: EnergyCollectSystem
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: EnergyCollectSystem
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: b5a05d3792cd3cc41982dfbf66694b9d, type: 3}
+        hash: -1
+      - displayName: CollisionSplashSystem
+        name: PlanetMerge.Systems.Visual.CollisionSplashSystem, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: CollisionSplashSystem
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: CollisionSplashSystem
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 15c2190364a041642a309fb626f5abfa, type: 3}
+        hash: -1
+      - displayName: FocusHandler
+        name: PlanetMerge.Handlers.Pause.FocusHandler, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: FocusHandler
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: FocusHandler
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: eee5cde1f053acf478a060bd59b4d65c, type: 3}
+        hash: -1
+      - displayName: TutorialSystem
+        name: PlanetMerge.Systems.Tutorial.TutorialSystem, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: TutorialSystem
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: TutorialSystem
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 00eae71b833434342ab8c03f12728366, type: 3}
+        hash: -1
+      - displayName: Pointer
+        name: PlanetMerge.Systems.Tutorial.Pointer, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: Pointer
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: Pointer
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 70ca6750c8a36e04b8ae5d1b84bdda08, type: 3}
         hash: -1
     excludedComponents:
       name: Excluded

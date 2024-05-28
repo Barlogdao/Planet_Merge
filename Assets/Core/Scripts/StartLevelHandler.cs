@@ -6,13 +6,13 @@ public class StartLevelHandler
 {
     private GameUi _gameUi;
     private LevelPreparer _levelPreparer;
-    private TutorialController _tutorialController;
+    private TutorialSystem _tutorialSystem;
 
-    public StartLevelHandler(GameUi gameUi, LevelPreparer levelPreparer, TutorialController tutorialController)
+    public StartLevelHandler(GameUi gameUi, LevelPreparer levelPreparer, TutorialSystem tutorialController)
     {
         _gameUi = gameUi;
         _levelPreparer = levelPreparer;
-        _tutorialController = tutorialController;
+        _tutorialSystem = tutorialController;
     }
 
     public void PrepareLevel(IReadOnlyPlayerData playerData)
@@ -20,17 +20,17 @@ public class StartLevelHandler
         _levelPreparer.Prepare(playerData);
     }
 
-    public async UniTask StartLevel(int level)
+    public async UniTask StartLevelAsync(int level)
     {
         _gameUi.Hide();
 
         if (level == Constants.TutorialLevel)
         {
-           _tutorialController.ShowTitorial().Forget();
+            _tutorialSystem.RunTutorialAsync().Forget();
         }
         else
         {
-            await _gameUi.Animate();
+            await _gameUi.RunLevelAsync();
         }
     }
 

@@ -14,9 +14,9 @@ namespace PlanetMerge.Systems.Tutorial
         private Pointer _pointer;
 
         protected Pointer Pointer => _pointer;
-        protected TutorialController TutorialController;
+        protected TutorialSystem TutorialController;
 
-        public void Initialize(TutorialController tutorialController, Pointer pointer)
+        public void Initialize(TutorialSystem tutorialController, Pointer pointer)
         {
             TutorialController = tutorialController;
             _pointer = pointer;

@@ -12,9 +12,7 @@ namespace PlanetMerge.UI
         [SerializeField] private VictoryWindow _victoryWindow;
         [SerializeField] private RectTransform _looseWindow;
         [SerializeField] private LevelScoreWindow _levelScoreWindow;
-
-        [SerializeField] private LimitPanel _limitPanel;
-        [SerializeField] private GoalPanel _goalPanel;
+        [SerializeField] private FadingBackground _whiteScreen;
 
         [SerializeField] private Button _nextLevelButton;
         [SerializeField] private Button _resetLevelButton;
@@ -31,7 +29,8 @@ namespace PlanetMerge.UI
             _uiPanel = uiPanel;
 
             _victoryWindow.Initialize();
-            _levelScoreWindow.Hide();
+            _whiteScreen.Initialize();
+            _levelScoreWindow.Initialize();
 
             _nextLevelButton.onClick.AddListener(OnNextLevelPressed);
             _resetLevelButton.onClick.AddListener(OnResetLevelPressed);
@@ -51,16 +50,15 @@ namespace PlanetMerge.UI
             _uiPanel.Prepare(playerData);
         }
 
-        public async UniTask ShowLevelScore(int levelScore)
+        public async UniTask ShowLevelScoreAsync(int levelScore)
         {
-            _levelScoreWindow.Show();
-            await _levelScoreWindow.Animate(levelScore);
-            _levelScoreWindow.Hide();
+            await _levelScoreWindow.ShowScoreAsync(levelScore);
         }
 
-        public async UniTask Animate()
+        public async UniTask RunLevelAsync()
         {
-            await _uiPanel.Animate();
+            await UniTask.WhenAll(_uiPanel.BeginAnimateAsync(), _whiteScreen.UnfadeAsync());
+            await UniTask.WhenAll(_uiPanel.EndAnimateAsync(), _whiteScreen.FadeAsync()); 
         }
 
         private void OnRewardPressed()

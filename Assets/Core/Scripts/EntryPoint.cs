@@ -46,7 +46,7 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private AudioHandler _audioHandler;
     [SerializeField] private MuteHandler _muteHandler;
     [SerializeField] private FocusHandler _focusHandler;
-    [SerializeField] private TutorialController _tutorialController;
+    [SerializeField] private TutorialSystem _tutorialSystem;
     [SerializeField] private EnergyCollectSystem _energyCollectSystem;
     [SerializeField] private CollisionSplashSystem _collisionSplashSystem;
 
@@ -117,14 +117,14 @@ public class EntryPoint : MonoBehaviour
 
     private void InitializeHandlers()
     {
-        _tutorialController.Initialize(_playerInput);
+        _tutorialSystem.Initialize(_playerInput);
 
         _limitHandler.Initialize(_gameEventMediator, _planetLimit);
         _goalHandler.Initialize(_gameEventMediator);
         _gameOverHandler.Initialize(_limitHandler, _goalHandler);
 
         _scoreHandler = new ScoreHandler(_levelPlanets);
-        _startLevelHandler = new StartLevelHandler(_gameUI, _levelPreparer,_tutorialController);
+        _startLevelHandler = new StartLevelHandler(_gameUI, _levelPreparer,_tutorialSystem);
         _endLevelHandler = new EndLevelHandler(_gameUI, _playerDataService, _scoreHandler);
 
         _focusHandler.Initialize(_pauseService);
