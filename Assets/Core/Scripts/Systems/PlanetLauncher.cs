@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace PlanetMerge.Planets
 {
-    public class PlanetLauncher : MonoBehaviour
+    public class PlanetLauncher : MonoBehaviour, ILaunchPoint
     {
         [SerializeField] private Transform _launchPoint;
         [SerializeField] private float _force;
@@ -18,7 +18,6 @@ namespace PlanetMerge.Planets
         private PlanetSpawner _planetSpawner;
         private PlanetLimit _planetLimit;
         private Trajectory _trajectory;
-
 
         private int _planetRank = 1;
 

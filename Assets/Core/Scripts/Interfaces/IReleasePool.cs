@@ -1,7 +1,9 @@
+using UnityEngine;
+
 namespace PlanetMerge.Planets
 {
-    public interface IReleasePool
+    public interface IReleasePool<T> where T : MonoBehaviour
     {
-        void Release(Planet planet);
+        void Release(T entity);
     }
 }

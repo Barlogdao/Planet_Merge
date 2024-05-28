@@ -4,7 +4,7 @@ using UnityEngine.Pool;
 
 namespace PlanetMerge.Planets
 {
-    public class PlanetPool : IReleasePool, IPlanetStatusNotifier
+    public class PlanetPool : IReleasePool<Planet>, IPlanetStatusNotifier
     {
         private readonly ObjectPool<Planet> _pool;
 

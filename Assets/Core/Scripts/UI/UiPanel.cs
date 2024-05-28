@@ -15,6 +15,7 @@ public class UiPanel : MonoBehaviour
     [SerializeField] private TMP_Text _levelValue;
 
     [SerializeField] private float _tweenDuration = 1f;
+    [SerializeField] private float _fadeDuration = 0.5f;
     [SerializeField] private float _targetScale = 1.3f;
     [SerializeField] private Vector3 _targetPosition = Vector3.zero;
     [SerializeField] private Ease _ease;
@@ -57,8 +58,8 @@ public class UiPanel : MonoBehaviour
         transform.position = _targetPosition;
         transform.localScale = _originScale * _targetScale;
         await UniTask.WaitForSeconds(_tweenDuration);
+        _background.DOFade(_minAlphaValue, _fadeDuration);
         await transform.DOScale(_originScale, _tweenDuration).SetEase(_ease);
-        _background.DOFade(_minAlphaValue, _tweenDuration);
         await transform.DOMove(_originPosition,_tweenDuration).SetEase(_ease);
     }
 }

@@ -15,7 +15,7 @@ namespace PlanetMerge.Planets
         [SerializeField] private PlanetView _view;
 
         private Rigidbody2D _rigidbody2D;
-        private IReleasePool _releasePool;
+        private IReleasePool<Planet> _releasePool;
 
         private int _rank = 1;
         private bool _isSplitting = false;
@@ -28,7 +28,7 @@ namespace PlanetMerge.Planets
 
         public int Rank => _rank;
 
-        public void Initialize(IReleasePool releasePool)
+        public void Initialize(IReleasePool<Planet> releasePool)
         {
             _releasePool = releasePool;
             _rigidbody2D = GetComponent<Rigidbody2D>();
