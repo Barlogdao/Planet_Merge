@@ -38,7 +38,9 @@ namespace PlanetMerge.Systems
         private void Update()
         {
             if (IsActive)
+            {
                 Calculate();
+            }
         }
 
         private void OnDestroy()

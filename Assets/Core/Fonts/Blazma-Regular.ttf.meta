@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 86b1033eaa79ea248bdc5540c4b333c6
+guid: da8afc6599b111742bd8c6d8d889bc60
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Quantum
+  - Blazma
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

@@ -2,13 +2,16 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using PlanetMerge.Systems;
 using PlanetMerge.UI;
+using PlanetMerge.Utils.Extensions;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UiPanel : MonoBehaviour
 {
     [SerializeField] private LimitPanel _limitPanel;
     [SerializeField] private GoalPanel _goalPanel;
+    [SerializeField] private Image _background;
     [SerializeField] private TMP_Text _levelValue;
 
     [SerializeField] private float _tweenDuration = 1f;
@@ -21,6 +24,8 @@ public class UiPanel : MonoBehaviour
 
     private Vector3 _originPosition;
     private Vector3 _originScale;
+    private float _maxAlphaValue = 1f;
+    private float _minAlphaValue = 0f;
 
     private void Awake()
     {
@@ -35,6 +40,7 @@ public class UiPanel : MonoBehaviour
 
         _limitPanel.Initialize(_planetLimitHandler);
         _goalPanel.Initialize(_levelGoalHandler);
+        _background.color = _background.color.WithAlpha(_minAlphaValue);
     }
 
     public void Prepare(IReadOnlyPlayerData playerData)
@@ -47,10 +53,12 @@ public class UiPanel : MonoBehaviour
 
     public async UniTask Animate()
     {
+        _background.color = _background.color.WithAlpha(_maxAlphaValue);
         transform.position = _targetPosition;
         transform.localScale = _originScale * _targetScale;
         await UniTask.WaitForSeconds(_tweenDuration);
         await transform.DOScale(_originScale, _tweenDuration).SetEase(_ease);
+        _background.DOFade(_minAlphaValue, _tweenDuration);
         await transform.DOMove(_originPosition,_tweenDuration).SetEase(_ease);
     }
 }

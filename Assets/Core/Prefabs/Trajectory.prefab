@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 107378854753449997}
   - component: {fileID: 7282949374620672210}
   - component: {fileID: 8503590664705727597}
+  - component: {fileID: 8553956806193252880}
   m_Layer: 0
   m_Name: CollisionView
   m_TagString: Untagged
@@ -86,8 +87,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.764151, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 1fbc4d113ed8d274d907de45a1f0ba52, type: 3}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -97,6 +98,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8553956806193252880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506444433750492599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f0d265b969d34c428ddc59204ec3e6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _minRotationSpeed: 12.89
+  _maxRotationSpeed: 20.55
 --- !u!1 &3345341767681687841
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +166,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c1b538810556e1641a680685111162fa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -226,8 +241,8 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
-    textureScale: {x: 0.31, y: -1.81}
+    textureMode: 1
+    textureScale: {x: 6, y: 1}
     shadowBias: 0.5
     generateLightingData: 0
   m_MaskInteraction: 0
@@ -410,7 +425,7 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 0, b: 0, a: 1}
+      key0: {r: 0.3584906, g: 0, b: 0, a: 1}
       key1: {r: 1, g: 0, b: 0, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
