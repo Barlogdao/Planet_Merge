@@ -10,7 +10,7 @@ namespace PlanetMerge.UI
     public class GameUi : MonoBehaviour, IGameUiEvents
     {
         [SerializeField] private VictoryWindow _victoryWindow;
-        [SerializeField] private RectTransform _looseWindow;
+        [SerializeField] private AppearWindow _looseWindow;
         [SerializeField] private LevelScoreWindow _levelScoreWindow;
         [SerializeField] private FadingBackground _whiteScreen;
 
@@ -79,7 +79,7 @@ namespace PlanetMerge.UI
         public void Hide()
         {
             _victoryWindow.Hide();
-            _looseWindow.gameObject.SetActive(false);
+            _looseWindow.Hide();
         }
 
         public void ShowVictoryWindow(IReadOnlyPlayerData playerData)
@@ -95,7 +95,7 @@ namespace PlanetMerge.UI
 
         public void ShowLooseWindow()
         {
-            _looseWindow.gameObject.SetActive(true);
+            _looseWindow.AppearAsync().Forget();
         }
     }
 }

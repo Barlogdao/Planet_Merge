@@ -689,9 +689,9 @@ GameObject:
   - component: {fileID: 107154306}
   - component: {fileID: 107154308}
   - component: {fileID: 107154310}
-  - component: {fileID: 107154307}
-  - component: {fileID: 107154309}
   - component: {fileID: 107154311}
+  - component: {fileID: 107154309}
+  - component: {fileID: 107154307}
   - component: {fileID: 107154312}
   m_Layer: 5
   m_Name: LeaderboardWindow
@@ -2316,14 +2316,17 @@ GameObject:
   m_Component:
   - component: {fileID: 413145113}
   - component: {fileID: 413145115}
+  - component: {fileID: 413145118}
+  - component: {fileID: 413145117}
   - component: {fileID: 413145114}
+  - component: {fileID: 413145116}
   m_Layer: 5
   m_Name: Loose Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &413145113
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2384,6 +2387,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 413145112}
   m_CullTransparentMesh: 1
+--- !u!114 &413145116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413145112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &413145117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413145112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74efc45bc3bbf7842b228e36560f4965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _windowCanvas: {fileID: 413145118}
+  _appearTween:
+    _duration: 0.8
+    _ease: 9
+    _appearPosition: {x: -8, y: 0}
+--- !u!223 &413145118
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413145112}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 1
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
 --- !u!1 &418289609
 GameObject:
   m_ObjectHideFlags: 0
@@ -3046,8 +3106,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 477679557}
-  - component: {fileID: 477679560}
   - component: {fileID: 477679558}
+  - component: {fileID: 477679560}
   - component: {fileID: 477679559}
   m_Layer: 5
   m_Name: UI Panel
@@ -3122,7 +3182,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: -1320469665
@@ -3224,9 +3284,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 596517215}
+  - component: {fileID: 596517217}
   - component: {fileID: 596517218}
   - component: {fileID: 596517221}
-  - component: {fileID: 596517217}
   - component: {fileID: 596517216}
   - component: {fileID: 596517220}
   m_Layer: 5
@@ -3296,7 +3356,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596517214}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!223 &596517218
 Canvas:
   m_ObjectHideFlags: 0
@@ -3304,7 +3364,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596517214}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -3357,7 +3417,7 @@ MonoBehaviour:
   _progressionPanel: {fileID: 1924823052}
   _scoreLabel: {fileID: 469484066}
   _scoreTween:
-    _duration: 2.27
+    _duration: 2
     _ease: 1
 --- !u!1 &619895297
 GameObject:
@@ -3700,7 +3760,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.7169812, g: 0.65204704, b: 0.65204704, a: 1}
+    m_NormalColor: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -6140,7 +6200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _victoryWindow: {fileID: 596517221}
-  _looseWindow: {fileID: 413145113}
+  _looseWindow: {fileID: 413145117}
   _levelScoreWindow: {fileID: 2142292691}
   _whiteScreen:
     _image: {fileID: 1911135170}
@@ -9340,8 +9400,8 @@ GameObject:
   - component: {fileID: 1638133101}
   - component: {fileID: 1638133103}
   - component: {fileID: 1638133104}
-  - component: {fileID: 1638133102}
   - component: {fileID: 1638133105}
+  - component: {fileID: 1638133102}
   - component: {fileID: 1638133106}
   m_Layer: 5
   m_Name: Authorize Window
@@ -12735,7 +12795,6 @@ GameObject:
   - component: {fileID: 2142292691}
   - component: {fileID: 2142292689}
   - component: {fileID: 2142292688}
-  - component: {fileID: 2142292690}
   m_Layer: 5
   m_Name: LevelScoreWindow
   m_TagString: Untagged
@@ -12804,18 +12863,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2142292686}
   m_CullTransparentMesh: 1
---- !u!225 &2142292690
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2142292686}
-  m_Enabled: 1
-  m_Alpha: 1
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
 --- !u!114 &2142292691
 MonoBehaviour:
   m_ObjectHideFlags: 0

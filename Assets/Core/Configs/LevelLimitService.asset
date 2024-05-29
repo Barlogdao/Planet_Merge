@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03ed9db195923ab4eb2d143c25ff07b3, type: 3}
   m_Name: LevelLimitService
   m_EditorClassIdentifier: 
-  _limit: 5
+  _limit: 1

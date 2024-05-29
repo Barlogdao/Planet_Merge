@@ -8,6 +8,7 @@ namespace PlanetMerge.Systems.Tutorial
         protected override void Activate()
         {
             base.Activate();
+            _isClicked = false;
 
             TutorialController.IsClicked += OnClick;
         }
