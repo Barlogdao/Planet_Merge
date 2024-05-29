@@ -692,6 +692,7 @@ GameObject:
   - component: {fileID: 107154309}
   - component: {fileID: 107154311}
   - component: {fileID: 107154310}
+  - component: {fileID: 107154312}
   m_Layer: 5
   m_Name: LeaderboardWindow
   m_TagString: Untagged
@@ -780,7 +781,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107154305}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -810,6 +811,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _windowCanvas: {fileID: 107154310}
   _backButton: {fileID: 1415103875}
+--- !u!114 &107154312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107154305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1001 &109125237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4926,7 +4944,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leaderBoardWindow: {fileID: 107154311}
   _authorizeWindow: {fileID: 1638133105}
-  _leaderBoard: {fileID: 0}
+  _leaderBoard: {fileID: 457146500}
   _leaderboardButton: {fileID: 803702781}
   _authorizeButton: {fileID: 767465297}
 --- !u!1 &837181021
@@ -9225,6 +9243,7 @@ GameObject:
   - component: {fileID: 1638133102}
   - component: {fileID: 1638133105}
   - component: {fileID: 1638133104}
+  - component: {fileID: 1638133106}
   m_Layer: 5
   m_Name: Authorize Window
   m_TagString: Untagged
@@ -9268,7 +9287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.6037736, g: 0.0022783459, b: 0.5021994, a: 1}
-  m_RaycastTarget: 0
+  m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -9299,7 +9318,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1638133100}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 2
   m_Camera: {fileID: 0}
@@ -9329,6 +9348,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _windowCanvas: {fileID: 1638133104}
   _backButton: {fileID: 1974850718}
+--- !u!114 &1638133106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638133100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &1667255564
 GameObject:
   m_ObjectHideFlags: 0
