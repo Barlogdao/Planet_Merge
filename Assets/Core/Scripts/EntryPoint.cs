@@ -11,6 +11,7 @@ using PlanetMerge.Systems.SaveLoad;
 using PlanetMerge.Systems.Tutorial;
 using PlanetMerge.Systems.Visual;
 using PlanetMerge.UI;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class EntryPoint : MonoBehaviour
@@ -49,6 +50,8 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private TutorialSystem _tutorialSystem;
     [SerializeField] private EnergyCollectSystem _energyCollectSystem;
     [SerializeField] private CollisionSplashSystem _collisionSplashSystem;
+
+    [SerializeField] private YandexLeaderboard _leaderboard;
 
     private PlanetSpawner _planetSpawner;
 
@@ -125,7 +128,7 @@ public class EntryPoint : MonoBehaviour
 
         _scoreHandler = new ScoreHandler(_levelPlanets);
         _startLevelHandler = new StartLevelHandler(_gameUI, _levelPreparer,_tutorialSystem);
-        _endLevelHandler = new EndLevelHandler(_gameUI, _playerDataService, _scoreHandler);
+        _endLevelHandler = new EndLevelHandler(_gameUI, _playerDataService, _scoreHandler, _leaderboard);
 
         _focusHandler.Initialize(_pauseService);
         _rewardHandler.Initialize(_limitHandler,_pauseService);
