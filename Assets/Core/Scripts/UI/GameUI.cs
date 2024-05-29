@@ -84,7 +84,7 @@ namespace PlanetMerge.UI
 
         public void ShowVictoryWindow(IReadOnlyPlayerData playerData)
         {
-            _victoryWindow.Show();
+            _victoryWindow.AppearAsync().Forget();
             _victoryWindow.Prepare(playerData);
         }
 

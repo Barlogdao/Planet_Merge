@@ -26,8 +26,8 @@ public class EndLevelHandler
         int levelScore = _scoreHandler.GetScore();
 
         await _gameUI.ShowLevelScoreAsync(levelScore);
-       // показать дробление о набранные очки
-        
+        // показать дробление о набранные очки
+
         //открыть окно победы
         _gameUI.ShowVictoryWindow(_playerData);
 
@@ -53,6 +53,9 @@ public class EndLevelHandler
         }
 
         _playerDataService.AddScore(levelScore);
+#if UNITY_WEBGL && !UNITY_EDITOR
         _leaderboard.SetPlayerScore(_playerData.Score);
+#endif
+
     }
 }

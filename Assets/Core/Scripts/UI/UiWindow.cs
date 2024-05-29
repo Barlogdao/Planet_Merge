@@ -1,4 +1,6 @@
+using DG.Tweening;
 using UnityEngine;
+
 namespace PlanetMerge.UI
 {
     public abstract class UiWindow : MonoBehaviour

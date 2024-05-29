@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace PlanetMerge.UI
 {
-    public class VictoryWindow : UiWindow
+    public class VictoryWindow : AppearWindow
     {
         [SerializeField] private PlanetProgressionPanel _progressionPanel;
         [SerializeField] private TMP_Text _scoreLabel;
