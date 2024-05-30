@@ -9,7 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03ed9db195923ab4eb2d143c25ff07b3, type: 3}
-  m_Name: LevelLimitService
+  m_Script: {fileID: 11500000, guid: 344c00355f060794ea582079ebb0a81f, type: 3}
+  m_Name: Saturation
   m_EditorClassIdentifier: 
-  _limit: 5
+  shaderDescription: '- Adjusts the saturation of the sprite.'
+  titles:
+  - property: Saturation
+    title: Saturation
+  suffixInformation: []
+  showIfs: []
+  requiredComponents: []
