@@ -34,7 +34,8 @@ namespace PlanetMerge.Systems.Localization
                 Lang.English => English,
                 Lang.Russian => Russian,
                 Lang.Turkish => Turkish,
-            };
+                _ => Russian
+            }; ;
 #endif
             switch (languageCode)
             {

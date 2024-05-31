@@ -1,23 +1,18 @@
-using PlanetMerge.Systems;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InterstitialHandler : MonoBehaviour
 {
     [SerializeField] private GameEventMediator _gameEventMediator;
-
-
     private void OnEnable()
     {
-        _gameEventMediator.LevelPrepared += ShowAd;
+        _gameEventMediator.RestartLevelSelected += ShowAd;
+        _gameEventMediator.NextLevelSelected += ShowAd;
     }
 
     private void OnDisable()
     {
-        _gameEventMediator.LevelPrepared -= ShowAd;
-
+        _gameEventMediator.RestartLevelSelected -= ShowAd;
+        _gameEventMediator.NextLevelSelected -= ShowAd;
     }
 
     private void ShowAd()

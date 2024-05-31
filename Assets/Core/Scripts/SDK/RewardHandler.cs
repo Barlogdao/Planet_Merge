@@ -20,11 +20,11 @@ namespace PlanetMerge.SDK.Yandex
 
         public void AddReward(Action OnSuccessCallback, Action OnFailCallback)
         {
-#if UNITY_WEBGL && !UNITY_EDITOR
-            Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRewardedCallback, OnCloseCallback, OnErrorCallback);
-#else
+#if !UNITY_WEBGL && UNITY_EDITOR
             OnRewardedCallback();
+            return;
 #endif
+            Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRewardedCallback, OnCloseCallback, OnErrorCallback);
 
             void OnOpenCallback()
             {
