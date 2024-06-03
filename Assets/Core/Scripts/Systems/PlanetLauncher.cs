@@ -36,7 +36,6 @@ namespace PlanetMerge.Planets
             _trajectory = trajectory;
 
             _cooldown = new WaitForSeconds(_launchCooldown);
-            _planetView.transform.position = LaunchPosition;
 
             _playerInput.ClickedDown += OnClickDown;
             _playerInput.ClickedUp += OnClickUp;

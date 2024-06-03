@@ -1,3 +1,4 @@
+using DG.Tweening;
 using PlanetMerge.Handlers.Pause;
 using PlanetMerge.Handlers.Split;
 using PlanetMerge.Planets;
@@ -52,6 +53,8 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private CollisionSplashSystem _collisionSplashSystem;
 
     [SerializeField] private YandexLeaderboard _leaderboard;
+
+    [SerializeField] private StartLevelViewController _startLevelViewController;
 
     private PlanetSpawner _planetSpawner;
 
@@ -125,20 +128,22 @@ public class EntryPoint : MonoBehaviour
         _limitHandler.Initialize(_gameEventMediator, _planetLimit);
         _goalHandler.Initialize(_gameEventMediator);
         _gameOverHandler.Initialize(_limitHandler, _goalHandler);
+        _startLevelViewController.Initialize();
 
         _scoreHandler = new ScoreHandler(_levelPlanets);
-        _startLevelHandler = new StartLevelHandler(_gameUI, _levelPreparer,_tutorialSystem);
-        _endLevelHandler = new EndLevelHandler(_gameUI, _playerDataService, _scoreHandler, _leaderboard);
+        _startLevelHandler = new StartLevelHandler(_gameUI, _levelPreparer, _tutorialSystem, _startLevelViewController);
+        _endLevelHandler = new EndLevelHandler(_gameUI, _playerDataService, _scoreHandler, _leaderboard,_startLevelViewController);
 
         _focusHandler.Initialize(_pauseService);
-        _rewardHandler.Initialize(_limitHandler,_pauseService);
+        _rewardHandler.Initialize(_limitHandler, _pauseService);
         _splitHandler.Initialize(_gameEventMediator, _planetSpawner, _levelPlanets);
         _audioHandler.Initialize(_audioService, _gameEventMediator);
         _muteHandler.Initialize(_audioService);
 
         _energyCollectSystem.Initialize(_gameEventMediator, _planetLauncher, _energyPool);
         _collisionSplashSystem.Initialize(_gameEventMediator, _collisionSplashPool);
-        
+
+
     }
 
     private void InitializeUi()

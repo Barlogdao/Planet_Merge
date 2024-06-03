@@ -13,7 +13,6 @@ namespace PlanetMerge.Utils
 
         public async UniTask Run(Transform transform)
         {
-
             await transform.DOMove(_appearPosition, _duration).From().SetEase(_ease);
         }
     }

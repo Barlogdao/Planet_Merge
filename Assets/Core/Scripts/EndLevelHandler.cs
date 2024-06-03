@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using PlanetMerge.SDK.Yandex;
 using PlanetMerge.Systems.SaveLoad;
+using PlanetMerge.Systems.Visual;
 using PlanetMerge.UI;
 using UnityEngine;
 
@@ -11,20 +12,22 @@ public class EndLevelHandler
     private readonly ScoreHandler _scoreHandler;
     private readonly IReadOnlyPlayerData _playerData;
     private readonly YandexLeaderboard _leaderboard;
+    private readonly StartLevelViewController _startLevelViewController;
 
-    public EndLevelHandler(GameUi gameUI, PlayerDataService playerDataService, ScoreHandler scoreHandler, YandexLeaderboard leaderboard)
+    public EndLevelHandler(GameUi gameUI, PlayerDataService playerDataService, ScoreHandler scoreHandler, YandexLeaderboard leaderboard, StartLevelViewController startLevelViewController)
     {
         _gameUI = gameUI;
         _playerDataService = playerDataService;
         _scoreHandler = scoreHandler;
         _leaderboard = leaderboard;
+        _startLevelViewController = startLevelViewController;
         _playerData = _playerDataService.PlayerData;
     }
 
     public async UniTask Win()
     {
         int levelScore = _scoreHandler.GetScore();
-
+        await _startLevelViewController.EndLevelAppear();
         await _gameUI.ShowLevelScoreAsync(levelScore);
         // показать дробление о набранные очки
 

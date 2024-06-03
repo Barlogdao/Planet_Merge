@@ -110,7 +110,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &5949981457798903628
 GameObject:
@@ -179,7 +179,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.4
+  m_Radius: 0.42
 --- !u!114 &2861689872375196038
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,7 +242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4942938873228812931, guid: 265d5c07e46422c4e87709f0a139bd6a, type: 3}
       propertyPath: m_fontSize
-      value: 5.3
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 4942938873228812931, guid: 265d5c07e46422c4e87709f0a139bd6a, type: 3}
       propertyPath: m_fontColor32.rgba

@@ -1,0 +1,30 @@
+using Cysharp.Threading.Tasks;
+using UnityEngine;
+
+public class LauncherView : AppearEntity
+{
+    [SerializeField] private MovingAppearEntity _spaceShip;
+    [SerializeField] private FadingAppearEntity _forceField;
+    [SerializeField] private MovingAppearEntity _planetView;
+
+    protected override void OnResetView()
+    {
+        _spaceShip.ResetView();
+        _forceField.ResetView();
+        _planetView.ResetView();
+    }
+
+    public override async UniTask AppearAsync()
+    {
+        await _spaceShip.AppearAsync();
+        await _forceField.AppearAsync();
+        await _planetView.AppearAsync();
+    }
+
+    public override async UniTask DisapearAsync()
+    {
+        await _planetView.DisapearAsync();
+        await _forceField.DisapearAsync();
+        await _spaceShip.DisapearAsync();
+    }
+}
