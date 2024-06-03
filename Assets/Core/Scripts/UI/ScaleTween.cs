@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace PlanetMerge.Utils
 {
-    public class ScaleTween:MonoBehaviour
+    public class ScaleTween : MonoBehaviour
     {
         [SerializeField] private float _scaleMiltiplier;
         [SerializeField] private float _duration;
@@ -13,7 +13,7 @@ namespace PlanetMerge.Utils
         private Vector3 _originScale;
         public void Initialize(Transform transform)
         {
-            _targetTransform= transform;
+            _targetTransform = transform;
             _originScale = transform.localScale;
         }
 

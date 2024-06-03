@@ -1,9 +1,6 @@
 using DG.Tweening;
 using PlanetMerge.Planets;
 using PlanetMerge.Services.Pools;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace PlanetMerge.Systems.Visual
@@ -24,20 +21,32 @@ namespace PlanetMerge.Systems.Visual
             _pool = pool;
 
             _gameEventMediator.PlanetMerged += OnPlanetMerged;
+            _gameEventMediator.PlanetSplitted += OnPlanetSplitted;
         }
+
 
         private void OnDestroy()
         {
             _gameEventMediator.PlanetMerged -= OnPlanetMerged;
+            _gameEventMediator.PlanetSplitted -= OnPlanetSplitted;
         }
 
-        private void OnPlanetMerged(Planet planet)
+        private void CollectEnergy(Vector2 startPosition)
         {
-            Vector2 startPosition = planet.transform.position;
             Vector2 endPosition = _launchPoint.LaunchPosition;
             Energy energy = _pool.Get(startPosition);
 
             energy.transform.DOMove(endPosition, _collectDuration).SetEase(_ease).OnComplete(() => _pool.Release(energy));
+        }
+
+        private void OnPlanetMerged(Planet planet)
+        {
+            CollectEnergy(planet.transform.position);
+        }
+
+        private void OnPlanetSplitted(Planet planet)
+        {
+            CollectEnergy(planet.transform.position);
         }
     }
 }

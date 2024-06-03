@@ -1,4 +1,3 @@
-using DG.Tweening;
 using PlanetMerge.Handlers.Pause;
 using PlanetMerge.Handlers.Split;
 using PlanetMerge.Planets;
@@ -12,7 +11,6 @@ using PlanetMerge.Systems.SaveLoad;
 using PlanetMerge.Systems.Tutorial;
 using PlanetMerge.Systems.Visual;
 using PlanetMerge.UI;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class EntryPoint : MonoBehaviour
@@ -128,7 +126,6 @@ public class EntryPoint : MonoBehaviour
         _limitHandler.Initialize(_gameEventMediator, _planetLimit);
         _goalHandler.Initialize(_gameEventMediator);
         _gameOverHandler.Initialize(_limitHandler, _goalHandler);
-        _startLevelViewController.Initialize();
 
         _scoreHandler = new ScoreHandler(_levelPlanets);
         _startLevelHandler = new StartLevelHandler(_gameUI, _levelPreparer, _tutorialSystem, _startLevelViewController);
@@ -136,7 +133,7 @@ public class EntryPoint : MonoBehaviour
 
         _focusHandler.Initialize(_pauseService);
         _rewardHandler.Initialize(_limitHandler, _pauseService);
-        _splitHandler.Initialize(_gameEventMediator, _planetSpawner, _levelPlanets);
+        _splitHandler.Initialize(_gameEventMediator, _levelPlanets);
         _audioHandler.Initialize(_audioService, _gameEventMediator);
         _muteHandler.Initialize(_audioService);
 

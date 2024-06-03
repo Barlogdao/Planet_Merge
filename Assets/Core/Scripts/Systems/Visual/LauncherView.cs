@@ -17,8 +17,10 @@ public class LauncherView : AppearEntity
     public override async UniTask AppearAsync()
     {
         await _spaceShip.AppearAsync();
-        await _forceField.AppearAsync();
-        await _planetView.AppearAsync();
+
+        await UniTask.WhenAll(
+            _forceField.AppearAsync(),
+            _planetView.AppearAsync());
     }
 
     public override async UniTask DisapearAsync()

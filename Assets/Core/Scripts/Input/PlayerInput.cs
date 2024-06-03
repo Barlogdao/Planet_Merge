@@ -6,19 +6,15 @@ namespace PlanetMerge.Systems
 {
     public class PlayerInput : MonoBehaviour
     {
-        [SerializeField] LayerMask _blockingLayer;
-
         public event Action ClickedDown;
         public event Action ClickedUp;
 
-        public Vector2 MousePosition => Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        public Vector2 PointerPosition => Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && !IsMouseOverUI())
+            if (Input.GetMouseButtonDown(0) && !IsPointerOverUI())
             {
-                
-
                 ClickedDown?.Invoke();
             }
             else if (Input.GetMouseButtonUp(0))
@@ -27,9 +23,16 @@ namespace PlanetMerge.Systems
             }
         }
 
-        private bool IsMouseOverUI()
+        private bool IsPointerOverUI()
         {
-            return EventSystem.current.IsPointerOverGameObject();
+            if (Agava.WebUtility.Device.IsMobile)
+            {
+                return EventSystem.current.IsPointerOverGameObject(0);
+            }
+            else
+            {
+                return EventSystem.current.IsPointerOverGameObject();
+            }
         }
     }
 }

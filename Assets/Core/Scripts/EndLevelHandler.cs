@@ -27,6 +27,7 @@ public class EndLevelHandler
     public async UniTask Win()
     {
         int levelScore = _scoreHandler.GetScore();
+
         await _startLevelViewController.EndLevelAppear();
         await _gameUI.ShowLevelScoreAsync(levelScore);
         // показать дробление о набранные очки

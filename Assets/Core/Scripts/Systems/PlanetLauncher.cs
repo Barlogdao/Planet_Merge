@@ -60,7 +60,7 @@ namespace PlanetMerge.Planets
 
         public Vector2 GetLaunchDirection()
         {
-            Vector2 targetPosition = _playerInput.MousePosition;
+            Vector2 targetPosition = _playerInput.PointerPosition;
             targetPosition.y = Mathf.Clamp(targetPosition.y, LaunchPosition.y + _targetPositionOffsetY, float.MaxValue);
 
             return targetPosition - LaunchPosition;
