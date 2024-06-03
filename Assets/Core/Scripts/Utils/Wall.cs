@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Wall : MonoBehaviour
 {
-    private const string FadeProperty = "_AlphaTintFade";
+    private const string FadeProperty = "_AddColorFade";
 
     [SerializeField] private float _fadeDuration = 0.2f;
 
