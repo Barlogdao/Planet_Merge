@@ -12,18 +12,20 @@ public class GameLoop : MonoBehaviour
     private EndLevelHandler _endLevelHandler;
     private PrepareLevelHandler _prepareLevelHandler;
     private RewardHandler _rewardHandler;
+    private InterstitialHandler _interstitialHandler;
 
     public event Action LevelPrepared;
     public event Action LevelStarted;
     public event Action LevelResumed;
 
-    public void Initialize(GameEventMediator gameEventMediator, LevelStateHandlers levelStateHandlers, RewardHandler rewardHandler)
+    public void Initialize(GameEventMediator gameEventMediator, LevelStateHandlers levelStateHandlers, RewardHandler rewardHandler, InterstitialHandler interstitialHandler)
     {
         _gameEventMediator = gameEventMediator;
         _prepareLevelHandler = levelStateHandlers.PrepareLevelHandler;
         _startLevelHandler = levelStateHandlers.StartLevelHandler;
         _endLevelHandler = levelStateHandlers.EndLevelHandler;
         _rewardHandler = rewardHandler;
+        _interstitialHandler = interstitialHandler;
 
         _gameEventMediator.GameWon += OnGameWon;
         _gameEventMediator.GameLost += OnGameLost;
@@ -77,12 +79,12 @@ public class GameLoop : MonoBehaviour
 
     private void OnNextLevelSelected()
     {
-        PrepareLevel();
+        _interstitialHandler.ShowAd(PrepareLevel, PrepareLevel, PrepareLevel);
     }
 
     private void OnRestartLevelSelected()
     {
-        PrepareLevel();
+        _interstitialHandler.ShowAd(PrepareLevel, PrepareLevel, PrepareLevel);
     }
 
     private void OnRewardSelected()

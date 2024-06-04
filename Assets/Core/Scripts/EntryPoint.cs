@@ -39,7 +39,7 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private InputController _inputController;
 
     [SerializeField] private RewardHandler _rewardHandler;
-    [SerializeField] private InterstitialHandler _interstitialHandler;
+    private InterstitialHandler _interstitialHandler;
 
     [SerializeField] private UiPanel _uiPanel;
     [SerializeField] private SplitHandler _splitHandler;
@@ -85,11 +85,11 @@ public class EntryPoint : MonoBehaviour
 
         InitializePlanetSystem();
         InitializePlanetLauncher();
-        InitializeLevelPreparer();
 
         InitializeHandlers();
 
         InitializeUi();
+        InitializeLevelPreparer();
         InitializeGameLoop();
 
         _gameEventMediator.Initialize(_planetPool, _gameOverHandler, _gameLoop, _gameUI);
@@ -114,7 +114,6 @@ public class EntryPoint : MonoBehaviour
 
         _energyLimit = new EnergyLimit();
         _levelPlanets.Initialize(_gameEventMediator);
-
     }
 
     private void InitializeServices()
@@ -129,37 +128,37 @@ public class EntryPoint : MonoBehaviour
         _trajectory.Initialize(_gameEventMediator, _planetLauncher, planetRadius);
     }
 
-    private void InitializeLevelPreparer()
-    {
-        _levelConditions = new LevelConditions(_goalHandler, _energyLimitHandler);
-        _levelGenerator.Initialize(_planetSpawner, _levelConditions, _planetLauncher);
-        _levelPreparer = new LevelPreparer(_levelGenerator, _levelPlanets, _gameUI);
-    }
+
 
     private void InitializeHandlers()
     {
         _tutorialSystem.Initialize(_playerInput);
 
+        _scoreHandler = new ScoreHandler(_levelPlanets);
         _energyLimitHandler.Initialize(_gameEventMediator, _energyLimit);
         _goalHandler.Initialize(_gameEventMediator);
         _gameOverHandler.Initialize(_energyLimitHandler, _goalHandler);
 
-        _scoreHandler = new ScoreHandler(_levelPlanets);
-        
-  
-
         _focusHandler.Initialize(_pauseService);
-        _rewardHandler.Initialize(_energyLimitHandler, _pauseService);
         _splitHandler.Initialize(_gameEventMediator, _levelPlanets);
         _audioHandler.Initialize(_audioService, _gameEventMediator);
         _muteHandler.Initialize(_audioService);
-        _interstitialHandler.Initialize(_gameEventMediator, _pauseService);
+
+        _interstitialHandler = new InterstitialHandler(_pauseService);
+        _rewardHandler.Initialize(_energyLimitHandler, _pauseService);
     }
 
     private void InitializeUi()
     {
         _uiPanel.Initialize(_energyLimitHandler, _goalHandler);
         _gameUI.Initialize(_uiPanel);
+    }
+
+    private void InitializeLevelPreparer()
+    {
+        _levelConditions = new LevelConditions(_goalHandler, _energyLimitHandler);
+        _levelGenerator.Initialize(_planetSpawner, _levelConditions, _planetLauncher);
+        _levelPreparer = new LevelPreparer(_levelGenerator, _levelPlanets, _gameUI);
     }
 
     private void InitializeGameLoop()
@@ -173,7 +172,7 @@ public class EntryPoint : MonoBehaviour
         EndLevelHandler endLevelHandler = new (playerData,_endLevelPresenter, _playerDataSystem);
         LevelStateHandlers levelStateHandlers = new (prepareLevelHandler, startLevelHandler, endLevelHandler);
 
-        _gameLoop.Initialize(_gameEventMediator, levelStateHandlers, _rewardHandler);
+        _gameLoop.Initialize(_gameEventMediator, levelStateHandlers, _rewardHandler, _interstitialHandler);
     }
 
     private void Start()
