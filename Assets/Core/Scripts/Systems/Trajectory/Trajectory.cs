@@ -19,7 +19,7 @@ namespace PlanetMerge.Systems
 
         public bool IsActive { get; private set; } = false;
 
-        public void Initialize(GameEventMediator gameEventMediator,PlanetLauncher planetLauncher, float planetRadius)
+        public void Initialize(GameEventMediator gameEventMediator, PlanetLauncher planetLauncher, float planetRadius)
         {
             _gameEventMediator = gameEventMediator;
             _planetLauncher = planetLauncher;

@@ -6,35 +6,35 @@ using UnityEngine;
 
 namespace PlanetMerge.Systems
 {
-    public class PlanetLimitHandler : MonoBehaviour
+    public class EnergyLimitHandler : MonoBehaviour
     {
         private IPlanetEvents _planetEvents;
-        private PlanetLimit _planetLimit;
+        private EnergyLimit _energyLimit;
         private Coroutine _limitCheckRoutine;
 
         public event Action LimitExpired;
         public event Action<int> LimitChanged;
 
-        public void Initialize(IPlanetEvents planetEvents, PlanetLimit planetLimit)
+        public void Initialize(IPlanetEvents planetEvents, EnergyLimit energyLimit)
         {
             _planetEvents = planetEvents;
-            _planetLimit = planetLimit;
+            _energyLimit = energyLimit;
 
             _planetEvents.PlanetMerged += OnPlanetMerged;
-            _planetLimit.AmountChanged += OnLimitChanged;
+            _energyLimit.AmountChanged += OnLimitChanged;
         }
 
         private void OnDestroy()
         {
             _planetEvents.PlanetMerged -= OnPlanetMerged;
-            _planetLimit.AmountChanged -= OnLimitChanged;
+            _energyLimit.AmountChanged -= OnLimitChanged;
         }
 
         private void OnLimitChanged(int amount)
         {
             LimitChanged?.Invoke(amount);
 
-            if (_planetLimit.HasPlanet == false)
+            if (_energyLimit.HasEnergy == false)
             {
                 _limitCheckRoutine ??= StartCoroutine(LimitCheck());
             }
@@ -50,20 +50,20 @@ namespace PlanetMerge.Systems
 
         public void SetLimit(int amount)
         {
-            _planetLimit.Prepare(amount);
+            _energyLimit.Prepare(amount);
         }
 
         private IEnumerator LimitCheck()
         {
             yield return new WaitForSeconds(5f);
 
-            if (_planetLimit.HasPlanet == false)
+            if (_energyLimit.HasEnergy == false)
                 LimitExpired?.Invoke();
         }
 
         private void OnPlanetMerged(Planet planet)
         {
-            _planetLimit.Add();
+            _energyLimit.Add();
         }
     }
 }

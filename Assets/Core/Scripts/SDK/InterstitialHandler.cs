@@ -1,15 +1,21 @@
+using PlanetMerge.Services.Pause;
 using UnityEngine;
 
 public class InterstitialHandler : MonoBehaviour
 {
-    [SerializeField] private GameEventMediator _gameEventMediator;
-    private void OnEnable()
+    private GameEventMediator _gameEventMediator;
+    private PauseService _pauseService;
+
+    public void Initialize(GameEventMediator gameEventMediator, PauseService pauseService)
     {
+        _gameEventMediator = gameEventMediator;
+        _pauseService = pauseService;
+
         _gameEventMediator.RestartLevelSelected += ShowAd;
         _gameEventMediator.NextLevelSelected += ShowAd;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _gameEventMediator.RestartLevelSelected -= ShowAd;
         _gameEventMediator.NextLevelSelected -= ShowAd;
@@ -18,20 +24,18 @@ public class InterstitialHandler : MonoBehaviour
     private void ShowAd()
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-
         Agava.YandexGames.InterstitialAd.Show(OnOpenCallback, OnCloseCallback);
 #endif
+        return;
     }
 
     private void OnCloseCallback(bool wasShown)
     {
-        Time.timeScale = 1f;
-        AudioListener.volume = 1f;
+        _pauseService.Unpause();
     }
 
     private void OnOpenCallback()
     {
-        Time.timeScale = 0f;
-        AudioListener.volume = 0f;
+        _pauseService.Pause();
     }
 }

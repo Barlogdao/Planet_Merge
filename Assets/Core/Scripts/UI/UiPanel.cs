@@ -1,5 +1,3 @@
-using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using PlanetMerge.Systems;
 using PlanetMerge.UI;
 using TMPro;
@@ -9,17 +7,17 @@ public class UiPanel : MonoBehaviour
 {
     [SerializeField] private LimitPanel _limitPanel;
     [SerializeField] private GoalPanel _goalPanel;
-
     [SerializeField] private TMP_Text _levelValue;
 
-    private PlanetLimitHandler _planetLimitHandler;
+    private EnergyLimitHandler _energyLimitHandler;
     private LevelGoalHandler _levelGoalHandler;
-    public void Initialize(PlanetLimitHandler planetLimitHandler, LevelGoalHandler levelGoalHandler)
+
+    public void Initialize(EnergyLimitHandler energyLimitHandler, LevelGoalHandler levelGoalHandler)
     {
-        _planetLimitHandler = planetLimitHandler;
+        _energyLimitHandler = energyLimitHandler;
         _levelGoalHandler = levelGoalHandler;
 
-        _limitPanel.Initialize(_planetLimitHandler);
+        _limitPanel.Initialize(_energyLimitHandler);
         _goalPanel.Initialize(_levelGoalHandler);
     }
 

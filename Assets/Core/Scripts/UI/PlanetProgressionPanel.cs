@@ -21,15 +21,13 @@ namespace PlanetMerge.UI
             _maxSliderVolume = _slider.maxValue;
         }
 
-        public async UniTaskVoid ShowProgress(IReadOnlyPlayerData playerData)
+        public async UniTask ShowProgressAsync(IReadOnlyPlayerData playerData)
         {
             int level = playerData.Level;
             int previousLevel = playerData.Level - 1;
             float sliderValue = GetSliderValue(previousLevel);
 
             _slider.value = sliderValue;
-
-            await UniTask.WaitForSeconds(_fillDuration);
 
             if (IsNeedUpgradePlanet(level))
                 sliderValue = _maxSliderVolume;

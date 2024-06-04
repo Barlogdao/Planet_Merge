@@ -4,13 +4,15 @@ using UnityEngine;
 
 namespace PlanetMerge.Systems.Visual
 {
-    public class StartLevelViewController : MonoBehaviour
+    public class StartLevelPresenter : MonoBehaviour
     {
         [SerializeField] private LauncherView _launcherView;
         [SerializeField] private UiPanelView _uiPanelView;
-        [SerializeField] private WallsViewController _wallsViewController;
+        [SerializeField] private WallsView _wallsView;
+        [SerializeField] private VictoryWindow _victoryWindow;
+        [SerializeField] private AppearWindow _looseWindow;
 
-        public async UniTask StartLevelAppear()
+        public async UniTask StartLevelAsync()
         {
             ResetView();
 
@@ -18,13 +20,24 @@ namespace PlanetMerge.Systems.Visual
 
             await UniTask.WhenAll(
                 _launcherView.AppearAsync(),
-                _wallsViewController.AppearAsync());
+                _wallsView.AppearAsync());
+        }
+
+        public void ResetLevel()
+        {
+            HideWIndows();
+        }
+
+        private void HideWIndows()
+        {
+            _victoryWindow.Hide();
+            _looseWindow.Hide();
         }
 
         public async UniTask EndLevelAppear()
         {
             await UniTask.WhenAll(
-                _wallsViewController.DisapearAsync(),
+                _wallsView.DisapearAsync(),
                 _uiPanelView.DisapearAsync());
 
             await _launcherView.DisapearAsync();
@@ -32,8 +45,9 @@ namespace PlanetMerge.Systems.Visual
 
         private void ResetView()
         {
+            HideWIndows();
             _launcherView.ResetView();
-            _wallsViewController.ResetView();
+            _wallsView.ResetView();
             _uiPanelView.ResetView();
         }
     }

@@ -16,7 +16,7 @@ namespace PlanetMerge.Planets
 
         private PlayerInput _playerInput;
         private PlanetSpawner _planetSpawner;
-        private PlanetLimit _planetLimit;
+        private EnergyLimit _energyLimit;
         private Trajectory _trajectory;
 
         private int _planetRank = 1;
@@ -25,28 +25,28 @@ namespace PlanetMerge.Planets
         private WaitForSeconds _cooldown;
 
         public Vector2 LaunchPosition => _launchPoint.position;
-        private bool CanLoad => _planetLimit.HasPlanet; 
+        private bool CanLoad => _energyLimit.HasEnergy; 
         private bool CanLaunch => CanLoad && _launchRoutine == null;
 
-        public void Initialize(PlayerInput playerInput, PlanetSpawner planetSpawner, PlanetLimit planetLimit, Trajectory trajectory)
+        public void Initialize(PlayerInput playerInput, PlanetSpawner planetSpawner, EnergyLimit energyLimit, Trajectory trajectory)
         {
             _playerInput = playerInput;
             _planetSpawner = planetSpawner;
-            _planetLimit = planetLimit;
+            _energyLimit = energyLimit;
             _trajectory = trajectory;
 
             _cooldown = new WaitForSeconds(_launchCooldown);
 
             _playerInput.ClickedDown += OnClickDown;
             _playerInput.ClickedUp += OnClickUp;
-            _planetLimit.AmountChanged += OnLimitChanged;
+            _energyLimit.AmountChanged += OnLimitChanged;
         }
 
         private void OnDestroy()
         {
             _playerInput.ClickedDown -= OnClickDown;
             _playerInput.ClickedUp -= OnClickUp;
-            _planetLimit.AmountChanged -= OnLimitChanged;
+            _energyLimit.AmountChanged -= OnLimitChanged;
         }
 
         public void Prepare(int planetRank)
@@ -83,7 +83,7 @@ namespace PlanetMerge.Planets
 
             if (CanLaunch)
             {
-                _planetLimit.Subtract();
+                _energyLimit.Subtract();
                 _launchRoutine = StartCoroutine(LaunchPlanet());
                 _planetView.Hide();
             }

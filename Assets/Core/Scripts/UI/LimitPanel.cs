@@ -12,19 +12,19 @@ namespace PlanetMerge.UI
         [SerializeField] private TMP_Text _limitAmount;
         [SerializeField] private ScaleTween _scaleTween;
 
-        private PlanetLimitHandler _planetLimitHandler;
+        private EnergyLimitHandler _energyLimitHandler;
 
-        public void Initialize(PlanetLimitHandler planetLimitHandler)
+        public void Initialize(EnergyLimitHandler energyLimitHandler)
         {
-            _planetLimitHandler = planetLimitHandler;
+            _energyLimitHandler = energyLimitHandler;
 
-            _planetLimitHandler.LimitChanged += OnLimitChanged;
+            _energyLimitHandler.LimitChanged += OnLimitChanged;
             _scaleTween.Initialize(_limitAmount.transform);
         }
 
         private void OnDestroy()
         {
-            _planetLimitHandler.LimitChanged += OnLimitChanged;
+            _energyLimitHandler.LimitChanged += OnLimitChanged;
         }
 
         private void OnLimitChanged(int amount)

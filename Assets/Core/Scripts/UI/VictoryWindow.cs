@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using DG.Tweening;
 using PlanetMerge.Utils;
 using TMPro;
 using UnityEngine;
@@ -12,28 +11,28 @@ namespace PlanetMerge.UI
         [SerializeField] private TMP_Text _scoreLabel;
         [SerializeField] private ScoreTween _scoreTween;
 
-        private int _currentScore;
+        //public void Initialize()
+        //{
+        //    _progressionPanel.Initialize();
+        //}
 
-        public void Initialize()
+        private void Awake()
         {
             _progressionPanel.Initialize();
         }
 
-        public void Prepare(IReadOnlyPlayerData playerData)
+        public async UniTask ShowAsync(int levelScore, int currentPlanetRank, IReadOnlyPlayerData playerData)
         {
-            _progressionPanel.Prepare(playerData.PlanetRank);
-            _scoreLabel.text = playerData.Score.ToString();
+            AppearAsync().Forget();
 
-            _currentScore = playerData.Score;
-        }
+            _progressionPanel.Prepare(currentPlanetRank);
+            _scoreLabel.text = levelScore.ToString();
+            int playerScore = playerData.Score;
 
-        public void ShowProgress(IReadOnlyPlayerData playerData)
-        {
-            _progressionPanel.ShowProgress(playerData).Forget();
 
-            int targetScore = playerData.Score;
-
-            _scoreTween.Run(_currentScore, targetScore, _scoreLabel).Forget();
+            await UniTask.WhenAll(
+                _progressionPanel.ShowProgressAsync(playerData),
+                _scoreTween.Run(levelScore, playerScore, _scoreLabel));
         }
     }
 }

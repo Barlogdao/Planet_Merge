@@ -1,6 +1,5 @@
 using Cysharp.Threading.Tasks;
 using PlanetMerge.SDK.Yandex;
-using PlanetMerge.Systems.SaveLoad;
 using System;
 using UnityEngine;
 
@@ -10,24 +9,20 @@ public class GameLoop : MonoBehaviour
 
     private StartLevelHandler _startLevelHandler;
     private EndLevelHandler _endLevelHandler;
-    private PlayerDataService _playerDataService;
+    private PrepareLevelHandler _prepareLevelHandler;
     private RewardHandler _rewardHandler;
-
-    private IReadOnlyPlayerData _playerData;
 
     public event Action LevelPrepared;
     public event Action LevelStarted;
     public event Action LevelResumed;
 
-    public void Initialize(GameEventMediator gameEventMediator, PlayerDataService playerDataService, StartLevelHandler startLevelHandler, EndLevelHandler endLevelHandler, RewardHandler rewardHandler)
+    public void Initialize(GameEventMediator gameEventMediator, LevelStateHandlers levelStateHandlers, RewardHandler rewardHandler)
     {
         _gameEventMediator = gameEventMediator;
-        _playerDataService = playerDataService;
-        _startLevelHandler = startLevelHandler;
-        _endLevelHandler = endLevelHandler;
+        _prepareLevelHandler = levelStateHandlers.PrepareLevelHandler;
+        _startLevelHandler = levelStateHandlers.StartLevelHandler;
+        _endLevelHandler = levelStateHandlers.EndLevelHandler;
         _rewardHandler = rewardHandler;
-
-        _playerData = _playerDataService.PlayerData;
 
         _gameEventMediator.GameWon += OnGameWon;
         _gameEventMediator.GameLost += OnGameLost;
@@ -54,7 +49,7 @@ public class GameLoop : MonoBehaviour
 
     private void PrepareLevel()
     {
-        _startLevelHandler.PrepareLevel(_playerData);
+        _prepareLevelHandler.PrepareLevel();
         LevelPrepared?.Invoke();
 
         StartLevel().Forget();
@@ -62,7 +57,7 @@ public class GameLoop : MonoBehaviour
 
     private async UniTaskVoid StartLevel()
     {
-        await _startLevelHandler.StartLevelAsync(_playerData.Level);
+        await _startLevelHandler.StartLevelAsync();
         LevelStarted?.Invoke();
     }
 
@@ -88,7 +83,7 @@ public class GameLoop : MonoBehaviour
 
     private void OnRewardSelected()
     {
-        _rewardHandler.AddReward(ResumeLevel,PrepareLevel);
+        _rewardHandler.AddReward(ResumeLevel, PrepareLevel);
     }
 
     private void ResumeLevel()

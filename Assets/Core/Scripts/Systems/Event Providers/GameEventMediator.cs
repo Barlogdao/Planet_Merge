@@ -54,8 +54,6 @@ public class GameEventMediator : MonoBehaviour, IPlanetEvents
         _uiEvents.RewardPressed += OnRewardPressed;
     }
 
-
-
     private void OnDestroy()
     {
         _planetStatusNotifier.PlanetCreated -= OnPlanetCreated;

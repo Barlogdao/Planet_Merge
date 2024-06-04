@@ -1,12 +1,12 @@
 using System;
 
-public class PlanetLimit
+public class EnergyLimit
 {
     private int _amount;
 
     public event Action<int> AmountChanged;
 
-    public bool HasPlanet => _amount > 0;
+    public bool HasEnergy => _amount > 0;
 
     public void Prepare(int amount)
     {
@@ -23,7 +23,7 @@ public class PlanetLimit
 
     public bool Subtract()
     {
-        if (HasPlanet)
+        if (HasEnergy)
         {
             _amount--;
             RaiseAmountChangedEvent();

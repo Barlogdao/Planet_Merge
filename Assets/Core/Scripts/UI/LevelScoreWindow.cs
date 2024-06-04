@@ -11,10 +11,11 @@ namespace PlanetMerge.UI
         [SerializeField] private ScoreTween _scoreTween;
         [SerializeField] private MoveTween _moveTween;
 
-        private int _startScore = 0;
+        private readonly int _startScore = 0;
+
         private Vector3 _originPosition;
 
-        public void Initialize()
+        private void Awake()
         {
             _originPosition = transform.position;
             Hide();

@@ -1,45 +1,34 @@
 using Cysharp.Threading.Tasks;
 using PlanetMerge.Systems.Tutorial;
 using PlanetMerge.Systems.Visual;
-using PlanetMerge.UI;
 
 public class StartLevelHandler
 {
-    private GameUi _gameUi;
-    private LevelPreparer _levelPreparer;
-    private TutorialSystem _tutorialSystem;
-    private StartLevelViewController _startLevelViewController;
-    
+    private readonly TutorialSystem _tutorialSystem;
+    private readonly StartLevelPresenter _startLevelPresenter;
+    private readonly IReadOnlyPlayerData _playerData;
 
-    public StartLevelHandler(GameUi gameUi, LevelPreparer levelPreparer, TutorialSystem tutorialController, StartLevelViewController startLevelViewController)
+    public StartLevelHandler(IReadOnlyPlayerData playerData, TutorialSystem tutorialController, StartLevelPresenter startLevelPresenter)
     {
-        _gameUi = gameUi;
-        _levelPreparer = levelPreparer;
+        _playerData = playerData;
         _tutorialSystem = tutorialController;
-        _startLevelViewController = startLevelViewController;
+        _startLevelPresenter = startLevelPresenter;
     }
 
-    public void PrepareLevel(IReadOnlyPlayerData playerData)
+    public async UniTask StartLevelAsync()
     {
-        _levelPreparer.Prepare(playerData);
-    }
-
-    public async UniTask StartLevelAsync(int level)
-    {
-        _gameUi.Hide();
-
-        if (level == Constants.TutorialLevel)
+        if (_playerData.Level == Constants.TutorialLevel)
         {
             _tutorialSystem.RunTutorialAsync().Forget();
         }
         else
         {
-            await _startLevelViewController.StartLevelAppear();
+            await _startLevelPresenter.StartLevelAsync();
         }
     }
 
     public void ResumeLevel()
     {
-        _gameUi.Hide();
+        _startLevelPresenter.ResetLevel();
     }
 }

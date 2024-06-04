@@ -4,17 +4,17 @@ using PlanetMerge.Systems;
 public class LevelConditions
 {
     private readonly LevelGoalHandler _levelGoalHandler;
-    private readonly PlanetLimitHandler _planetLimitHandler;
+    private readonly EnergyLimitHandler _energyLimitHandler;
 
-    public LevelConditions(LevelGoalHandler levelGoalHandler, PlanetLimitHandler planetLimitHandler)
+    public LevelConditions(LevelGoalHandler levelGoalHandler, EnergyLimitHandler energyLimitHandler)
     {
         _levelGoalHandler = levelGoalHandler;
-        _planetLimitHandler = planetLimitHandler;
+        _energyLimitHandler = energyLimitHandler;
     }
 
     public void Prepare(LevelGoal levelGoal, int planetRank, int limitAmount)
     {
         _levelGoalHandler.Prepare(levelGoal.MergeAmount, planetRank + levelGoal.PlanetRankModifier);
-        _planetLimitHandler.SetLimit(limitAmount);
+        _energyLimitHandler.SetLimit(limitAmount);
     }
 }

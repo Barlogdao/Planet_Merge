@@ -9,10 +9,6 @@ namespace PlanetMerge.UI
 {
     public class GameUi : MonoBehaviour, IGameUiEvents
     {
-        [SerializeField] private VictoryWindow _victoryWindow;
-        [SerializeField] private AppearWindow _looseWindow;
-        [SerializeField] private LevelScoreWindow _levelScoreWindow;
-
         [SerializeField] private Button _nextLevelButton;
         [SerializeField] private Button _resetLevelButton;
         [SerializeField] private Button _rewardButton;
@@ -27,13 +23,9 @@ namespace PlanetMerge.UI
         {
             _uiPanel = uiPanel;
 
-            _victoryWindow.Initialize();
-            _levelScoreWindow.Initialize();
-
             _nextLevelButton.onClick.AddListener(OnNextLevelPressed);
             _resetLevelButton.onClick.AddListener(OnResetLevelPressed);
             _rewardButton.onClick.AddListener(OnRewardPressed);
-
         }
 
         private void OnDestroy()
@@ -46,11 +38,6 @@ namespace PlanetMerge.UI
         public void Prepare(IReadOnlyPlayerData playerData)
         {
             _uiPanel.Prepare(playerData);
-        }
-
-        public async UniTask ShowLevelScoreAsync(int levelScore)
-        {
-            await _levelScoreWindow.ShowScoreAsync(levelScore);
         }
 
         private void OnRewardPressed()
@@ -66,28 +53,6 @@ namespace PlanetMerge.UI
         private void OnNextLevelPressed()
         {
             NextLevelPressed?.Invoke();
-        }
-
-        public void Hide()
-        {
-            _victoryWindow.Hide();
-            _looseWindow.Hide();
-        }
-
-        public void ShowVictoryWindow(IReadOnlyPlayerData playerData)
-        {
-            _victoryWindow.AppearAsync().Forget();
-            _victoryWindow.Prepare(playerData);
-        }
-
-        public void ShowProgress(IReadOnlyPlayerData playerData)
-        {
-            _victoryWindow.ShowProgress(playerData);
-        }
-
-        public void ShowLooseWindow()
-        {
-            _looseWindow.AppearAsync().Forget();
         }
     }
 }

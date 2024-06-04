@@ -4,36 +4,34 @@ using UnityEngine;
 
 public class GameOverHandler : MonoBehaviour
 {
-    private PlanetLimitHandler _planetLimitHandler;
+    private EnergyLimitHandler _energyLimitHandler;
     private LevelGoalHandler _levelGoalHandler;
 
     public event Action GameWon;
     public event Action GameLost;
 
-    public void Initialize(PlanetLimitHandler planetLimitHandler, LevelGoalHandler levelGoalHandler)
+    public void Initialize(EnergyLimitHandler energyLimitHandler, LevelGoalHandler levelGoalHandler)
     {
-        _planetLimitHandler = planetLimitHandler;
+        _energyLimitHandler = energyLimitHandler;
         _levelGoalHandler = levelGoalHandler;
 
-        _planetLimitHandler.LimitExpired += OnLimitExpired;
+        _energyLimitHandler.LimitExpired += OnLimitExpired;
         _levelGoalHandler.GoalReached += OnGoalReached;
     }
 
     private void OnDestroy()
     {
-        _planetLimitHandler.LimitExpired -= OnLimitExpired;
+        _energyLimitHandler.LimitExpired -= OnLimitExpired;
         _levelGoalHandler.GoalReached -= OnGoalReached;
     }
 
     private void OnGoalReached()
     {
         GameWon?.Invoke();
-        Debug.Log("WIN");
     }
 
     private void OnLimitExpired()
     {
         GameLost?.Invoke();
-        Debug.Log("LOOSE");
     }
 }

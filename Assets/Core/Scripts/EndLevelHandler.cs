@@ -1,65 +1,31 @@
 using Cysharp.Threading.Tasks;
-using PlanetMerge.SDK.Yandex;
 using PlanetMerge.Systems.SaveLoad;
-using PlanetMerge.Systems.Visual;
-using PlanetMerge.UI;
-using UnityEngine;
 
 public class EndLevelHandler
 {
-    private readonly GameUi _gameUI;
-    private readonly PlayerDataService _playerDataService;
-    private readonly ScoreHandler _scoreHandler;
+    private readonly EndLevelPresenter _endLevelPresenter;
     private readonly IReadOnlyPlayerData _playerData;
-    private readonly YandexLeaderboard _leaderboard;
-    private readonly StartLevelViewController _startLevelViewController;
+    private readonly PlayerDataSystem _playerDataSystem;
 
-    public EndLevelHandler(GameUi gameUI, PlayerDataService playerDataService, ScoreHandler scoreHandler, YandexLeaderboard leaderboard, StartLevelViewController startLevelViewController)
+    public EndLevelHandler(IReadOnlyPlayerData playerData, EndLevelPresenter endLevelPresenter, PlayerDataSystem playerDataSystem)
     {
-        _gameUI = gameUI;
-        _playerDataService = playerDataService;
-        _scoreHandler = scoreHandler;
-        _leaderboard = leaderboard;
-        _startLevelViewController = startLevelViewController;
-        _playerData = _playerDataService.PlayerData;
+        _endLevelPresenter = endLevelPresenter;
+        _playerData = playerData;
+        _playerDataSystem = playerDataSystem;
     }
 
     public async UniTask Win()
     {
-        int levelScore = _scoreHandler.GetScore();
+        int levelScore = _playerDataSystem.GetLevelScore();
+        int currentPlanetRank = _playerData.PlanetRank;
 
-        await _startLevelViewController.EndLevelAppear();
-        await _gameUI.ShowLevelScoreAsync(levelScore);
-        // показать дробление о набранные очки
+        _playerDataSystem.UpdatePlayerData();
 
-        //открыть окно победы
-        _gameUI.ShowVictoryWindow(_playerData);
-
-        //обновить данные
-        UpdatePlayerData(levelScore);
-
-        //запустить анимашку прогрессии
-        _gameUI.ShowProgress(_playerData);
+        await _endLevelPresenter.ShowWinAsync(levelScore, currentPlanetRank, _playerData);
     }
 
     public void Loose()
     {
-        _gameUI.ShowLooseWindow();
-    }
-
-    private void UpdatePlayerData(int levelScore)
-    {
-        _playerDataService.LevelUp();
-
-        if (_playerData.Level % Constants.PlanetUpgradeStep == 0)
-        {
-            _playerDataService.UpgradePlanetRank();
-        }
-
-        _playerDataService.AddScore(levelScore);
-#if UNITY_WEBGL && !UNITY_EDITOR
-        _leaderboard.SetPlayerScore(_playerData.Score);
-#endif
-
+        _endLevelPresenter.ShowLooseAsync().Forget();
     }
 }

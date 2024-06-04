@@ -25,8 +25,10 @@ public class LauncherView : AppearEntity
 
     public override async UniTask DisapearAsync()
     {
-        await _planetView.DisapearAsync();
-        await _forceField.DisapearAsync();
+        await UniTask.WhenAll(
+            _forceField.DisapearAsync(),
+            _planetView.DisapearAsync());
+   
         await _spaceShip.DisapearAsync();
     }
 }

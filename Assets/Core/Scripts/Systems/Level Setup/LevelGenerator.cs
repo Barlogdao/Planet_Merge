@@ -16,8 +16,6 @@ namespace PlanetMerge.Systems
         private PlanetSpawner _planetSpawner;
         private LevelConditions _levelConditions;
 
-        public event Action LevelCreated;
-
         public void Initialize(PlanetSpawner planetSpawner, LevelConditions levelConditions, PlanetLauncher planetLauncher)
         {
             _planetSpawner = planetSpawner;
@@ -28,25 +26,20 @@ namespace PlanetMerge.Systems
         public void Generate(IReadOnlyPlayerData playerData)
         {
             int level = playerData.Level;
-
             LevelGoal levelGoal =_levelGoalService.GetLevelGoal(level);
             LevelLayout levelLayout = _levelLayoutService.GetLevelLayout(level);
             int limitAmount = _levelLimitService.GetLimitAmount();
-
             int planetRank = playerData.PlanetRank;
 
             SetPlanets(levelLayout, planetRank);
             SetPlanetLauncher(planetRank);
             SetLevelConditions(levelGoal, planetRank, limitAmount);
-
-            LevelCreated?.Invoke();
         }
 
         private void SetLevelConditions(LevelGoal levelGoal, int planetRank, int limitAmount)
         {
             _levelConditions.Prepare(levelGoal, planetRank, limitAmount);
         }
-
 
         private void SetPlanets(LevelLayout levelLayout, int planetRank)
         {
