@@ -4,7 +4,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks.Linq;
 using DG.Tweening;
 
-public class WallsView : AppearEntity
+public class WallsView : AppearingEntity
 {
     private const string DissolveProperty = "_FullGlowDissolveFade";
     [SerializeField] private SpriteRenderer[] _spriteRenderers;

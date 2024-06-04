@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 
 [RequireComponent(typeof(CanvasGroup))]
-public class UiPanelView : AppearEntity
+public class UiPanelView : AppearingEntity
 {
     [SerializeField] private float _tweenDuration = 1f;
     [SerializeField] private float _targetScale = 1.3f;

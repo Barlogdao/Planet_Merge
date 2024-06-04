@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace PlanetMerge.Sevices.Audio
 {
@@ -38,11 +39,13 @@ namespace PlanetMerge.Sevices.Audio
         public void PauseAudio()
         {
             AudioListener.pause = true;
+            AudioListener.volume = 0f;
         }
 
         public void UnpauseAudio()
         {
             AudioListener.pause = false;
+            AudioListener.volume = 1f;
         }
     }
 }

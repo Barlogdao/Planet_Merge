@@ -2,7 +2,7 @@ using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using UnityEngine;
 
-public class MovingAppearEntity : AppearEntity
+public class MovingAppearEntity : AppearingEntity
 {
     [SerializeField] private Vector3 _startPosition;
     [SerializeField] private float _appearDuration = 0.4f;

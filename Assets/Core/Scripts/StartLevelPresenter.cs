@@ -11,6 +11,7 @@ namespace PlanetMerge.Systems.Visual
         [SerializeField] private WallsView _wallsView;
         [SerializeField] private VictoryWindow _victoryWindow;
         [SerializeField] private AppearWindow _looseWindow;
+        [SerializeField] private MovingBackground _movingBackground;
 
         public async UniTask StartLevelAsync()
         {
@@ -21,6 +22,8 @@ namespace PlanetMerge.Systems.Visual
             await UniTask.WhenAll(
                 _launcherView.AppearAsync(),
                 _wallsView.AppearAsync());
+
+            _movingBackground.enabled = true;
         }
 
         public void ResetLevel()
@@ -46,6 +49,7 @@ namespace PlanetMerge.Systems.Visual
         private void ResetView()
         {
             HideWIndows();
+            _movingBackground.enabled = false;
             _launcherView.ResetView();
             _wallsView.ResetView();
             _uiPanelView.ResetView();

@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bcd102f05323be4f9be0dc6415b81d8, type: 3}
-  m_Name: Goal03
+  m_Script: {fileID: 11500000, guid: 0e35d25cc040dbc47b6c1b76da929cd9, type: 3}
+  m_Name: Planet_10
   m_EditorClassIdentifier: 
-  MergeAmount: 3
-  PlanetRankModifier: 2
+  _sprite: {fileID: 723284090, guid: 5c7ede9e06ad59247afe4d5ac4499d41, type: 3}
+  <LabelColor>k__BackingField: {r: 1, g: 1, b: 1, a: 1}

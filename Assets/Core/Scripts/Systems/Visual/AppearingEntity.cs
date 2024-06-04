@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public abstract class AppearEntity : MonoBehaviour
+public abstract class AppearingEntity : MonoBehaviour
 {
     private void Awake()
     {

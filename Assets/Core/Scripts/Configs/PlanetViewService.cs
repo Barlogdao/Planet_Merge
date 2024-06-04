@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using NaughtyAttributes;
 
 namespace PlanetMerge.Configs
 {
@@ -8,7 +9,7 @@ namespace PlanetMerge.Configs
     {
         private const int ArrayOffset = 1;
 
-        [SerializeField] private PlanetViewConfig[] _planetViewConfigs;
+        [SerializeField, Expandable] private PlanetViewConfig[] _planetViewConfigs;
 
         public PlanetViewData GetViewData(int planetRank)
         {

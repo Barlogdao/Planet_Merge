@@ -1,3 +1,4 @@
+using Agava.YandexGames;
 using Cysharp.Threading.Tasks;
 using PlanetMerge.SDK.Yandex;
 using System;
@@ -45,6 +46,9 @@ public class GameLoop : MonoBehaviour
     public void Run()
     {
         PrepareLevel();
+#if UNITY_WEBGL && !UNITY_EDITOR
+        YandexGamesSdk.GameReady();
+#endif
     }
 
     private void PrepareLevel()

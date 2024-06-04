@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
-public class LauncherView : AppearEntity
+public class LauncherView : AppearingEntity
 {
     [SerializeField] private MovingAppearEntity _spaceShip;
     [SerializeField] private FadingAppearEntity _forceField;

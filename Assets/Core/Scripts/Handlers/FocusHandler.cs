@@ -19,6 +19,12 @@ namespace PlanetMerge.Handlers.Pause
             WebApplication.InBackgroundChangeEvent += OnInBackgroundChangeWeb;
         }
 
+        private void OnDisable()
+        {
+            Application.focusChanged -= OnInBackgroundChangeApp;
+            WebApplication.InBackgroundChangeEvent -= OnInBackgroundChangeWeb;
+        }
+
         private void OnInBackgroundChangeApp(bool inApp)
         {
             PauseGame(!inApp);

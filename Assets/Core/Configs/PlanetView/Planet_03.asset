@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Planet_03
   m_EditorClassIdentifier: 
   _sprite: {fileID: -1837933976, guid: 5c7ede9e06ad59247afe4d5ac4499d41, type: 3}
-  <LabelColor>k__BackingField: {r: 0.9622642, g: 0.46466097, b: 0.030865014, a: 1}
+  <LabelColor>k__BackingField: {r: 1, g: 0.98685616, b: 0.97547174, a: 1}

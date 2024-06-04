@@ -15,7 +15,14 @@ MonoBehaviour:
   _planetViewConfigs:
   - {fileID: 11400000, guid: 97dfc477a18f6e84da75e9d121cc99f1, type: 2}
   - {fileID: 11400000, guid: 2351babd9cb727145a501319d046fcfd, type: 2}
-  - {fileID: 11400000, guid: c1fa1286efc84aa49a64b0caeb0a3233, type: 2}
   - {fileID: 11400000, guid: 9c6754913297f7c428db501b8d70eca8, type: 2}
+  - {fileID: 11400000, guid: c1fa1286efc84aa49a64b0caeb0a3233, type: 2}
   - {fileID: 11400000, guid: d846a4e7d23665e4a93b00dbcc1c2b97, type: 2}
   - {fileID: 11400000, guid: 7cc45eee231c3d4469254fe6fbf6d8fc, type: 2}
+  - {fileID: 11400000, guid: a56f235891c798d4382fef0bad5cc040, type: 2}
+  - {fileID: 11400000, guid: 9c4285bbad83019419a83f15d17ff46b, type: 2}
+  - {fileID: 11400000, guid: 2ae0055d4a3951d48b4805700cc69368, type: 2}
+  - {fileID: 11400000, guid: dfaad6ba7c218a0419914310c6b69f7e, type: 2}
+  - {fileID: 11400000, guid: 1f6a99522b37acf4eb3e32306f6bb53e, type: 2}
+  - {fileID: 11400000, guid: dfdd558f50620a1449de48b03f6c2398, type: 2}
+  - {fileID: 11400000, guid: f65abd4fd6706fa4fb23e84fec43aea5, type: 2}

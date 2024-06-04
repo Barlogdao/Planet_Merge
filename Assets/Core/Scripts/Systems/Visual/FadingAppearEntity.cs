@@ -4,7 +4,7 @@ using PlanetMerge.Utils.Extensions;
 using UnityEngine;
 
 [RequireComponent(typeof(SpriteRenderer))]
-public class FadingAppearEntity : AppearEntity
+public class FadingAppearEntity : AppearingEntity
 {
     [SerializeField] private float _fadeDuration = 0.4f;
     [SerializeField] private Ease _ease;

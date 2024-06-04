@@ -15,5 +15,12 @@ MonoBehaviour:
   _levelLayouts:
   - {fileID: 11400000, guid: 2ee12089821fd3a41a83aaf0bb43469d, type: 2}
   - {fileID: 11400000, guid: 4a1bc6643652d384daa0e0612ac14475, type: 2}
+  - {fileID: 11400000, guid: 84986fc433c38ed42b5e7446292bb297, type: 2}
   - {fileID: 11400000, guid: 2053ea625baffd4498ddc01d6a4f43f6, type: 2}
+  - {fileID: 11400000, guid: e8a07a77864afb448a1ceaecc2e1b2f9, type: 2}
+  - {fileID: 11400000, guid: d059efd78e37ac64782948e21c3c5583, type: 2}
+  - {fileID: 11400000, guid: 1244302d6549c244cabb0b67dd1f032c, type: 2}
+  - {fileID: 11400000, guid: 952fa28c11aa93346b17497dc1899e0e, type: 2}
+  - {fileID: 11400000, guid: d23edb3c304167c44b86e2255b6ebfbf, type: 2}
+  - {fileID: 11400000, guid: bff54971d4c5ada41878a48e44a36313, type: 2}
   <TutorialLevelLayout>k__BackingField: {fileID: 11400000, guid: 2ee12089821fd3a41a83aaf0bb43469d, type: 2}
