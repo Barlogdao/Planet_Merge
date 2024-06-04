@@ -5767,7 +5767,6 @@ MonoBehaviour:
   _levelPlanets: {fileID: 785785555}
   _inputController: {fileID: 785785553}
   _rewardHandler: {fileID: 910457500}
-  _interstitialHandler: {fileID: 1936496986}
   _uiPanel: {fileID: 477679559}
   _splitHandler: {fileID: 840283856}
   _audioService: {fileID: 227905879}
@@ -12784,50 +12783,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.56, y: 2.56}
   m_EdgeRadius: 0
---- !u!1 &1936496985
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1936496987}
-  - component: {fileID: 1936496986}
-  m_Layer: 0
-  m_Name: Inter
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1936496986
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936496985}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 086b816338cd68f418431e73912d895b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1936496987
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1936496985}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.09, y: -1.52, z: 1452.9347}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1950250602
 GameObject:
   m_ObjectHideFlags: 0
@@ -14601,7 +14556,6 @@ SceneRoots:
   - {fileID: 840283857}
   - {fileID: 1983963827}
   - {fileID: 910457501}
-  - {fileID: 1936496987}
   - {fileID: 1950250604}
   - {fileID: 1260062383}
   - {fileID: 1443108331}
