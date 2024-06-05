@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace PlanetMerge.Sevices.Audio
 {
@@ -15,7 +14,7 @@ namespace PlanetMerge.Sevices.Audio
 
         public void PlaySound(AudioClip clip)
         {
-            _soundSource.PlayOneShot(clip, Random.Range(0.8f, 1f));
+            _soundSource.PlayOneShot(clip);
         }
 
         public void PlayMusic(AudioClip clip)

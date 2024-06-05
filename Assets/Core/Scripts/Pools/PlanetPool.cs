@@ -33,7 +33,8 @@ namespace PlanetMerge.Planets
 
         public void Release(Planet planet)
         {
-            _pool.Release(planet);
+            if (planet.enabled)
+                _pool.Release(planet);
         }
 
         private Planet Create()

@@ -3280,13 +3280,13 @@ MonoBehaviour:
         isBuiltIn: 0
         script: {fileID: 11500000, guid: 6232a9bc959089041b10860134d1b7f6, type: 3}
         hash: -1
-      - displayName: PlanetLimitHandler
-        name: PlanetMerge.Systems.PlanetLimitHandler, Assembly-CSharp, Version=0.0.0.0,
+      - displayName: EnergyLimitHandler
+        name: PlanetMerge.Systems.EnergyLimitHandler, Assembly-CSharp, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         content:
-          m_Text: PlanetLimitHandler
+          m_Text: EnergyLimitHandler
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
-          m_Tooltip: PlanetLimitHandler
+          m_Tooltip: EnergyLimitHandler
         shown: 0
         isBuiltIn: 0
         script: {fileID: 11500000, guid: ba0ca3415da24d549bb8841db4e9f52f, type: 3}
@@ -3663,6 +3663,37 @@ MonoBehaviour:
         shown: 0
         isBuiltIn: 0
         script: {fileID: 11500000, guid: 70ca6750c8a36e04b8ae5d1b84bdda08, type: 3}
+        hash: -1
+      - displayName: YandexLeaderboard
+        name: PlanetMerge.SDK.Yandex.YandexLeaderboard, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: YandexLeaderboard
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: YandexLeaderboard
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: fc8eb7168ee68e4468c94d0961176de8, type: 3}
+        hash: -1
+      - displayName: WallsView
+        name: WallsView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: WallsView
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: WallsView
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 5fc236f70c568444db9da4bc94c7b93a, type: 3}
+        hash: -1
+      - displayName: LauncherView
+        name: LauncherView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: LauncherView
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: LauncherView
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 066152ac80c391c488da15286062f62b, type: 3}
         hash: -1
     excludedComponents:
       name: Excluded
