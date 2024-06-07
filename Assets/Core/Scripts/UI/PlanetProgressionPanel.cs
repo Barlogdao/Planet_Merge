@@ -11,15 +11,9 @@ namespace PlanetMerge.UI
         [SerializeField] private float _fillDuration;
         [SerializeField] private Ease _fillEase;
 
-        private int _upgradeStep;
-        private float _minSliderVolume;
-        private float _maxSliderVolume;
-        public void Initialize()
-        {
-            _upgradeStep = Constants.PlanetUpgradeStep;
-            _minSliderVolume = _slider.minValue;
-            _maxSliderVolume = _slider.maxValue;
-        }
+        private readonly int _upgradeStep = Constants.PlanetUpgradeStep;
+        private readonly float _minSliderVolume = 0f;
+        private readonly float _maxSliderVolume = 1f;
 
         public async UniTask ShowProgressAsync(IReadOnlyPlayerData playerData)
         {

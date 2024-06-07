@@ -11,28 +11,20 @@ namespace PlanetMerge.UI
         [SerializeField] private TMP_Text _scoreLabel;
         [SerializeField] private ScoreTween _scoreTween;
 
-        //public void Initialize()
-        //{
-        //    _progressionPanel.Initialize();
-        //}
-
-        private void Awake()
-        {
-            _progressionPanel.Initialize();
-        }
-
         public async UniTask ShowAsync(int levelScore, int currentPlanetRank, IReadOnlyPlayerData playerData)
         {
             AppearAsync().Forget();
 
+            int newScore = playerData.Score;
+            int previousScore = newScore - levelScore;
+
             _progressionPanel.Prepare(currentPlanetRank);
-            _scoreLabel.text = levelScore.ToString();
-            int playerScore = playerData.Score;
+            _scoreLabel.text = newScore.ToString();
 
 
             await UniTask.WhenAll(
                 _progressionPanel.ShowProgressAsync(playerData),
-                _scoreTween.Run(levelScore, playerScore, _scoreLabel));
+                _scoreTween.Run(previousScore, newScore, _scoreLabel));
         }
     }
 }

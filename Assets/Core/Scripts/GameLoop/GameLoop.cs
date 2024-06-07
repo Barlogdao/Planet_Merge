@@ -7,7 +7,6 @@ using UnityEngine;
 public class GameLoop : MonoBehaviour
 {
     private GameEventMediator _gameEventMediator;
-
     private StartLevelState _startLevelState;
     private EndLevelState _endLevelState;
     private PrepareLevelState _prepareLevelState;

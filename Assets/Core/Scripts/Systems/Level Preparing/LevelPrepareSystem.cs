@@ -3,14 +3,14 @@ using PlanetMerge.UI;
 
 public class LevelPrepareSystem
 {
-    private LevelGenerator _levelGenerator;
-    private LevelPlanetsController _levelPlanets;
-    private GameUi _gameUI;
+    private readonly LevelGenerator _levelGenerator;
+    private readonly LevelPlanetsController _levelPlanetsController;
+    private readonly GameUi _gameUI;
 
-    public LevelPrepareSystem(LevelGenerator levelGenerator, LevelPlanetsController levelPlanets, GameUi gameUI)
+    public LevelPrepareSystem(LevelGenerator levelGenerator, LevelPlanetsController levelPlanetsController, GameUi gameUI)
     {
         _levelGenerator = levelGenerator;
-        _levelPlanets = levelPlanets;
+        _levelPlanetsController = levelPlanetsController;
         _gameUI = gameUI;
     }
 
@@ -24,7 +24,7 @@ public class LevelPrepareSystem
 
     private void ClearLevel()
     {
-        _levelPlanets.Clear();
+        _levelPlanetsController.Clear();
     }
 
     private void GenerateLevel(IReadOnlyPlayerData playerData)

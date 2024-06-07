@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class GameOverHandler : MonoBehaviour
 {
-    private EnergyLimitHandler _energyLimitHandler;
-    private LevelGoalHandler _levelGoalHandler;
+    private IEnergyLimitNotifier _energyLimitNotifier;
+    private ILevelGoalNotifier _levelGoalNotifier;
 
     public event Action GameWon;
     public event Action GameLost;
 
-    public void Initialize(EnergyLimitHandler energyLimitHandler, LevelGoalHandler levelGoalHandler)
+    public void Initialize(IEnergyLimitNotifier energyLimitNotifier, ILevelGoalNotifier levelGoalNotifier)
     {
-        _energyLimitHandler = energyLimitHandler;
-        _levelGoalHandler = levelGoalHandler;
+        _energyLimitNotifier = energyLimitNotifier;
+        _levelGoalNotifier = levelGoalNotifier;
 
-        _energyLimitHandler.LimitExpired += OnLimitExpired;
-        _levelGoalHandler.GoalReached += OnGoalReached;
+        _energyLimitNotifier.LimitExpired += OnLimitExpired;
+        _levelGoalNotifier.GoalReached += OnGoalReached;
     }
 
     private void OnDestroy()
     {
-        _energyLimitHandler.LimitExpired -= OnLimitExpired;
-        _levelGoalHandler.GoalReached -= OnGoalReached;
+        _energyLimitNotifier.LimitExpired -= OnLimitExpired;
+        _levelGoalNotifier.GoalReached -= OnGoalReached;
     }
 
     private void OnGoalReached()

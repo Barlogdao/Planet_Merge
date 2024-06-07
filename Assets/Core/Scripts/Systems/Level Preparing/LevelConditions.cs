@@ -3,10 +3,10 @@ using PlanetMerge.Systems;
 
 public class LevelConditions
 {
-    private readonly LevelGoalHandler _levelGoalHandler;
-    private readonly EnergyLimitHandler _energyLimitHandler;
+    private readonly LevelGoalController _levelGoalHandler;
+    private readonly EnergyLimitController _energyLimitHandler;
 
-    public LevelConditions(LevelGoalHandler levelGoalHandler, EnergyLimitHandler energyLimitHandler)
+    public LevelConditions(LevelGoalController levelGoalHandler, EnergyLimitController energyLimitHandler)
     {
         _levelGoalHandler = levelGoalHandler;
         _energyLimitHandler = energyLimitHandler;

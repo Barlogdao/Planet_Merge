@@ -1,4 +1,3 @@
-using PlanetMerge.Configs;
 using PlanetMerge.Systems;
 using PlanetMerge.Utils;
 using TMPro;
@@ -11,18 +10,19 @@ namespace PlanetMerge.UI
         [SerializeField] private TMP_Text _mergeAmountLabel;
         [SerializeField] private ScaleTween _scaleTween;
 
-        private LevelGoalHandler _levelGoalHandler;
-        public void Initialize(LevelGoalHandler levelGoalHandler)
-        {
-            _levelGoalHandler = levelGoalHandler;
+        private ILevelGoalNotifier _levelGoalNotifier;
 
-            _levelGoalHandler.GoalChanged += OnGoalChanged;
+        public void Initialize(ILevelGoalNotifier levelGoalNotifier)
+        {
+            _levelGoalNotifier = levelGoalNotifier;
+
+            _levelGoalNotifier.GoalChanged += OnGoalChanged;
             _scaleTween.Initialize(_mergeAmountLabel.transform);
         }
 
         private void OnDestroy()
         {
-            _levelGoalHandler.GoalChanged -= OnGoalChanged;
+            _levelGoalNotifier.GoalChanged -= OnGoalChanged;
         }
 
         private void OnGoalChanged(int amount)

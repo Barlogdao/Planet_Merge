@@ -43,7 +43,7 @@ public class UiPanelView : AppearingEntity
             transform.DOMove(_originPosition, _tweenDuration).SetEase(_ease).ToUniTask());
     }
 
-    public override async UniTask DisapearAsync()
+    public override async UniTask DisappearAsync()
     {
         await _canvasGroup.DOFade(_minAlpha, _tweenDuration);
     }

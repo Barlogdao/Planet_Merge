@@ -5,6 +5,7 @@ namespace PlanetMerge.Systems
 {
     public class Trajectory : MonoBehaviour
     {
+        [SerializeField] private float _planetRadius = 0.35f;
         [SerializeField] private float _distance = 10f;
         [SerializeField] private LayerMask _collideMask;
 
@@ -12,25 +13,20 @@ namespace PlanetMerge.Systems
         [SerializeField] private TrajectoryLine _collisionLine;
         [SerializeField] private TrajectoryCollisionView _collisionView;
 
-        private GameEventMediator _gameEventMediator;
         private PlanetLauncher _planetLauncher;
-        private float _planetRadius;
         private Vector2 _startPoint;
 
         public bool IsActive { get; private set; } = false;
 
-        public void Initialize(GameEventMediator gameEventMediator, PlanetLauncher planetLauncher, float planetRadius)
+        public void Initialize(PlanetLauncher planetLauncher)
         {
-            _gameEventMediator = gameEventMediator;
             _planetLauncher = planetLauncher;
             _startPoint = _planetLauncher.LaunchPosition;
-            _planetRadius = planetRadius;
 
             _mainLine.Initialize(_startPoint);
             _collisionLine.Initialize(_startPoint);
             _collisionView.Initialize(_planetRadius);
 
-            _gameEventMediator.LevelFinished += Deactivate;
 
             Deactivate();
         }
@@ -38,14 +34,7 @@ namespace PlanetMerge.Systems
         private void Update()
         {
             if (IsActive)
-            {
                 Calculate();
-            }
-        }
-
-        private void OnDestroy()
-        {
-            _gameEventMediator.LevelFinished -= Deactivate;
         }
 
         public void Activate()
@@ -79,6 +68,13 @@ namespace PlanetMerge.Systems
                 _collisionView.Hide();
                 _mainLine.SetEndPosition(_startPoint + direction.normalized * _distance);
             }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+
+            Gizmos.DrawWireSphere(_collisionView.transform.position, _planetRadius);
         }
     }
 }

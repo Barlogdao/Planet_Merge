@@ -1,7 +1,6 @@
 using PlanetMerge.Systems;
 using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 
 namespace PlanetMerge.Planets
@@ -13,11 +12,11 @@ namespace PlanetMerge.Planets
         [SerializeField] private float _launchCooldown;
         [SerializeField] private float _targetPositionOffsetY;
         [SerializeField] private PlanetView _planetView;
+        [SerializeField] private Trajectory _trajectory;
 
         private PlayerInput _playerInput;
         private PlanetSpawner _planetSpawner;
-        private EnergyLimit _energyLimit;
-        private Trajectory _trajectory;
+        private IEnergyLimit _energyLimit;
 
         private int _planetRank = 1;
 
@@ -25,28 +24,29 @@ namespace PlanetMerge.Planets
         private WaitForSeconds _cooldown;
 
         public Vector2 LaunchPosition => _launchPoint.position;
+
         private bool CanLoad => _energyLimit.HasEnergy; 
         private bool CanLaunch => CanLoad && _launchRoutine == null;
 
-        public void Initialize(PlayerInput playerInput, PlanetSpawner planetSpawner, EnergyLimit energyLimit, Trajectory trajectory)
+        public void Initialize(PlayerInput playerInput, PlanetSpawner planetSpawner, IEnergyLimit energyLimit)
         {
             _playerInput = playerInput;
             _planetSpawner = planetSpawner;
             _energyLimit = energyLimit;
-            _trajectory = trajectory;
-
             _cooldown = new WaitForSeconds(_launchCooldown);
+
+            _trajectory.Initialize(this);
 
             _playerInput.ClickedDown += OnClickDown;
             _playerInput.ClickedUp += OnClickUp;
-            _energyLimit.AmountChanged += OnLimitChanged;
+            _energyLimit.LimitChanged += OnLimitChanged;
         }
 
         private void OnDestroy()
         {
             _playerInput.ClickedDown -= OnClickDown;
             _playerInput.ClickedUp -= OnClickUp;
-            _energyLimit.AmountChanged -= OnLimitChanged;
+            _energyLimit.LimitChanged -= OnLimitChanged;
         }
 
         public void Prepare(int planetRank)
@@ -83,9 +83,8 @@ namespace PlanetMerge.Planets
 
             if (CanLaunch)
             {
-                _energyLimit.Subtract();
+                _energyLimit.TrySpendEnergy();
                 _launchRoutine = StartCoroutine(LaunchPlanet());
-                _planetView.Hide();
             }
         }
 
@@ -104,6 +103,8 @@ namespace PlanetMerge.Planets
 
         private IEnumerator LaunchPlanet()
         {
+            _planetView.Hide();
+
             var planet = _planetSpawner.Spawn(LaunchPosition, _planetRank);
             planet.AddForce(GetLaunchDirection().normalized * _force);
 
@@ -111,14 +112,6 @@ namespace PlanetMerge.Planets
 
             _launchRoutine = null;
             LoadPlanet();
-        }
-
-        private void OnDrawGizmosSelected()
-        {
-            Gizmos.color = Color.yellow;
-
-            Ray ray = new Ray(new Vector3(LaunchPosition.x, LaunchPosition.y + _targetPositionOffsetY), Vector3.right * 10);
-            Gizmos.DrawRay(ray);
         }
     }
 }

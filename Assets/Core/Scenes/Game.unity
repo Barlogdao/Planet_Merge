@@ -1018,6 +1018,7 @@ MonoBehaviour:
   _launchCooldown: 0.2
   _targetPositionOffsetY: 1.48
   _planetView: {fileID: 1712489736}
+  _trajectory: {fileID: 1804214577}
 --- !u!4 &113462646
 Transform:
   m_ObjectHideFlags: 0
@@ -5604,20 +5605,19 @@ MonoBehaviour:
   _splashHolder: {fileID: 1191370487}
   _energySpawner: {fileID: 1950250603}
   _collisionSplashSpawner: {fileID: 1260062382}
-  _planetLauncher: {fileID: 113462645}
-  _trajectory: {fileID: 1804214577}
   _audioService: {fileID: 227905879}
   _levelPlanetsController: {fileID: 785785555}
   _muteController: {fileID: 227905881}
   _focusController: {fileID: 1443108330}
   _inputController: {fileID: 785785553}
-  _goalHandler: {fileID: 785785559}
-  _energyLimitHandler: {fileID: 785785558}
+  _levelGoalController: {fileID: 785785559}
+  _energyLimitController: {fileID: 785785558}
   _gameOverHandler: {fileID: 785785560}
   _audioHandler: {fileID: 227905876}
   _rewardHandler: {fileID: 910457500}
   _uiPanel: {fileID: 477679559}
   _gameUI: {fileID: 1068452197}
+  _planetLauncher: {fileID: 113462645}
   _tutorialSystem: {fileID: 1163244839}
   _levelGenerator: {fileID: 1983963826}
   _startLevelPresenter: {fileID: 267399386}
@@ -14279,13 +14279,13 @@ SceneRoots:
   - {fileID: 1260062383}
   - {fileID: 1443108331}
   - {fileID: 457146501}
-  - {fileID: 1114896602614855152}
   - {fileID: 508053486}
   - {fileID: 124352222}
   - {fileID: 454045447}
   - {fileID: 1191370487}
   - {fileID: 708140200}
   - {fileID: 113462646}
+  - {fileID: 1114896602614855152}
   - {fileID: 946959174}
   - {fileID: 1298134127}
   - {fileID: 1068452196}

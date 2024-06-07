@@ -20,7 +20,7 @@ namespace PlanetMerge.SDK.Yandex
 
             Leaderboard.GetPlayerEntry(LeaderboardName, (result) =>
             {
-                //if (result == null || result.score < score)
+                if (result == null || result.score < score)
                     Leaderboard.SetScore(LeaderboardName, score);
             });
         }

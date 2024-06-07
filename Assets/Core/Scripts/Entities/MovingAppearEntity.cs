@@ -18,7 +18,7 @@ public class MovingAppearEntity : AppearingEntity
         await transform.DOMove(OriginPosition, _appearDuration).SetEase(_ease);
     }
 
-    public override async UniTask DisapearAsync()
+    public override async UniTask DisappearAsync()
     {
         await transform.DOMove(StartPosition, _appearDuration).SetEase(_ease);
     }

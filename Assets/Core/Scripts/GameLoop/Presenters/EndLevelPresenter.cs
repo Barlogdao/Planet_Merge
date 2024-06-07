@@ -1,6 +1,5 @@
 using Cysharp.Threading.Tasks;
 using PlanetMerge.Systems;
-using PlanetMerge.Systems.Visual;
 using PlanetMerge.UI;
 using UnityEngine;
 
@@ -19,25 +18,25 @@ public class EndLevelPresenter : MonoBehaviour
         _trajectory.Deactivate();
 
         await UniTask.WhenAll(
-            EndLevelAppear(),
+            LevelDissapearAync(),
             _levelScoreWindow.ShowScoreAsync(levelScore));
 
-        await _victoryWindow.ShowAsync(levelScore,currentPlanetRank,playerData);
+        await _victoryWindow.ShowAsync(levelScore, currentPlanetRank, playerData);
     }
 
-    public async UniTaskVoid ShowLooseAsync() 
+    public async UniTaskVoid ShowLooseAsync()
     {
         _trajectory.Deactivate();
         await _looseWindow.AppearAsync();
     }
 
 
-    public async UniTask EndLevelAppear()
+    private async UniTask LevelDissapearAync()
     {
         await UniTask.WhenAll(
-            _wallsView.DisapearAsync(),
-            _uiPanelView.DisapearAsync());
+            _wallsView.DisappearAsync(),
+            _uiPanelView.DisappearAsync());
 
-        await _launcherView.DisapearAsync();
+        await _launcherView.DisappearAsync();
     }
 }

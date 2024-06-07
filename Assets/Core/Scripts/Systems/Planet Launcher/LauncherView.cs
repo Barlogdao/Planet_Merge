@@ -23,12 +23,12 @@ public class LauncherView : AppearingEntity
             _planetView.AppearAsync());
     }
 
-    public override async UniTask DisapearAsync()
+    public override async UniTask DisappearAsync()
     {
         await UniTask.WhenAll(
-            _forceField.DisapearAsync(),
-            _planetView.DisapearAsync());
+            _forceField.DisappearAsync(),
+            _planetView.DisappearAsync());
    
-        await _spaceShip.DisapearAsync();
+        await _spaceShip.DisappearAsync();
     }
 }

@@ -1,6 +1,8 @@
 using PlanetMerge.Data;
 using UnityEngine;
-//using PlayerPrefs = Agava.YandexGames.Utility.PlayerPrefs
+#if UNITY_WEBGL && !UNITY_EDITOR
+using PlayerPrefs = Agava.YandexGames.Utility.PlayerPrefs;
+#endif
 
 namespace PlanetMerge.Systems.SaveLoad
 {

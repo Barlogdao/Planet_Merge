@@ -15,7 +15,7 @@ namespace PlanetMerge.SDK.Yandex
 
         private IEnumerator Start()
         {
-#if UNITY_WEBGL || !UNITY_EDITOR
+#if UNITY_WEBGL && !UNITY_EDITOR
             yield return YandexGamesSdk.Initialize(OnInitialize);
 #else
             OnInitialize();

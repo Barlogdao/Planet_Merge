@@ -9,10 +9,10 @@ namespace PlanetMerge.SDK.Yandex
     {
         [SerializeField] private int _rewardEnergyAmount = 5;
 
-        private EnergyLimitHandler _energyLimitHandler;
+        private EnergyLimitController _energyLimitHandler;
         private PauseService _pauseService;
 
-        public void Initialize(EnergyLimitHandler energyLimitHandler, PauseService pauseService)
+        public void Initialize(EnergyLimitController energyLimitHandler, PauseService pauseService)
         {
             _energyLimitHandler = energyLimitHandler;
             _pauseService = pauseService;

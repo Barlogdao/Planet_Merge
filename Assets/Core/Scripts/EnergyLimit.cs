@@ -4,37 +4,24 @@ public class EnergyLimit
 {
     private int _amount;
 
-    public event Action<int> AmountChanged;
-
+    public int Amount => _amount;
     public bool HasEnergy => _amount > 0;
 
-    public void Prepare(int amount)
+    public void Set(int amount)
     {
         _amount = amount;
-
-        RaiseAmountChangedEvent();
     }
 
     public void Add()
     {
         _amount ++;
-        RaiseAmountChangedEvent();
     }
 
-    public bool Subtract()
+    public void Subtract()
     {
-        if (HasEnergy)
-        {
-            _amount--;
-            RaiseAmountChangedEvent();
-            return true;
-        }
+        _amount--;
 
-        return false;
-    }
-
-    private void RaiseAmountChangedEvent()
-    {
-        AmountChanged?.Invoke(_amount);
+        if (_amount < 0) 
+            throw new InvalidOperationException($" {nameof (_amount)} cant be lover then 0");
     }
 }

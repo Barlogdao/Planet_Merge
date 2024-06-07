@@ -37,7 +37,7 @@ public class WallsView : AppearingEntity
         }
     }
 
-    public override async UniTask DisapearAsync()
+    public override async UniTask DisappearAsync()
     {
         foreach (Material material in _materials)
         {

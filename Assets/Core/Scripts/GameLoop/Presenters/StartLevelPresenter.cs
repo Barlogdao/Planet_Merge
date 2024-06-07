@@ -40,10 +40,10 @@ namespace PlanetMerge.Systems.Visual
         public async UniTask EndLevelAppear()
         {
             await UniTask.WhenAll(
-                _wallsView.DisapearAsync(),
-                _uiPanelView.DisapearAsync());
+                _wallsView.DisappearAsync(),
+                _uiPanelView.DisappearAsync());
 
-            await _launcherView.DisapearAsync();
+            await _launcherView.DisappearAsync();
         }
 
         private void ResetView()

@@ -308,6 +308,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe4e1e4aa453a95429e3e5b9f322fa0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _planetRadius: 0.36
   _distance: 10.34
   _collideMask:
     serializedVersion: 2

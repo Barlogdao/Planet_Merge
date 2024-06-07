@@ -18,7 +18,7 @@ public class FadingAppearEntity : AppearingEntity
         await _spriteRenderer.DOFade(_maxAlpha, _fadeDuration).SetEase(_ease);
     }
 
-    public override async UniTask DisapearAsync()
+    public override async UniTask DisappearAsync()
     {
         await _spriteRenderer.DOFade(_minAlpha, _fadeDuration).SetEase(_ease);
     }
