@@ -4,12 +4,17 @@ namespace PlanetMerge.Systems.SaveLoad
 {
     public class PlayerDataService
     {
-        private readonly SaveLoadSystem _saveLoadSystem;
+        private readonly BaseLoadSystem _saveLoadSystem;
         private readonly PlayerData _playerData;
 
         public PlayerDataService()
         {
-            _saveLoadSystem = new SaveLoadSystem();
+#if UNITY_WEBGL && !UNITY_EDITOR
+            _saveLoadSystem = new YandexSaveSystem();
+        
+#else
+            _saveLoadSystem = new PlayerPrefsSaveSystem();
+#endif
             _playerData = _saveLoadSystem.Load();
         }
 
@@ -36,11 +41,6 @@ namespace PlanetMerge.Systems.SaveLoad
         private void Save()
         {
             _saveLoadSystem.Save(_playerData);
-        }
-
-        public void Reset()
-        {
-            _saveLoadSystem.Reset();
         }
     }
 }

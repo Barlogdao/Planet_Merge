@@ -158,10 +158,4 @@ public class EntryPoint : MonoBehaviour
     {
         _gameLoop.Run();
     }
-
-    [ContextMenu("Reset")]
-    public void Resets()
-    {
-        _playerDataService.Reset();
-    }
 }
