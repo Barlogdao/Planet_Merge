@@ -3,11 +3,10 @@ using PlayerPrefs = Agava.YandexGames.Utility.PlayerPrefs;
 
 namespace PlanetMerge.Systems.SaveLoad
 {
-    public class YandexSaveSystem: BaseLoadSystem
+    public class YandexSaveSystem: BaseSaveSystem
     {
         public override PlayerData Load()
         {
-            PlayerPrefs.Load();
             int level = PlayerPrefs.GetInt(LevelKey, Constants.MinimalLevel);
             int planetRank = PlayerPrefs.GetInt(PlanetRankKey, Constants.MinimalPlanetRank);
             int score = PlayerPrefs.GetInt(ScoreKey);

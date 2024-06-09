@@ -4,7 +4,7 @@ namespace PlanetMerge.Systems.SaveLoad
 {
     public class PlayerDataService
     {
-        private readonly BaseLoadSystem _saveLoadSystem;
+        private readonly BaseSaveSystem _saveLoadSystem;
         private readonly PlayerData _playerData;
 
         public PlayerDataService()

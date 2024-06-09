@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 namespace PlanetMerge.SDK.Yandex
 {
     public sealed class SDKInitializer : MonoBehaviour
@@ -15,15 +16,15 @@ namespace PlanetMerge.SDK.Yandex
 
         private IEnumerator Start()
         {
-#if UNITY_WEBGL && !UNITY_EDITOR
             yield return YandexGamesSdk.Initialize(OnInitialize);
-#else
-            OnInitialize();
-            yield break;
-#endif
         }
 
         private void OnInitialize()
+        {
+            Agava.YandexGames.Utility.PlayerPrefs.Load(LoadScene);
+        }
+
+        private void LoadScene()
         {
             SceneManager.LoadScene(_gameSceneIndex);
         }

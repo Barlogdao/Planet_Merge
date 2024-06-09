@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace PlanetMerge.Systems.SaveLoad
 {
-    public class PlayerPrefsSaveSystem : BaseLoadSystem
+    public class PlayerPrefsSaveSystem : BaseSaveSystem
     {
         public override PlayerData Load()
         {

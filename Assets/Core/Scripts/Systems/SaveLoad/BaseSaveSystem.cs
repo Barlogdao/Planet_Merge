@@ -2,7 +2,7 @@ using PlanetMerge.Data;
 
 namespace PlanetMerge.Systems.SaveLoad
 {
-    public abstract class BaseLoadSystem
+    public abstract class BaseSaveSystem
     {
         protected const string LevelKey = nameof(LevelKey);
         protected const string ScoreKey = nameof(ScoreKey);
