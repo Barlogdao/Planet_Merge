@@ -139,18 +139,18 @@ public class EntryPoint : MonoBehaviour
         _levelGenerator.Initialize(_planetSpawner, _levelConditions, _planetLauncher);
         _levelPrepareSystem = new LevelPrepareSystem(_levelGenerator, _levelPlanetsController, _gameUI);
 
-        _tutorialSystem.Initialize(_playerInput, _inputController);
+        _tutorialSystem.Initialize(_inputController, _planetLauncher);
         _playerDataSystem = new PlayerDataSystem(_scoreHandler, _playerDataService, _leaderboard);
     }
 
     private void InitializeGameLoop()
     {
         IReadOnlyPlayerData playerData = _playerDataService.PlayerData;
-        
-        PrepareLevelState prepareLevelState = new (playerData,_levelPrepareSystem);
-        StartLevelState startLevelState = new (playerData, _tutorialSystem, _startLevelPresenter);
-        EndLevelState endLevelState = new (playerData,_endLevelPresenter, _playerDataSystem);
-        LevelStates levelStates = new (prepareLevelState, startLevelState, endLevelState);
+
+        PrepareLevelState prepareLevelState = new(playerData, _levelPrepareSystem);
+        StartLevelState startLevelState = new(playerData, _tutorialSystem, _startLevelPresenter);
+        EndLevelState endLevelState = new(playerData, _endLevelPresenter, _playerDataSystem);
+        LevelStates levelStates = new(prepareLevelState, startLevelState, endLevelState);
 
         _gameLoop.Initialize(_gameEventMediator, levelStates, _rewardHandler, _interstitialHandler);
     }

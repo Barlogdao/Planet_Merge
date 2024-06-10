@@ -1,8 +1,8 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using NaughtyAttributes;
 using System;
 using PlanetMerge.UI;
+using PlanetMerge.Planets;
 
 namespace PlanetMerge.Systems.Tutorial
 {
@@ -22,17 +22,17 @@ namespace PlanetMerge.Systems.Tutorial
         [SerializeField] int _shiftedSortingOrder;
         [SerializeField] private float _intervalDuration = 1.5f;
 
-        private PlayerInput _playerInput;
+        private PlanetLauncher _planetlauncher;
         private InputController _inputController;
         private int _originSortingOrder;
 
-        public event Action IsClicked;
+        public event Action PlanetLaunched;
 
-        public void Initialize(PlayerInput playerInput, InputController inputController)
+        public void Initialize(InputController inputController, PlanetLauncher planetLauncher)
         {
-            _playerInput = playerInput;
             _inputController = inputController;
             _originSortingOrder = _tutorialCanvas.sortingOrder;
+            _planetlauncher = planetLauncher;
 
             _firstTip.Initialize(this, _pointer);
             _secondTip.Initialize(this, _pointer);
@@ -40,14 +40,16 @@ namespace PlanetMerge.Systems.Tutorial
             _fourthTip.Initialize(this, _pointer);
             _background.Initialize();
 
-            _playerInput.ClickedUp += OnClickedUp;
+           _planetlauncher.PlanetLaunched += OnPlanetLauched;
 
             _tutorialCanvas.enabled = false;
         }
 
+ 
+
         private void OnDestroy()
         {
-            _playerInput.ClickedUp -= OnClickedUp;
+            _planetlauncher.PlanetLaunched -= OnPlanetLauched;
         }
 
         public async UniTaskVoid RunTutorialAsync()
@@ -85,9 +87,9 @@ namespace PlanetMerge.Systems.Tutorial
             _inputController.EnableInput();
         }
 
-        private void OnClickedUp()
+        private void OnPlanetLauched()
         {
-            IsClicked?.Invoke();
+            PlanetLaunched?.Invoke();
         }
     }
 }

@@ -17,11 +17,11 @@ namespace PlanetMerge.Planets
         private PlayerInput _playerInput;
         private PlanetSpawner _planetSpawner;
         private IEnergyLimit _energyLimit;
-
         private int _planetRank = 1;
-
         private Coroutine _launchRoutine;
         private WaitForSeconds _cooldown;
+
+        public event Action PlanetLaunched;
 
         public Vector2 LaunchPosition => _launchPoint.position;
 
@@ -104,6 +104,7 @@ namespace PlanetMerge.Planets
         private IEnumerator LaunchPlanet()
         {
             _planetView.Hide();
+            PlanetLaunched?.Invoke();
 
             var planet = _planetSpawner.Spawn(LaunchPosition, _planetRank);
             planet.AddForce(GetLaunchDirection().normalized * _force);

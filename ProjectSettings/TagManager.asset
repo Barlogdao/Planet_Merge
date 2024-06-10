@@ -50,13 +50,10 @@ TagManager:
   - name: Planet
     uniqueID: 3488691999
     locked: 0
-  - name: GameUi
+  - name: HUD
     uniqueID: 4121668947
     locked: 0
-  - name: Tutorial
-    uniqueID: 581360129
-    locked: 0
-  - name: OverGameUi
+  - name: OverHUDEntities
     uniqueID: 1086148173
     locked: 0
   - name: UI

@@ -3217,7 +3217,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: fa104a344ed3d5b4cb524ce23f4f6e9f, type: 2}
-  m_Color: {r: 0.099857576, g: 0.2117544, b: 0.5188679, a: 1}
+  m_Color: {r: 0.09411765, g: 0.27450982, b: 0.6039216, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 0
@@ -14304,21 +14304,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2870911601329608318, guid: eb5043f0ca172044e8c38a23bf2a332b, type: 3}
-      propertyPath: _appearDuration
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 5157784730053904353, guid: eb5043f0ca172044e8c38a23bf2a332b, type: 3}
       propertyPath: m_Name
       value: LaunchPlanetView
-      objectReference: {fileID: 0}
-    - target: {fileID: 6024490736261503554, guid: eb5043f0ca172044e8c38a23bf2a332b, type: 3}
-      propertyPath: m_SortingLayer
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6024490736261503554, guid: eb5043f0ca172044e8c38a23bf2a332b, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1086148173
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
