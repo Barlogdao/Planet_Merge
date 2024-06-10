@@ -19,11 +19,12 @@ namespace PlanetMerge.Systems.Tutorial
         [SerializeField] private Canvas _uiPanelCanvas;
         [SerializeField] private FadingBackground _background;
 
-        [SerializeField, SortingLayer] int _tutorialLayer;
+        [SerializeField] int _shiftedSortingOrder;
         [SerializeField] private float _intervalDuration = 1.5f;
 
         private PlayerInput _playerInput;
         private InputController _inputController;
+        private int _originSortingOrder;
 
         public event Action IsClicked;
 
@@ -31,6 +32,7 @@ namespace PlanetMerge.Systems.Tutorial
         {
             _playerInput = playerInput;
             _inputController = inputController;
+            _originSortingOrder = _tutorialCanvas.sortingOrder;
 
             _firstTip.Initialize(this, _pointer);
             _secondTip.Initialize(this, _pointer);
@@ -51,6 +53,7 @@ namespace PlanetMerge.Systems.Tutorial
         public async UniTaskVoid RunTutorialAsync()
         {
             _tutorialCanvas.enabled = true;
+            _tutorialCanvas.sortingOrder = _originSortingOrder;
 
             await _background.UnfadeAsync();
             await _firstTip.Run();
@@ -59,17 +62,13 @@ namespace PlanetMerge.Systems.Tutorial
             await RunIntervalAsync();
 
             _inputController.DisableInput();
+            _tutorialCanvas.sortingOrder = _shiftedSortingOrder;
 
-            int _uiLayer = _uiPanelCanvas.sortingLayerID;
-            _uiPanelCanvas.overrideSorting = true;
-            _uiPanelCanvas.sortingLayerID = _tutorialLayer;
 
             await _thirdTip.Run();
             await _fourthTip.Run();
 
-            _uiPanelCanvas.overrideSorting = false;
-            _uiPanelCanvas.sortingLayerID = _uiLayer;
-
+            _tutorialCanvas.sortingOrder = _originSortingOrder;
             _inputController.EnableInput();
 
             _tutorialCanvas.enabled = false;

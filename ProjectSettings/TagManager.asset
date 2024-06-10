@@ -50,9 +50,15 @@ TagManager:
   - name: Planet
     uniqueID: 3488691999
     locked: 0
-  - name: UI
-    uniqueID: 2974497631
+  - name: GameUi
+    uniqueID: 4121668947
     locked: 0
   - name: Tutorial
     uniqueID: 581360129
+    locked: 0
+  - name: OverGameUi
+    uniqueID: 1086148173
+    locked: 0
+  - name: UI
+    uniqueID: 2974497631
     locked: 0

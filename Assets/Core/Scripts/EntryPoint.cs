@@ -10,6 +10,7 @@ using PlanetMerge.Systems.SaveLoad;
 using PlanetMerge.Systems.Tutorial;
 using PlanetMerge.Systems.Visual;
 using PlanetMerge.UI;
+using UnityEditor;
 using UnityEngine;
 
 public class EntryPoint : MonoBehaviour
@@ -157,5 +158,13 @@ public class EntryPoint : MonoBehaviour
     private void Start()
     {
         _gameLoop.Run();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            _playerDataService.Reset();
+        }
     }
 }

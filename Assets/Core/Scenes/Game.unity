@@ -886,13 +886,13 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1320469665
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &107154311
@@ -2710,7 +2710,7 @@ MonoBehaviour:
     Text: launching planets consumes energy
     Object: {fileID: 0}
   - Language: Russian
-    Text: "\u0437\u0430\u043F\u0443\u0441\u043A \u043F\u043B\u0430\u043D\u0435\u0442
+    Text: "\u0417\u0430\u043F\u0443\u0441\u043A \u043F\u043B\u0430\u043D\u0435\u0442
       \u0440\u0430\u0441\u0445\u043E\u0434\u0443\u0435\u0442 \u044D\u043D\u0435\u0440\u0433\u0438\u044E"
     Object: {fileID: 0}
   - Language: Turkish
@@ -2973,15 +2973,15 @@ Canvas:
   m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1320469665
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &418289609
@@ -3023,7 +3023,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0437\u0430\u043F\u0443\u0441\u043A \u043F\u043B\u0430\u043D\u0435\u0442
+  m_text: "\u0417\u0430\u043F\u0443\u0441\u043A \u043F\u043B\u0430\u043D\u0435\u0442
     \u0440\u0430\u0441\u0445\u043E\u0434\u0443\u0435\u0442 \u044D\u043D\u0435\u0440\u0433\u0438\u044E"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7694e2c42a03e014ab84bd94d1335dba, type: 2}
@@ -3606,14 +3606,14 @@ Canvas:
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
-  m_OverrideSorting: 0
+  m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -1320469665
-  m_SortingOrder: 0
+  m_SortingLayerID: -173298349
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!114 &477679561
 MonoBehaviour:
@@ -3900,7 +3900,7 @@ Canvas:
   m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
@@ -3908,8 +3908,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 581360129
-  m_SortingOrder: 10
+  m_SortingLayerID: -1320469665
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &596517220
 MonoBehaviour:
@@ -6533,8 +6533,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 581360129
-  m_SortingLayer: 4
+  m_SortingLayerID: -173298349
+  m_SortingLayer: 3
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 0f9d658efa10fc6439c26ffcac5e2a3b, type: 3}
   m_Color: {r: 1, g: 0.7809751, b: 0, a: 1}
@@ -7065,7 +7065,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 1
-  m_SortingLayerID: -1320469665
+  m_SortingLayerID: -173298349
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1068452196
@@ -7290,7 +7290,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163244833}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 2091554543}
@@ -7303,8 +7303,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 581360129
-  m_SortingOrder: 0
+  m_SortingLayerID: -173298349
+  m_SortingOrder: 5
   m_TargetDisplay: 0
 --- !u!222 &1163244837
 CanvasRenderer:
@@ -7374,7 +7374,7 @@ MonoBehaviour:
     _image: {fileID: 206035598}
     _fadeDuration: 0.3
     _ease: 1
-  _tutorialLayer: 581360129
+  _shiftedSortingOrder: 1
   _intervalDuration: 1.5
 --- !u!114 &1163244840
 MonoBehaviour:
@@ -10271,7 +10271,7 @@ Canvas:
   m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
@@ -10279,8 +10279,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 581360129
-  m_SortingOrder: 10
+  m_SortingLayerID: -1320469665
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &1638133105
 MonoBehaviour:
@@ -14152,7 +14152,7 @@ Canvas:
   m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
@@ -14160,8 +14160,8 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 581360129
-  m_SortingOrder: 10
+  m_SortingLayerID: -1320469665
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1001 &1114896602614855152
 PrefabInstance:
@@ -14211,9 +14211,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2932653472619090997, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932653472619090997, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2932653472619090997, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1086148173
+      objectReference: {fileID: 0}
     - target: {fileID: 3764724498956872374, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
       propertyPath: m_Name
       value: Trajectory
+      objectReference: {fileID: 0}
+    - target: {fileID: 8463524076563804017, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8463524076563804017, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8463524076563804017, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1086148173
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503590664705727597, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503590664705727597, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8503590664705727597, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1086148173
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14275,6 +14311,14 @@ PrefabInstance:
     - target: {fileID: 5157784730053904353, guid: eb5043f0ca172044e8c38a23bf2a332b, type: 3}
       propertyPath: m_Name
       value: LaunchPlanetView
+      objectReference: {fileID: 0}
+    - target: {fileID: 6024490736261503554, guid: eb5043f0ca172044e8c38a23bf2a332b, type: 3}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6024490736261503554, guid: eb5043f0ca172044e8c38a23bf2a332b, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1086148173
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
