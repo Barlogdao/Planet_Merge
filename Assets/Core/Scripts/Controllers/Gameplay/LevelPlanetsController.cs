@@ -16,14 +16,12 @@ public class LevelPlanetsController : MonoBehaviour
 
         _gameEventMediator.PlanetCreated += OnPlanetCreated;
         _gameEventMediator.PlanetReleased += OnPlanetReleased;
-        _gameEventMediator.GameWon += OnGameWon;
     }
 
     private void OnDestroy()
     {
         _gameEventMediator.PlanetCreated -= OnPlanetCreated;
         _gameEventMediator.PlanetReleased -= OnPlanetReleased;
-        _gameEventMediator.GameWon -= OnGameWon;
     }
 
     public void Clear()
@@ -36,7 +34,7 @@ public class LevelPlanetsController : MonoBehaviour
         }
     }
 
-    private void OnGameWon()
+    public void SplitPlanets()
     {
         foreach (Planet planet in Planets)
         {

@@ -4,29 +4,23 @@ namespace PlanetMerge.Systems.SaveLoad
 {
     public class PlayerDataSystem
     {
-        private readonly ScoreHandler _scoreHandler;
         private readonly PlayerDataService _playerDataService;
         private readonly YandexLeaderboard _leaderboard;
         private readonly IReadOnlyPlayerData _playerData;
 
-        public PlayerDataSystem(ScoreHandler scoreHandler, PlayerDataService playerDataService, YandexLeaderboard leaderboard)
+        public PlayerDataSystem(PlayerDataService playerDataService, YandexLeaderboard leaderboard)
         {
-            _scoreHandler = scoreHandler;
             _playerDataService = playerDataService;
             _leaderboard = leaderboard;
 
             _playerData = _playerDataService.PlayerData;
         }
 
-        public int GetLevelScore()
-        {
-            return _scoreHandler.GetScore();
-        }
+        public IReadOnlyPlayerData PlayerData => _playerData;
 
-        public void UpdatePlayerData()
+  
+        public void UpdatePlayerData(int levelScore)
         {
-            int levelScore = _scoreHandler.GetScore();
-
             _playerDataService.LevelUp();
             _playerDataService.AddScore(levelScore);
 

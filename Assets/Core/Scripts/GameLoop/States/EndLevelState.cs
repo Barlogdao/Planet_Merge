@@ -4,22 +4,28 @@ using PlanetMerge.Systems.SaveLoad;
 public class EndLevelState
 {
     private readonly EndLevelPresenter _endLevelPresenter;
-    private readonly IReadOnlyPlayerData _playerData;
     private readonly PlayerDataSystem _playerDataSystem;
+    private readonly LevelPlanetsController _levelPlanetsController;
+    private readonly IReadOnlyPlayerData _playerData;
+    private readonly ScoreHandler _scoreHandler;
 
-    public EndLevelState(IReadOnlyPlayerData playerData, EndLevelPresenter endLevelPresenter, PlayerDataSystem playerDataSystem)
+    public EndLevelState(EndLevelPresenter endLevelPresenter, PlayerDataSystem playerDataSystem, LevelPlanetsController levelPlanetsController)
     {
         _endLevelPresenter = endLevelPresenter;
-        _playerData = playerData;
         _playerDataSystem = playerDataSystem;
+        _levelPlanetsController = levelPlanetsController;
+        _scoreHandler = new ScoreHandler(_levelPlanetsController);
+
+        _playerData = _playerDataSystem.PlayerData;
     }
 
     public async UniTask Win()
     {
-        int levelScore = _playerDataSystem.GetLevelScore();
+        int levelScore = _scoreHandler.GetScore();
         int currentPlanetRank = _playerData.PlanetRank;
+        _levelPlanetsController.SplitPlanets();
 
-        _playerDataSystem.UpdatePlayerData();
+        _playerDataSystem.UpdatePlayerData(levelScore);
 
         await _endLevelPresenter.ShowWinAsync(levelScore, currentPlanetRank, _playerData);
     }
