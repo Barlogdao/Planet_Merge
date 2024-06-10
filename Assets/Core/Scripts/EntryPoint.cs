@@ -120,7 +120,7 @@ public class EntryPoint : MonoBehaviour
         _gameOverHandler.Initialize(_energyLimitController, _levelGoalController);
         _audioHandler.Initialize(_audioService, _gameEventMediator);
 
-        _rewardHandler.Initialize(_energyLimitController, _pauseService);
+        _rewardHandler.Initialize(_energyLimitController);
     }
 
     private void InitializeUi()
