@@ -63,7 +63,7 @@ public class EntryPoint : MonoBehaviour
     private PauseService _pauseService;
     private PlayerDataService _playerDataService;
 
-    private InterstitialHandler _interstitialHandler;
+    private AdvertisingService _advertisingService;
 
     private LevelConditions _levelConditions;
     private LevelPrepareSystem _levelPrepareSystem;
@@ -102,11 +102,12 @@ public class EntryPoint : MonoBehaviour
     {
         _pauseService = new PauseService(_audioService);
         _playerDataService = new PlayerDataService();
+        _advertisingService = new AdvertisingService(_pauseService, _rewardHandler);
     }
 
     private void InitializeControllers()
     {
-        _focusController.Initialize(_pauseService);
+        _focusController.Initialize(_pauseService, _advertisingService);
         _muteController.Initialize(_audioService);
         _inputController.Initialize(_playerInput, _gameEventMediator);
         _levelPlanetsController.Initialize(_gameEventMediator);
@@ -119,7 +120,6 @@ public class EntryPoint : MonoBehaviour
         _gameOverHandler.Initialize(_energyLimitController, _levelGoalController);
         _audioHandler.Initialize(_audioService, _gameEventMediator);
 
-        _interstitialHandler = new InterstitialHandler(_pauseService);
         _rewardHandler.Initialize(_energyLimitController, _pauseService);
     }
 
@@ -149,7 +149,7 @@ public class EntryPoint : MonoBehaviour
         EndLevelState endLevelState = new(_endLevelPresenter, _playerDataSystem, _levelPlanetsController);
         LevelStates levelStates = new(prepareLevelState, startLevelState, endLevelState);
 
-        _gameLoop.Initialize(_gameEventMediator, levelStates, _rewardHandler, _interstitialHandler);
+        _gameLoop.Initialize(_gameEventMediator, levelStates, _advertisingService);
     }
 
     private void Start()

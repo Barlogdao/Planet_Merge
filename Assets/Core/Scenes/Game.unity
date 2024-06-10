@@ -2232,6 +2232,61 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1527055450098318974, guid: adef00e2be323654ca5fa825a2cc3c72, type: 3}
   m_PrefabInstance: {fileID: 898020140}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &241463009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 241463010}
+  - component: {fileID: 241463011}
+  m_Layer: 0
+  m_Name: Anonymous
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &241463010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241463009}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1076479954}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &241463011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241463009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb15fa0e7301ff849bf4d6dcede7c12b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data: 0
+  entries:
+  - Language: English
+    Text: Anonymous
+    Object: {fileID: 0}
+  - Language: Russian
+    Text: "\u0410\u043D\u043E\u043D\u0438\u043C"
+    Object: {fileID: 0}
+  - Language: Turkish
+    Text: Anonim
+    Object: {fileID: 0}
 --- !u!1 &247373124
 GameObject:
   m_ObjectHideFlags: 0
@@ -3251,8 +3306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97df004377acdee49bf43442609fefaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _verticalSpeed: 0.0303
-  _horizontalSpeed: 0.0021
+  _verticalSpeed: 0.1
+  _horizontalSpeed: 0.03
 --- !u!114 &456925007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7179,6 +7234,7 @@ Transform:
   - {fileID: 2040954573}
   - {fileID: 1828949746}
   - {fileID: 2119018193}
+  - {fileID: 241463010}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1085670186
@@ -7290,7 +7346,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1163244833}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 2091554543}

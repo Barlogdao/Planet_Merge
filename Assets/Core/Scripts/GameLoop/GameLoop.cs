@@ -1,4 +1,3 @@
-using Agava.YandexGames;
 using Cysharp.Threading.Tasks;
 using PlanetMerge.SDK.Yandex;
 using System;
@@ -10,21 +9,19 @@ public class GameLoop : MonoBehaviour
     private StartLevelState _startLevelState;
     private EndLevelState _endLevelState;
     private PrepareLevelState _prepareLevelState;
-    private RewardHandler _rewardHandler;
-    private InterstitialHandler _interstitialHandler;
+    private AdvertisingService _advertisingService;
 
     public event Action LevelPrepared;
     public event Action LevelStarted;
     public event Action LevelResumed;
 
-    public void Initialize(GameEventMediator gameEventMediator, LevelStates levelStates, RewardHandler rewardHandler, InterstitialHandler interstitialHandler)
+    public void Initialize(GameEventMediator gameEventMediator, LevelStates levelStates, AdvertisingService advertisingService)
     {
         _gameEventMediator = gameEventMediator;
         _prepareLevelState = levelStates.PrepareLevelState;
         _startLevelState = levelStates.StartLevelState;
         _endLevelState = levelStates.EndLevelState;
-        _rewardHandler = rewardHandler;
-        _interstitialHandler = interstitialHandler;
+        _advertisingService = advertisingService;
 
         _gameEventMediator.GameWon += OnGameWon;
         _gameEventMediator.GameLost += OnGameLost;
@@ -48,7 +45,7 @@ public class GameLoop : MonoBehaviour
     {
         PrepareLevel();
 #if UNITY_WEBGL && !UNITY_EDITOR
-        YandexGamesSdk.GameReady();
+        Agava.YandexGames.YandexGamesSdk.GameReady();
 #endif
     }
 
@@ -78,17 +75,17 @@ public class GameLoop : MonoBehaviour
 
     private void OnNextLevelSelected()
     {
-        _interstitialHandler.ShowAd(PrepareLevel);
+        _advertisingService.ShowInterstitialAd(PrepareLevel);
     }
 
     private void OnRestartLevelSelected()
     {
-        _interstitialHandler.ShowAd(PrepareLevel);
+        _advertisingService.ShowInterstitialAd(PrepareLevel);
     }
 
     private void OnRewardSelected()
     {
-        _rewardHandler.AddReward(ResumeLevel, PrepareLevel);
+        _advertisingService.ShowRewardAd(ResumeLevel, PrepareLevel);
     }
 
     private void ResumeLevel()

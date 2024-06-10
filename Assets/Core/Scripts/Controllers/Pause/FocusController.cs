@@ -7,10 +7,12 @@ namespace PlanetMerge.Handlers.Pause
     public class FocusController : MonoBehaviour
     {
         private PauseService _pauseService;
+        private AdvertisingService _advertisingService;
 
-        public void Initialize(PauseService pauseService)
+        public void Initialize(PauseService pauseService, AdvertisingService advertisingService)
         {
             _pauseService = pauseService;
+            _advertisingService = advertisingService;
         }
 
         private void OnEnable()
@@ -27,12 +29,14 @@ namespace PlanetMerge.Handlers.Pause
 
         private void OnInBackgroundChangeApp(bool inApp)
         {
-            PauseGame(!inApp);
+            if (_advertisingService.IsAdsPlaying == false)
+                PauseGame(!inApp);
         }
 
         private void OnInBackgroundChangeWeb(bool isBackground)
         {
-            PauseGame(isBackground);
+            if (_advertisingService.IsAdsPlaying == false)
+                PauseGame(isBackground);
         }
 
         private void PauseGame(bool isUnfocused)

@@ -10,23 +10,13 @@ public class InterstitialHandler
         _pauseService = pauseService;
     }
 
-    public void ShowAd(Action OnClose/*, *//*Action OnFail, Action OnOffline*/)
+    public void ShowAd(Action OnClose)
     {
 #if UNITY_WEBGL && !UNITY_EDITOR
-        Agava.YandexGames.InterstitialAd.Show(OnOpenCallback, OnCloseCallback/*, OnErrorCallback, OnOfflineCallback*/);
+        Agava.YandexGames.InterstitialAd.Show(OnOpenCallback, OnCloseCallback);
 #else
         OnClose();
 #endif
-        //void OnOfflineCallback()
-        //{
-        //    OnOffline();
-        //}
-
-        //void OnErrorCallback(string error)
-        //{
-        //    OnFail();
-        //}
-
         void OnCloseCallback(bool wasShown)
         {
             _pauseService.Unpause();
@@ -38,5 +28,4 @@ public class InterstitialHandler
             _pauseService.Pause();
         }
     }
-
 }
