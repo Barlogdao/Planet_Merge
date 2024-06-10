@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using PlanetMerge.UI;
+using PlanetMerge.UI.View;
 using UnityEngine;
 
 namespace PlanetMerge.Systems.Visual
@@ -11,7 +12,7 @@ namespace PlanetMerge.Systems.Visual
         [SerializeField] private WallsView _wallsView;
         [SerializeField] private VictoryWindow _victoryWindow;
         [SerializeField] private AppearWindow _looseWindow;
-        [SerializeField] private MovingBackground _movingBackground;
+        [SerializeField] private SpaceBackground _spaceBackground;
 
         public async UniTask StartLevelAsync()
         {
@@ -23,7 +24,7 @@ namespace PlanetMerge.Systems.Visual
                 _launcherView.AppearAsync(),
                 _wallsView.AppearAsync());
 
-            _movingBackground.enabled = true;
+            _spaceBackground.Run();
         }
 
         public void ResumeLevel()
@@ -49,7 +50,7 @@ namespace PlanetMerge.Systems.Visual
         private void ResetView()
         {
             HideWindows();
-            _movingBackground.enabled = false;
+            _spaceBackground.Stop();
             _launcherView.ResetView();
             _wallsView.ResetView();
             _uiPanelView.ResetView();

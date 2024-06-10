@@ -16,11 +16,7 @@ namespace PlanetMerge.SDK.Yandex
 
         private IEnumerator Start()
         {
-            yield return YandexGamesSdk.Initialize(OnInitialize);
-        }
-
-        private void OnInitialize()
-        {
+            yield return YandexGamesSdk.Initialize();
             Agava.YandexGames.Utility.PlayerPrefs.Load(LoadScene);
         }
 
