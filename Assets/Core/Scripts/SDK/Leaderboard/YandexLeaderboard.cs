@@ -41,7 +41,7 @@ namespace PlanetMerge.SDK.Yandex
                     string name = entry.player.publicName;
 
                     if (string.IsNullOrEmpty(name))
-                        name = AnonymousName;
+                        name = Lean.Localization.LeanLocalization.GetTranslationText(AnonymousName);
 
                     _leaderboardPlayers.Add(new LeaderboardPlayer(rank, name, score));
                 }

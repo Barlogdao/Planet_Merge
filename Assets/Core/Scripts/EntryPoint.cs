@@ -10,7 +10,6 @@ using PlanetMerge.Systems.SaveLoad;
 using PlanetMerge.Systems.Tutorial;
 using PlanetMerge.Systems.Visual;
 using PlanetMerge.UI;
-using UnityEditor;
 using UnityEngine;
 
 public class EntryPoint : MonoBehaviour
