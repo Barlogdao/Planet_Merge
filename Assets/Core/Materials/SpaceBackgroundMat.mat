@@ -394,7 +394,7 @@ Material:
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
     - _StrongTintContrast: 1.59
-    - _StrongTintFade: 0
+    - _StrongTintFade: 0.0002707243
     - _TimeFPS: 3.67
     - _TimeFrequency: 1
     - _TimeRange: 2.09

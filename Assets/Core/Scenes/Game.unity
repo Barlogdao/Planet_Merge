@@ -1014,7 +1014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _launchPoint: {fileID: 1869244810}
-  _force: 16
+  _force: 18
   _launchCooldown: 0.2
   _targetPositionOffsetY: 1.48
   _planetView: {fileID: 1712489736}
@@ -2323,7 +2323,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.07972916}
   m_AnchorMax: {x: 1, y: 0.9315626}
-  m_AnchoredPosition: {x: 0, y: 9.339844}
+  m_AnchoredPosition: {x: 0, y: 9.5}
   m_SizeDelta: {x: 0, y: 21.16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &247373126
@@ -2480,7 +2480,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -13.859863}
+  m_AnchoredPosition: {x: 0, y: -14}
   m_SizeDelta: {x: -17, y: -27.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &278144918
@@ -4413,7 +4413,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.2543481, y: 1}
-  m_AnchoredPosition: {x: 33.97998, y: 0}
+  m_AnchoredPosition: {x: 34, y: 0}
   m_SizeDelta: {x: -65.66, y: -20}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &643378350
@@ -5681,25 +5681,25 @@ MonoBehaviour:
   _energySpawner: {fileID: 1950250603}
   _collisionSplashSpawner: {fileID: 1260062382}
   _audioService: {fileID: 227905879}
-  _levelPlanetsController: {fileID: 785785555}
   _muteController: {fileID: 227905881}
-  _focusController: {fileID: 1443108330}
+  _audioHandler: {fileID: 227905876}
   _inputController: {fileID: 785785553}
+  _playerInput: {fileID: 785785557}
+  _focusController: {fileID: 1443108330}
+  _levelPlanetsController: {fileID: 785785555}
   _levelGoalController: {fileID: 785785559}
   _energyLimitController: {fileID: 785785558}
-  _gameOverHandler: {fileID: 785785560}
-  _audioHandler: {fileID: 227905876}
   _rewardHandler: {fileID: 910457500}
+  _gameOverHandler: {fileID: 785785560}
+  _planetLauncher: {fileID: 113462645}
+  _levelGenerator: {fileID: 1983963826}
   _uiPanel: {fileID: 477679559}
   _gameUI: {fileID: 1068452197}
-  _planetLauncher: {fileID: 113462645}
+  _leaderboard: {fileID: 457146500}
   _tutorialSystem: {fileID: 1163244839}
-  _levelGenerator: {fileID: 1983963826}
   _startLevelPresenter: {fileID: 267399386}
   _endLevelPresenter: {fileID: 130264651}
   _gameLoop: {fileID: 785785556}
-  _playerInput: {fileID: 785785557}
-  _leaderboard: {fileID: 457146500}
   _gameEventMediator: {fileID: 785785554}
 --- !u!4 &785785552
 Transform:
@@ -5788,6 +5788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba0ca3415da24d549bb8841db4e9f52f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _limitExpirationDelay: 5
 --- !u!114 &785785559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6652,7 +6653,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 4.4699707, y: 116.34033}
+  m_AnchoredPosition: {x: 4.5, y: 116}
   m_SizeDelta: {x: -74.57, y: -375.84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &988405659
@@ -9148,7 +9149,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 4.65, y: 99.59033}
+  m_AnchoredPosition: {x: 4.65, y: 100}
   m_SizeDelta: {x: 571.82, y: 104.51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1415103875
@@ -13609,7 +13610,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 234.52002}
+  m_AnchoredPosition: {x: 0, y: 235}
   m_SizeDelta: {x: -160.00002, y: -900.84}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2055628715
@@ -13711,7 +13712,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.2
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -14130,7 +14131,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.4028542}
   m_AnchorMax: {x: 1, y: 0.70400006}
-  m_AnchoredPosition: {x: 6, y: -6.9000244}
+  m_AnchoredPosition: {x: 6, y: -6.875}
   m_SizeDelta: {x: 0, y: -8.27002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2142292688
@@ -14269,7 +14270,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2932653472619090997, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2932653472619090997, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
       propertyPath: m_SortingOrder
@@ -14285,7 +14286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8463524076563804017, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8463524076563804017, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
       propertyPath: m_SortingOrder
@@ -14297,7 +14298,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8503590664705727597, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
       propertyPath: m_SortingLayer
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8503590664705727597, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
       propertyPath: m_SortingOrder

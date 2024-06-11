@@ -15,7 +15,7 @@ namespace PlanetMerge.SDK.Yandex.Advertising
             _rewardHandler = rewardHandler;
         }
 
-        public bool IsAdsPlaying { get; private set; }
+        public bool IsAdsPlaying { get; private set; } = false;
 
         public void ShowInterstitialAd(Action OnClose)
         {

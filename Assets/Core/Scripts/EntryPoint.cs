@@ -92,11 +92,11 @@ public class EntryPoint : MonoBehaviour
         InitializeAudio();
         InitializeData();
         InitializeInput();
+        InitializeSDK();
         InitializePause();
 
         InitializeGameplay();
         InitializeUi();
-        InitializeSDK();
         InitializeTutorial();
 
         InitializeGameLoop();
@@ -118,17 +118,6 @@ public class EntryPoint : MonoBehaviour
         _collisionSplashSpawner.Initialize(_gameEventMediator, _collisionSplashPool);
     }
 
-    private void InitializePause()
-    {
-        _pauseService = new PauseService(_audioService);
-        _focusController.Initialize(_pauseService, _advertisingService);
-    }
-
-    private void InitializeInput()
-    {
-        _inputController.Initialize(_playerInput, _gameEventMediator);
-    }
-
     private void InitializeAudio()
     {
         _audioHandler.Initialize(_audioService, _gameEventMediator);
@@ -139,6 +128,22 @@ public class EntryPoint : MonoBehaviour
     {
         _playerDataService = new PlayerDataService();
         _playerDataSystem = new PlayerDataSystem(_playerDataService, _leaderboard);
+    }
+
+    private void InitializeInput()
+    {
+        _inputController.Initialize(_playerInput, _gameEventMediator);
+    }
+
+    private void InitializeSDK()
+    {
+        _advertisingService = new AdvertisingService(_pauseService, _rewardHandler);
+    }
+
+    private void InitializePause()
+    {
+        _pauseService = new PauseService(_audioService);
+        _focusController.Initialize(_pauseService, _advertisingService);
     }
 
     private void InitializeGameplay()
@@ -162,10 +167,6 @@ public class EntryPoint : MonoBehaviour
         _gameUI.Initialize(_uiPanel);
     }
 
-    private void InitializeSDK()
-    {
-        _advertisingService = new AdvertisingService(_pauseService, _rewardHandler);
-    }
 
     private void InitializeTutorial()
     {
