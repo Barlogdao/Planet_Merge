@@ -1490,7 +1490,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 67.45
+  m_fontSize: 18
   m_fontSizeBase: 66.7
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5685,7 +5685,6 @@ MonoBehaviour:
   _audioHandler: {fileID: 227905876}
   _inputController: {fileID: 785785553}
   _playerInput: {fileID: 785785557}
-  _focusController: {fileID: 1443108330}
   _levelPlanetsController: {fileID: 785785555}
   _levelGoalController: {fileID: 785785559}
   _energyLimitController: {fileID: 785785558}
@@ -5695,6 +5694,7 @@ MonoBehaviour:
   _levelGenerator: {fileID: 1983963826}
   _uiPanel: {fileID: 477679559}
   _gameUI: {fileID: 1068452197}
+  _focusController: {fileID: 1443108330}
   _leaderboard: {fileID: 457146500}
   _tutorialSystem: {fileID: 1163244839}
   _startLevelPresenter: {fileID: 267399386}
@@ -14329,6 +14329,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaunchPlanetView
       objectReference: {fileID: 0}
+    - target: {fileID: 6024490736261503554, guid: eb5043f0ca172044e8c38a23bf2a332b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1690364543, guid: 244f12038be72374a987da8ff61a34bc, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
