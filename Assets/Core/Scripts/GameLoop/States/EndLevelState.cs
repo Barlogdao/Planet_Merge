@@ -1,37 +1,44 @@
 using Cysharp.Threading.Tasks;
-using PlanetMerge.Systems.SaveLoad;
+using PlanetMerge.Gameloop.Presenter;
+using PlanetMerge.Systems.Data;
+using PlanetMerge.Systems.Gameplay;
 
-public class EndLevelState
+namespace PlanetMerge.Gameloop.States
 {
-    private readonly EndLevelPresenter _endLevelPresenter;
-    private readonly PlayerDataSystem _playerDataSystem;
-    private readonly LevelPlanetsController _levelPlanetsController;
-    private readonly IReadOnlyPlayerData _playerData;
-    private readonly ScoreHandler _scoreHandler;
-
-    public EndLevelState(EndLevelPresenter endLevelPresenter, PlayerDataSystem playerDataSystem, LevelPlanetsController levelPlanetsController)
+    public class EndLevelState
     {
-        _endLevelPresenter = endLevelPresenter;
-        _playerDataSystem = playerDataSystem;
-        _levelPlanetsController = levelPlanetsController;
-        _scoreHandler = new ScoreHandler(_levelPlanetsController);
+        private readonly EndLevelPresenter _endLevelPresenter;
+        private readonly PlayerDataSystem _playerDataSystem;
+        private readonly LevelPlanetsController _levelPlanetsController;
+        private readonly IReadOnlyPlayerData _playerData;
+        private readonly LevelScore _levelScore;
 
-        _playerData = _playerDataSystem.PlayerData;
-    }
+        public EndLevelState(EndLevelPresenter endLevelPresenter,
+            PlayerDataSystem playerDataSystem,
+            LevelPlanetsController levelPlanetsController)
+        {
+            _endLevelPresenter = endLevelPresenter;
+            _playerDataSystem = playerDataSystem;
+            _levelPlanetsController = levelPlanetsController;
+            _levelScore = new LevelScore(_levelPlanetsController);
 
-    public async UniTask Win()
-    {
-        int levelScore = _scoreHandler.GetScore();
-        int currentPlanetRank = _playerData.PlanetRank;
-        _levelPlanetsController.SplitPlanets();
+            _playerData = _playerDataSystem.PlayerData;
+        }
 
-        _playerDataSystem.UpdatePlayerData(levelScore);
+        public async UniTask Win()
+        {
+            int levelScore = _levelScore.Get();
+            int currentPlanetRank = _playerData.PlanetRank;
+            _levelPlanetsController.SplitPlanets();
 
-        await _endLevelPresenter.ShowWinAsync(levelScore, currentPlanetRank, _playerData);
-    }
+            _playerDataSystem.UpdatePlayerData(levelScore);
 
-    public void Loose()
-    {
-        _endLevelPresenter.ShowLooseAsync().Forget();
+            await _endLevelPresenter.ShowWinAsync(levelScore, currentPlanetRank, _playerData);
+        }
+
+        public void Loose()
+        {
+            _endLevelPresenter.ShowLooseAsync().Forget();
+        }
     }
 }

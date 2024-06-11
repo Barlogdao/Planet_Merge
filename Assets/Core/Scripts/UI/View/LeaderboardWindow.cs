@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PlanetMerge.UI
+namespace PlanetMerge.UI.View
 {
     public class LeaderboardWindow : UiWindow
     {

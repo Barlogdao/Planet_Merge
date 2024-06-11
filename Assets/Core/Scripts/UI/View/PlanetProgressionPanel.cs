@@ -1,9 +1,10 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
+using PlanetMerge.Systems.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PlanetMerge.UI
+namespace PlanetMerge.UI.View
 {
     public class PlanetProgressionPanel : PlanetViewPanel
     {

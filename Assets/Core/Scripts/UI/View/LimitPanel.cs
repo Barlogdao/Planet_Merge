@@ -1,9 +1,10 @@
 using PlanetMerge.Systems;
+using PlanetMerge.Systems.Gameplay;
 using PlanetMerge.Utils;
 using TMPro;
 using UnityEngine;
 
-namespace PlanetMerge.UI
+namespace PlanetMerge.UI.View
 {
     public class LimitPanel : MonoBehaviour
     {

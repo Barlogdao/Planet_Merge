@@ -1,63 +1,66 @@
-using PlanetMerge.SDK.Yandex;
-using PlanetMerge.Services.Pause;
+using PlanetMerge.Systems.Gameplay;
+using PlanetMerge.Systems.Pause;
 using System;
 
-public class AdvertisingService
+namespace PlanetMerge.SDK.Yandex.Advertising
 {
-    private readonly PauseService _pauseService;
-    private readonly RewardHandler _rewardHandler;
-
-    public AdvertisingService(PauseService pauseService, RewardHandler rewardHandler)
+    public class AdvertisingService
     {
-        _pauseService = pauseService;
-        _rewardHandler = rewardHandler;
-    }
+        private readonly PauseService _pauseService;
+        private readonly RewardHandler _rewardHandler;
 
-    public bool IsAdsPlaying { get; private set; }
+        public AdvertisingService(PauseService pauseService, RewardHandler rewardHandler)
+        {
+            _pauseService = pauseService;
+            _rewardHandler = rewardHandler;
+        }
 
-    public void ShowInterstitialAd(Action OnClose)
-    {
+        public bool IsAdsPlaying { get; private set; }
+
+        public void ShowInterstitialAd(Action OnClose)
+        {
 #if UNITY_WEBGL && !UNITY_EDITOR
         Agava.YandexGames.InterstitialAd.Show(OnOpenCallback, OnCloseInterstitial);
 #else
-        OnClose();
-#endif   
-
-        void OnCloseInterstitial(bool wasShown)
-        {
-            OnCloseCallback();
             OnClose();
-        }
-    }
+#endif
 
-    public void ShowRewardAd(Action OnSuccess, Action OnFail)
-    {
+            void OnCloseInterstitial(bool wasShown)
+            {
+                OnCloseCallback();
+                OnClose();
+            }
+        }
+
+        public void ShowRewardAd(Action OnSuccess, Action OnFail)
+        {
 #if UNITY_WEBGL && !UNITY_EDITOR
         Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRewardedCallback, OnCloseCallback, OnErrorCallback);
 #else
-        OnSuccess();
+            OnSuccess();
 #endif
 
-        void OnRewardedCallback()
+            void OnRewardedCallback()
+            {
+                _rewardHandler.GetReward();
+                OnSuccess();
+            }
+
+            void OnErrorCallback(string error)
+            {
+                OnFail();
+            }
+        }
+        private void OnCloseCallback()
         {
-            _rewardHandler.GetReward();
-            OnSuccess();
+            IsAdsPlaying = false;
+            _pauseService.Unpause();
         }
 
-        void OnErrorCallback(string error)
+        private void OnOpenCallback()
         {
-            OnFail();
+            IsAdsPlaying = true;
+            _pauseService.Pause();
         }
-    }
-    private void OnCloseCallback()
-    {
-        IsAdsPlaying = false;
-        _pauseService.Unpause();
-    }
-
-    private void OnOpenCallback()
-    {
-        IsAdsPlaying = true;
-        _pauseService.Pause();
     }
 }

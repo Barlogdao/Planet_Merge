@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PlanetMerge.Planets
+namespace PlanetMerge.Utils
 {
     public class RotationModule : MonoBehaviour
     {

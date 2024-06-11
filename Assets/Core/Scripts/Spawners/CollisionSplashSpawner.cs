@@ -1,8 +1,8 @@
-using PlanetMerge.Services.Pools;
-using System;
+using PlanetMerge.Pools;
+using PlanetMerge.Systems.Events;
 using UnityEngine;
 
-namespace PlanetMerge.Systems.Visual
+namespace PlanetMerge.Spawners
 {
     public class CollisionSplashSpawner : MonoBehaviour
     {

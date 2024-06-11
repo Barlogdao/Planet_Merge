@@ -3,7 +3,7 @@ using PlanetMerge.Configs;
 using TMPro;
 using UnityEngine;
 
-namespace PlanetMerge.Planets
+namespace PlanetMerge.Entities.Planets
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class PlanetView : MonoBehaviour

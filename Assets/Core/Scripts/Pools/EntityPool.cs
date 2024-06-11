@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace PlanetMerge.Services.Pools
+namespace PlanetMerge.Pools
 {
     public class EntityPool<T> where T : MonoBehaviour
     {

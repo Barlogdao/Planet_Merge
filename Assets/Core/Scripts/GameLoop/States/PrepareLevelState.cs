@@ -1,16 +1,22 @@
-public class PrepareLevelState
+using PlanetMerge.Systems.Data;
+using PlanetMerge.Systems.Gameplay.LevelPreparing;
+
+namespace PlanetMerge.Gameloop.States
 {
-    private readonly LevelPrepareSystem _levelPrepareSystem;
-    private readonly IReadOnlyPlayerData _playerData;
-
-    public PrepareLevelState(IReadOnlyPlayerData playerData,LevelPrepareSystem levelPrepareSystem)
+    public class PrepareLevelState
     {
-        _levelPrepareSystem = levelPrepareSystem;
-        _playerData = playerData;
-    }
+        private readonly LevelPrepareSystem _levelPrepareSystem;
+        private readonly IReadOnlyPlayerData _playerData;
 
-    public void PrepareLevel()
-    {
-        _levelPrepareSystem.Prepare(_playerData);
+        public PrepareLevelState(IReadOnlyPlayerData playerData, LevelPrepareSystem levelPrepareSystem)
+        {
+            _levelPrepareSystem = levelPrepareSystem;
+            _playerData = playerData;
+        }
+
+        public void PrepareLevel()
+        {
+            _levelPrepareSystem.Prepare(_playerData);
+        }
     }
 }

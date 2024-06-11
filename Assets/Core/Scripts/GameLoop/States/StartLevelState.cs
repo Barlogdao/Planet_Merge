@@ -1,35 +1,39 @@
 using Cysharp.Threading.Tasks;
+using PlanetMerge.Gameloop.Presenter;
+using PlanetMerge.Systems.Data;
 using PlanetMerge.Systems.Tutorial;
-using PlanetMerge.Systems.Visual;
 
-public class StartLevelState
+namespace PlanetMerge.Gameloop.States
 {
-    private readonly TutorialSystem _tutorialSystem;
-    private readonly StartLevelPresenter _startLevelPresenter;
-    private readonly IReadOnlyPlayerData _playerData;
-
-    public StartLevelState(IReadOnlyPlayerData playerData, TutorialSystem tutorialController, StartLevelPresenter startLevelPresenter)
+    public class StartLevelState
     {
-        _playerData = playerData;
-        _tutorialSystem = tutorialController;
-        _startLevelPresenter = startLevelPresenter;
-    }
+        private readonly TutorialSystem _tutorialSystem;
+        private readonly StartLevelPresenter _startLevelPresenter;
+        private readonly IReadOnlyPlayerData _playerData;
 
-    public async UniTask StartLevelAsync()
-    {
-        if (_playerData.Level == Constants.TutorialLevel)
+        public StartLevelState(IReadOnlyPlayerData playerData, TutorialSystem tutorialController, StartLevelPresenter startLevelPresenter)
         {
-            _startLevelPresenter.HideWindows();
-            _tutorialSystem.RunTutorialAsync().Forget();
+            _playerData = playerData;
+            _tutorialSystem = tutorialController;
+            _startLevelPresenter = startLevelPresenter;
         }
-        else
-        {
-            await _startLevelPresenter.StartLevelAsync();
-        }
-    }
 
-    public void ResumeLevel()
-    {
-        _startLevelPresenter.ResumeLevel();
+        public async UniTask StartLevelAsync()
+        {
+            if (_playerData.Level == Constants.TutorialLevel)
+            {
+                _startLevelPresenter.HideWindows();
+                _tutorialSystem.RunTutorialAsync().Forget();
+            }
+            else
+            {
+                await _startLevelPresenter.StartLevelAsync();
+            }
+        }
+
+        public void ResumeLevel()
+        {
+            _startLevelPresenter.ResumeLevel();
+        }
     }
 }

@@ -1,7 +1,7 @@
-using PlanetMerge.Planets;
+using PlanetMerge.Entities.Splash;
 using UnityEngine;
 
-namespace PlanetMerge.Services.Pools
+namespace PlanetMerge.Pools
 {
     public class CollisionSplashPool : EntityPool<CollisionSplash>, IReleasePool<CollisionSplash>
     {

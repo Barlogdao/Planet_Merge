@@ -1,7 +1,6 @@
-using PlanetMerge.Systems;
 using UnityEngine;
 
-namespace PlanetMerge.SDK.Yandex
+namespace PlanetMerge.Systems.Gameplay
 {
     public class RewardHandler : MonoBehaviour
     {

@@ -1,8 +1,8 @@
-using Cysharp.Threading.Tasks;
-using UnityEngine;
 using System;
-using PlanetMerge.UI;
-using PlanetMerge.Planets;
+using UnityEngine;
+using Cysharp.Threading.Tasks;
+using PlanetMerge.UI.View;
+using PlanetMerge.Systems.Events;
 
 namespace PlanetMerge.Systems.Tutorial
 {
@@ -22,17 +22,17 @@ namespace PlanetMerge.Systems.Tutorial
         [SerializeField] int _shiftedSortingOrder;
         [SerializeField] private float _intervalDuration = 1.5f;
 
-        private PlanetLauncher _planetlauncher;
         private InputController _inputController;
+        private GameEventMediator _gameEventMediator;
         private int _originSortingOrder;
 
         public event Action PlanetLaunched;
 
-        public void Initialize(InputController inputController, PlanetLauncher planetLauncher)
+        public void Initialize(InputController inputController, GameEventMediator gameEventMediator)
         {
             _inputController = inputController;
             _originSortingOrder = _tutorialCanvas.sortingOrder;
-            _planetlauncher = planetLauncher;
+            _gameEventMediator = gameEventMediator;
 
             _firstTip.Initialize(this, _pointer);
             _secondTip.Initialize(this, _pointer);
@@ -40,16 +40,14 @@ namespace PlanetMerge.Systems.Tutorial
             _fourthTip.Initialize(this, _pointer);
             _background.Initialize();
 
-           _planetlauncher.PlanetLaunched += OnPlanetLauched;
+           _gameEventMediator.PlanetLaunched += OnPlanetLauched;
 
             _tutorialCanvas.enabled = false;
         }
 
- 
-
         private void OnDestroy()
         {
-            _planetlauncher.PlanetLaunched -= OnPlanetLauched;
+            _gameEventMediator.PlanetLaunched -= OnPlanetLauched;
         }
 
         public async UniTaskVoid RunTutorialAsync()

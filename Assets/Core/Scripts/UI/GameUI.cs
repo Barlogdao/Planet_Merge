@@ -1,9 +1,8 @@
 using UnityEngine;
-using TMPro;
-using PlanetMerge.Systems;
 using System;
 using UnityEngine.UI;
-using Cysharp.Threading.Tasks;
+using PlanetMerge.Systems.Data;
+using PlanetMerge.Systems.Events;
 
 namespace PlanetMerge.UI
 {

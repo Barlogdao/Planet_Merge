@@ -1,9 +1,12 @@
-using DG.Tweening;
-using PlanetMerge.Planets;
-using PlanetMerge.Services.Pools;
 using UnityEngine;
+using DG.Tweening;
+using PlanetMerge.Entities.Energy;
+using PlanetMerge.Entities.Planets;
+using PlanetMerge.Pools;
+using PlanetMerge.Systems.Events;
+using PlanetMerge.Systems.Gameplay.PlanetLaunching;
 
-namespace PlanetMerge.Systems.Visual
+namespace PlanetMerge.Spawners
 {
     public class EnergySpawner : MonoBehaviour
     {

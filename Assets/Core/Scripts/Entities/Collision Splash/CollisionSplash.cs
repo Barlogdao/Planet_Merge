@@ -1,25 +1,28 @@
-using PlanetMerge.Planets;
+using PlanetMerge.Pools;
 using UnityEngine;
 
-[RequireComponent(typeof(ParticleSystem))]
-public class CollisionSplash : MonoBehaviour
+namespace PlanetMerge.Entities.Splash
 {
-    [SerializeField] private ParticleSystem _particleSystem;
-
-    private IReleasePool<CollisionSplash> _pool;
-
-    public void Initialize(IReleasePool<CollisionSplash> pool)
+    [RequireComponent(typeof(ParticleSystem))]
+    public class CollisionSplash : MonoBehaviour
     {
-        _pool = pool;
-    }
+        [SerializeField] private ParticleSystem _particleSystem;
 
-    private void OnEnable()
-    {
-        _particleSystem.Play();
-    }
+        private IReleasePool<CollisionSplash> _pool;
 
-    private void OnParticleSystemStopped()
-    {
-        _pool.Release(this);
+        public void Initialize(IReleasePool<CollisionSplash> pool)
+        {
+            _pool = pool;
+        }
+
+        private void OnEnable()
+        {
+            _particleSystem.Play();
+        }
+
+        private void OnParticleSystemStopped()
+        {
+            _pool.Release(this);
+        }
     }
 }

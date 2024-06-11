@@ -1,5 +1,6 @@
-using PlanetMerge.Systems;
-using PlanetMerge.UI;
+using PlanetMerge.Systems.Data;
+using PlanetMerge.Systems.Gameplay;
+using PlanetMerge.UI.View;
 using TMPro;
 using UnityEngine;
 

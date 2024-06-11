@@ -1,8 +1,9 @@
 using Agava.YandexGames;
+using Assets.Core.Scripts.SDK.Leaderboard;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace PlanetMerge.SDK.Yandex
+namespace PlanetMerge.SDK.Yandex.Leaderboard
 {
     public class YandexLeaderboard : MonoBehaviour
     {
@@ -18,10 +19,10 @@ namespace PlanetMerge.SDK.Yandex
             if (PlayerAccount.IsAuthorized == false)
                 return;
 
-            Leaderboard.GetPlayerEntry(LeaderboardName, (result) =>
+            Agava.YandexGames.Leaderboard.GetPlayerEntry(LeaderboardName, (result) =>
             {
                 if (result == null || result.score < score)
-                    Leaderboard.SetScore(LeaderboardName, score);
+                    Agava.YandexGames.Leaderboard.SetScore(LeaderboardName, score);
             });
         }
 
@@ -32,7 +33,7 @@ namespace PlanetMerge.SDK.Yandex
 
             _leaderboardPlayers.Clear();
 
-            Leaderboard.GetEntries(LeaderboardName, (result) =>
+            Agava.YandexGames.Leaderboard.GetEntries(LeaderboardName, (result) =>
             {
                 foreach (var entry in result.entries)
                 {

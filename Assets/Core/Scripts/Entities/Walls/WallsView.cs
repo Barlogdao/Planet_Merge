@@ -4,45 +4,47 @@ using System.Linq;
 using Cysharp.Threading.Tasks.Linq;
 using DG.Tweening;
 
-public class WallsView : AppearingEntity
+namespace PlanetMerge.Entities.Wall
 {
-    private const string DissolveProperty = "_FullGlowDissolveFade";
-    [SerializeField] private SpriteRenderer[] _spriteRenderers;
-    [SerializeField] private float _dissolveDuration = 0.2f;
-
-    private Material[] _materials;
-    private int _fadePropertyID;
-    private float _dissolveValue = 0f;
-    private float _undissolveValue = 1f;
-
-    protected override void OnAwake()
+    public class WallsView : AppearingEntity
     {
-        _materials = _spriteRenderers.Select(x => x.material).ToArray();
-        _fadePropertyID = Shader.PropertyToID(DissolveProperty);
-    }
+        private const string DissolveProperty = "_FullGlowDissolveFade";
+        [SerializeField] private SpriteRenderer[] _spriteRenderers;
+        [SerializeField] private float _dissolveDuration = 0.2f;
 
-    protected override void OnResetView()
-    {
-        foreach (Material material in _materials)
+        private Material[] _materials;
+        private int _fadePropertyID;
+        private float _dissolveValue = 0f;
+        private float _undissolveValue = 1f;
+
+        public override async UniTask AppearAsync()
         {
-            material.SetFloat(_fadePropertyID,_dissolveValue);
+            foreach (Material material in _materials)
+            {
+                await material.DOFloat(_undissolveValue, _fadePropertyID, _dissolveDuration);
+            }
+        }
+
+        public override async UniTask DisappearAsync()
+        {
+            foreach (Material material in _materials)
+            {
+                await material.DOFloat(_dissolveValue, _fadePropertyID, _dissolveDuration);
+            }
+        }
+
+        protected override void OnAwake()
+        {
+            _materials = _spriteRenderers.Select(x => x.material).ToArray();
+            _fadePropertyID = Shader.PropertyToID(DissolveProperty);
+        }
+
+        protected override void OnResetView()
+        {
+            foreach (Material material in _materials)
+            {
+                material.SetFloat(_fadePropertyID, _dissolveValue);
+            }
         }
     }
-
-    public override async UniTask AppearAsync()
-    {
-        foreach (Material material in _materials)
-        {
-            await material.DOFloat(_undissolveValue, _fadePropertyID, _dissolveDuration);
-        }
-    }
-
-    public override async UniTask DisappearAsync()
-    {
-        foreach (Material material in _materials)
-        {
-            await material.DOFloat(_dissolveValue, _fadePropertyID, _dissolveDuration);
-        }
-    }
-
 }

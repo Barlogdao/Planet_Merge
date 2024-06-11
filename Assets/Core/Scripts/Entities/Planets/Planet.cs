@@ -1,11 +1,10 @@
-using UnityEngine;
 using System;
-using Cysharp.Threading.Tasks;
-using Random = UnityEngine.Random;
-using System.Threading;
 using System.Collections;
+using PlanetMerge.Pools;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
-namespace PlanetMerge.Planets
+namespace PlanetMerge.Entities.Planets
 {
     [RequireComponent(typeof(CircleCollider2D))]
     [RequireComponent(typeof(Rigidbody2D))]
@@ -13,6 +12,8 @@ namespace PlanetMerge.Planets
     {
         [SerializeField] private MergeDetector _mergeDetector;
         [SerializeField] private PlanetView _view;
+        [SerializeField] private float _minSplitDelay = 0.1f;
+        [SerializeField] private float _maxSplitDelay = 0.2f;
 
         private Rigidbody2D _rigidbody2D;
         private IReleasePool<Planet> _releasePool;
@@ -24,8 +25,6 @@ namespace PlanetMerge.Planets
         public event Action<Vector2> Collided;
         public event Action<Planet> Splitted;
 
-        private CancellationTokenSource _disableCancellation = new CancellationTokenSource();
-
         public int Rank => _rank;
 
         public void Initialize(IReleasePool<Planet> releasePool)
@@ -36,30 +35,23 @@ namespace PlanetMerge.Planets
             _mergeDetector.Initialize(this);
         }
 
+        private void OnEnable()
+        {
+            _isSplitting = false;
+
+            _mergeDetector.MergeDetected += OnMergeDetected;
+        }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
             Collided?.Invoke(collision.GetContact(0).point);
             _view.Collide();
         }
 
-        private void OnEnable()
-        {
-            _isSplitting = false;
-
-            _mergeDetector.MergeDetected += OnMergeDetected;
-
-            if (_disableCancellation != null)
-            {
-                _disableCancellation.Dispose();
-            }
-            _disableCancellation = new CancellationTokenSource();
-        }
 
         private void OnDisable()
         {
             _mergeDetector.MergeDetected -= OnMergeDetected;
-
-            _disableCancellation.Cancel();
         }
 
         public void Prepare(int rank)
@@ -115,8 +107,8 @@ namespace PlanetMerge.Planets
         {
             _isSplitting = true;
 
-            float waitDuration = Random.Range(0.1f, 0.2f);
-            WaitForSeconds delay = new WaitForSeconds(waitDuration);
+            float splitDelay = Random.Range(_minSplitDelay, _maxSplitDelay);
+            WaitForSeconds delay = new WaitForSeconds(splitDelay);
 
             yield return delay;
 

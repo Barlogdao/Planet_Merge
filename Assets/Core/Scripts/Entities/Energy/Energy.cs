@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class Energy : MonoBehaviour
+namespace PlanetMerge.Entities.Energy
 {
+    public class Energy : MonoBehaviour
+    {
 
+    }
 }

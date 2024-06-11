@@ -1,30 +1,33 @@
 using DG.Tweening;
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
-public class Wall : MonoBehaviour
+namespace PlanetMerge.Entities.Wall
 {
-    private const string FadeProperty = "_AddColorFade";
-
-    [SerializeField] private float _fadeDuration = 0.2f;
-
-    private Material _material;
-    private int _fadePropertyID;
-    private float _maxFadeValue = 1f;
-    private float _minFadeValue = 0f;
-
-    void Start()
+    [RequireComponent(typeof(SpriteRenderer))]
+    public class Wall : MonoBehaviour
     {
-        _material = GetComponent<SpriteRenderer>().material;
+        private const string FadeProperty = "_AddColorFade";
 
-        _fadePropertyID = Shader.PropertyToID(FadeProperty);
+        [SerializeField] private float _fadeDuration = 0.2f;
 
-        _material.SetFloat(_fadePropertyID, _minFadeValue);
-    }
+        private Material _material;
+        private int _fadePropertyID;
+        private float _maxFadeValue = 1f;
+        private float _minFadeValue = 0f;
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        _material.SetFloat(_fadePropertyID, _maxFadeValue);
-        _material.DOFloat(_minFadeValue, _fadePropertyID, _fadeDuration);
+        void Start()
+        {
+            _material = GetComponent<SpriteRenderer>().material;
+
+            _fadePropertyID = Shader.PropertyToID(FadeProperty);
+
+            _material.SetFloat(_fadePropertyID, _minFadeValue);
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            _material.SetFloat(_fadePropertyID, _maxFadeValue);
+            _material.DOFloat(_minFadeValue, _fadePropertyID, _fadeDuration);
+        }
     }
 }

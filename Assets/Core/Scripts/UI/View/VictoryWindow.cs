@@ -1,9 +1,10 @@
 using Cysharp.Threading.Tasks;
+using PlanetMerge.Systems.Data;
 using PlanetMerge.Utils;
 using TMPro;
 using UnityEngine;
 
-namespace PlanetMerge.UI
+namespace PlanetMerge.UI.View
 {
     public class VictoryWindow : AppearWindow
     {

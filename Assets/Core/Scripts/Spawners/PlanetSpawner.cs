@@ -1,7 +1,9 @@
 using UnityEngine;
 using System;
+using PlanetMerge.Pools;
+using PlanetMerge.Entities.Planets;
 
-namespace PlanetMerge.Planets
+namespace PlanetMerge.Spawners
 {
     public class PlanetSpawner
     {

@@ -1,8 +1,10 @@
+using PlanetMerge.Entities.Planets;
+using PlanetMerge.Systems.Events;
 using System;
 using UnityEngine;
 using UnityEngine.Pool;
 
-namespace PlanetMerge.Planets
+namespace PlanetMerge.Pools
 {
     public class PlanetPool : IReleasePool<Planet>, IPlanetStatusNotifier
     {

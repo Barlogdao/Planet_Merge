@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PlanetMerge.UI
+namespace PlanetMerge.UI.View
 {
     public abstract class PlanetViewPanel : MonoBehaviour
     {

@@ -1,13 +1,16 @@
-public class LevelStates
+namespace PlanetMerge.Gameloop.States
 {
-    public LevelStates(PrepareLevelState prepareLevelState, StartLevelState startLevelState, EndLevelState endLevelState)
+    public class LevelStates
     {
-        PrepareLevelState = prepareLevelState;
-        StartLevelState = startLevelState;
-        EndLevelState = endLevelState;
-    }
+        public LevelStates(PrepareLevelState prepareLevelState, StartLevelState startLevelState, EndLevelState endLevelState)
+        {
+            PrepareLevelState = prepareLevelState;
+            StartLevelState = startLevelState;
+            EndLevelState = endLevelState;
+        }
 
-    public PrepareLevelState PrepareLevelState { get; }
-    public StartLevelState StartLevelState { get; }
-    public EndLevelState EndLevelState { get; }
+        public PrepareLevelState PrepareLevelState { get; }
+        public StartLevelState StartLevelState { get; }
+        public EndLevelState EndLevelState { get; }
+    }
 }

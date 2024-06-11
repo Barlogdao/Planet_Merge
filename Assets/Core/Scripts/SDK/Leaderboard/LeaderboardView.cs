@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace PlanetMerge.SDK.Yandex
+namespace Assets.Core.Scripts.SDK.Leaderboard
 {
     public class LeaderboardView : MonoBehaviour
     {
@@ -25,7 +25,7 @@ namespace PlanetMerge.SDK.Yandex
 
         private void ClearLeaderboard()
         {
-            foreach (var element in _spawnedElements) 
+            foreach (var element in _spawnedElements)
             {
                 Destroy(element.gameObject);
             }

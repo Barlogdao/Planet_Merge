@@ -2,7 +2,7 @@
 using PlanetMerge.Utils;
 using UnityEngine;
 
-namespace PlanetMerge.UI
+namespace PlanetMerge.UI.View
 {
     public class AppearWindow : UiWindow
     {

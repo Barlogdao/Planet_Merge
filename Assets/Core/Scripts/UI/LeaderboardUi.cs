@@ -1,8 +1,6 @@
 using Agava.YandexGames;
-using PlanetMerge.SDK.Yandex;
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using PlanetMerge.SDK.Yandex.Leaderboard;
+using PlanetMerge.UI.View;
 using UnityEngine;
 using UnityEngine.UI;
 

@@ -1,14 +1,21 @@
-using PlanetMerge.Handlers.Pause;
-using PlanetMerge.Planets;
-using PlanetMerge.SDK.Yandex;
-using PlanetMerge.Services.Pause;
-using PlanetMerge.Services.Pools;
-using PlanetMerge.Sevices.Audio;
+using PlanetMerge.Entities.Energy;
+using PlanetMerge.Entities.Planets;
+using PlanetMerge.Entities.Splash;
+using PlanetMerge.Gameloop.Presenter;
+using PlanetMerge.Gameloop.States;
+using PlanetMerge.Pools;
+using PlanetMerge.SDK.Yandex.Advertising;
+using PlanetMerge.SDK.Yandex.Leaderboard;
+using PlanetMerge.Spawners;
 using PlanetMerge.Systems;
 using PlanetMerge.Systems.Audio;
-using PlanetMerge.Systems.SaveLoad;
+using PlanetMerge.Systems.Data;
+using PlanetMerge.Systems.Events;
+using PlanetMerge.Systems.Gameplay;
+using PlanetMerge.Systems.Gameplay.LevelPreparing;
+using PlanetMerge.Systems.Gameplay.PlanetLaunching;
+using PlanetMerge.Systems.Pause;
 using PlanetMerge.Systems.Tutorial;
-using PlanetMerge.Systems.Visual;
 using PlanetMerge.UI;
 using UnityEngine;
 
@@ -25,33 +32,35 @@ public class EntryPoint : MonoBehaviour
     [Header("Spawners")]
     [SerializeField] private EnergySpawner _energySpawner;
     [SerializeField] private CollisionSplashSpawner _collisionSplashSpawner;
-    [Header("Services")]
+    [Header("Audio")]
     [SerializeField] private AudioService _audioService;
-    [Header("Controllers")]
-    [SerializeField] private LevelPlanetsController _levelPlanetsController;
     [SerializeField] private MuteController _muteController;
-    [SerializeField] private FocusController _focusController;
+    [SerializeField] private AudioHandler _audioHandler;
+    [Header("Input")]
     [SerializeField] private InputController _inputController;
+    [SerializeField] private PlayerInput _playerInput;
+    [Header("Pause")]
+    [SerializeField] private FocusController _focusController;
+    [Header("Gameplay")]
+    [SerializeField] private LevelPlanetsController _levelPlanetsController;
     [SerializeField] private LevelGoalController _levelGoalController;
     [SerializeField] private EnergyLimitController _energyLimitController;
-    [Header("Handlers")]
-    [SerializeField] private GameOverHandler _gameOverHandler;
-    [SerializeField] private AudioHandler _audioHandler;
     [SerializeField] private RewardHandler _rewardHandler;
+    [SerializeField] private GameOverHandler _gameOverHandler;
+    [SerializeField] private PlanetLauncher _planetLauncher;
+    [SerializeField] private LevelGenerator _levelGenerator;
     [Header("UI")]
     [SerializeField] private UiPanel _uiPanel;
     [SerializeField] private GameUi _gameUI;
-    [Header("Systems")]
-    [SerializeField] private PlanetLauncher _planetLauncher;
+    [Header("SDK")]
+    [SerializeField] private YandexLeaderboard _leaderboard;
+    [Header("Tutorial")]
     [SerializeField] private TutorialSystem _tutorialSystem;
-    [SerializeField] private LevelGenerator _levelGenerator;
     [Header("Game Loop")]
     [SerializeField] private StartLevelPresenter _startLevelPresenter;
     [SerializeField] private EndLevelPresenter _endLevelPresenter;
     [SerializeField] private GameLoop _gameLoop;
-    [Space]
-    [SerializeField] private PlayerInput _playerInput;
-    [SerializeField] private YandexLeaderboard _leaderboard;
+    [Space(30f)]
     [SerializeField] private GameEventMediator _gameEventMediator;
 
     private PlanetPool _planetPool;
@@ -62,26 +71,37 @@ public class EntryPoint : MonoBehaviour
 
     private PauseService _pauseService;
     private PlayerDataService _playerDataService;
-
-    private AdvertisingService _advertisingService;
+    private PlayerDataSystem _playerDataSystem;
 
     private LevelConditions _levelConditions;
     private LevelPrepareSystem _levelPrepareSystem;
-    private PlayerDataSystem _playerDataSystem;
+
+    private AdvertisingService _advertisingService;
+
+    private PrepareLevelState _prepareLevelState;
+    private StartLevelState _startLevelState;
+    private EndLevelState _endLevelState;
+    private LevelStates _levelStates;
+
 
     private void Awake()
     {
         InitializePools();
         InitializeSpawners();
 
-        InitializeServices();
-        InitializeControllers();
-        InitializeHandlers();
+        InitializeAudio();
+        InitializeData();
+        InitializeInput();
+        InitializePause();
+
+        InitializeGameplay();
         InitializeUi();
-        InitializeSystems();
+        InitializeSDK();
+        InitializeTutorial();
+
         InitializeGameLoop();
 
-        _gameEventMediator.Initialize(_planetPool, _gameOverHandler, _gameLoop, _gameUI);
+        _gameEventMediator.Initialize(_planetPool, _gameOverHandler, _gameLoop, _gameUI, _planetLauncher);
     }
 
     private void InitializePools()
@@ -98,29 +118,42 @@ public class EntryPoint : MonoBehaviour
         _collisionSplashSpawner.Initialize(_gameEventMediator, _collisionSplashPool);
     }
 
-    private void InitializeServices()
+    private void InitializePause()
     {
         _pauseService = new PauseService(_audioService);
-        _playerDataService = new PlayerDataService();
-        _advertisingService = new AdvertisingService(_pauseService, _rewardHandler);
+        _focusController.Initialize(_pauseService, _advertisingService);
     }
 
-    private void InitializeControllers()
+    private void InitializeInput()
     {
-        _focusController.Initialize(_pauseService, _advertisingService);
-        _muteController.Initialize(_audioService);
         _inputController.Initialize(_playerInput, _gameEventMediator);
+    }
+
+    private void InitializeAudio()
+    {
+        _audioHandler.Initialize(_audioService, _gameEventMediator);
+        _muteController.Initialize(_audioService);
+    }
+
+    private void InitializeData()
+    {
+        _playerDataService = new PlayerDataService();
+        _playerDataSystem = new PlayerDataSystem(_playerDataService, _leaderboard);
+    }
+
+    private void InitializeGameplay()
+    {
         _levelPlanetsController.Initialize(_gameEventMediator);
         _energyLimitController.Initialize(_gameEventMediator);
         _levelGoalController.Initialize(_gameEventMediator);
-    }
-
-    private void InitializeHandlers()
-    {
         _gameOverHandler.Initialize(_energyLimitController, _levelGoalController);
-        _audioHandler.Initialize(_audioService, _gameEventMediator);
-
         _rewardHandler.Initialize(_energyLimitController);
+
+        _planetLauncher.Initialize(_playerInput, _planetSpawner, _energyLimitController);
+
+        _levelConditions = new LevelConditions(_levelGoalController, _energyLimitController);
+        _levelGenerator.Initialize(_planetSpawner, _levelConditions, _planetLauncher);
+        _levelPrepareSystem = new LevelPrepareSystem(_levelGenerator, _levelPlanetsController, _gameUI);
     }
 
     private void InitializeUi()
@@ -129,27 +162,26 @@ public class EntryPoint : MonoBehaviour
         _gameUI.Initialize(_uiPanel);
     }
 
-    private void InitializeSystems()
+    private void InitializeSDK()
     {
-        _planetLauncher.Initialize(_playerInput, _planetSpawner, _energyLimitController);
-        _levelConditions = new LevelConditions(_levelGoalController, _energyLimitController);
-        _levelGenerator.Initialize(_planetSpawner, _levelConditions, _planetLauncher);
-        _levelPrepareSystem = new LevelPrepareSystem(_levelGenerator, _levelPlanetsController, _gameUI);
+        _advertisingService = new AdvertisingService(_pauseService, _rewardHandler);
+    }
 
-        _tutorialSystem.Initialize(_inputController, _planetLauncher);
-        _playerDataSystem = new PlayerDataSystem(_playerDataService, _leaderboard);
+    private void InitializeTutorial()
+    {
+        _tutorialSystem.Initialize(_inputController, _gameEventMediator);
     }
 
     private void InitializeGameLoop()
     {
         IReadOnlyPlayerData playerData = _playerDataService.PlayerData;
 
-        PrepareLevelState prepareLevelState = new(playerData, _levelPrepareSystem);
-        StartLevelState startLevelState = new(playerData, _tutorialSystem, _startLevelPresenter);
-        EndLevelState endLevelState = new(_endLevelPresenter, _playerDataSystem, _levelPlanetsController);
-        LevelStates levelStates = new(prepareLevelState, startLevelState, endLevelState);
+        _prepareLevelState = new(playerData, _levelPrepareSystem);
+        _startLevelState = new(playerData, _tutorialSystem, _startLevelPresenter);
+        _endLevelState = new(_endLevelPresenter, _playerDataSystem, _levelPlanetsController);
+        _levelStates = new(_prepareLevelState, _startLevelState, _endLevelState);
 
-        _gameLoop.Initialize(_gameEventMediator, levelStates, _advertisingService);
+        _gameLoop.Initialize(_gameEventMediator, _levelStates, _advertisingService);
     }
 
     private void Start()
