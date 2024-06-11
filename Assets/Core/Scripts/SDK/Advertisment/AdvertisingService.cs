@@ -22,7 +22,7 @@ namespace PlanetMerge.SDK.Yandex.Advertising
 #if UNITY_WEBGL && !UNITY_EDITOR
         Agava.YandexGames.InterstitialAd.Show(OnOpenCallback, OnCloseInterstitial);
 #else
-            OnClose();
+            OnCloseInterstitial(true);
 #endif
 
             void OnCloseInterstitial(bool wasShown)
@@ -37,7 +37,7 @@ namespace PlanetMerge.SDK.Yandex.Advertising
 #if UNITY_WEBGL && !UNITY_EDITOR
         Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRewardedCallback, OnCloseCallback, OnErrorCallback);
 #else
-            OnSuccess();
+            OnRewardedCallback();
 #endif
 
             void OnRewardedCallback()

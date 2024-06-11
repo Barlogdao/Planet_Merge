@@ -4,6 +4,7 @@ using PlanetMerge.Entities.Splash;
 using PlanetMerge.Gameloop.Presenter;
 using PlanetMerge.Gameloop.States;
 using PlanetMerge.Pools;
+using PlanetMerge.SDK.Yandex;
 using PlanetMerge.SDK.Yandex.Advertising;
 using PlanetMerge.SDK.Yandex.Leaderboard;
 using PlanetMerge.Spawners;
@@ -39,8 +40,6 @@ public class EntryPoint : MonoBehaviour
     [Header("Input")]
     [SerializeField] private InputController _inputController;
     [SerializeField] private PlayerInput _playerInput;
-    [Header("Pause")]
-    [SerializeField] private FocusController _focusController;
     [Header("Gameplay")]
     [SerializeField] private LevelPlanetsController _levelPlanetsController;
     [SerializeField] private LevelGoalController _levelGoalController;
@@ -53,6 +52,7 @@ public class EntryPoint : MonoBehaviour
     [SerializeField] private UiPanel _uiPanel;
     [SerializeField] private GameUi _gameUI;
     [Header("SDK")]
+    [SerializeField] private FocusController _focusController;
     [SerializeField] private YandexLeaderboard _leaderboard;
     [Header("Tutorial")]
     [SerializeField] private TutorialSystem _tutorialSystem;
@@ -92,8 +92,8 @@ public class EntryPoint : MonoBehaviour
         InitializeAudio();
         InitializeData();
         InitializeInput();
-        InitializeSDK();
         InitializePause();
+        InitializeSDK();
 
         InitializeGameplay();
         InitializeUi();
@@ -135,16 +135,17 @@ public class EntryPoint : MonoBehaviour
         _inputController.Initialize(_playerInput, _gameEventMediator);
     }
 
-    private void InitializeSDK()
-    {
-        _advertisingService = new AdvertisingService(_pauseService, _rewardHandler);
-    }
-
     private void InitializePause()
     {
         _pauseService = new PauseService(_audioService);
+    }
+
+    private void InitializeSDK()
+    {
+        _advertisingService = new AdvertisingService(_pauseService, _rewardHandler);
         _focusController.Initialize(_pauseService, _advertisingService);
     }
+
 
     private void InitializeGameplay()
     {

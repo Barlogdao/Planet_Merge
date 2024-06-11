@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e35d25cc040dbc47b6c1b76da929cd9, type: 3}
   m_Name: Planet_05
   m_EditorClassIdentifier: 
-  _sprite: {fileID: 1650767750, guid: 5c7ede9e06ad59247afe4d5ac4499d41, type: 3}
+  _sprite: {fileID: -957486910, guid: 244f12038be72374a987da8ff61a34bc, type: 3}
   <LabelColor>k__BackingField: {r: 1, g: 0.90909094, b: 0, a: 1}

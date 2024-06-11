@@ -1,8 +1,9 @@
 using Agava.WebUtility;
 using PlanetMerge.SDK.Yandex.Advertising;
+using PlanetMerge.Systems.Pause;
 using UnityEngine;
 
-namespace PlanetMerge.Systems.Pause
+namespace PlanetMerge.SDK.Yandex
 {
     public class FocusController : MonoBehaviour
     {

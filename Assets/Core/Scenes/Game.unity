@@ -13712,7 +13712,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5.2
+  orthographic size: 5.1
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -14268,45 +14268,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2932653472619090997, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
-      propertyPath: m_SortingLayer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2932653472619090997, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2932653472619090997, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1086148173
-      objectReference: {fileID: 0}
     - target: {fileID: 3764724498956872374, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
       propertyPath: m_Name
       value: Trajectory
-      objectReference: {fileID: 0}
-    - target: {fileID: 8463524076563804017, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
-      propertyPath: m_SortingLayer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8463524076563804017, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8463524076563804017, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1086148173
-      objectReference: {fileID: 0}
-    - target: {fileID: 8503590664705727597, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
-      propertyPath: m_SortingLayer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8503590664705727597, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
-      propertyPath: m_SortingOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8503590664705727597, guid: 2c5dd9881d3207341a72926cca3a2fc2, type: 3}
-      propertyPath: m_SortingLayerID
-      value: 1086148173
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

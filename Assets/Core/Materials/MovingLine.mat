@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: MovimgLine
+  m_Name: MovingLine
   m_Shader: {fileID: 4800000, guid: 4ac102b8f802f994c8c68ef90072dbc5, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
