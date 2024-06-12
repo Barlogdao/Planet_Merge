@@ -31,16 +31,9 @@ namespace PlanetMerge.UI
         {
             if (PlayerAccount.IsAuthorized)
             {
-                if (PlayerAccount.HasPersonalProfileDataPermission)
-                {
-                    _leaderBoard.Fill();
-                    _leaderBoardWindow.Show();
-                }
-                else
-                {
-                    PlayerAccount.RequestPersonalProfileDataPermission();
-                }
-
+                PlayerAccount.RequestPersonalProfileDataPermission();
+                _leaderBoard.Fill();
+                _leaderBoardWindow.Show();
             }
             else
             {
