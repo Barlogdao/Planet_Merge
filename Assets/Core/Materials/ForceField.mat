@@ -290,16 +290,16 @@ Material:
     - _HalftoneFadeWidth: 1.5
     - _HalftoneInvert: 1
     - _HalftoneTiling: 1
-    - _HologramContrast: 1
-    - _HologramDistortionDensity: 0.5
-    - _HologramDistortionOffset: 0.5
-    - _HologramDistortionScale: 10
-    - _HologramDistortionSpeed: 2
-    - _HologramFade: 1
-    - _HologramLineFrequency: 100
-    - _HologramLineGap: 3
+    - _HologramContrast: 1.14
+    - _HologramDistortionDensity: 0
+    - _HologramDistortionOffset: 0.1
+    - _HologramDistortionScale: 1
+    - _HologramDistortionSpeed: 1
+    - _HologramFade: 0.904
+    - _HologramLineFrequency: 80
+    - _HologramLineGap: 5
     - _HologramLineSpeed: -0.1
-    - _HologramMinAlpha: 0.304
+    - _HologramMinAlpha: 0
     - _Hue: 0.36
     - _InkSpreadContrast: 2
     - _InkSpreadDistance: 3
