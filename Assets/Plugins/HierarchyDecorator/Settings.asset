@@ -521,7 +521,7 @@ MonoBehaviour:
   components:
     enableIcons: 1
     showMissingScriptWarning: 1
-    showAll: 0
+    showAll: 2
     stackMonoBehaviours: 0
     unityGroups:
     - name: Animation
@@ -3774,6 +3774,116 @@ MonoBehaviour:
         shown: 0
         isBuiltIn: 0
         script: {fileID: 11500000, guid: ae4b1c1a81c56df43998c110fa52b81f, type: 3}
+        hash: -1
+      - displayName: LeaderboardUi
+        name: PlanetMerge.UI.LeaderboardUi, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        content:
+          m_Text: LeaderboardUi
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: LeaderboardUi
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 2b4634657fe51874eb8916ab84e12cea, type: 3}
+        hash: -1
+      - displayName: UiPanelView
+        name: PlanetMerge.UI.View.UiPanelView, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: UiPanelView
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: UiPanelView
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: ce21d63a6a08be04e95f02fcca3f32cd, type: 3}
+        hash: -1
+      - displayName: LeaderboardWindow
+        name: PlanetMerge.UI.View.LeaderboardWindow, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: LeaderboardWindow
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: LeaderboardWindow
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 1795e67e5716d8a409a8d87999779415, type: 3}
+        hash: -1
+      - displayName: LeaderboardView
+        name: Assets.Core.Scripts.SDK.Leaderboard.LeaderboardView, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: LeaderboardView
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: LeaderboardView
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: fe82e75313015ec41a90e272a2503238, type: 3}
+        hash: -1
+      - displayName: AuthorizeWindow
+        name: PlanetMerge.UI.View.AuthorizeWindow, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: AuthorizeWindow
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: AuthorizeWindow
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: a4718073384456b409d26ee944496cc2, type: 3}
+        hash: -1
+      - displayName: AppearWindow
+        name: PlanetMerge.UI.View.AppearWindow, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: AppearWindow
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: AppearWindow
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 74efc45bc3bbf7842b228e36560f4965, type: 3}
+        hash: -1
+      - displayName: TrajectoryCollisionView
+        name: PlanetMerge.Systems.PlanetLaunching.TrajectoryCollisionView, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: TrajectoryCollisionView
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: TrajectoryCollisionView
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 08812b0e0f44b4b4bbb2f1347dfa892a, type: 3}
+        hash: -1
+      - displayName: RotationModule
+        name: PlanetMerge.Utils.RotationModule, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: RotationModule
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: RotationModule
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 1f0d265b969d34c428ddc59204ec3e6a, type: 3}
+        hash: -1
+      - displayName: TrajectoryLine
+        name: PlanetMerge.Systems.PlanetLaunching.TrajectoryLine, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: TrajectoryLine
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: TrajectoryLine
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: ff6a74508a18a3543bd34678cef8d3a4, type: 3}
+        hash: -1
+      - displayName: MovingAppearEntity
+        name: MovingAppearEntity, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        content:
+          m_Text: MovingAppearEntity
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: MovingAppearEntity
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 9e49d4adee5fd664fa5eb1fc118e860d, type: 3}
         hash: -1
     excludedComponents:
       name: Excluded

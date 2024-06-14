@@ -4,7 +4,7 @@ using System.Linq;
 using Cysharp.Threading.Tasks.Linq;
 using DG.Tweening;
 
-namespace PlanetMerge.Entities.Wall
+namespace PlanetMerge.Entities.Walls
 {
     public class WallsView : AppearingEntity
     {

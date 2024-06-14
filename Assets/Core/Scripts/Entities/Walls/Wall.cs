@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace PlanetMerge.Entities.Wall
+namespace PlanetMerge.Entities.Walls
 {
     [RequireComponent(typeof(SpriteRenderer))]
     public class Wall : MonoBehaviour

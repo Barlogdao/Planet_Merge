@@ -1,5 +1,5 @@
 using Cysharp.Threading.Tasks;
-using PlanetMerge.Entities.Wall;
+using PlanetMerge.Entities.Walls;
 using PlanetMerge.Systems.Data;
 using PlanetMerge.Systems.PlanetLaunching;
 using PlanetMerge.UI.View;

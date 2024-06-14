@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using PlanetMerge.Entities.Walls;
 using PlanetMerge.Pools;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -22,7 +23,8 @@ namespace PlanetMerge.Entities.Planets
         private bool _isSplitting = false;
 
         public event Action<Planet> Merged;
-        public event Action<Vector2> Collided;
+        public event Action<Vector2> PlanetCollided;
+        public event Action<Vector2> WallCollided;
         public event Action<Planet> Splitted;
 
         public int Rank => _rank;
@@ -44,7 +46,17 @@ namespace PlanetMerge.Entities.Planets
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            Collided?.Invoke(collision.GetContact(0).point);
+            Vector2 collisionPoint = collision.GetContact(0).point;
+
+            if (collision.gameObject.TryGetComponent<Planet>(out _))
+            {
+                PlanetCollided?.Invoke(collisionPoint);
+            }
+            else if (collision.gameObject.TryGetComponent<Wall>(out _))
+            {
+                WallCollided?.Invoke(collisionPoint);
+            }
+
             _view.Collide();
         }
 

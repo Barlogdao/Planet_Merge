@@ -14,16 +14,18 @@ namespace PlanetMerge.Spawners
             _gameEventMediator = gameEventMediator;
             _pool = pool;
 
-            _gameEventMediator.PlanetCollided += OnPlanetCollided;
+            _gameEventMediator.PlanetCollided += SpawnSplash;
+            _gameEventMediator.WallCollided += SpawnSplash;
         }
 
         private void OnDestroy()
         {
-            _gameEventMediator.PlanetCollided -= OnPlanetCollided;
+            _gameEventMediator.PlanetCollided -= SpawnSplash;
+            _gameEventMediator.WallCollided -= SpawnSplash;
         }
 
 
-        private void OnPlanetCollided(Vector2 at)
+        private void SpawnSplash(Vector2 at)
         {
             _pool.Get(at);
         }

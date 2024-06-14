@@ -8,5 +8,6 @@ namespace PlanetMerge.Systems.Events
     {
         event Action<Planet> PlanetMerged;
         event Action<Vector2> PlanetCollided;
+        event Action<Vector2> WallCollided;
     }
 }

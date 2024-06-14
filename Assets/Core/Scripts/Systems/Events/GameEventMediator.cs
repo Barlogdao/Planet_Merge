@@ -16,9 +16,10 @@ namespace PlanetMerge.Systems.Events
         public event Action<Planet> PlanetCreated;
         public event Action<Planet> PlanetReleased;
         public event Action<Planet> PlanetSplitted;
-
+        
         public event Action<Planet> PlanetMerged;
         public event Action<Vector2> PlanetCollided;
+        public event Action<Vector2> WallCollided;
 
         public event Action LevelPrepared;
         public event Action LevelStarted;
@@ -112,7 +113,8 @@ namespace PlanetMerge.Systems.Events
         private void OnPlanetCreated(Planet planet)
         {
             planet.Merged += OnPlanetMerged;
-            planet.Collided += OnPlanetCollide;
+            planet.PlanetCollided += OnPlanetCollide;
+            planet.WallCollided += OnWallCollide;
             planet.Splitted += OnPlanetSplitted;
 
             PlanetCreated?.Invoke(planet);
@@ -121,11 +123,13 @@ namespace PlanetMerge.Systems.Events
         private void OnPlanetReleased(Planet planet)
         {
             planet.Merged -= OnPlanetMerged;
-            planet.Collided -= OnPlanetCollide;
+            planet.PlanetCollided -= OnPlanetCollide;
+            planet.WallCollided -= OnWallCollide;
             planet.Splitted -= OnPlanetSplitted;
 
             PlanetReleased?.Invoke(planet);
         }
+
 
         private void OnPlanetSplitted(Planet planet)
         {
@@ -135,6 +139,11 @@ namespace PlanetMerge.Systems.Events
         private void OnPlanetMerged(Planet planet)
         {
             PlanetMerged?.Invoke(planet);
+        }
+
+        private void OnWallCollide(Vector2 atPoint)
+        {
+            WallCollided?.Invoke(atPoint);
         }
 
         private void OnPlanetCollide(Vector2 atPoint)
