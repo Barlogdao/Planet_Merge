@@ -1520,6 +1520,28 @@ MonoBehaviour:
         isBuiltIn: 1
         script: {fileID: 0}
         hash: -1
+      - displayName: RecorderBindings
+        name: UnityEngine.Recorder.RecorderBindings, Unity.Recorder, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: RecorderBindings
+          m_Image: {fileID: 0}
+          m_Tooltip: RecorderBindings
+        shown: 0
+        isBuiltIn: 1
+        script: {fileID: 0}
+        hash: -1
+      - displayName: RecorderComponent
+        name: UnityEditor.Recorder.RecorderComponent, Unity.Recorder.Editor, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: RecorderComponent
+          m_Image: {fileID: 0}
+          m_Tooltip: RecorderComponent
+        shown: 0
+        isBuiltIn: 1
+        script: {fileID: 0}
+        hash: -1
       - displayName: RectTransform
         name: UnityEngine.RectTransform, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
@@ -2387,7 +2409,7 @@ MonoBehaviour:
           m_Text: Image
           m_Image: {fileID: -7820287865973605492, guid: 0000000000000000d000000000000000, type: 0}
           m_Tooltip: Image
-        shown: 1
+        shown: 0
         isBuiltIn: 1
         script: {fileID: 0}
         hash: -1
@@ -2552,7 +2574,7 @@ MonoBehaviour:
           m_Text: Slider
           m_Image: {fileID: -1631483326681689804, guid: 0000000000000000d000000000000000, type: 0}
           m_Tooltip: Slider
-        shown: 1
+        shown: 0
         isBuiltIn: 1
         script: {fileID: 0}
         hash: -1
@@ -2919,7 +2941,7 @@ MonoBehaviour:
           m_Text: SpriteRenderer
           m_Image: {fileID: 5134774851033864187, guid: 0000000000000000d000000000000000, type: 0}
           m_Tooltip: SpriteRenderer
-        shown: 0
+        shown: 1
         isBuiltIn: 1
         script: {fileID: 0}
         hash: -1
@@ -3217,8 +3239,8 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: 47f2bb52e1bae7841aac7425331099d3, type: 3}
         hash: -1
       - displayName: InputController
-        name: InputController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
+        name: PlanetMerge.Systems.InputController, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
         content:
           m_Text: InputController
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
@@ -3228,8 +3250,8 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: 82848874af0503348aa8034f0e9d42cd, type: 3}
         hash: -1
       - displayName: GameEventMediator
-        name: GameEventMediator, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
+        name: PlanetMerge.Systems.Events.GameEventMediator, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
         content:
           m_Text: GameEventMediator
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
@@ -3248,19 +3270,20 @@ MonoBehaviour:
         isBuiltIn: 0
         script: {fileID: 11500000, guid: c46462e644902434a9374005987bd8fa, type: 3}
         hash: -1
-      - displayName: LevelPlanets
-        name: LevelPlanets, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      - displayName: LevelPlanetsController
+        name: PlanetMerge.Systems.Gameplay.LevelPlanetsController, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         content:
-          m_Text: LevelPlanets
+          m_Text: LevelPlanetsController
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
-          m_Tooltip: LevelPlanets
+          m_Tooltip: LevelPlanetsController
         shown: 0
         isBuiltIn: 0
         script: {fileID: 11500000, guid: c013d3ba9ee843542a5b273a00ccdc6e, type: 3}
         hash: -1
       - displayName: GameOverHandler
-        name: GameOverHandler, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
+        name: PlanetMerge.Systems.Gameplay.GameOverHandler, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
         content:
           m_Text: GameOverHandler
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
@@ -3269,24 +3292,24 @@ MonoBehaviour:
         isBuiltIn: 0
         script: {fileID: 11500000, guid: 90cf472c1207d1244b6525194bdfaef9, type: 3}
         hash: -1
-      - displayName: LevelGoalHandler
-        name: PlanetMerge.Systems.LevelGoalHandler, Assembly-CSharp, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
+      - displayName: LevelGoalController
+        name: PlanetMerge.Systems.Gameplay.LevelGoalController, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         content:
-          m_Text: LevelGoalHandler
+          m_Text: LevelGoalController
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
-          m_Tooltip: LevelGoalHandler
+          m_Tooltip: LevelGoalController
         shown: 0
         isBuiltIn: 0
         script: {fileID: 11500000, guid: 6232a9bc959089041b10860134d1b7f6, type: 3}
         hash: -1
-      - displayName: EnergyLimitHandler
-        name: PlanetMerge.Systems.EnergyLimitHandler, Assembly-CSharp, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
+      - displayName: EnergyLimitController
+        name: PlanetMerge.Systems.Gameplay.EnergyLimitController, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         content:
-          m_Text: EnergyLimitHandler
+          m_Text: EnergyLimitController
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
-          m_Tooltip: EnergyLimitHandler
+          m_Tooltip: EnergyLimitController
         shown: 0
         isBuiltIn: 0
         script: {fileID: 11500000, guid: ba0ca3415da24d549bb8841db4e9f52f, type: 3}
@@ -3314,8 +3337,8 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: dd45d7d659d95f94baee8f52b9a89d23, type: 3}
         hash: -1
       - displayName: Trajectory
-        name: PlanetMerge.Systems.Trajectory, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
+        name: PlanetMerge.Systems.PlanetLaunching.Trajectory, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
         content:
           m_Text: Trajectory
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
@@ -3325,8 +3348,8 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: fe4e1e4aa453a95429e3e5b9f322fa0a, type: 3}
         hash: -1
       - displayName: PlanetLauncher
-        name: PlanetMerge.Planets.PlanetLauncher, Assembly-CSharp, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
+        name: PlanetMerge.Systems.Gameplay.PlanetLaunching.PlanetLauncher, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         content:
           m_Text: PlanetLauncher
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
@@ -3336,8 +3359,8 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: 2068e2732de3324418feef5f48463777, type: 3}
         hash: -1
       - displayName: LevelGenerator
-        name: PlanetMerge.Systems.LevelGenerator, Assembly-CSharp, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
+        name: PlanetMerge.Systems.Gameplay.LevelPreparing.LevelGenerator, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         content:
           m_Text: LevelGenerator
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
@@ -3358,8 +3381,8 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: a1c8a27f776635a4e97beb4b617d3659, type: 3}
         hash: -1
       - displayName: VictoryWindow
-        name: PlanetMerge.UI.VictoryWindow, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
+        name: PlanetMerge.UI.View.VictoryWindow, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
         content:
           m_Text: VictoryWindow
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
@@ -3379,7 +3402,7 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: a886c41757d61bd42a0cc4691391826d, type: 3}
         hash: -1
       - displayName: LimitPanel
-        name: PlanetMerge.UI.LimitPanel, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        name: PlanetMerge.UI.View.LimitPanel, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
         content:
           m_Text: LimitPanel
@@ -3423,7 +3446,7 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: dbf51be86e70d7941bd40914206e4ddc, type: 3}
         hash: -1
       - displayName: GoalPanel
-        name: PlanetMerge.UI.GoalPanel, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+        name: PlanetMerge.UI.View.GoalPanel, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
           PublicKeyToken=null
         content:
           m_Text: GoalPanel
@@ -3434,7 +3457,7 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: ef8dec0771043794ba1f9ccd80f429dd, type: 3}
         hash: -1
       - displayName: LevelScoreWindow
-        name: PlanetMerge.UI.LevelScoreWindow, Assembly-CSharp, Version=0.0.0.0,
+        name: PlanetMerge.UI.View.LevelScoreWindow, Assembly-CSharp, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         content:
           m_Text: LevelScoreWindow
@@ -3445,7 +3468,7 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: cce907eafd7d89444bf647fc0897c2f6, type: 3}
         hash: -1
       - displayName: RewardHandler
-        name: PlanetMerge.SDK.Yandex.RewardHandler, Assembly-CSharp, Version=0.0.0.0,
+        name: PlanetMerge.Systems.Gameplay.RewardHandler, Assembly-CSharp, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         content:
           m_Text: RewardHandler
@@ -3456,8 +3479,8 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: ad6e072c98df46a478351b5608d78f91, type: 3}
         hash: -1
       - displayName: InterstitialHandler
-        name: InterstitialHandler, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
+        name: PlanetMerge.SDK.Yandex.Advertising.InterstitialHandler, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         content:
           m_Text: InterstitialHandler
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
@@ -3477,19 +3500,8 @@ MonoBehaviour:
         isBuiltIn: 0
         script: {fileID: 11500000, guid: 806f0696300aeac44a0e17efee222854, type: 3}
         hash: -1
-      - displayName: SplitHandler
-        name: PlanetMerge.Handlers.Split.SplitHandler, Assembly-CSharp, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-        content:
-          m_Text: SplitHandler
-          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
-          m_Tooltip: SplitHandler
-        shown: 0
-        isBuiltIn: 0
-        script: {fileID: 11500000, guid: 10688d5815bab6c4baf63cee560b07db, type: 3}
-        hash: -1
       - displayName: AudioService
-        name: PlanetMerge.Sevices.Audio.AudioService, Assembly-CSharp, Version=0.0.0.0,
+        name: PlanetMerge.Systems.Audio.AudioService, Assembly-CSharp, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         content:
           m_Text: AudioService
@@ -3544,8 +3556,8 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: 1511ccae7919cfc46b603b9b337fdc94, type: 3}
         hash: -1
       - displayName: Planet
-        name: PlanetMerge.Planets.Planet, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
+        name: PlanetMerge.Entities.Planets.Planet, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
         content:
           m_Text: Planet
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
@@ -3555,7 +3567,7 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: 41314e02e2c090041856f95cd12f0fcb, type: 3}
         hash: -1
       - displayName: MergeDetector
-        name: PlanetMerge.Planets.MergeDetector, Assembly-CSharp, Version=0.0.0.0,
+        name: PlanetMerge.Entities.Planets.MergeDetector, Assembly-CSharp, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         content:
           m_Text: MergeDetector
@@ -3566,8 +3578,8 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: 1083634818dbaac4684b1d680390f03e, type: 3}
         hash: -1
       - displayName: PlanetView
-        name: PlanetMerge.Planets.PlanetView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
-          PublicKeyToken=null
+        name: PlanetMerge.Entities.Planets.PlanetView, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
         content:
           m_Text: PlanetView
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
@@ -3598,46 +3610,46 @@ MonoBehaviour:
         isBuiltIn: 0
         script: {fileID: 11500000, guid: 46e49774b23051349b21bfcf4dce9e4b, type: 3}
         hash: -1
-      - displayName: MuteHandler
-        name: PlanetMerge.Sevices.Audio.MuteHandler, Assembly-CSharp, Version=0.0.0.0,
+      - displayName: MuteController
+        name: PlanetMerge.Systems.Audio.MuteController, Assembly-CSharp, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         content:
-          m_Text: MuteHandler
+          m_Text: MuteController
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
-          m_Tooltip: MuteHandler
+          m_Tooltip: MuteController
         shown: 0
         isBuiltIn: 0
         script: {fileID: 11500000, guid: 9cf9859d69b8e5d4aa1d0a683f438521, type: 3}
         hash: -1
-      - displayName: EnergyCollectSystem
-        name: PlanetMerge.Systems.Visual.EnergyCollectSystem, Assembly-CSharp, Version=0.0.0.0,
+      - displayName: EnergySpawner
+        name: PlanetMerge.Spawners.EnergySpawner, Assembly-CSharp, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         content:
-          m_Text: EnergyCollectSystem
+          m_Text: EnergySpawner
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
-          m_Tooltip: EnergyCollectSystem
+          m_Tooltip: EnergySpawner
         shown: 0
         isBuiltIn: 0
         script: {fileID: 11500000, guid: b5a05d3792cd3cc41982dfbf66694b9d, type: 3}
         hash: -1
-      - displayName: CollisionSplashSystem
-        name: PlanetMerge.Systems.Visual.CollisionSplashSystem, Assembly-CSharp,
-          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      - displayName: CollisionSplashSpawner
+        name: PlanetMerge.Spawners.CollisionSplashSpawner, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
         content:
-          m_Text: CollisionSplashSystem
+          m_Text: CollisionSplashSpawner
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
-          m_Tooltip: CollisionSplashSystem
+          m_Tooltip: CollisionSplashSpawner
         shown: 0
         isBuiltIn: 0
         script: {fileID: 11500000, guid: 15c2190364a041642a309fb626f5abfa, type: 3}
         hash: -1
-      - displayName: FocusHandler
-        name: PlanetMerge.Handlers.Pause.FocusHandler, Assembly-CSharp, Version=0.0.0.0,
+      - displayName: FocusController
+        name: PlanetMerge.SDK.Yandex.FocusController, Assembly-CSharp, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
         content:
-          m_Text: FocusHandler
+          m_Text: FocusController
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
-          m_Tooltip: FocusHandler
+          m_Tooltip: FocusController
         shown: 0
         isBuiltIn: 0
         script: {fileID: 11500000, guid: eee5cde1f053acf478a060bd59b4d65c, type: 3}
@@ -3665,8 +3677,8 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: 70ca6750c8a36e04b8ae5d1b84bdda08, type: 3}
         hash: -1
       - displayName: YandexLeaderboard
-        name: PlanetMerge.SDK.Yandex.YandexLeaderboard, Assembly-CSharp, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
+        name: PlanetMerge.SDK.Yandex.Leaderboard.YandexLeaderboard, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         content:
           m_Text: YandexLeaderboard
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
@@ -3676,7 +3688,8 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: fc8eb7168ee68e4468c94d0961176de8, type: 3}
         hash: -1
       - displayName: WallsView
-        name: WallsView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        name: PlanetMerge.Entities.Wall.WallsView, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
         content:
           m_Text: WallsView
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
@@ -3686,7 +3699,8 @@ MonoBehaviour:
         script: {fileID: 11500000, guid: 5fc236f70c568444db9da4bc94c7b93a, type: 3}
         hash: -1
       - displayName: LauncherView
-        name: LauncherView, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        name: PlanetMerge.Systems.PlanetLaunching.LauncherView, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
         content:
           m_Text: LauncherView
           m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
@@ -3694,6 +3708,72 @@ MonoBehaviour:
         shown: 0
         isBuiltIn: 0
         script: {fileID: 11500000, guid: 066152ac80c391c488da15286062f62b, type: 3}
+        hash: -1
+      - displayName: StartLevelPresenter
+        name: PlanetMerge.Gameloop.Presenter.StartLevelPresenter, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: StartLevelPresenter
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: StartLevelPresenter
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: d7d200d2a34a798429a353e8c579650d, type: 3}
+        hash: -1
+      - displayName: EndLevelPresenter
+        name: PlanetMerge.Gameloop.Presenter.EndLevelPresenter, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: EndLevelPresenter
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: EndLevelPresenter
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 48ede8650a137474db65d49fa27f0c51, type: 3}
+        hash: -1
+      - displayName: MovingBackground
+        name: PlanetMerge.UI.View.MovingBackground, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: MovingBackground
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: MovingBackground
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 97df004377acdee49bf43442609fefaf, type: 3}
+        hash: -1
+      - displayName: SpaceBackground
+        name: PlanetMerge.UI.View.SpaceBackground, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: SpaceBackground
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: SpaceBackground
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: 37c273c23aef3b94faad55ed86a614f9, type: 3}
+        hash: -1
+      - displayName: CameraSizeFitter
+        name: PlanetMerge.Utils.CameraSizeFitter, Assembly-CSharp, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: CameraSizeFitter
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: CameraSizeFitter
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: ea31e4ff43bf7ba409addd80143ae3ea, type: 3}
+        hash: -1
+      - displayName: Wall
+        name: PlanetMerge.Entities.Wall.Wall, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        content:
+          m_Text: Wall
+          m_Image: {fileID: -8204150473280056172, guid: 0000000000000000d000000000000000, type: 0}
+          m_Tooltip: Wall
+        shown: 0
+        isBuiltIn: 0
+        script: {fileID: 11500000, guid: ae4b1c1a81c56df43998c110fa52b81f, type: 3}
         hash: -1
     excludedComponents:
       name: Excluded
@@ -4475,6 +4555,17 @@ MonoBehaviour:
           m_Text: VariablesSaver
           m_Image: {fileID: 0}
           m_Tooltip: VariablesSaver
+        shown: 0
+        isBuiltIn: 1
+        script: {fileID: 0}
+        hash: -1
+      - displayName: RecorderComponent
+        name: UnityEditor.Recorder.RecorderComponent, Unity.Recorder.Editor, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: RecorderComponent
+          m_Image: {fileID: 0}
+          m_Tooltip: RecorderComponent
         shown: 0
         isBuiltIn: 1
         script: {fileID: 0}
@@ -5458,6 +5549,17 @@ MonoBehaviour:
         isBuiltIn: 1
         script: {fileID: 0}
         hash: -1
+      - displayName: RecorderBindings
+        name: UnityEngine.Recorder.RecorderBindings, Unity.Recorder, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+        content:
+          m_Text: RecorderBindings
+          m_Image: {fileID: 0}
+          m_Tooltip: RecorderBindings
+        shown: 0
+        isBuiltIn: 1
+        script: {fileID: 0}
+        hash: -1
       - displayName: RectTransform
         name: UnityEngine.RectTransform, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
@@ -6361,4 +6463,4 @@ MonoBehaviour:
         script: {fileID: 0}
         hash: -1
     unityVersion: 2022.3.7f1
-    unityCount: 242
+    unityCount: 244
