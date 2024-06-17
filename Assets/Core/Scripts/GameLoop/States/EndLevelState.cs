@@ -13,7 +13,8 @@ namespace PlanetMerge.Gameloop.States
         private readonly IReadOnlyPlayerData _playerData;
         private readonly LevelScore _levelScore;
 
-        public EndLevelState(EndLevelPresenter endLevelPresenter,
+        public EndLevelState(
+            EndLevelPresenter endLevelPresenter,
             PlayerDataSystem playerDataSystem,
             LevelPlanetsController levelPlanetsController)
         {
@@ -29,8 +30,8 @@ namespace PlanetMerge.Gameloop.States
         {
             int levelScore = _levelScore.Get();
             int currentPlanetRank = _playerData.PlanetRank;
-            _levelPlanetsController.SplitPlanets();
 
+            _levelPlanetsController.SplitPlanets();
             _playerDataSystem.UpdatePlayerData(levelScore);
 
             await _endLevelPresenter.ShowWinAsync(levelScore, currentPlanetRank, _playerData);

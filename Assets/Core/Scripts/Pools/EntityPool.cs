@@ -50,6 +50,7 @@ namespace PlanetMerge.Pools
             entity.gameObject.SetActive(true);
             OnGetAction(entity);
         }
+
         private void OnRelease(T entity)
         {
             OnReleaseAction(entity);

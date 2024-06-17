@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using UnityEngine;
 using PlanetMerge.Entities.Planets;
 using PlanetMerge.Systems.Events;
+using UnityEngine;
 
 namespace PlanetMerge.Systems.Gameplay
 {
@@ -13,18 +13,18 @@ namespace PlanetMerge.Systems.Gameplay
         public IEnumerable<Planet> Planets => _planets;
         public int PlanetsAmount => _planets.Count;
 
+        private void OnDestroy()
+        {
+            _gameEventMediator.PlanetCreated -= OnPlanetCreated;
+            _gameEventMediator.PlanetReleased -= OnPlanetReleased;
+        }
+
         public void Initialize(GameEventMediator gameEventMediator)
         {
             _gameEventMediator = gameEventMediator;
 
             _gameEventMediator.PlanetCreated += OnPlanetCreated;
             _gameEventMediator.PlanetReleased += OnPlanetReleased;
-        }
-
-        private void OnDestroy()
-        {
-            _gameEventMediator.PlanetCreated -= OnPlanetCreated;
-            _gameEventMediator.PlanetReleased -= OnPlanetReleased;
         }
 
         public void Clear()

@@ -1,6 +1,6 @@
+using System;
 using PlanetMerge.Entities.Planets;
 using PlanetMerge.Systems.Gameplay;
-using System;
 using UnityEngine;
 
 namespace PlanetMerge.Systems.Events
@@ -16,7 +16,7 @@ namespace PlanetMerge.Systems.Events
         public event Action<Planet> PlanetCreated;
         public event Action<Planet> PlanetReleased;
         public event Action<Planet> PlanetSplitted;
-        
+
         public event Action<Planet> PlanetMerged;
         public event Action<Vector2> PlanetCollided;
         public event Action<Vector2> WallCollided;
@@ -36,11 +36,32 @@ namespace PlanetMerge.Systems.Events
         public event Action PlanetLaunched;
         public event Action PlanetLoaded;
 
-        public void Initialize(IPlanetStatusNotifier planetStatusNotifier,
+        private void OnDestroy()
+        {
+            _planetStatusNotifier.PlanetCreated -= OnPlanetCreated;
+            _planetStatusNotifier.PlanetReleased -= OnPlanetReleased;
+
+            _gameOverHandler.GameWon -= OnGameWon;
+            _gameOverHandler.GameLost -= OnGameLost;
+
+            _gameLoop.LevelPrepared += OnLevelPrepared;
+            _gameLoop.LevelStarted -= OnLevelStarted;
+            _gameLoop.LevelResumed -= OnLevelResumed;
+
+            _uiEvents.NextLevelPressed -= OnNextLevePressed;
+            _uiEvents.RestartLevelPressed -= OnRestartLevelPressed;
+            _uiEvents.RewardPressed -= OnRewardPressed;
+
+            _launcherNotifier.PlanetLaunched -= OnPlanetLaunched;
+            _launcherNotifier.PlanetLoaded -= OnPlanetLoaded;
+        }
+
+        public void Initialize(
+            IPlanetStatusNotifier planetStatusNotifier,
             GameOverHandler gameOverHandler,
             GameLoop gameLoop,
             IGameUiEvents uiEvents,
-            ILauncherNotifier launcherNotifier )
+            ILauncherNotifier launcherNotifier)
         {
             _planetStatusNotifier = planetStatusNotifier;
             _gameOverHandler = gameOverHandler;
@@ -66,26 +87,6 @@ namespace PlanetMerge.Systems.Events
             _launcherNotifier.PlanetLoaded += OnPlanetLoaded;
         }
 
-        private void OnDestroy()
-        {
-            _planetStatusNotifier.PlanetCreated -= OnPlanetCreated;
-            _planetStatusNotifier.PlanetReleased -= OnPlanetReleased;
-
-            _gameOverHandler.GameWon -= OnGameWon;
-            _gameOverHandler.GameLost -= OnGameLost;
-
-            _gameLoop.LevelPrepared += OnLevelPrepared;
-            _gameLoop.LevelStarted -= OnLevelStarted;
-            _gameLoop.LevelResumed -= OnLevelResumed;
-
-            _uiEvents.NextLevelPressed -= OnNextLevePressed;
-            _uiEvents.RestartLevelPressed -= OnRestartLevelPressed;
-            _uiEvents.RewardPressed -= OnRewardPressed;
-
-            _launcherNotifier.PlanetLaunched -= OnPlanetLaunched;
-            _launcherNotifier.PlanetLoaded -= OnPlanetLoaded;
-        }
-
         private void OnGameWon()
         {
             LevelFinished?.Invoke();
@@ -98,17 +99,44 @@ namespace PlanetMerge.Systems.Events
             GameLost?.Invoke();
         }
 
-        private void OnLevelPrepared() => LevelPrepared?.Invoke();
-        private void OnLevelStarted() => LevelStarted?.Invoke();
-        private void OnLevelResumed() => LevelResumed?.Invoke();
+        private void OnLevelPrepared()
+        {
+            LevelPrepared?.Invoke();
+        }
+        private void OnLevelStarted()
+        {
+            LevelStarted?.Invoke();
+        }
 
-        private void OnRewardPressed() => RewardSelected?.Invoke();
-        private void OnRestartLevelPressed() => RestartLevelSelected?.Invoke();
-        private void OnNextLevePressed() => NextLevelSelected?.Invoke();
+        private void OnLevelResumed()
+        {
+            LevelResumed?.Invoke();
+        }
 
-        private void OnPlanetLoaded() => PlanetLoaded?.Invoke();
-        private void OnPlanetLaunched() => PlanetLaunched?.Invoke();
+        private void OnRewardPressed()
+        {
+            RewardSelected?.Invoke();
+        }
 
+        private void OnRestartLevelPressed()
+        {
+            RestartLevelSelected?.Invoke();
+        }
+
+        private void OnNextLevePressed()
+        {
+            NextLevelSelected?.Invoke();
+        }
+
+        private void OnPlanetLoaded()
+        {
+            PlanetLoaded?.Invoke();
+        }
+
+        private void OnPlanetLaunched()
+        {
+            PlanetLaunched?.Invoke();
+        }
 
         private void OnPlanetCreated(Planet planet)
         {

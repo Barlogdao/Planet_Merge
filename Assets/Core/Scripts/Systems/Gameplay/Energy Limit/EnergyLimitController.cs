@@ -1,7 +1,7 @@
-using PlanetMerge.Entities.Planets;
-using PlanetMerge.Systems.Events;
 using System;
 using System.Collections;
+using PlanetMerge.Entities.Planets;
+using PlanetMerge.Systems.Events;
 using UnityEngine;
 
 namespace PlanetMerge.Systems.Gameplay
@@ -20,6 +20,11 @@ namespace PlanetMerge.Systems.Gameplay
 
         public bool HasEnergy => _energyLimit.HasEnergy;
 
+        private void OnDestroy()
+        {
+            _planetEvents.PlanetMerged -= OnPlanetMerged;
+        }
+
         public void Initialize(IPlanetEvents planetEvents)
         {
             _energyLimit = new EnergyLimit();
@@ -27,11 +32,6 @@ namespace PlanetMerge.Systems.Gameplay
             _limitCheckDelay = new WaitForSeconds(_limitExpirationDelay);
 
             _planetEvents.PlanetMerged += OnPlanetMerged;
-        }
-
-        private void OnDestroy()
-        {
-            _planetEvents.PlanetMerged -= OnPlanetMerged;
         }
 
         public void SetLimit(int amount)
@@ -61,12 +61,6 @@ namespace PlanetMerge.Systems.Gameplay
             OnLimitChanged();
         }
 
-        private void OnLimitChanged()
-        {
-            LimitChanged?.Invoke(_energyLimit.Amount);
-            LimitCheck();
-        }
-
         private void LimitCheck()
         {
             if (HasEnergy == false)
@@ -89,6 +83,12 @@ namespace PlanetMerge.Systems.Gameplay
 
             if (HasEnergy == false)
                 LimitExpired?.Invoke();
+        }
+
+        private void OnLimitChanged()
+        {
+            LimitChanged?.Invoke(_energyLimit.Amount);
+            LimitCheck();
         }
 
         private void OnPlanetMerged(Planet planet)

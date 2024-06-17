@@ -10,13 +10,13 @@ namespace PlanetMerge.Systems.Tutorial
             base.Activate();
             _isPlanetLauched = false;
 
-            TutorialController.PlanetLaunched += OnLaunch;
+            TutorialSystem.PlanetLaunched += OnLaunch;
         }
 
         protected override void Deactivate()
         {
             base.Deactivate();
-            TutorialController.PlanetLaunched -= OnLaunch;
+            TutorialSystem.PlanetLaunched -= OnLaunch;
         }
 
         private void OnLaunch()

@@ -9,6 +9,17 @@ namespace PlanetMerge.Spawners
         private GameEventMediator _gameEventMediator;
         private CollisionSplashPool _pool;
 
+        private void OnDestroy()
+        {
+            _gameEventMediator.PlanetCollided -= SpawnSplash;
+            _gameEventMediator.WallCollided -= SpawnSplash;
+        }
+
+        private void SpawnSplash(Vector2 at)
+        {
+            _pool.Get(at);
+        }
+
         public void Initialize (GameEventMediator gameEventMediator, CollisionSplashPool pool)
         {
             _gameEventMediator = gameEventMediator;
@@ -16,18 +27,6 @@ namespace PlanetMerge.Spawners
 
             _gameEventMediator.PlanetCollided += SpawnSplash;
             _gameEventMediator.WallCollided += SpawnSplash;
-        }
-
-        private void OnDestroy()
-        {
-            _gameEventMediator.PlanetCollided -= SpawnSplash;
-            _gameEventMediator.WallCollided -= SpawnSplash;
-        }
-
-
-        private void SpawnSplash(Vector2 at)
-        {
-            _pool.Get(at);
         }
     }
 }

@@ -1,8 +1,8 @@
 using System;
-using UnityEngine;
 using Cysharp.Threading.Tasks;
 using PlanetMerge.UI.View;
 using PlanetMerge.Systems.Events;
+using UnityEngine;
 
 namespace PlanetMerge.Systems.Tutorial
 {
@@ -28,6 +28,11 @@ namespace PlanetMerge.Systems.Tutorial
 
         public event Action PlanetLaunched;
 
+        private void OnDestroy()
+        {
+            _gameEventMediator.PlanetLaunched -= OnPlanetLauched;
+        }
+
         public void Initialize(InputController inputController, GameEventMediator gameEventMediator)
         {
             _inputController = inputController;
@@ -45,28 +50,23 @@ namespace PlanetMerge.Systems.Tutorial
             _tutorialCanvas.enabled = false;
         }
 
-        private void OnDestroy()
-        {
-            _gameEventMediator.PlanetLaunched -= OnPlanetLauched;
-        }
-
         public async UniTaskVoid RunTutorialAsync()
         {
             _tutorialCanvas.enabled = true;
             _tutorialCanvas.sortingOrder = _originSortingOrder;
 
             await _background.UnfadeAsync();
-            await _firstTip.Run();
+            await _firstTip.RunAsync();
             await RunIntervalAsync();
-            await _secondTip.Run();
+            await _secondTip.RunAsync();
             await RunIntervalAsync();
 
             _inputController.DisableInput();
             _tutorialCanvas.sortingOrder = _shiftedSortingOrder;
 
 
-            await _thirdTip.Run();
-            await _fourthTip.Run();
+            await _thirdTip.RunAsync();
+            await _fourthTip.RunAsync();
 
             _tutorialCanvas.sortingOrder = _originSortingOrder;
             _inputController.EnableInput();

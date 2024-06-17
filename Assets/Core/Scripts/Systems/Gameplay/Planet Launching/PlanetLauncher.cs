@@ -1,9 +1,9 @@
+using System;
+using System.Collections;
 using PlanetMerge.Entities.Planets;
 using PlanetMerge.Spawners;
 using PlanetMerge.Systems.Events;
 using PlanetMerge.Systems.PlanetLaunching;
-using System;
-using System.Collections;
 using UnityEngine;
 
 namespace PlanetMerge.Systems.Gameplay.PlanetLaunching
@@ -20,16 +20,25 @@ namespace PlanetMerge.Systems.Gameplay.PlanetLaunching
         private PlayerInput _playerInput;
         private PlanetSpawner _planetSpawner;
         private IEnergyLimit _energyLimit;
-        private int _planetRank = 1;
+
+        private int _planetRank = Constants.MinimalPlanetRank;
         private Coroutine _launchRoutine;
         private WaitForSeconds _cooldown;
 
         public event Action PlanetLaunched;
         public event Action PlanetLoaded;
+
         public Vector2 LaunchPosition => _launchPoint.position;
 
         private bool CanLoad => _energyLimit.HasEnergy;
         private bool CanLaunch => CanLoad && _launchRoutine == null;
+
+        private void OnDestroy()
+        {
+            _playerInput.ClickedDown -= OnClickDown;
+            _playerInput.ClickedUp -= OnClickUp;
+            _energyLimit.LimitChanged -= OnLimitChanged;
+        }
 
         public void Initialize(PlayerInput playerInput, PlanetSpawner planetSpawner, IEnergyLimit energyLimit)
         {
@@ -45,18 +54,8 @@ namespace PlanetMerge.Systems.Gameplay.PlanetLaunching
             _energyLimit.LimitChanged += OnLimitChanged;
         }
 
-        private void OnDestroy()
-        {
-            _playerInput.ClickedDown -= OnClickDown;
-            _playerInput.ClickedUp -= OnClickUp;
-            _energyLimit.LimitChanged -= OnLimitChanged;
-        }
-
         public void Prepare(int planetRank)
         {
-            if (planetRank <= 0)
-                throw new ArgumentOutOfRangeException(nameof(planetRank));
-
             _planetRank = planetRank;
             _planetView.Set(_planetRank);
         }
@@ -110,7 +109,7 @@ namespace PlanetMerge.Systems.Gameplay.PlanetLaunching
             _planetView.Hide();
             PlanetLaunched?.Invoke();
 
-            var planet = _planetSpawner.Spawn(LaunchPosition, _planetRank);
+            Planet planet = _planetSpawner.Spawn(LaunchPosition, _planetRank);
             planet.AddForce(GetLaunchDirection().normalized * _force);
 
             yield return _cooldown;

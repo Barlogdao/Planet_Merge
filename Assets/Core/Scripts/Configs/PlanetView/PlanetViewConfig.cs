@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using NaughtyAttributes;
+﻿using NaughtyAttributes;
+using UnityEngine;
 
 namespace PlanetMerge.Configs
 {
@@ -9,6 +9,7 @@ namespace PlanetMerge.Configs
         [SerializeField, ShowAssetPreview] private Sprite _sprite;
     
         [field:SerializeField] public Color LabelColor { get; private set; } = Color.white;
+
         public Sprite Sprite => _sprite;
     }
 }

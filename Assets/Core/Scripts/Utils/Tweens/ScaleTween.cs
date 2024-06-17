@@ -3,14 +3,16 @@ using UnityEngine;
 
 namespace PlanetMerge.Utils
 {
-    public class ScaleTween : MonoBehaviour
+    [System.Serializable]
+    public class ScaleTween
     {
-        [SerializeField] private float _scaleMiltiplier;
-        [SerializeField] private float _duration;
-        [SerializeField] private Ease _ease;
+        [SerializeField] private float _scaleMiltiplier = 1.4f;
+        [SerializeField] private float _duration = 0.2f;
+        [SerializeField] private Ease _ease = Ease.OutSine;
 
         private Transform _targetTransform;
         private Vector3 _originScale;
+
         public void Initialize(Transform transform)
         {
             _targetTransform = transform;
@@ -19,7 +21,10 @@ namespace PlanetMerge.Utils
 
         public void Run()
         {
-            _targetTransform.DOScale(_scaleMiltiplier, _duration).SetEase(_ease).OnComplete(() => _targetTransform.localScale = _originScale);
+            _targetTransform
+                .DOScale(_scaleMiltiplier, _duration)
+                .SetEase(_ease)
+                .OnComplete(() => _targetTransform.localScale = _originScale);
         }
     }
 }

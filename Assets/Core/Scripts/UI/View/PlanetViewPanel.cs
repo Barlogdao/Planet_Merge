@@ -32,7 +32,8 @@ namespace PlanetMerge.UI.View
             _planetRankLabel.color = planetViewData.LabelColor;
 
             _planetImage.transform
-                .DOScale(_startScale, _tweenDuration).From()
+                .DOScale(_startScale, _tweenDuration)
+                .From()
                 .OnComplete(() => { _planetImage.transform.localScale = _originScale; });
         }
     }

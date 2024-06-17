@@ -1,8 +1,8 @@
-using UnityEngine;
 using System;
-using UnityEngine.UI;
 using PlanetMerge.Systems.Data;
 using PlanetMerge.Systems.Events;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace PlanetMerge.UI
 {
@@ -18,6 +18,13 @@ namespace PlanetMerge.UI
         public event Action RestartLevelPressed;
         public event Action RewardPressed;
 
+        private void OnDestroy()
+        {
+            _nextLevelButton.onClick.RemoveListener(OnNextLevelPressed);
+            _resetLevelButton.onClick.RemoveListener(OnResetLevelPressed);
+            _rewardButton.onClick.RemoveListener(OnRewardPressed);
+        }
+
         public void Initialize(UiPanel uiPanel)
         {
             _uiPanel = uiPanel;
@@ -25,13 +32,6 @@ namespace PlanetMerge.UI
             _nextLevelButton.onClick.AddListener(OnNextLevelPressed);
             _resetLevelButton.onClick.AddListener(OnResetLevelPressed);
             _rewardButton.onClick.AddListener(OnRewardPressed);
-        }
-
-        private void OnDestroy()
-        {
-            _nextLevelButton.onClick.RemoveListener(OnNextLevelPressed);
-            _resetLevelButton.onClick.RemoveListener(OnResetLevelPressed);
-            _rewardButton.onClick.RemoveListener(OnRewardPressed);
         }
 
         public void Prepare(IReadOnlyPlayerData playerData)

@@ -17,7 +17,6 @@ namespace PlanetMerge.Systems.Data
         }
 
         public IReadOnlyPlayerData PlayerData => _playerData;
-
   
         public void UpdatePlayerData(int levelScore)
         {

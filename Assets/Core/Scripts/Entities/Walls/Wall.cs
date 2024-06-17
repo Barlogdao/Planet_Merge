@@ -1,4 +1,5 @@
 using DG.Tweening;
+using PlanetMerge.Utils;
 using UnityEngine;
 
 namespace PlanetMerge.Entities.Walls
@@ -10,24 +11,19 @@ namespace PlanetMerge.Entities.Walls
 
         [SerializeField] private float _fadeDuration = 0.2f;
 
+        private ShaderFadeTween _fadeTween;
         private Material _material;
-        private int _fadePropertyID;
-        private float _maxFadeValue = 1f;
-        private float _minFadeValue = 0f;
 
         void Start()
         {
             _material = GetComponent<SpriteRenderer>().material;
-
-            _fadePropertyID = Shader.PropertyToID(FadeProperty);
-
-            _material.SetFloat(_fadePropertyID, _minFadeValue);
+            _fadeTween = new ShaderFadeTween(_material, _fadeDuration, FadeProperty);
+            _fadeTween.SetFaded();
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            _material.SetFloat(_fadePropertyID, _maxFadeValue);
-            _material.DOFloat(_minFadeValue, _fadePropertyID, _fadeDuration);
+            _fadeTween.Fade();
         }
     }
 }

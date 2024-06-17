@@ -1,7 +1,7 @@
 using System;
-using UnityEngine;
 using PlanetMerge.Systems.Events;
 using PlanetMerge.Entities.Planets;
+using UnityEngine;
 
 namespace PlanetMerge.Systems.Gameplay
 {
@@ -9,7 +9,6 @@ namespace PlanetMerge.Systems.Gameplay
     {
         private int _planetGoalRank;
         private int _planetsToMergeAmount;
-
         private IPlanetEvents _planetEvents;
 
         public event Action GoalReached;
@@ -17,16 +16,16 @@ namespace PlanetMerge.Systems.Gameplay
 
         public int PlanetGoalRank => _planetGoalRank;
 
+        private void OnDestroy()
+        {
+            _planetEvents.PlanetMerged -= OnPlanetMerged;
+        }
+
         public void Initialize(IPlanetEvents planetEvents)
         {
             _planetEvents = planetEvents;
 
             _planetEvents.PlanetMerged += OnPlanetMerged;
-        }
-
-        private void OnDestroy()
-        {
-            _planetEvents.PlanetMerged -= OnPlanetMerged;
         }
 
         public void Prepare(int planetsToMergeAmount, int planetRank)
@@ -37,8 +36,7 @@ namespace PlanetMerge.Systems.Gameplay
             GoalChanged?.Invoke(_planetsToMergeAmount);
         }
 
-
-        protected void OnPlanetMerged(Planet planet)
+        private void OnPlanetMerged(Planet planet)
         {
             if (_planetGoalRank == planet.Rank)
             {

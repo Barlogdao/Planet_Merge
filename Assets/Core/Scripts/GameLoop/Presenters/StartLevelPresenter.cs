@@ -46,15 +46,6 @@ namespace PlanetMerge.Gameloop.Presenter
             _looseWindow.Hide();
         }
 
-        public async UniTask EndLevelAppear()
-        {
-            await UniTask.WhenAll(
-                _wallsView.DisappearAsync(),
-                _uiPanelView.DisappearAsync());
-
-            await _launcherView.DisappearAsync();
-        }
-
         private void ResetView()
         {
             HideWindows();

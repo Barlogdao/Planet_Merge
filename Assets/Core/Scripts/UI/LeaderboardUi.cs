@@ -14,7 +14,6 @@ namespace PlanetMerge.UI
         [SerializeField] Button _leaderboardButton;
         [SerializeField] Button _authorizeButton;
 
-
         private void Awake()
         {
             _leaderboardButton.onClick.AddListener(OpenLeaderboard);

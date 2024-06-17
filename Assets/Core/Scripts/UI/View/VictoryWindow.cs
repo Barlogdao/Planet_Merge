@@ -25,7 +25,7 @@ namespace PlanetMerge.UI.View
 
             await UniTask.WhenAll(
                 _progressionPanel.ShowProgressAsync(playerData),
-                _scoreTween.Run(previousScore, newScore, _scoreLabel));
+                _scoreTween.RunAsync(previousScore, newScore, _scoreLabel));
         }
     }
 }

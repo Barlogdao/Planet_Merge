@@ -5,7 +5,7 @@ namespace PlanetMerge.Systems.Pause
 {
     public class PauseService
     {
-        private AudioService _audioService;
+        private readonly AudioService _audioService;
 
         public PauseService(AudioService audioService)
         {

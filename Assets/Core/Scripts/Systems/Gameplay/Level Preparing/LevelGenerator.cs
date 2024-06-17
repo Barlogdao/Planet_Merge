@@ -16,7 +16,10 @@ namespace PlanetMerge.Systems.Gameplay.LevelPreparing
         private PlanetSpawner _planetSpawner;
         private LevelConditions _levelConditions;
 
-        public void Initialize(PlanetSpawner planetSpawner, LevelConditions levelConditions, PlanetLauncher planetLauncher)
+        public void Initialize(
+            PlanetSpawner planetSpawner,
+            LevelConditions levelConditions,
+            PlanetLauncher planetLauncher)
         {
             _planetSpawner = planetSpawner;
             _levelConditions = levelConditions;

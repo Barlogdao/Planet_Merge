@@ -10,12 +10,6 @@ namespace PlanetMerge.SDK.Yandex
         private PauseService _pauseService;
         private AdvertisingService _advertisingService;
 
-        public void Initialize(PauseService pauseService, AdvertisingService advertisingService)
-        {
-            _pauseService = pauseService;
-            _advertisingService = advertisingService;
-        }
-
         private void OnEnable()
         {
             Application.focusChanged += OnInBackgroundChangeApp;
@@ -26,6 +20,12 @@ namespace PlanetMerge.SDK.Yandex
         {
             Application.focusChanged -= OnInBackgroundChangeApp;
             WebApplication.InBackgroundChangeEvent -= OnInBackgroundChangeWeb;
+        }
+
+        public void Initialize(PauseService pauseService, AdvertisingService advertisingService)
+        {
+            _pauseService = pauseService;
+            _advertisingService = advertisingService;
         }
 
         private void OnInBackgroundChangeApp(bool inApp)

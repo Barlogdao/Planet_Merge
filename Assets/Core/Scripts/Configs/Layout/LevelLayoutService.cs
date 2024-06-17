@@ -1,14 +1,14 @@
-﻿using UnityEngine;
-using NaughtyAttributes;
+﻿using NaughtyAttributes;
+using UnityEngine;
 
 namespace PlanetMerge.Configs
 {
     [CreateAssetMenu(fileName = "LevelLayoutService", menuName = "Configs/Services/LevelLayoutService", order = 1)]
     public class LevelLayoutService : ScriptableObject
     {
-        [SerializeField, Expandable] private LevelLayout[] _levelLayouts;
+        private const int IndexOffset = 1;
 
-        private readonly int _indexOffset = 1;
+        [SerializeField, Expandable] private LevelLayout[] _levelLayouts;
 
         [field: SerializeField] public LevelLayout TutorialLevelLayout { get; private set; }
 
@@ -18,7 +18,7 @@ namespace PlanetMerge.Configs
 
             if (level <= _levelLayouts.Length)
             {
-                index = level - _indexOffset;
+                index = level - IndexOffset;
             }
             else
             {

@@ -42,10 +42,5 @@ namespace PlanetMerge.Systems.Data
         {
             _saveLoadSystem.Save(_playerData);
         }
-
-        public void Reset()
-        {
-            _saveLoadSystem.Save(new PlayerData(1, 1, 0));
-        }
     }
 }

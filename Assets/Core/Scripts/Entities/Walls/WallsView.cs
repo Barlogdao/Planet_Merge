@@ -1,49 +1,51 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using System.Linq;
-using Cysharp.Threading.Tasks.Linq;
-using DG.Tweening;
+using PlanetMerge.Utils;
+using System.Collections.Generic;
 
 namespace PlanetMerge.Entities.Walls
 {
     public class WallsView : AppearingEntity
     {
-        private const string DissolveProperty = "_FullGlowDissolveFade";
-        [SerializeField] private SpriteRenderer[] _spriteRenderers;
-        [SerializeField] private float _dissolveDuration = 0.2f;
+        private const string FadeProperty = "_FullGlowDissolveFade";
 
-        private Material[] _materials;
-        private int _fadePropertyID;
-        private float _dissolveValue = 0f;
-        private float _undissolveValue = 1f;
+        [SerializeField] private SpriteRenderer[] _spriteRenderers;
+        [SerializeField] private float _fadeDuration = 0.14f;
+
+        private List<ShaderFadeTween> _fadeTweens;
 
         public override async UniTask AppearAsync()
         {
-            foreach (Material material in _materials)
+            foreach (ShaderFadeTween fadeTween in _fadeTweens)
             {
-                await material.DOFloat(_undissolveValue, _fadePropertyID, _dissolveDuration);
+                await fadeTween.UnfadeAsync();
             }
         }
 
         public override async UniTask DisappearAsync()
         {
-            foreach (Material material in _materials)
+            foreach (ShaderFadeTween fadeTween in _fadeTweens)
             {
-                await material.DOFloat(_dissolveValue, _fadePropertyID, _dissolveDuration);
+                await fadeTween.FadeAsync();
             }
         }
 
         protected override void OnAwake()
         {
-            _materials = _spriteRenderers.Select(x => x.material).ToArray();
-            _fadePropertyID = Shader.PropertyToID(DissolveProperty);
+            _fadeTweens = new List<ShaderFadeTween>();
+
+            foreach (SpriteRenderer spriteRenderer in _spriteRenderers)
+            {
+                Material material = spriteRenderer.material;
+                _fadeTweens.Add(new ShaderFadeTween(material, _fadeDuration, FadeProperty));
+            }
         }
 
         protected override void OnResetView()
         {
-            foreach (Material material in _materials)
+            foreach (ShaderFadeTween fadeTween in _fadeTweens)
             {
-                material.SetFloat(_fadePropertyID, _dissolveValue);
+                fadeTween.SetFaded();
             }
         }
     }

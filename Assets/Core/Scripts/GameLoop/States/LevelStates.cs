@@ -2,7 +2,10 @@ namespace PlanetMerge.Gameloop.States
 {
     public class LevelStates
     {
-        public LevelStates(PrepareLevelState prepareLevelState, StartLevelState startLevelState, EndLevelState endLevelState)
+        public LevelStates(
+            PrepareLevelState prepareLevelState,
+            StartLevelState startLevelState,
+            EndLevelState endLevelState)
         {
             PrepareLevelState = prepareLevelState;
             StartLevelState = startLevelState;

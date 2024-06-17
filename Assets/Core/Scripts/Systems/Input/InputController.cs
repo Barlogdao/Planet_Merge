@@ -8,6 +8,14 @@ namespace PlanetMerge.Systems
         private PlayerInput _playerInput;
         private GameEventMediator _gameEventMediator;
 
+        private void OnDestroy()
+        {
+            _gameEventMediator.LevelStarted -= EnableInput;
+            _gameEventMediator.LevelResumed -= EnableInput;
+            _gameEventMediator.LevelPrepared -= DisableInput;
+            _gameEventMediator.LevelFinished -= DisableInput;
+        }
+
         public void Initialize(PlayerInput playerInput, GameEventMediator gameEventMediator)
         {
             _playerInput = playerInput;
@@ -17,14 +25,6 @@ namespace PlanetMerge.Systems
             _gameEventMediator.LevelResumed += EnableInput;
             _gameEventMediator.LevelPrepared += DisableInput;
             _gameEventMediator.LevelFinished += DisableInput;
-        }
-
-        private void OnDestroy()
-        {
-            _gameEventMediator.LevelStarted -= EnableInput;
-            _gameEventMediator.LevelResumed -= EnableInput;
-            _gameEventMediator.LevelPrepared -= DisableInput;
-            _gameEventMediator.LevelFinished -= DisableInput;
         }
 
         public void EnableInput()

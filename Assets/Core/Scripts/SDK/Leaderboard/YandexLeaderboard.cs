@@ -1,5 +1,4 @@
 using Agava.YandexGames;
-using Assets.Core.Scripts.SDK.Leaderboard;
 using System.Collections.Generic;
 using UnityEngine;
 

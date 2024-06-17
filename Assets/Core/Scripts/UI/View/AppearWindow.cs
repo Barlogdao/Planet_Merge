@@ -11,7 +11,7 @@ namespace PlanetMerge.UI.View
         public async UniTask AppearAsync()
         {
             Show();
-            await _appearTween.Run(transform);
+            await _appearTween.RunAsync(transform);
         }
     }
 }

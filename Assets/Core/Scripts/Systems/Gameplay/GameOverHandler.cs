@@ -11,6 +11,12 @@ namespace PlanetMerge.Systems.Gameplay
         public event Action GameWon;
         public event Action GameLost;
 
+        private void OnDestroy()
+        {
+            _energyLimitNotifier.LimitExpired -= OnLimitExpired;
+            _levelGoalNotifier.GoalReached -= OnGoalReached;
+        }
+
         public void Initialize(IEnergyLimitNotifier energyLimitNotifier, ILevelGoalNotifier levelGoalNotifier)
         {
             _energyLimitNotifier = energyLimitNotifier;
@@ -18,12 +24,6 @@ namespace PlanetMerge.Systems.Gameplay
 
             _energyLimitNotifier.LimitExpired += OnLimitExpired;
             _levelGoalNotifier.GoalReached += OnGoalReached;
-        }
-
-        private void OnDestroy()
-        {
-            _energyLimitNotifier.LimitExpired -= OnLimitExpired;
-            _levelGoalNotifier.GoalReached -= OnGoalReached;
         }
 
         private void OnGoalReached()

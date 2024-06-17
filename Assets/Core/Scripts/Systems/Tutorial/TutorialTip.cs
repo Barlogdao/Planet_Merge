@@ -1,5 +1,4 @@
 using Cysharp.Threading.Tasks;
-using System;
 using TMPro;
 using UnityEngine;
 
@@ -12,28 +11,29 @@ namespace PlanetMerge.Systems.Tutorial
         [SerializeField] private Vector2 _pointerPosition;
 
         private Pointer _pointer;
+        private TutorialSystem _tutorialSystem;
 
+        protected TutorialSystem TutorialSystem => _tutorialSystem;
         protected Pointer Pointer => _pointer;
-        protected TutorialSystem TutorialController;
 
-        public void Initialize(TutorialSystem tutorialController, Pointer pointer)
+        public void Initialize(TutorialSystem tutorialSystem, Pointer pointer)
         {
-            TutorialController = tutorialController;
+            _tutorialSystem = tutorialSystem;
             _pointer = pointer;
             Deactivate();
         }
 
-        public async UniTask Run()
+        public async UniTask RunAsync()
         {
             Activate(); 
 
             _pointer.Move(_pointerPosition);
-            await OnRun();
+            await OnRunAsync();
 
             Deactivate();
         }
 
-        protected abstract UniTask OnRun();
+        protected abstract UniTask OnRunAsync();
 
         protected virtual void Activate()
         {

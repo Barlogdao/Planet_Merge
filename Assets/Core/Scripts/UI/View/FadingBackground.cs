@@ -42,11 +42,6 @@ namespace PlanetMerge.UI.View
             await _image.DOFade(_minAlphaValue, _fadeDuration).SetEase(_ease);
         }
 
-        public void Update()
-        {
-            _image.DOFade(_maxAlphaValue, _fadeDuration).SetEase(_ease);
-        }
-
         public async UniTask UnfadeAsync()
         {
             await _image.DOFade(_maxAlphaValue, _fadeDuration).SetEase(_ease);

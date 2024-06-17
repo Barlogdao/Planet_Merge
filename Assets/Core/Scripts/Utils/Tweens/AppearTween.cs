@@ -11,7 +11,7 @@ namespace PlanetMerge.Utils
         [SerializeField] private Ease _ease;
         [SerializeField] private Vector2 _appearPosition;
 
-        public async UniTask Run(Transform transform)
+        public async UniTask RunAsync(Transform transform)
         {
             await transform.DOMove(_appearPosition, _duration).From().SetEase(_ease);
         }

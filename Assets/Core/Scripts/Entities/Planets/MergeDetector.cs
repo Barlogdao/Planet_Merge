@@ -12,11 +12,6 @@ namespace PlanetMerge.Entities.Planets
 
         private int PlanetRank => _planet.Rank;
 
-        public void Initialize(Planet planet)
-        {
-            _planet = planet;
-        }
-
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.TryGetComponent<Planet>(out Planet otherPlanet))
@@ -26,6 +21,11 @@ namespace PlanetMerge.Entities.Planets
                     MergeDetected?.Invoke(otherPlanet);
                 }
             }
+        }
+
+        public void Initialize(Planet planet)
+        {
+            _planet = planet;
         }
 
         private bool CanMerge(Planet otherPlanet)

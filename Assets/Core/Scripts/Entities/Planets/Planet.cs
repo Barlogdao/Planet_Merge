@@ -18,8 +18,7 @@ namespace PlanetMerge.Entities.Planets
 
         private Rigidbody2D _rigidbody2D;
         private IReleasePool<Planet> _releasePool;
-
-        private int _rank = 1;
+        private int _rank = Constants.MinimalPlanetRank;
         private bool _isSplitting = false;
 
         public event Action<Planet> Merged;
@@ -28,14 +27,6 @@ namespace PlanetMerge.Entities.Planets
         public event Action<Planet> Splitted;
 
         public int Rank => _rank;
-
-        public void Initialize(IReleasePool<Planet> releasePool)
-        {
-            _releasePool = releasePool;
-            _rigidbody2D = GetComponent<Rigidbody2D>();
-
-            _mergeDetector.Initialize(this);
-        }
 
         private void OnEnable()
         {
@@ -58,6 +49,14 @@ namespace PlanetMerge.Entities.Planets
             }
 
             _view.Collide();
+        }
+
+        public void Initialize(IReleasePool<Planet> releasePool)
+        {
+            _releasePool = releasePool;
+            _rigidbody2D = GetComponent<Rigidbody2D>();
+
+            _mergeDetector.Initialize(this);
         }
 
 
@@ -87,12 +86,9 @@ namespace PlanetMerge.Entities.Planets
             _releasePool.Release(this);
         }
 
-        private void OnMergeDetected(Planet otherPlanet)
+        public void Split()
         {
-            if (enabled && _isSplitting == false)
-            {
-                Merge(otherPlanet);
-            }
+            StartCoroutine(Splitting());
         }
 
         private void Merge(Planet otherPlanet)
@@ -108,11 +104,6 @@ namespace PlanetMerge.Entities.Planets
         private void UpdateView()
         {
             _view.Set(Rank);
-        }
-
-        public void Split()
-        {
-            StartCoroutine(Splitting());
         }
 
         private IEnumerator Splitting()
@@ -135,6 +126,14 @@ namespace PlanetMerge.Entities.Planets
 
             _isSplitting = false;
             Release();
+        }
+
+        private void OnMergeDetected(Planet otherPlanet)
+        {
+            if (enabled && _isSplitting == false)
+            {
+                Merge(otherPlanet);
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using TMPro;
 using UnityEngine;
 
-namespace Assets.Core.Scripts.SDK.Leaderboard
+namespace PlanetMerge.SDK.Yandex.Leaderboard
 {
     public class LeaderboardElement : MonoBehaviour
     {

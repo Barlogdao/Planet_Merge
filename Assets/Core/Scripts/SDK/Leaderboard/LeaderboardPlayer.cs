@@ -1,4 +1,4 @@
-﻿namespace Assets.Core.Scripts.SDK.Leaderboard
+﻿namespace PlanetMerge.SDK.Yandex.Leaderboard
 {
     public class LeaderboardPlayer
     {

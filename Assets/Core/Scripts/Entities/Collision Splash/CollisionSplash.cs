@@ -10,11 +10,6 @@ namespace PlanetMerge.Entities.Splash
 
         private IReleasePool<CollisionSplash> _pool;
 
-        public void Initialize(IReleasePool<CollisionSplash> pool)
-        {
-            _pool = pool;
-        }
-
         private void OnEnable()
         {
             _particleSystem.Play();
@@ -23,6 +18,11 @@ namespace PlanetMerge.Entities.Splash
         private void OnParticleSystemStopped()
         {
             _pool.Release(this);
+        }
+
+        public void Initialize(IReleasePool<CollisionSplash> pool)
+        {
+            _pool = pool;
         }
     }
 }

@@ -1,6 +1,5 @@
 using Cysharp.Threading.Tasks;
 using PlanetMerge.Gameloop.States;
-using PlanetMerge.SDK.Yandex;
 using PlanetMerge.SDK.Yandex.Advertising;
 using PlanetMerge.Systems.Events;
 using System;
@@ -18,6 +17,16 @@ public class GameLoop : MonoBehaviour
     public event Action LevelStarted;
     public event Action LevelResumed;
 
+    private void OnDestroy()
+    {
+        _gameEventMediator.GameWon -= OnGameWon;
+        _gameEventMediator.GameLost -= OnGameLost;
+
+        _gameEventMediator.NextLevelSelected -= OnNextLevelSelected;
+        _gameEventMediator.RestartLevelSelected -= OnRestartLevelSelected;
+        _gameEventMediator.RewardSelected -= OnRewardSelected;
+    }
+
     public void Initialize(GameEventMediator gameEventMediator, LevelStates levelStates, AdvertisingService advertisingService)
     {
         _gameEventMediator = gameEventMediator;
@@ -34,16 +43,6 @@ public class GameLoop : MonoBehaviour
         _gameEventMediator.RewardSelected += OnRewardSelected;
     }
 
-    private void OnDestroy()
-    {
-        _gameEventMediator.GameWon -= OnGameWon;
-        _gameEventMediator.GameLost -= OnGameLost;
-
-        _gameEventMediator.NextLevelSelected -= OnNextLevelSelected;
-        _gameEventMediator.RestartLevelSelected -= OnRestartLevelSelected;
-        _gameEventMediator.RewardSelected -= OnRewardSelected;
-    }
-
     public void Run()
     {
         PrepareLevel();
@@ -57,10 +56,10 @@ public class GameLoop : MonoBehaviour
         _prepareLevelState.PrepareLevel();
         LevelPrepared?.Invoke();
 
-        StartLevel().Forget();
+        StartLevelAsync().Forget();
     }
 
-    private async UniTaskVoid StartLevel()
+    private async UniTaskVoid StartLevelAsync()
     {
         await _startLevelState.StartLevelAsync();
         LevelStarted?.Invoke();

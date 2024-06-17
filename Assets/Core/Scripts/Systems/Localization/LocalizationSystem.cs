@@ -1,8 +1,5 @@
-
-using UnityEngine;
 using Lean.Localization;
-using Agava.YandexGames;
-using System;
+using UnityEngine;
 
 namespace PlanetMerge.Systems.Localization
 {
@@ -17,8 +14,6 @@ namespace PlanetMerge.Systems.Localization
 
         [SerializeField] private LeanLocalization _leanLanguage;
 
-        [SerializeField] private Lang _lang;
-
         private void Awake()
         {
             ChangeLanguage();
@@ -29,18 +24,12 @@ namespace PlanetMerge.Systems.Localization
 #if UNITY_WEBGL && !UNITY_EDITOR
             string languageCode = YandexGamesSdk.Environment.i18n.lang;
 #else
-            string languageCode = _lang switch
-            {
-                Lang.English => English,
-                Lang.Russian => Russian,
-                Lang.Turkish => Turkish,
-                _ => Russian
-            }; ;
+            string languageCode = Russian;
 #endif
             switch (languageCode)
             {
                 case English:
-                    _leanLanguage.SetCurrentLanguage( EnglishCode);
+                    _leanLanguage.SetCurrentLanguage(EnglishCode);
                     break;
 
                 case Russian:
@@ -50,14 +39,11 @@ namespace PlanetMerge.Systems.Localization
                 case Turkish:
                     _leanLanguage.SetCurrentLanguage(TurkishCode);
                     break;
-            }
-        }
 
-        public enum Lang
-        {
-            English,
-            Russian,
-            Turkish
+                default:
+                    _leanLanguage.SetCurrentLanguage(EnglishCode);
+                    break;
+            }
         }
     }
 }

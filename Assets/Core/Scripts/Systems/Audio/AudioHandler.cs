@@ -8,7 +8,6 @@ namespace PlanetMerge.Systems.Audio
     public class AudioHandler : MonoBehaviour
     {
         [SerializeField] private AudioClip _musicClip;
-
         [SerializeField] private AudioClip _planetCollideSound;
         [SerializeField] private AudioClip _wallCollideSound;
         [SerializeField] private AudioClip _mergeSound;
@@ -27,6 +26,7 @@ namespace PlanetMerge.Systems.Audio
         {
             _gameEventMediator.PlanetCollided -= OnPlanetCollided;
             _gameEventMediator.PlanetMerged -= OnPlanetMerged;
+            _gameEventMediator.WallCollided -= OnWallCollided;
             _gameEventMediator.GameWon -= OnGameWon;
             _gameEventMediator.GameLost -= OnGameLost;
         }

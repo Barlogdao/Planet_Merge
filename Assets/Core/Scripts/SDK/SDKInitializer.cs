@@ -1,14 +1,14 @@
-using Agava.YandexGames;
 using System.Collections;
+using Agava.YandexGames;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 
 namespace PlanetMerge.SDK.Yandex
 {
     public sealed class SDKInitializer : MonoBehaviour
     {
         [SerializeField] private int _gameSceneIndex = 1;
+
         private void Awake()
         {
             YandexGamesSdk.CallbackLogging = true;

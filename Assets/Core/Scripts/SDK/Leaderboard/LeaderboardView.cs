@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assets.Core.Scripts.SDK.Leaderboard
+namespace PlanetMerge.SDK.Yandex.Leaderboard
 {
     public class LeaderboardView : MonoBehaviour
     {

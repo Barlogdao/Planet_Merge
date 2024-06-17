@@ -24,7 +24,6 @@ namespace PlanetMerge.SDK.Yandex.Advertising
 #else
             OnCloseInterstitial(true);
 #endif
-
             void OnCloseInterstitial(bool wasShown)
             {
                 OnCloseCallback();
@@ -39,7 +38,6 @@ namespace PlanetMerge.SDK.Yandex.Advertising
 #else
             OnRewardedCallback();
 #endif
-
             void OnRewardedCallback()
             {
                 _rewardHandler.GetReward();
@@ -51,6 +49,7 @@ namespace PlanetMerge.SDK.Yandex.Advertising
                 OnFail();
             }
         }
+
         private void OnCloseCallback()
         {
             IsAdsPlaying = false;

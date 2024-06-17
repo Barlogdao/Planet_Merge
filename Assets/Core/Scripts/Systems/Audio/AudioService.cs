@@ -6,11 +6,11 @@ namespace PlanetMerge.Systems.Audio
     public class AudioService : MonoBehaviour
     {
         [SerializeField] private AudioSource _musicSource;
-        [SerializeField, Range(0.8f,1f)] private float _minPitch;
+        [SerializeField, Range(0.8f, 1f)] private float _minPitch;
         [SerializeField, Range(1f, 1.1f)] private float _maxPitch;
         [SerializeField, Range(0.3f, 1f)] private float _minSoundVolume;
         [SerializeField, Range(0.5f, 1f)] private float _maxSoundVolume;
-        [SerializeField, Min (1)] private int _soundSourceAmount;
+        [SerializeField, Min(1)] private int _soundSourceAmount;
 
         private Queue<AudioSource> _soundSources = new();
 
@@ -56,7 +56,6 @@ namespace PlanetMerge.Systems.Audio
                 source.mute = false;
 
             _musicSource.mute = false;
-
         }
 
         public void PauseAudio()

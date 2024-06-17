@@ -1,14 +1,14 @@
-﻿using UnityEngine;
-using NaughtyAttributes;
+﻿using NaughtyAttributes;
+using UnityEngine;
 
 namespace PlanetMerge.Configs
 {
     [CreateAssetMenu(fileName = "LevelGoalService", menuName = "Configs/Services/LevelGoalService", order = 1)]
     public class LevelGoalService : ScriptableObject
     {
-        [SerializeField, Expandable] private LevelGoal[] _levelGoals;
+        private const int IndexOffset = 1;
 
-        private readonly int _indexOffset = 1;
+        [SerializeField, Expandable] private LevelGoal[] _levelGoals;
 
         [field: SerializeField, Expandable] public LevelGoal TutorialLevelGoal { get; private set; }
 
@@ -18,7 +18,7 @@ namespace PlanetMerge.Configs
 
             if (level <= _levelGoals.Length)
             {
-                index = level - _indexOffset;
+                index = level - IndexOffset;
             }
             else
             {

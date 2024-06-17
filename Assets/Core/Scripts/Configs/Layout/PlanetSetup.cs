@@ -1,9 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace PlanetMerge.Configs
 {
-    [Serializable]
+    [System.Serializable]
     public struct PlanetSetup
     {
         [Range(-1.9f, 1.9f)] public float PositionX;

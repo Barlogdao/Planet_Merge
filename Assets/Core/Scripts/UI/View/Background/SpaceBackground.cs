@@ -29,7 +29,7 @@ namespace PlanetMerge.UI.View
         {
             _background.enabled = true;
             _image.color = GetColor();
-            _fadeTween.Run();
+            _fadeTween.Fade();
         }
 
         public void Stop()

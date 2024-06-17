@@ -83,7 +83,6 @@ public class EntryPoint : MonoBehaviour
     private EndLevelState _endLevelState;
     private LevelStates _levelStates;
 
-
     private void Awake()
     {
         InitializePools();
@@ -146,7 +145,6 @@ public class EntryPoint : MonoBehaviour
         _focusController.Initialize(_pauseService, _advertisingService);
     }
 
-
     private void InitializeGameplay()
     {
         _levelPlanetsController.Initialize(_gameEventMediator);
@@ -167,7 +165,6 @@ public class EntryPoint : MonoBehaviour
         _uiPanel.Initialize(_energyLimitController, _levelGoalController);
         _gameUI.Initialize(_uiPanel);
     }
-
 
     private void InitializeTutorial()
     {

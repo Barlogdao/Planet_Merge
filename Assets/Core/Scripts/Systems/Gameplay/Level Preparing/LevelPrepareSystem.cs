@@ -9,7 +9,10 @@ namespace PlanetMerge.Systems.Gameplay.LevelPreparing
         private readonly LevelPlanetsController _levelPlanetsController;
         private readonly GameUi _gameUI;
 
-        public LevelPrepareSystem(LevelGenerator levelGenerator, LevelPlanetsController levelPlanetsController, GameUi gameUI)
+        public LevelPrepareSystem(
+            LevelGenerator levelGenerator,
+            LevelPlanetsController levelPlanetsController,
+            GameUi gameUI)
         {
             _levelGenerator = levelGenerator;
             _levelPlanetsController = levelPlanetsController;

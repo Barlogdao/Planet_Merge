@@ -11,7 +11,7 @@ namespace PlanetMerge.Utils
         [SerializeField] private float _duration = 1f;
         [SerializeField] private Ease _ease;
 
-        public async UniTask Run(int startValue, int endValue, TMP_Text scoreLabel)
+        public async UniTask RunAsync(int startValue, int endValue, TMP_Text scoreLabel)
         {
             await DOVirtual.Int(startValue, endValue, _duration, UpdateScore).SetEase(_ease); ;
 

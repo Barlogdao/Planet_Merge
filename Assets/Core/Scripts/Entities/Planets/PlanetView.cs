@@ -34,7 +34,8 @@ namespace PlanetMerge.Entities.Planets
 
         public void Collide()
         {
-            transform.DOShakeScale(_shakeDuration, _shakeStrength).OnComplete(() => transform.localScale = _originScale);
+            transform.DOShakeScale(_shakeDuration, _shakeStrength)
+                .OnComplete(() => transform.localScale = _originScale);
         }
 
         public void Show()
@@ -42,6 +43,7 @@ namespace PlanetMerge.Entities.Planets
             _spriteRenderer.enabled = true;
             _rankLabel.enabled = true;
         }
+
         public void Hide()
         {
             _spriteRenderer.enabled = false;

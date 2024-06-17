@@ -1,4 +1,3 @@
-using PlanetMerge.Systems;
 using PlanetMerge.Systems.Gameplay;
 using PlanetMerge.Utils;
 using TMPro;
@@ -13,17 +12,17 @@ namespace PlanetMerge.UI.View
 
         private IEnergyLimitNotifier _energyLimitNotifier;
 
+        private void OnDestroy()
+        {
+            _energyLimitNotifier.LimitChanged += OnLimitChanged;
+        }
+
         public void Initialize(IEnergyLimitNotifier energyLimitNotifier)
         {
             _energyLimitNotifier = energyLimitNotifier;
 
             _energyLimitNotifier.LimitChanged += OnLimitChanged;
             _scaleTween.Initialize(_limitAmount.transform);
-        }
-
-        private void OnDestroy()
-        {
-            _energyLimitNotifier.LimitChanged += OnLimitChanged;
         }
 
         private void OnLimitChanged(int amount)

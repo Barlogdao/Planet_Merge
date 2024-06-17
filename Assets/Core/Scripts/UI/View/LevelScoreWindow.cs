@@ -26,8 +26,8 @@ namespace PlanetMerge.UI.View
             _scoreLabel.text = _startScore.ToString();
 
             await AppearAsync();
-            await _scoreTween.Run(_startScore, score, _scoreLabel);
-            await _moveTween.Run(transform);
+            await _scoreTween.RunAsync(_startScore, score, _scoreLabel);
+            await _moveTween.RunAsync(transform);
 
             transform.position = _originPosition;
             Hide();

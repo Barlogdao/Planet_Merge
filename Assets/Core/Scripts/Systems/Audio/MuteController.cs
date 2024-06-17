@@ -5,16 +5,20 @@ namespace PlanetMerge.Systems.Audio
 {
     public class MuteController : MonoBehaviour
     {
-        private const string MuteAdioKey = nameof(MuteAdioKey);
+        private const string MuteAudioKey = nameof(MuteAudioKey);
 
         [SerializeField] private Sprite _muteSprite;
         [SerializeField] private Sprite _unmuteSprite;
-
         [SerializeField] private Image _muteImage;
         [SerializeField] private Button _muteButton;
 
         private AudioService _audioService;
         private bool _isMuted;
+
+        private void OnDestroy()
+        {
+            _muteButton.onClick.RemoveListener(ToggleMute);
+        }
 
         public void Initialize(AudioService audioService)
         {
@@ -26,14 +30,10 @@ namespace PlanetMerge.Systems.Audio
             _muteButton.onClick.AddListener(ToggleMute);
         }
 
-        private void OnDestroy()
-        {
-            _muteButton.onClick.RemoveListener(ToggleMute);
-        }
-
         private void ToggleMute()
         {
             _isMuted = !_isMuted;
+
             UpdateMuteStatus();
             SaveMuteValue();
         }
@@ -44,7 +44,6 @@ namespace PlanetMerge.Systems.Audio
             {
                 _audioService.MuteAudio();
                 _muteImage.sprite = _muteSprite;
-
             }
             else
             {
@@ -55,13 +54,13 @@ namespace PlanetMerge.Systems.Audio
 
         private void LoadMuteValue()
         {
-            int value = PlayerPrefs.GetInt(MuteAdioKey, 0);
+            int value = PlayerPrefs.GetInt(MuteAudioKey, 0);
             _isMuted = value != 0;
         }
 
         private void SaveMuteValue()
         {
-            PlayerPrefs.SetInt(MuteAdioKey, _isMuted ? 1 : 0);
+            PlayerPrefs.SetInt(MuteAudioKey, _isMuted ? 1 : 0);
         }
     }
 }

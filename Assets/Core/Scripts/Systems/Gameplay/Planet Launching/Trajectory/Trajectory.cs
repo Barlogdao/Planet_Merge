@@ -5,18 +5,24 @@ namespace PlanetMerge.Systems.PlanetLaunching
 {
     public class Trajectory : MonoBehaviour
     {
-        [SerializeField] private float _planetRadius = 0.35f;
-        [SerializeField] private float _distance = 10f;
-        [SerializeField] private LayerMask _collideMask;
-
         [SerializeField] private TrajectoryLine _mainLine;
         [SerializeField] private TrajectoryLine _collisionLine;
         [SerializeField] private TrajectoryCollisionView _collisionView;
+
+        [SerializeField] private float _planetRadius = 0.35f;
+        [SerializeField] private float _distance = 10f;
+        [SerializeField] private LayerMask _collideMask;
 
         private PlanetLauncher _planetLauncher;
         private Vector2 _startPoint;
 
         public bool IsActive { get; private set; } = false;
+
+        private void Update()
+        {
+            if (IsActive)
+                Calculate();
+        }
 
         public void Initialize(PlanetLauncher planetLauncher)
         {
@@ -29,12 +35,6 @@ namespace PlanetMerge.Systems.PlanetLaunching
 
 
             Deactivate();
-        }
-
-        private void Update()
-        {
-            if (IsActive)
-                Calculate();
         }
 
         public void Activate()
@@ -68,13 +68,6 @@ namespace PlanetMerge.Systems.PlanetLaunching
                 _collisionView.Hide();
                 _mainLine.SetEndPosition(_startPoint + direction.normalized * _distance);
             }
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.yellow;
-
-            Gizmos.DrawWireSphere(_collisionView.transform.position, _planetRadius);
         }
     }
 }

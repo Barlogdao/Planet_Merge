@@ -1,6 +1,6 @@
+using System;
 using PlanetMerge.Entities.Planets;
 using PlanetMerge.Systems.Events;
-using System;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -9,7 +9,6 @@ namespace PlanetMerge.Pools
     public class PlanetPool : IReleasePool<Planet>, IPlanetStatusNotifier
     {
         private readonly ObjectPool<Planet> _pool;
-
         private readonly Planet _prefab;
         private readonly Transform _parent;
         private readonly int _defaultCapacity;
@@ -54,6 +53,7 @@ namespace PlanetMerge.Pools
             planet.gameObject.SetActive(true);
             PlanetCreated?.Invoke(planet);
         }
+
         private void OnRelease(Planet planet)
         {
             PlanetReleased?.Invoke(planet);

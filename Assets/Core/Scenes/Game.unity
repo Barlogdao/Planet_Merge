@@ -5074,7 +5074,7 @@ MonoBehaviour:
   - {fileID: 2095764104}
   - {fileID: 642872865}
   - {fileID: 1914750348}
-  _dissolveDuration: 0.14
+  _fadeDuration: 0.14
 --- !u!1 &726243375
 GameObject:
   m_ObjectHideFlags: 0
@@ -7341,10 +7341,10 @@ MonoBehaviour:
   _secondTip:
     _tipLabel: {fileID: 10725387}
     _pointerPosition: {x: 1, y: 0}
+    _arrows: {fileID: 726243377}
     _pointerEndPosition: {x: -1, y: 0}
     _tweenDuration: 1
     _ease: 1
-    _arrows: {fileID: 726243377}
   _thirdTip:
     _tipLabel: {fileID: 66398006}
     _pointerPosition: {x: 0.88, y: 4.31}
@@ -7650,7 +7650,6 @@ GameObject:
   - component: {fileID: 1197746991}
   - component: {fileID: 1197746992}
   - component: {fileID: 1197746993}
-  - component: {fileID: 1197746994}
   m_Layer: 5
   m_Name: Goal Panel
   m_TagString: Untagged
@@ -7706,7 +7705,10 @@ MonoBehaviour:
   _tweenDuration: 0.3
   _ease: 28
   _mergeAmountLabel: {fileID: 667713100}
-  _scaleTween: {fileID: 1197746994}
+  _scaleTween:
+    _scaleMiltiplier: 1.4
+    _duration: 0.2
+    _ease: 3
 --- !u!114 &1197746993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7737,21 +7739,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 4
---- !u!114 &1197746994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1197746987}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ee08c70459bab54c91768e455c8353f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scaleMiltiplier: 1.4
-  _duration: 0.2
-  _ease: 3
 --- !u!1 &1216706641
 GameObject:
   m_ObjectHideFlags: 0
@@ -8753,7 +8740,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _leanLanguage: {fileID: 1076479953}
-  _lang: 1
 --- !u!4 &1322588875
 Transform:
   m_ObjectHideFlags: 0
@@ -12647,7 +12633,6 @@ GameObject:
   - component: {fileID: 1955634659}
   - component: {fileID: 1955634661}
   - component: {fileID: 1955634662}
-  - component: {fileID: 1955634663}
   m_Layer: 5
   m_Name: Limit Panel
   m_TagString: Untagged
@@ -12700,7 +12685,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _limitAmount: {fileID: 936827256}
-  _scaleTween: {fileID: 1955634663}
+  _scaleTween:
+    _scaleMiltiplier: 1.4
+    _duration: 0.2
+    _ease: 3
 --- !u!114 &1955634662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12731,21 +12719,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 4
---- !u!114 &1955634663
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1955634656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3ee08c70459bab54c91768e455c8353f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _scaleMiltiplier: 1.4
-  _duration: 0.2
-  _ease: 3
 --- !u!1 &1974850716
 GameObject:
   m_ObjectHideFlags: 0
