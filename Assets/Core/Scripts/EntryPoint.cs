@@ -190,12 +190,4 @@ public class EntryPoint : MonoBehaviour
     {
         _gameLoop.Run();
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            _playerDataService.Reset();
-        }
-    }
 }
