@@ -1,5 +1,5 @@
 # Planet_Merge
- Unity Merge Game 
+Unity 2D Merge game project 
 
 
 ## Used Plugins
@@ -14,6 +14,6 @@ NaughtyAttributes
 
 Web Utility
 
-## **Used Plugins**
+## **Design document**
 
 https://docs.google.com/document/d/1-ttZ-T0ucWyb0_FVpVYW17VtlcKA65CwyHTypHUtVrE/edit?usp=drive_link
