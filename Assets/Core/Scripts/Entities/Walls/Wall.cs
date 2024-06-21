@@ -1,5 +1,4 @@
-using DG.Tweening;
-using PlanetMerge.Utils;
+using PlanetMerge.Utils.Tweens;
 using UnityEngine;
 
 namespace PlanetMerge.Entities.Walls

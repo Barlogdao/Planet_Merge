@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PlanetMerge.Configs
+namespace PlanetMerge.Configs.PlanetViews
 {
     public struct PlanetViewData
     {

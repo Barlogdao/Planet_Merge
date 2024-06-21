@@ -14,6 +14,7 @@ namespace PlanetMerge.Systems.Tutorial
         private TutorialSystem _tutorialSystem;
 
         protected TutorialSystem TutorialSystem => _tutorialSystem;
+
         protected Pointer Pointer => _pointer;
 
         public void Initialize(TutorialSystem tutorialSystem, Pointer pointer)

@@ -1,6 +1,6 @@
 using Cysharp.Threading.Tasks;
 using PlanetMerge.Systems.Data;
-using PlanetMerge.Utils;
+using PlanetMerge.Utils.Tweens;
 using TMPro;
 using UnityEngine;
 
@@ -21,7 +21,6 @@ namespace PlanetMerge.UI.View
 
             _progressionPanel.Prepare(currentPlanetRank);
             _scoreLabel.text = newScore.ToString();
-
 
             await UniTask.WhenAll(
                 _progressionPanel.ShowProgressAsync(playerData),

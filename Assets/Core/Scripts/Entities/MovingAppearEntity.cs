@@ -11,6 +11,7 @@ public class MovingAppearEntity : AppearingEntity
     private Vector3 _originPosition;
 
     protected Vector3 OriginPosition => _originPosition;
+
     protected Vector3 StartPosition => _startPosition;
 
     public override async UniTask AppearAsync()

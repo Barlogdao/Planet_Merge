@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PlanetMerge.Configs
+namespace PlanetMerge.Configs.Layouts
 {
     [System.Serializable]
     public struct PlanetSetup
@@ -9,6 +9,6 @@ namespace PlanetMerge.Configs
         [Range(-2.3f, 2.3f)] public float PositionY;
         [Range(0, 6)] public int RankModifier;
 
-        public Vector2 Position => new Vector2(PositionX,PositionY);
+        public Vector2 Position => new Vector2(PositionX, PositionY);
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using PlanetMerge.Entities.Planets;
+using PlanetMerge.Loop;
 using PlanetMerge.Systems.Gameplay;
 using UnityEngine;
 
@@ -14,27 +15,36 @@ namespace PlanetMerge.Systems.Events
         private ILauncherNotifier _launcherNotifier;
 
         public event Action<Planet> PlanetCreated;
+
         public event Action<Planet> PlanetReleased;
+
         public event Action<Planet> PlanetSplitted;
 
         public event Action<Planet> PlanetMerged;
+
         public event Action<Vector2> PlanetCollided;
+
         public event Action<Vector2> WallCollided;
 
         public event Action LevelPrepared;
+
         public event Action LevelStarted;
+
         public event Action LevelResumed;
+
         public event Action LevelFinished;
 
         public event Action GameLost;
+
         public event Action GameWon;
 
         public event Action NextLevelSelected;
+
         public event Action RestartLevelSelected;
+
         public event Action RewardSelected;
 
         public event Action PlanetLaunched;
-        public event Action PlanetLoaded;
 
         private void OnDestroy()
         {
@@ -53,7 +63,6 @@ namespace PlanetMerge.Systems.Events
             _uiEvents.RewardPressed -= OnRewardPressed;
 
             _launcherNotifier.PlanetLaunched -= OnPlanetLaunched;
-            _launcherNotifier.PlanetLoaded -= OnPlanetLoaded;
         }
 
         public void Initialize(
@@ -84,7 +93,6 @@ namespace PlanetMerge.Systems.Events
             _uiEvents.RewardPressed += OnRewardPressed;
 
             _launcherNotifier.PlanetLaunched += OnPlanetLaunched;
-            _launcherNotifier.PlanetLoaded += OnPlanetLoaded;
         }
 
         private void OnGameWon()
@@ -126,11 +134,6 @@ namespace PlanetMerge.Systems.Events
         private void OnNextLevePressed()
         {
             NextLevelSelected?.Invoke();
-        }
-
-        private void OnPlanetLoaded()
-        {
-            PlanetLoaded?.Invoke();
         }
 
         private void OnPlanetLaunched()

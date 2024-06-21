@@ -1,4 +1,4 @@
-using PlanetMerge.Configs;
+using PlanetMerge.Configs.Goals;
 
 namespace PlanetMerge.Systems.Gameplay.LevelPreparing
 {

@@ -9,6 +9,7 @@ namespace PlanetMerge.Systems.Gameplay
         private ILevelGoalNotifier _levelGoalNotifier;
 
         public event Action GameWon;
+
         public event Action GameLost;
 
         private void OnDestroy()

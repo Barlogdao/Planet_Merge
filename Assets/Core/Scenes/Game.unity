@@ -1680,6 +1680,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _musicClip: {fileID: 8300000, guid: f055e6d6fb109f648b7c82a2348f546b, type: 3}
+  _launchSound: {fileID: 8300000, guid: e1d6154efa8892c4691126ae6aaf2f13, type: 3}
   _planetCollideSound: {fileID: 8300000, guid: bd896bb4a54fd2e4c8724c2d6dcbf732, type: 3}
   _wallCollideSound: {fileID: 8300000, guid: 97229b4a90407b94386d1aa642bf421e, type: 3}
   _mergeSound: {fileID: 8300000, guid: 0841bc84222462c4eae72477118b30a8, type: 3}

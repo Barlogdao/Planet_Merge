@@ -1,13 +1,13 @@
-using UnityEngine;
 using PlanetMerge.Entities.Planets;
 using PlanetMerge.Systems.Events;
-using System;
+using UnityEngine;
 
 namespace PlanetMerge.Systems.Audio
 {
     public class AudioHandler : MonoBehaviour
     {
         [SerializeField] private AudioClip _musicClip;
+        [SerializeField] private AudioClip _launchSound;
         [SerializeField] private AudioClip _planetCollideSound;
         [SerializeField] private AudioClip _wallCollideSound;
         [SerializeField] private AudioClip _mergeSound;
@@ -27,6 +27,7 @@ namespace PlanetMerge.Systems.Audio
             _gameEventMediator.PlanetCollided -= OnPlanetCollided;
             _gameEventMediator.PlanetMerged -= OnPlanetMerged;
             _gameEventMediator.WallCollided -= OnWallCollided;
+            _gameEventMediator.PlanetLaunched -= OnPlanetLaunched;
             _gameEventMediator.GameWon -= OnGameWon;
             _gameEventMediator.GameLost -= OnGameLost;
         }
@@ -39,6 +40,7 @@ namespace PlanetMerge.Systems.Audio
             _gameEventMediator.PlanetCollided += OnPlanetCollided;
             _gameEventMediator.PlanetMerged += OnPlanetMerged;
             _gameEventMediator.WallCollided += OnWallCollided;
+            _gameEventMediator.PlanetLaunched += OnPlanetLaunched;
             _gameEventMediator.GameWon += OnGameWon;
             _gameEventMediator.GameLost += OnGameLost;
         }
@@ -56,6 +58,11 @@ namespace PlanetMerge.Systems.Audio
         private void OnWallCollided(Vector2 atPoint)
         {
             _audioService.PlaySound(_wallCollideSound);
+        }
+
+        private void OnPlanetLaunched()
+        {
+            _audioService.PlaySound(_launchSound);
         }
 
         private void OnGameLost()

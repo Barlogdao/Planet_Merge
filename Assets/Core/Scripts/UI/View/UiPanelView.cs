@@ -10,14 +10,14 @@ namespace PlanetMerge.UI.View
     {
         private const float Zero = 0f;
 
+        private readonly float _minAlpha = 0f;
+        private readonly float _maxAlpha = 1f;
+
         [SerializeField] private float _tweenDuration = 1f;
         [SerializeField] private float _targetScale = 1.3f;
         [SerializeField] private Vector3 _startPosition;
         [SerializeField] private Vector3 _middlePosition = Vector3.zero;
         [SerializeField] private Ease _ease;
-
-        private readonly float _minAlpha = 0f;
-        private readonly float _maxAlpha = 1f;
 
         private CanvasGroup _canvasGroup;
         private RectTransform _rectTransform;

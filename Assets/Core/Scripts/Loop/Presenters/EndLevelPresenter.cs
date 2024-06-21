@@ -5,7 +5,7 @@ using PlanetMerge.Systems.PlanetLaunching;
 using PlanetMerge.UI.View;
 using UnityEngine;
 
-namespace PlanetMerge.Gameloop.Presenter
+namespace PlanetMerge.Loop.Presenters
 {
     public class EndLevelPresenter : MonoBehaviour
     {

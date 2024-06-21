@@ -3,7 +3,7 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-namespace PlanetMerge.Utils
+namespace PlanetMerge.Utils.Tweens
 {
     [System.Serializable]
     public class ScoreTween

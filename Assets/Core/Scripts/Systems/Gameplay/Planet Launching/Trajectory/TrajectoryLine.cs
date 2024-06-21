@@ -10,7 +10,6 @@ namespace PlanetMerge.Systems.PlanetLaunching
         private const int LineEnd = 1;
 
         private LineRenderer _lineRenderer;
-
         private Vector2 _startPoint;
 
         public void Initialize(Vector2 startPoint)

@@ -7,6 +7,7 @@ namespace PlanetMerge.Systems
     public class PlayerInput : MonoBehaviour
     {
         public event Action ClickedDown;
+
         public event Action ClickedUp;
 
         public Vector2 PointerPosition => Camera.main.ScreenToWorldPoint(Input.mousePosition);

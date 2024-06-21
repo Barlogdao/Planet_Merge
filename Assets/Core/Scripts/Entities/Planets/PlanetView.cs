@@ -1,5 +1,5 @@
 using DG.Tweening;
-using PlanetMerge.Configs;
+using PlanetMerge.Configs.PlanetViews;
 using TMPro;
 using UnityEngine;
 
@@ -26,7 +26,6 @@ namespace PlanetMerge.Entities.Planets
         {
             PlanetViewData data = _viewProvider.GetViewData(rank);
 
-
             _rankLabel.text = data.RankText;
             _rankLabel.color = data.LabelColor;
             _spriteRenderer.sprite = data.Sprite;
@@ -48,7 +47,6 @@ namespace PlanetMerge.Entities.Planets
         {
             _spriteRenderer.enabled = false;
             _rankLabel.enabled = false;
-
         }
     }
 }

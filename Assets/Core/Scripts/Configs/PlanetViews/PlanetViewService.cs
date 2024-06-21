@@ -2,7 +2,7 @@ using System;
 using NaughtyAttributes;
 using UnityEngine;
 
-namespace PlanetMerge.Configs
+namespace PlanetMerge.Configs.PlanetViews
 {
     [CreateAssetMenu(fileName = "PlanetViewService", menuName = "Configs/Services/PlanetViewService", order = 1)]
     public class PlanetViewService : ScriptableObject
@@ -22,5 +22,4 @@ namespace PlanetMerge.Configs
             return new PlanetViewData(config, planetRank.ToString());
         }
     }
-
 }

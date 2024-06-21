@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bcd102f05323be4f9be0dc6415b81d8, type: 3}
   m_Name: Goal 7
   m_EditorClassIdentifier: 
-  MergeAmount: 8
-  PlanetRankModifier: 3
+  <MergeAmount>k__BackingField: 4
+  <PlanetRankModifier>k__BackingField: 5

@@ -1,6 +1,7 @@
 using Cysharp.Threading.Tasks;
 using DG.Tweening;
 using PlanetMerge.Systems.Data;
+using PlanetMerge.Utils;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,13 +9,13 @@ namespace PlanetMerge.UI.View
 {
     public class PlanetProgressionPanel : PlanetViewPanel
     {
-        [SerializeField] private Slider _slider;
-        [SerializeField] private float _fillDuration;
-        [SerializeField] private Ease _fillEase;
-
         private readonly int _upgradeStep = Constants.PlanetUpgradeStep;
         private readonly float _minSliderVolume = 0f;
         private readonly float _maxSliderVolume = 1f;
+
+        [SerializeField] private Slider _slider;
+        [SerializeField] private float _fillDuration;
+        [SerializeField] private Ease _fillEase;
 
         public async UniTask ShowProgressAsync(IReadOnlyPlayerData playerData)
         {

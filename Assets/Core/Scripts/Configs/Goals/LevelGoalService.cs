@@ -1,7 +1,7 @@
 ﻿using NaughtyAttributes;
 using UnityEngine;
 
-namespace PlanetMerge.Configs
+namespace PlanetMerge.Configs.Goals
 {
     [CreateAssetMenu(fileName = "LevelGoalService", menuName = "Configs/Services/LevelGoalService", order = 1)]
     public class LevelGoalService : ScriptableObject

@@ -15,7 +15,9 @@ namespace PlanetMerge.UI
         private UiPanel _uiPanel;
 
         public event Action NextLevelPressed;
+
         public event Action RestartLevelPressed;
+
         public event Action RewardPressed;
 
         private void OnDestroy()

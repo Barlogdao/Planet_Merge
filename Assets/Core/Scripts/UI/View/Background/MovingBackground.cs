@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PlanetMerge.UI.View
+namespace PlanetMerge.UI.View.Background
 {
     [RequireComponent(typeof(RawImage))]
     public class MovingBackground : MonoBehaviour
@@ -22,7 +22,7 @@ namespace PlanetMerge.UI.View
         {
             float positonX = (_background.uvRect.position.x + _horizontalSpeed * Time.deltaTime) % 1f;
             float positionY = (_background.uvRect.position.y + _verticalSpeed * Time.deltaTime) % 1f;
-            Vector2 rectPosition = new Vector2(positonX, positionY); 
+            Vector2 rectPosition = new Vector2(positonX, positionY);
 
 
             _background.uvRect = new Rect(rectPosition, _rectSize);

@@ -1,5 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
-using PlanetMerge.Utils;
+using PlanetMerge.Utils.Tweens;
 using UnityEngine;
 
 namespace PlanetMerge.UI.View

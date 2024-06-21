@@ -3,6 +3,7 @@ namespace PlanetMerge.Systems.Tutorial
     public abstract class LaunchTutorialTip : TutorialTip
     {
         private bool _isPlanetLauched = false;
+
         protected bool IsPlanetLauched => _isPlanetLauched;
 
         protected override void Activate()

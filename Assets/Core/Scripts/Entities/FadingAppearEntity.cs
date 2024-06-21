@@ -26,7 +26,6 @@ public class FadingAppearEntity : AppearingEntity
     protected override void OnResetView()
     {
         _spriteRenderer.color = _spriteRenderer.color.WithAlpha(_minAlpha);
-
     }
 
     protected override void OnAwake()

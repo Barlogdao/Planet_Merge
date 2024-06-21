@@ -1,8 +1,8 @@
-using PlanetMerge.Utils;
+using PlanetMerge.Utils.Tweens;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PlanetMerge.UI.View
+namespace PlanetMerge.UI.View.Background
 {
     [RequireComponent(typeof(MovingBackground), typeof(RawImage))]
     public class SpaceBackground : MonoBehaviour

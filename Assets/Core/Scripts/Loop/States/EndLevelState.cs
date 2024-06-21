@@ -1,9 +1,9 @@
 using Cysharp.Threading.Tasks;
-using PlanetMerge.Gameloop.Presenter;
+using PlanetMerge.Loop.Presenters;
 using PlanetMerge.Systems.Data;
 using PlanetMerge.Systems.Gameplay;
 
-namespace PlanetMerge.Gameloop.States
+namespace PlanetMerge.Loop.States
 {
     public class EndLevelState
     {

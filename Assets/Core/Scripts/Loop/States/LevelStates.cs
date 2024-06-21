@@ -1,4 +1,4 @@
-namespace PlanetMerge.Gameloop.States
+namespace PlanetMerge.Loop.States
 {
     public class LevelStates
     {

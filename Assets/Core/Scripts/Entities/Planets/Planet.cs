@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using PlanetMerge.Entities.Walls;
 using PlanetMerge.Pools;
+using PlanetMerge.Utils;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -22,8 +23,11 @@ namespace PlanetMerge.Entities.Planets
         private bool _isSplitting = false;
 
         public event Action<Planet> Merged;
+
         public event Action<Vector2> PlanetCollided;
+
         public event Action<Vector2> WallCollided;
+
         public event Action<Planet> Splitted;
 
         public int Rank => _rank;
@@ -51,18 +55,17 @@ namespace PlanetMerge.Entities.Planets
             _view.Collide();
         }
 
+        private void OnDisable()
+        {
+            _mergeDetector.MergeDetected -= OnMergeDetected;
+        }
+
         public void Initialize(IReleasePool<Planet> releasePool)
         {
             _releasePool = releasePool;
             _rigidbody2D = GetComponent<Rigidbody2D>();
 
             _mergeDetector.Initialize(this);
-        }
-
-
-        private void OnDisable()
-        {
-            _mergeDetector.MergeDetected -= OnMergeDetected;
         }
 
         public void Prepare(int rank)

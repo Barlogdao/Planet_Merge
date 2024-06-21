@@ -2,7 +2,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace PlanetMerge.Utils
+namespace PlanetMerge.Utils.Tweens
 {
     public class ShaderFadeTween
     {

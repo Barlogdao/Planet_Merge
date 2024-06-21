@@ -1,7 +1,7 @@
 ﻿using NaughtyAttributes;
 using UnityEngine;
 
-namespace PlanetMerge.Configs
+namespace PlanetMerge.Configs.Layouts
 {
     [CreateAssetMenu(fileName = "LevelLayoutService", menuName = "Configs/Services/LevelLayoutService", order = 1)]
     public class LevelLayoutService : ScriptableObject

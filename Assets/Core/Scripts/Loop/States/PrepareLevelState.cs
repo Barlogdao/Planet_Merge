@@ -1,7 +1,7 @@
 using PlanetMerge.Systems.Data;
 using PlanetMerge.Systems.Gameplay.LevelPreparing;
 
-namespace PlanetMerge.Gameloop.States
+namespace PlanetMerge.Loop.States
 {
     public class PrepareLevelState
     {

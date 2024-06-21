@@ -1,5 +1,5 @@
 using Cysharp.Threading.Tasks;
-using PlanetMerge.Utils;
+using PlanetMerge.Utils.Tweens;
 using TMPro;
 using UnityEngine;
 
@@ -7,11 +7,11 @@ namespace PlanetMerge.UI.View
 {
     public class LevelScoreWindow : AppearWindow
     {
+        private readonly int _startScore = 0;
+
         [SerializeField] private TMP_Text _scoreLabel;
         [SerializeField] private ScoreTween _scoreTween;
         [SerializeField] private MoveTween _moveTween;
-
-        private readonly int _startScore = 0;
 
         private Vector3 _originPosition;
 

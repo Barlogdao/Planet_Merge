@@ -7,6 +7,7 @@ namespace PlanetMerge.Systems.Gameplay
         private int _amount;
 
         public int Amount => _amount;
+
         public bool HasEnergy => _amount > 0;
 
         public void Set(int amount)

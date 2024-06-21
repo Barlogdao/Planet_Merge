@@ -12,6 +12,7 @@ namespace PlanetMerge.Systems.Gameplay
         private IPlanetEvents _planetEvents;
 
         public event Action GoalReached;
+
         public event Action<int> GoalChanged;
 
         public int PlanetGoalRank => _planetGoalRank;

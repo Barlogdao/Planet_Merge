@@ -11,6 +11,7 @@ namespace PlanetMerge.Systems.Gameplay
         private List<Planet> _planets = new();
 
         public IEnumerable<Planet> Planets => _planets;
+
         public int PlanetsAmount => _planets.Count;
 
         private void OnDestroy()

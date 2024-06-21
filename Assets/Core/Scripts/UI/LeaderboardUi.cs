@@ -8,11 +8,11 @@ namespace PlanetMerge.UI
 {
     public class LeaderboardUi : MonoBehaviour
     {
-        [SerializeField] LeaderboardWindow _leaderBoardWindow;
-        [SerializeField] AuthorizeWindow _authorizeWindow;
-        [SerializeField] YandexLeaderboard _leaderBoard;
-        [SerializeField] Button _leaderboardButton;
-        [SerializeField] Button _authorizeButton;
+        [SerializeField] private LeaderboardWindow _leaderBoardWindow;
+        [SerializeField] private AuthorizeWindow _authorizeWindow;
+        [SerializeField] private YandexLeaderboard _leaderBoard;
+        [SerializeField] private Button _leaderboardButton;
+        [SerializeField] private Button _authorizeButton;
 
         private void Awake()
         {
@@ -38,7 +38,6 @@ namespace PlanetMerge.UI
             {
                 _authorizeWindow.Show();
             }
-
         }
     }
 }

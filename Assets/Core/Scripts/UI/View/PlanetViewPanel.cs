@@ -1,5 +1,5 @@
 using DG.Tweening;
-using PlanetMerge.Configs;
+using PlanetMerge.Configs.PlanetViews;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

@@ -1,7 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 
-namespace PlanetMerge.Utils
+namespace PlanetMerge.Utils.Tweens
 {
     [System.Serializable]
     public class ScaleTween

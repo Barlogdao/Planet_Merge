@@ -10,7 +10,9 @@ namespace PlanetMerge.Systems.Data
         }
 
         public int Level { get;  set; }
+
         public int PlanetRank { get;  set; }
+
         public int Score { get; set; }
     }
 }

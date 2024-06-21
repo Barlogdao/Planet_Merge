@@ -16,6 +16,7 @@ namespace PlanetMerge.Systems.Gameplay
         private WaitForSeconds _limitCheckDelay;
 
         public event Action LimitExpired;
+
         public event Action<int> LimitChanged;
 
         public bool HasEnergy => _energyLimit.HasEnergy;

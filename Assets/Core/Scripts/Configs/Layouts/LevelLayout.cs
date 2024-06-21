@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PlanetMerge.Configs
+namespace PlanetMerge.Configs.Layouts
 {
     [CreateAssetMenu(fileName = "LevelLayout", menuName = "Configs/LevelLayout", order = 1)]
     public class LevelLayout : ScriptableObject

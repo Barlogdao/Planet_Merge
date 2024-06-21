@@ -1,7 +1,7 @@
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using PlanetMerge.Utils;
 using System.Collections.Generic;
+using PlanetMerge.Utils.Tweens;
 
 namespace PlanetMerge.Entities.Walls
 {

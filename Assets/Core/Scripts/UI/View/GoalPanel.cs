@@ -1,5 +1,5 @@
 using PlanetMerge.Systems.Gameplay;
-using PlanetMerge.Utils;
+using PlanetMerge.Utils.Tweens;
 using TMPro;
 using UnityEngine;
 

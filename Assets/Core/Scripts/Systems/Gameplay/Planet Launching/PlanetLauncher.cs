@@ -4,6 +4,7 @@ using PlanetMerge.Entities.Planets;
 using PlanetMerge.Spawners;
 using PlanetMerge.Systems.Events;
 using PlanetMerge.Systems.PlanetLaunching;
+using PlanetMerge.Utils;
 using UnityEngine;
 
 namespace PlanetMerge.Systems.Gameplay.PlanetLaunching
@@ -24,14 +25,15 @@ namespace PlanetMerge.Systems.Gameplay.PlanetLaunching
         private int _planetRank = Constants.MinimalPlanetRank;
         private Coroutine _launchRoutine;
         private WaitForSeconds _cooldown;
+        private bool _isLoaded = false;
 
         public event Action PlanetLaunched;
-        public event Action PlanetLoaded;
 
         public Vector2 LaunchPosition => _launchPoint.position;
 
-        private bool CanLoad => _energyLimit.HasEnergy;
-        private bool CanLaunch => CanLoad && _launchRoutine == null;
+        private bool CanLoad => _energyLimit.HasEnergy && _isLoaded == false;
+
+        private bool CanLaunch => _isLoaded && _launchRoutine == null;
 
         private void OnDestroy()
         {
@@ -58,6 +60,7 @@ namespace PlanetMerge.Systems.Gameplay.PlanetLaunching
         {
             _planetRank = planetRank;
             _planetView.Set(_planetRank);
+            _isLoaded = false;
         }
 
         public Vector2 GetLaunchDirection()
@@ -85,28 +88,43 @@ namespace PlanetMerge.Systems.Gameplay.PlanetLaunching
 
             if (CanLaunch)
             {
-                _energyLimit.TrySpendEnergy();
                 _launchRoutine = StartCoroutine(LaunchPlanet());
             }
         }
 
         private void OnLimitChanged(int amount)
         {
-            LoadPlanet();
+            TryLoadPlanet();
+        }
+
+        private bool TryLoadPlanet()
+        {
+            if (CanLoad)
+            {
+                LoadPlanet();
+                return true;
+            }
+
+            return false;
         }
 
         private void LoadPlanet()
         {
-            if (CanLoad)
-            {
-                _planetView.Show();
-                PlanetLoaded?.Invoke();
-            }
+            _isLoaded = true;
+            _planetView.Show();
+        }
+
+        private void UnloadPlanet()
+        {
+            _isLoaded = false;
+            _planetView.Hide();
         }
 
         private IEnumerator LaunchPlanet()
         {
-            _planetView.Hide();
+            _energyLimit.TrySpendEnergy();
+
+            UnloadPlanet();
             PlanetLaunched?.Invoke();
 
             Planet planet = _planetSpawner.Spawn(LaunchPosition, _planetRank);
@@ -115,7 +133,8 @@ namespace PlanetMerge.Systems.Gameplay.PlanetLaunching
             yield return _cooldown;
 
             _launchRoutine = null;
-            LoadPlanet();
+
+            TryLoadPlanet();
         }
     }
 }

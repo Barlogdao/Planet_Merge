@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace PlanetMerge.Configs
+namespace PlanetMerge.Configs.Limits
 {
     [CreateAssetMenu(fileName = "LevelLimitService", menuName = "Configs/Services/LevelLimitService", order = 1)]
     public class LevelLimitService : ScriptableObject
