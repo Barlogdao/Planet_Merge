@@ -23,4 +23,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 952fa28c11aa93346b17497dc1899e0e, type: 2}
   - {fileID: 11400000, guid: d23edb3c304167c44b86e2255b6ebfbf, type: 2}
   - {fileID: 11400000, guid: bff54971d4c5ada41878a48e44a36313, type: 2}
+  - {fileID: 11400000, guid: 6c7e0a73f7917cc44b7ed244d650adf7, type: 2}
+  - {fileID: 11400000, guid: 4c0d0a84c6caeaa46a82881c85f351b6, type: 2}
   <TutorialLevelLayout>k__BackingField: {fileID: 11400000, guid: 2ee12089821fd3a41a83aaf0bb43469d, type: 2}

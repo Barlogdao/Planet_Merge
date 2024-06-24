@@ -14,16 +14,7 @@ namespace PlanetMerge.Configs.Goals
 
         public LevelGoal GetLevelGoal(int level)
         {
-            int index;
-
-            if (level <= _levelGoals.Length)
-            {
-                index = level - IndexOffset;
-            }
-            else
-            {
-                index = Random.Range(0, _levelGoals.Length);
-            }
+            int index = (level - IndexOffset) % _levelGoals.Length;
 
             return _levelGoals[index];
         }

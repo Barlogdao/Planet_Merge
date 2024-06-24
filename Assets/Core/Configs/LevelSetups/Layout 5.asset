@@ -15,10 +15,10 @@ MonoBehaviour:
   <PlanetSetups>k__BackingField:
   - PositionX: 0
     PositionY: -1.27
-    RankModifier: 1
+    RankModifier: 0
   - PositionX: 0.02
     PositionY: 1.32
-    RankModifier: 3
+    RankModifier: 2
   - PositionX: -1.45
     PositionY: 0
     RankModifier: 0
