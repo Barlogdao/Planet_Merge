@@ -1,7 +1,7 @@
 using PlanetMerge.Pools;
 using UnityEngine;
 
-namespace PlanetMerge.Entities.Splash
+namespace PlanetMerge.Entities.CollisionSplashes
 {
     [RequireComponent(typeof(ParticleSystem))]
     public class CollisionSplash : MonoBehaviour

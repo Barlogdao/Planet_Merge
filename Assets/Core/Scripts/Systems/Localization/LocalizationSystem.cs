@@ -22,7 +22,7 @@ namespace PlanetMerge.Systems.Localization
         private void ChangeLanguage()
         {
 #if UNITY_WEBGL && !UNITY_EDITOR
-            string languageCode = YandexGamesSdk.Environment.i18n.lang;
+            string languageCode = Agava.YandexGames.YandexGamesSdk.Environment.i18n.lang;
 #else
             string languageCode = Russian;
 #endif

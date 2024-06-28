@@ -1,6 +1,6 @@
 using System;
-using PlanetMerge.Systems.Events;
 using PlanetMerge.Entities.Planets;
+using PlanetMerge.Systems.Events;
 using UnityEngine;
 
 namespace PlanetMerge.Systems.Gameplay

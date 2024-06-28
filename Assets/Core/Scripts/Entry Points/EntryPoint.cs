@@ -1,6 +1,6 @@
+using PlanetMerge.Entities.CollisionSplashes;
 using PlanetMerge.Entities.Energy;
 using PlanetMerge.Entities.Planets;
-using PlanetMerge.Entities.Splash;
 using PlanetMerge.Loop;
 using PlanetMerge.Loop.Presenters;
 using PlanetMerge.Loop.States;

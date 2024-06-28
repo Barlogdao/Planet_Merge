@@ -1,11 +1,14 @@
-using PlanetMerge.Entities.Splash;
+using PlanetMerge.Entities.CollisionSplashes;
 using UnityEngine;
 
 namespace PlanetMerge.Pools
 {
     public class CollisionSplashPool : EntityPool<CollisionSplash>, IReleasePool<CollisionSplash>
     {
-        public CollisionSplashPool(CollisionSplash prefab, Transform parent) : base(prefab, parent) { }
+        public CollisionSplashPool(CollisionSplash prefab, Transform parent)
+            : base(prefab, parent)
+        {
+        }
 
         protected override void OnCreateAction(CollisionSplash entity)
         {

@@ -1,5 +1,5 @@
-using PlanetMerge.Pools;
 using PlanetMerge.Entities.Planets;
+using PlanetMerge.Pools;
 using UnityEngine;
 
 namespace PlanetMerge.Spawners
@@ -8,11 +8,11 @@ namespace PlanetMerge.Spawners
     {
         private readonly PlanetPool _pool;
 
-        public PlanetSpawner (PlanetPool pool)
+        public PlanetSpawner(PlanetPool pool)
         {
             _pool = pool;
         }
-     
+
         public Planet Spawn(Vector2 atPosition, int rank)
         {
             Planet planet = _pool.Get(atPosition);

@@ -13,7 +13,7 @@ namespace PlanetMerge.Utils.Tweens
 
         public async UniTask RunAsync(int startValue, int endValue, TMP_Text scoreLabel)
         {
-            await DOVirtual.Int(startValue, endValue, _duration, UpdateScore).SetEase(_ease); ;
+            await DOVirtual.Int(startValue, endValue, _duration, UpdateScore).SetEase(_ease);
 
             void UpdateScore(int value)
             {

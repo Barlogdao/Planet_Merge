@@ -11,7 +11,7 @@ namespace PlanetMerge.Systems.Tutorial
         [SerializeField] private Animator _animator;
         [SerializeField] private SpriteRenderer _spriteRenderer;
 
-        public void Move (Vector3 atPosition)
+        public void Move(Vector3 atPosition)
         {
             transform.position = atPosition;
         }

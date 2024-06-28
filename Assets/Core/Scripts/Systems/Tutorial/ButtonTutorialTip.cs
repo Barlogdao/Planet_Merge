@@ -7,7 +7,7 @@ namespace PlanetMerge.Systems.Tutorial
     [System.Serializable]
     public class ButtonTutorialTip : TutorialTip
     {
-        [SerializeField] Button _button;
+        [SerializeField] private Button _button;
 
         protected override async UniTask OnRunAsync()
         {

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace PlanetMerge.UI.View
 {
-    [RequireComponent(typeof(CanvasGroup), (typeof(RectTransform)))]
+    [RequireComponent(typeof(CanvasGroup), typeof(RectTransform))]
     public class UiPanelView : AppearingEntity
     {
         private const float Zero = 0f;
@@ -23,21 +23,6 @@ namespace PlanetMerge.UI.View
         private RectTransform _rectTransform;
         private Vector3 _originScale;
         private Vector3 _originAnchoredPosition;
-
-        protected override void OnAwake()
-        {
-            _canvasGroup = GetComponent<CanvasGroup>();
-            _rectTransform = GetComponent<RectTransform>();
-            _originScale = _rectTransform.localScale;
-            _originAnchoredPosition = _rectTransform.anchoredPosition;
-        }
-
-        protected override void OnResetView()
-        {
-            _rectTransform.position = _startPosition;
-            _rectTransform.localScale = _originScale;
-            _canvasGroup.alpha = _maxAlpha;
-        }
 
         public override async UniTask AppearAsync()
         {
@@ -57,6 +42,21 @@ namespace PlanetMerge.UI.View
         public override async UniTask DisappearAsync()
         {
             await _canvasGroup.DOFade(_minAlpha, _tweenDuration);
+        }
+
+        protected override void OnAwake()
+        {
+            _canvasGroup = GetComponent<CanvasGroup>();
+            _rectTransform = GetComponent<RectTransform>();
+            _originScale = _rectTransform.localScale;
+            _originAnchoredPosition = _rectTransform.anchoredPosition;
+        }
+
+        protected override void OnResetView()
+        {
+            _rectTransform.position = _startPosition;
+            _rectTransform.localScale = _originScale;
+            _canvasGroup.alpha = _maxAlpha;
         }
 
         private void ResetPositionZ()

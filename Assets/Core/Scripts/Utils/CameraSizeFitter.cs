@@ -9,7 +9,7 @@ namespace PlanetMerge.Utils
 
         [SerializeField] private float _minSize = 5.1f;
         [SerializeField] private float _maxSize = 6f;
-       
+
         private Camera _camera;
         private float _currentAspect;
 

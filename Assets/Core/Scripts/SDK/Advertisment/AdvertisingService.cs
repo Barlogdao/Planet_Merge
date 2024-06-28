@@ -1,6 +1,6 @@
+using System;
 using PlanetMerge.Systems.Gameplay;
 using PlanetMerge.Systems.Pause;
-using System;
 
 namespace PlanetMerge.SDK.Yandex.Advertising
 {
@@ -17,7 +17,7 @@ namespace PlanetMerge.SDK.Yandex.Advertising
 
         public bool IsAdsPlaying { get; private set; } = false;
 
-        public void ShowInterstitialAd(Action OnClose)
+        public void ShowInterstitialAd(Action onClose)
         {
 #if UNITY_WEBGL && !UNITY_EDITOR
         Agava.YandexGames.InterstitialAd.Show(OnOpenCallback, OnCloseInterstitial);
@@ -27,11 +27,11 @@ namespace PlanetMerge.SDK.Yandex.Advertising
             void OnCloseInterstitial(bool wasShown)
             {
                 OnCloseCallback();
-                OnClose();
+                onClose();
             }
         }
 
-        public void ShowRewardAd(Action OnSuccess, Action OnFail)
+        public void ShowRewardAd(Action onSuccess, Action onFail)
         {
 #if UNITY_WEBGL && !UNITY_EDITOR
         Agava.YandexGames.VideoAd.Show(OnOpenCallback, OnRewardedCallback, OnCloseCallback, OnErrorCallback);
@@ -41,12 +41,12 @@ namespace PlanetMerge.SDK.Yandex.Advertising
             void OnRewardedCallback()
             {
                 _rewardHandler.GetReward();
-                OnSuccess();
+                onSuccess();
             }
 
             void OnErrorCallback(string error)
             {
-                OnFail();
+                onFail();
             }
         }
 

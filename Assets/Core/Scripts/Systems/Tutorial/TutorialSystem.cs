@@ -1,7 +1,7 @@
 using System;
 using Cysharp.Threading.Tasks;
-using PlanetMerge.UI.View;
 using PlanetMerge.Systems.Events;
+using PlanetMerge.UI.View;
 using UnityEngine;
 
 namespace PlanetMerge.Systems.Tutorial
@@ -19,7 +19,7 @@ namespace PlanetMerge.Systems.Tutorial
         [SerializeField] private Canvas _uiPanelCanvas;
         [SerializeField] private FadingBackground _background;
 
-        [SerializeField] int _shiftedSortingOrder;
+        [SerializeField] private int _shiftedSortingOrder;
         [SerializeField] private float _intervalDuration = 1.5f;
 
         private InputController _inputController;
@@ -44,8 +44,8 @@ namespace PlanetMerge.Systems.Tutorial
             _thirdTip.Initialize(this, _pointer);
             _fourthTip.Initialize(this, _pointer);
             _background.Initialize();
-
-           _gameEventMediator.PlanetLaunched += OnPlanetLauched;
+            
+            _gameEventMediator.PlanetLaunched += OnPlanetLauched;
 
             _tutorialCanvas.enabled = false;
         }
@@ -63,7 +63,6 @@ namespace PlanetMerge.Systems.Tutorial
 
             _inputController.DisableInput();
             _tutorialCanvas.sortingOrder = _shiftedSortingOrder;
-
 
             await _thirdTip.RunAsync();
             await _fourthTip.RunAsync();

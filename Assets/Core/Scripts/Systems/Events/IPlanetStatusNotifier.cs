@@ -1,5 +1,5 @@
-using PlanetMerge.Entities.Planets;
 using System;
+using PlanetMerge.Entities.Planets;
 
 namespace PlanetMerge.Systems.Events
 {

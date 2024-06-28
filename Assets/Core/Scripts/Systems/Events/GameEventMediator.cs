@@ -111,6 +111,7 @@ namespace PlanetMerge.Systems.Events
         {
             LevelPrepared?.Invoke();
         }
+
         private void OnLevelStarted()
         {
             LevelStarted?.Invoke();
@@ -160,7 +161,6 @@ namespace PlanetMerge.Systems.Events
 
             PlanetReleased?.Invoke(planet);
         }
-
 
         private void OnPlanetSplitted(Planet planet)
         {

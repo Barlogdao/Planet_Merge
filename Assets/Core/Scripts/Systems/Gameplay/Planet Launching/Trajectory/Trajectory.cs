@@ -33,7 +33,6 @@ namespace PlanetMerge.Systems.PlanetLaunching
             _collisionLine.Initialize(_startPoint);
             _collisionView.Initialize(_planetRadius);
 
-
             Deactivate();
         }
 

@@ -4,7 +4,7 @@ using PlayerPrefs = Agava.YandexGames.Utility.PlayerPrefs;
 
 namespace PlanetMerge.Systems.SaveLoad
 {
-    public class YandexSaveSystem: BaseSaveSystem
+    public class YandexSaveSystem : BaseSaveSystem
     {
         public override PlayerData Load()
         {

@@ -13,7 +13,7 @@ namespace PlanetMerge.Entities.Walls
         private ShaderFadeTween _fadeTween;
         private Material _material;
 
-        void Start()
+        private void Start()
         {
             _material = GetComponent<SpriteRenderer>().material;
             _fadeTween = new ShaderFadeTween(_material, _fadeDuration, FadeProperty);

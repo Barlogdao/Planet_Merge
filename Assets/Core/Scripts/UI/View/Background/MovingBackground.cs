@@ -24,7 +24,6 @@ namespace PlanetMerge.UI.View.Background
             float positionY = (_background.uvRect.position.y + _verticalSpeed * Time.deltaTime) % 1f;
             Vector2 rectPosition = new Vector2(positonX, positionY);
 
-
             _background.uvRect = new Rect(rectPosition, _rectSize);
         }
     }

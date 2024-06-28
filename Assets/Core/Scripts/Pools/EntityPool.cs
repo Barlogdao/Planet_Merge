@@ -3,7 +3,8 @@ using UnityEngine.Pool;
 
 namespace PlanetMerge.Pools
 {
-    public class EntityPool<T> where T : MonoBehaviour
+    public class EntityPool<T>
+        where T : MonoBehaviour
     {
         private readonly ObjectPool<T> _pool;
         private readonly T _prefab;
@@ -31,9 +32,17 @@ namespace PlanetMerge.Pools
             _pool.Release(entity);
         }
 
-        protected virtual void OnCreateAction(T entity) { }
-        protected virtual void OnGetAction(T entity) { }
-        protected virtual void OnReleaseAction(T entity) { }
+        protected virtual void OnCreateAction(T entity)
+        {
+        }
+        
+        protected virtual void OnGetAction(T entity)
+        {
+        }
+        
+        protected virtual void OnReleaseAction(T entity)
+        {
+        }
 
         private T Create()
         {

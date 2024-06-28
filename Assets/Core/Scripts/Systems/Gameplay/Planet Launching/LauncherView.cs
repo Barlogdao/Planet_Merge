@@ -9,13 +9,6 @@ namespace PlanetMerge.Systems.PlanetLaunching
         [SerializeField] private FadingAppearEntity _forceField;
         [SerializeField] private MovingAppearEntity _planetView;
 
-        protected override void OnResetView()
-        {
-            _spaceShip.ResetView();
-            _forceField.ResetView();
-            _planetView.ResetView();
-        }
-
         public override async UniTask AppearAsync()
         {
             await _spaceShip.AppearAsync();
@@ -32,6 +25,13 @@ namespace PlanetMerge.Systems.PlanetLaunching
                 _planetView.DisappearAsync());
 
             await _spaceShip.DisappearAsync();
+        }
+
+        protected override void OnResetView()
+        {
+            _spaceShip.ResetView();
+            _forceField.ResetView();
+            _planetView.ResetView();
         }
     }
 }

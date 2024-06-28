@@ -1,5 +1,5 @@
-using PlanetMerge.Entities.Planets;
 using System;
+using PlanetMerge.Entities.Planets;
 using UnityEngine;
 
 namespace PlanetMerge.Systems.Events

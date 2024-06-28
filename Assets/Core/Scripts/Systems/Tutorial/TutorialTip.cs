@@ -26,7 +26,7 @@ namespace PlanetMerge.Systems.Tutorial
 
         public async UniTask RunAsync()
         {
-            Activate(); 
+            Activate();
 
             _pointer.Move(_pointerPosition);
             await OnRunAsync();

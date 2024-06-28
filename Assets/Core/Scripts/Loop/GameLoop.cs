@@ -1,8 +1,8 @@
+using System;
 using Cysharp.Threading.Tasks;
 using PlanetMerge.Loop.States;
 using PlanetMerge.SDK.Yandex.Advertising;
 using PlanetMerge.Systems.Events;
-using System;
 using UnityEngine;
 
 namespace PlanetMerge.Loop

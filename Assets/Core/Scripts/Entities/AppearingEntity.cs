@@ -17,7 +17,11 @@ public abstract class AppearingEntity : MonoBehaviour
 
     public abstract UniTask DisappearAsync();
 
-    protected virtual void OnAwake() { }
+    protected virtual void OnAwake()
+    {
+    }
 
-    protected virtual void OnResetView() { }
+    protected virtual void OnResetView()
+    {
+    }
 }

@@ -34,7 +34,6 @@ namespace PlanetMerge.Loop.Presenters
             await _looseWindow.AppearAsync();
         }
 
-
         private async UniTask LevelDissapearAync()
         {
             await UniTask.WhenAll(
