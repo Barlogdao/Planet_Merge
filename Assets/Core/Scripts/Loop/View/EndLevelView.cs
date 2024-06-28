@@ -5,9 +5,9 @@ using PlanetMerge.Systems.PlanetLaunching;
 using PlanetMerge.UI.View;
 using UnityEngine;
 
-namespace PlanetMerge.Loop.Presenters
+namespace PlanetMerge.Loop.View
 {
-    public class EndLevelPresenter : MonoBehaviour
+    public class EndLevelView : MonoBehaviour
     {
         [SerializeField] private Trajectory _trajectory;
         [SerializeField] private VictoryWindow _victoryWindow;

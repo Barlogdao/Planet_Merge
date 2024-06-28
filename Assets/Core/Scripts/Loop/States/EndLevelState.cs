@@ -1,5 +1,5 @@
 using Cysharp.Threading.Tasks;
-using PlanetMerge.Loop.Presenters;
+using PlanetMerge.Loop.View;
 using PlanetMerge.Systems.Data;
 using PlanetMerge.Systems.Gameplay;
 
@@ -7,18 +7,18 @@ namespace PlanetMerge.Loop.States
 {
     public class EndLevelState
     {
-        private readonly EndLevelPresenter _endLevelPresenter;
+        private readonly EndLevelView _endLevelView;
         private readonly PlayerDataSystem _playerDataSystem;
         private readonly LevelPlanetsController _levelPlanetsController;
         private readonly IReadOnlyPlayerData _playerData;
         private readonly LevelScore _levelScore;
 
         public EndLevelState(
-            EndLevelPresenter endLevelPresenter,
+            EndLevelView endLevelPresenter,
             PlayerDataSystem playerDataSystem,
             LevelPlanetsController levelPlanetsController)
         {
-            _endLevelPresenter = endLevelPresenter;
+            _endLevelView = endLevelPresenter;
             _playerDataSystem = playerDataSystem;
             _levelPlanetsController = levelPlanetsController;
             _levelScore = new LevelScore(_levelPlanetsController);
@@ -34,12 +34,12 @@ namespace PlanetMerge.Loop.States
             _levelPlanetsController.SplitPlanets();
             _playerDataSystem.UpdatePlayerData(levelScore);
 
-            await _endLevelPresenter.ShowWinAsync(levelScore, currentPlanetRank, _playerData);
+            await _endLevelView.ShowWinAsync(levelScore, currentPlanetRank, _playerData);
         }
 
         public void Loose()
         {
-            _endLevelPresenter.ShowLooseAsync().Forget();
+            _endLevelView.ShowLooseAsync().Forget();
         }
     }
 }

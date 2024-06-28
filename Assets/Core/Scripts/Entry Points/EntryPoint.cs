@@ -2,8 +2,8 @@ using PlanetMerge.Entities.CollisionSplashes;
 using PlanetMerge.Entities.Energy;
 using PlanetMerge.Entities.Planets;
 using PlanetMerge.Loop;
-using PlanetMerge.Loop.Presenters;
 using PlanetMerge.Loop.States;
+using PlanetMerge.Loop.View;
 using PlanetMerge.Pools;
 using PlanetMerge.SDK.Yandex;
 using PlanetMerge.SDK.Yandex.Advertising;
@@ -60,8 +60,8 @@ namespace PlanetMerge.EntryPoints
         [Header("Tutorial")]
         [SerializeField] private TutorialSystem _tutorialSystem;
         [Header("Game Loop")]
-        [SerializeField] private StartLevelPresenter _startLevelPresenter;
-        [SerializeField] private EndLevelPresenter _endLevelPresenter;
+        [SerializeField] private StartLevelView _startLevelView;
+        [SerializeField] private EndLevelView _endLevelView;
         [SerializeField] private GameLoop _gameLoop;
         [Space(30f)]
         [SerializeField] private GameEventMediator _gameEventMediator;
@@ -184,8 +184,8 @@ namespace PlanetMerge.EntryPoints
             IReadOnlyPlayerData playerData = _playerDataService.PlayerData;
 
             _prepareLevelState = new(playerData, _levelPrepareSystem);
-            _startLevelState = new(playerData, _tutorialSystem, _startLevelPresenter);
-            _endLevelState = new(_endLevelPresenter, _playerDataSystem, _levelPlanetsController);
+            _startLevelState = new(playerData, _tutorialSystem, _startLevelView);
+            _endLevelState = new(_endLevelView, _playerDataSystem, _levelPlanetsController);
             _levelStates = new(_prepareLevelState, _startLevelState, _endLevelState);
 
             _gameLoop.Initialize(_gameEventMediator, _levelStates, _advertisingService);

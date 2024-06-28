@@ -6,9 +6,9 @@ using PlanetMerge.UI.View;
 using PlanetMerge.UI.View.Background;
 using UnityEngine;
 
-namespace PlanetMerge.Loop.Presenters
+namespace PlanetMerge.Loop.View
 {
-    public class StartLevelPresenter : MonoBehaviour
+    public class StartLevelView : MonoBehaviour
     {
         private const float MinAlpha = 0f;
         private const float MaxAlpha = 1f;

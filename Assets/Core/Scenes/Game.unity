@@ -1124,7 +1124,7 @@ GameObject:
   - component: {fileID: 130264652}
   - component: {fileID: 130264651}
   m_Layer: 0
-  m_Name: End Level Presenter
+  m_Name: EndLevelView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2218,7 +2218,7 @@ GameObject:
   - component: {fileID: 267399387}
   - component: {fileID: 267399386}
   m_Layer: 0
-  m_Name: Start Level Presenter
+  m_Name: StartLevelView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5554,8 +5554,8 @@ MonoBehaviour:
   _focusController: {fileID: 1443108330}
   _leaderboard: {fileID: 457146500}
   _tutorialSystem: {fileID: 1163244839}
-  _startLevelPresenter: {fileID: 267399386}
-  _endLevelPresenter: {fileID: 130264651}
+  _startLevelView: {fileID: 267399386}
+  _endLevelView: {fileID: 130264651}
   _gameLoop: {fileID: 785785556}
   _gameEventMediator: {fileID: 785785554}
 --- !u!4 &785785552

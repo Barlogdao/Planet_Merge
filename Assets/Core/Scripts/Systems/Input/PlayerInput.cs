@@ -14,26 +14,35 @@ namespace PlanetMerge.Systems
 
         private void Update()
         {
-            if (Input.GetMouseButtonDown(0) && !IsPointerOverUI())
+            if (IsGameClickDownDetected())
             {
                 ClickedDown?.Invoke();
+                return;
             }
-            else if (Input.GetMouseButtonUp(0))
+
+            if (IsGameClickUpDetected())
             {
                 ClickedUp?.Invoke();
+                return;
             }
+        }
+
+        private bool IsGameClickDownDetected()
+        {
+            return Input.GetMouseButtonDown(0) && IsPointerOverUI() == false;
+        }
+
+        private bool IsGameClickUpDetected()
+        {
+            return Input.GetMouseButtonUp(0);
         }
 
         private bool IsPointerOverUI()
         {
             if (Agava.WebUtility.Device.IsMobile)
-            {
                 return EventSystem.current.IsPointerOverGameObject(0);
-            }
-            else
-            {
-                return EventSystem.current.IsPointerOverGameObject();
-            }
+
+            return EventSystem.current.IsPointerOverGameObject();
         }
     }
 }

@@ -1,5 +1,5 @@
 using Cysharp.Threading.Tasks;
-using PlanetMerge.Loop.Presenters;
+using PlanetMerge.Loop.View;
 using PlanetMerge.Systems.Data;
 using PlanetMerge.Systems.Tutorial;
 using PlanetMerge.Utils;
@@ -9,32 +9,32 @@ namespace PlanetMerge.Loop.States
     public class StartLevelState
     {
         private readonly TutorialSystem _tutorialSystem;
-        private readonly StartLevelPresenter _startLevelPresenter;
+        private readonly StartLevelView _startLevelView;
         private readonly IReadOnlyPlayerData _playerData;
 
-        public StartLevelState(IReadOnlyPlayerData playerData, TutorialSystem tutorialController, StartLevelPresenter startLevelPresenter)
+        public StartLevelState(IReadOnlyPlayerData playerData, TutorialSystem tutorialController, StartLevelView startLevelView)
         {
             _playerData = playerData;
             _tutorialSystem = tutorialController;
-            _startLevelPresenter = startLevelPresenter;
+            _startLevelView = startLevelView;
         }
 
         public async UniTask StartLevelAsync()
         {
             if (_playerData.Level == Constants.TutorialLevel)
             {
-                _startLevelPresenter.HideWindows();
+                _startLevelView.HideWindows();
                 _tutorialSystem.RunTutorialAsync().Forget();
             }
             else
             {
-                await _startLevelPresenter.StartLevelAsync();
+                await _startLevelView.StartLevelAsync();
             }
         }
 
         public void ResumeLevel()
         {
-            _startLevelPresenter.ResumeLevel();
+            _startLevelView.ResumeLevel();
         }
     }
 }
