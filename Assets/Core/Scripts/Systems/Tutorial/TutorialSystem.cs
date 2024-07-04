@@ -44,7 +44,7 @@ namespace PlanetMerge.Systems.Tutorial
             _thirdTip.Initialize(this, _pointer);
             _fourthTip.Initialize(this, _pointer);
             _background.Initialize();
-            
+
             _gameEventMediator.PlanetLaunched += OnPlanetLauched;
 
             _tutorialCanvas.enabled = false;

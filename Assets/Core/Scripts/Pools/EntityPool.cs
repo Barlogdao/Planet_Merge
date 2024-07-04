@@ -35,11 +35,11 @@ namespace PlanetMerge.Pools
         protected virtual void OnCreateAction(T entity)
         {
         }
-        
+
         protected virtual void OnGetAction(T entity)
         {
         }
-        
+
         protected virtual void OnReleaseAction(T entity)
         {
         }
