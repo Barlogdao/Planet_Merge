@@ -14,16 +14,7 @@ namespace PlanetMerge.Configs.Layouts
 
         public LevelLayout GetLevelLayout(int level)
         {
-            int index;
-
-            if (level <= _levelLayouts.Length)
-            {
-                index = level - IndexOffset;
-            }
-            else
-            {
-                index = Random.Range(0, _levelLayouts.Length);
-            }
+            int index = (level - IndexOffset) % _levelLayouts.Length;
 
             return _levelLayouts[index];
         }
